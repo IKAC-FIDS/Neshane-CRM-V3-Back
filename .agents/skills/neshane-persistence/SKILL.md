@@ -1,0 +1,11 @@
+---
+name: neshane-persistence
+description: Implement or review Backend PostgreSQL ownership, mappings, RLS, transactions, repositories, and migrations.
+---
+
+# Neshane persistence
+
+Apply to database models, repositories, transactions, PostgreSQL RLS, or migrations. Read `../../../AGENTS.md`, the local baseline, and Backend standard. Confirm the owning service/schema. Keep persistence entities in outbound adapters and prohibit cross-service SQL, shared entities, or shared migrations. Tenant data needs explicit tenant keys, scoped constraints, non-bypass runtime roles, RLS read/write policies, and transaction-local validated context. Keep transactions within one service and coordinate events through the messaging standard.
+
+Deliver only Task-requested persistence artifacts, relevant unexecuted isolation/migration tests, recovery/configuration notes, and approval gaps. Never execute migrations, builds, tests, databases, containers, or deployments.
+
