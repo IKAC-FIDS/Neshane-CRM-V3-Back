@@ -5,16 +5,20 @@
 - Work only on the explicitly requested Task ID and do not modify unrelated files.
 - This is an independent Java/Spring Boot Backend repository. It must remain independently buildable and understandable.
 - Read `architecture/governance-baseline.md` and `architecture/standards/backend-engineering.md` before architecture-sensitive work.
-- The recorded shared governance reference is `NESHANE-V3-GOV-P00-000A`. Root architecture and approved V3 ADRs are authoritative when available.
+- The recorded references are architecture `NESHANE-V3-ARCH-P00-002` and governance `NESHANE-V3-GOV-P00-000A`. Root architecture and approved V3 ADRs are authoritative when available.
 - If Root guidance is missing, use the local baseline without inventing decisions. If it is stale or conflicts with Root, report the mismatch and stop the affected work until an authorized alignment task or architecture decision resolves it.
 
 ## Architecture
 
 - Use Spring Boot microservices with Hexagonal Architecture and explicit domain boundaries.
-- Keep every Business Service independently buildable, deployable, and data-owning.
+- Keep every Business Service independently buildable, testable, versioned, packaged, deployable, and data-owning. Releasing one service must not require rebuilding another Business Service.
 - Domain code is independent of Spring and infrastructure. Dependencies point from adapters to application to domain; configuration wires implementations.
 - Cross-service implementation imports, shared ORM entities, shared business logic, and database access are forbidden.
-- Preserve validated Tenant Context and enforce authorization in the owning service.
+- Controlled co-deployment is allowed only when independent boundaries, artifacts, ownership, authorization, and future extraction remain intact.
+- Shared Policy Governance may provide common policy contracts, but each resource-owning service makes and enforces final authorization decisions; Sovereign policy authority is local.
+- Preserve validated Tenant Context; Shared SaaS tenant tables require PostgreSQL RLS and non-bypass runtime roles.
+- Use contract-first compatible evolution. Breaking API/event changes require a new version, coexistence, explicit deprecation and consumer migration planning.
+- Architecture, Implementation, and Production Readiness are separate evidence gates; operational evidence is profile-specific.
 - Never commit secrets or silently introduce architecture decisions.
 
 ## Local skills
