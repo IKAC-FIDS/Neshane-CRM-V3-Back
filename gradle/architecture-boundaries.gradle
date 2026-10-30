@@ -1,0 +1,74 @@
+import org.gradle.api.artifacts.ExternalModuleDependency
+import org.gradle.api.artifacts.ProjectDependency
+
+def allowedProjectDependencies = [
+    ':architecture-fixtures'            : [] as Set,
+    ':architecture-fixtures:domain'     : [] as Set,
+    ':architecture-fixtures:application': [':architecture-fixtures:domain'] as Set,
+    ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set
+]
+
+def domainProject = project(':architecture-fixtures:domain')
+
+def projectDependencyPath = { ProjectDependency dependency ->
+    dependency.hasProperty('path') ? dependency.path : dependency.dependencyProject.path
+}
+
+tasks.register('verifyModuleBoundaries') {
+    group = 'verification'
+    description = 'Enforces the representative adapter -> application -> domain project graph.'
+
+    doLast {
+        def graph = [:].withDefault { [] as Set }
+        def violations = []
+
+        subprojects.each { candidate ->
+            def actual = candidate.configurations.collectMany { configuration ->
+                configuration.dependencies.withType(ProjectDependency).collect(projectDependencyPath)
+            } as Set
+
+            graph[candidate.path].addAll(actual)
+            def allowed = allowedProjectDependencies.get(candidate.path)
+            if (allowed == null) {
+                violations.add("${candidate.path}: project is not declared in the boundary policy")
+            } else {
+                def forbidden = actual - allowed
+                if (!forbidden.isEmpty()) {
+                    violations.add("${candidate.path}: forbidden project dependencies ${forbidden.sort()}")
+                }
+            }
+        }
+
+        def forbiddenDomainGroups = ['org.springframework', 'org.hibernate', 'jakarta.persistence']
+        domainProject.configurations.each { configuration ->
+            configuration.dependencies.withType(ExternalModuleDependency).each { dependency ->
+                if (forbiddenDomainGroups.any { prefix -> dependency.group?.startsWith(prefix) }) {
+                    violations.add("${domainProject.path}: forbidden domain framework dependency ${dependency.group}:${dependency.name}")
+                }
+            }
+        }
+
+        def visiting = [] as Set
+        def visited = [] as Set
+        Closure visit
+        visit = { String node ->
+            if (visiting.contains(node)) {
+                violations.add("project dependency cycle includes ${node}")
+                return
+            }
+            if (visited.contains(node)) {
+                return
+            }
+
+            visiting.add(node)
+            graph[node].each { dependency -> visit(dependency) }
+            visiting.remove(node)
+            visited.add(node)
+        }
+        graph.keySet().each { node -> visit(node) }
+
+        if (!violations.isEmpty()) {
+            throw new GradleException("Module boundary violations:\n${violations.unique().join('\n')}")
+        }
+    }
+}

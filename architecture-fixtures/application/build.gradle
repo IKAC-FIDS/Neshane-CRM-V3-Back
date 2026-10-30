@@ -1,0 +1,5 @@
+description = 'Non-product application-layer fixture for build-boundary verification.'
+
+dependencies {
+    api project(':architecture-fixtures:domain')
+}

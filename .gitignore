@@ -1,5 +1,8 @@
 .gradle/
 build/
+**/build/
+bin/
+**/bin/
 out/
 target/
 .idea/
@@ -9,3 +12,6 @@ target/
 .env.*
 !.env.example
 *.log
+
+# The genuine Gradle Wrapper JAR is intentionally tracked once verified.
+!gradle/wrapper/gradle-wrapper.jar

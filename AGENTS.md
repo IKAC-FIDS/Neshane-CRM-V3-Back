@@ -5,7 +5,7 @@
 - Work only on the explicitly requested Task ID and do not modify unrelated files.
 - This is an independent Java/Spring Boot Backend repository. It must remain independently buildable and understandable.
 - Read `architecture/governance-baseline.md` and `architecture/standards/backend-engineering.md` before architecture-sensitive work.
-- The recorded references are architecture `NESHANE-V3-ARCH-P00-002` and governance `NESHANE-V3-GOV-P00-000A`. Root architecture and approved V3 ADRs are authoritative when available.
+- The recorded references are architecture `NESHANE-V3-ARCH-P00-003` and governance `NESHANE-V3-GOV-P00-000A`. Root architecture and approved V3 ADRs are authoritative when available.
 - If Root guidance is missing, use the local baseline without inventing decisions. If it is stale or conflicts with Root, report the mismatch and stop the affected work until an authorized alignment task or architecture decision resolves it.
 
 ## Architecture
@@ -28,8 +28,11 @@ Read the smallest relevant set under `.agents/skills/`: `neshane-service`, `nesh
 ## Execution policy
 
 - Codex may inspect relevant files, edit source/documentation, and write required test source.
-- Codex must not run builds, tests, applications, Docker/containers, deployments, CI/CD, commits, pushes, dependency installation, internet access, or expensive/unrelated validation.
-- Do not change Git metadata or remotes. Do not claim unexecuted verification passed.
-- For implementation tasks, report in Persian: implementation, changed files, configuration, exact manual build/run/deployment/verification commands, and limitations.
+- Codex may run local builds, unit tests, formatting, static analysis, module-boundary checks, offline dependency inspection, and isolated local integration tests only when the current Task ID explicitly authorizes that bounded execution.
+- Integration tests must use isolated non-production resources. Production access, live customer data, real credentials, destructive database operations, and shared mutable environments are forbidden.
+- Prefer offline execution when required by the task. Dependency installation, network access, downloads, or remote artifact resolution require separate explicit authorization and are not implied by build/test permission.
+- Do not disable tests, suppress meaningful failures, weaken checks, deploy, publish, execute CI/CD, commit, push, or change Git metadata/remotes without separate explicit authorization. Docker/containers and local services require explicit task scope and isolated non-production configuration.
+- Keep validation task-scoped and proportionate. Do not claim unexecuted verification passed or treat local evidence as Security Sign-off, Production Readiness, or profile-wide runtime assurance.
+- For implementation tasks, report in Persian: implementation, changed files, configuration, exact commands executed and results, manual commands for unexecuted checks, and limitations.
 - For documentation-only tasks, do not invent build or deployment commands; report documents, approval gaps, manual review, conflicts, and the next authorized task.
 

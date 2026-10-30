@@ -1,0 +1,10 @@
+[versions]
+java = "21"
+spring-boot = "4.1.2"
+gradle = "9.8.2"
+
+[libraries]
+spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

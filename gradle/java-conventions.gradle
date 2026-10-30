@@ -1,0 +1,31 @@
+apply plugin: 'java-library'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+    withSourcesJar()
+}
+
+dependencyLocking {
+    lockAllConfigurations()
+}
+
+configurations.configureEach {
+    resolutionStrategy.failOnVersionConflict()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release = 21
+    options.compilerArgs.addAll(['-Xlint:all', '-Werror'])
+}
+
+tasks.withType(Test).configureEach {
+    useJUnitPlatform()
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = false
+    reproducibleFileOrder = true
+}

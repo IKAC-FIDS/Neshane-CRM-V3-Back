@@ -49,11 +49,13 @@
 
 ## Test source
 
-- Write domain, application, adapter, contract, and integration tests proportional to changed risk, but do not execute them under repository policy.
+- Write domain, application, adapter, contract, and integration tests proportional to changed risk. Execute them only under the controlled, Task-scoped local execution policy in `AGENTS.md`, using isolated non-production resources and the exact permissions of the active Task ID.
 - Tenant tests cover at least two tenants, missing/invalid context, cross-tenant access, and ordinary database roles.
 - Messaging tests cover duplicates and crash/retry boundaries. Skipped or unexecuted tests are not evidence of success.
 
 ## Decisions still requiring approval
 
-Java/Spring Boot versions, build system/layout, base-package prefix, API protocol/versioning, identity/session model, migration tool and RLS mechanism, broker topology/contracts, error namespace, secret provider, testing stack, plugin model, and numeric operational limits.
+ADR-V3-013 approves Java 21 LTS, Spring Boot 4.1.2, and Gradle multi-project with Groovy DSL and the Gradle Wrapper. V3-005 verified the generated Gradle 9.8.2 Wrapper JAR against the approved SHA-256 and pins the approved distribution checksum. This foundation evidence does not verify a future Spring Boot application runtime or its transitive dependency set.
+
+Base-package prefix, API protocol/versioning, identity/session model, migration tool and RLS mechanism, broker topology/contracts, error namespace, secret provider, testing stack, plugin model, and numeric operational limits still require approval.
 

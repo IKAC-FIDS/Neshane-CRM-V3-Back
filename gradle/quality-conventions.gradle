@@ -1,0 +1,39 @@
+def qualityFiles = fileTree(rootDir) {
+    include '**/*.gradle'
+    include '**/*.java'
+    include '**/*.md'
+    include '**/*.properties'
+    include '**/*.toml'
+    include '**/*.yml'
+    include '**/*.yaml'
+    exclude '.git/**'
+    exclude '.gradle/**'
+    exclude '**/build/**'
+}
+
+tasks.register('verifyFormatting') {
+    group = 'verification'
+    description = 'Checks UTF-8 text files for trailing whitespace and a final newline.'
+    inputs.files(qualityFiles)
+
+    doLast {
+        def violations = []
+
+        qualityFiles.files.sort().each { file ->
+            def text = file.getText('UTF-8')
+            if (!text.isEmpty() && !text.endsWith('\n')) {
+                violations.add("${rootDir.toPath().relativize(file.toPath())}: missing final newline")
+            }
+
+            text.readLines().eachWithIndex { line, index ->
+                if (line ==~ /.*[ \t]+$/) {
+                    violations.add("${rootDir.toPath().relativize(file.toPath())}:${index + 1}: trailing whitespace")
+                }
+            }
+        }
+
+        if (!violations.isEmpty()) {
+            throw new GradleException("Formatting violations:\n${violations.join('\n')}")
+        }
+    }
+}

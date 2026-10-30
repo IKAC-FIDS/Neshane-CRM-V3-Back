@@ -1,0 +1,24 @@
+plugins {
+    id 'base'
+}
+
+allprojects {
+    version = '0.1.0-SNAPSHOT'
+}
+
+subprojects {
+    apply from: rootProject.file('gradle/java-conventions.gradle')
+}
+
+apply from: 'gradle/quality-conventions.gradle'
+apply from: 'gradle/architecture-boundaries.gradle'
+
+tasks.named('check') {
+    dependsOn subprojects.collect { "${it.path}:check" }
+    dependsOn tasks.named('verifyFormatting')
+    dependsOn tasks.named('verifyModuleBoundaries')
+}
+
+tasks.named('build') {
+    dependsOn subprojects.collect { "${it.path}:build" }
+}
