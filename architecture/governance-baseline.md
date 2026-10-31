@@ -22,5 +22,15 @@ Architecture approval establishes neither Implementation nor Production Readines
 - Test evidence: Gradle test tasks completed as `NO-SOURCE`; no Unit Test coverage or passing Unit Test suite is claimed.
 - Non-approvals: no Business Service/runtime, Spring Boot runtime compatibility, Security Sign-off, deployment-profile assurance, CI evidence, Production Readiness, publishing or release authorization is established.
 
+## V3-010 bounded R1 acceptance
+
+- Task status: `CLOSED — JAVA SERVICE SKELETON R1 BASELINE`, effective upon the traceable Backend commit containing this record and the complete reference-service implementation.
+- R1 disposition: `ACCEPTED — REFERENCE SERVICE ENGINEERING BASELINE ONLY`.
+- Authority: explicit CPO / Technical Architecture Owner approval under the project Level 1 task governance and accepted ADR-V3-013 engineering baseline.
+- Accepted scope: independently buildable `:services:reference-service`; Java 21; Spring Boot 4.1.2; Gradle 9.8.2; typed validated configuration; graceful shutdown; minimal Actuator health exposure; safe Problem Details; production-disabled diagnostic endpoint; reusable service-template guidance; dependency locks and verification metadata; and module-boundary enforcement.
+- Executable evidence: the independent module build and root `check` completed successfully; formatting and module-boundary checks passed; six JUnit tests executed with zero failures, errors or skips; no unintended business endpoint was exposed.
+- Container evidence: the local image was built from Docker Official Image `eclipse-temurin:21-jre-jammy` pinned to OCI index digest `sha256:1eac8b8fee11ca7d6725a48bc5d41992ed1561504ebae25490d2d062847e8269`; smoke containers ran as numeric non-root user with localhost-only publishing, read-only root filesystem, all Linux capabilities dropped and no production credentials; health returned `200`, the production diagnostic and candidate business endpoints returned `404`, the development diagnostic returned safe `application/problem+json`, and task-created containers were removed.
+- Non-approvals: this acceptance does not approve a public Business API, production authentication, Tenant Isolation runtime proof, persistence or messaging, deployment-profile assurance, CI evidence, Independent Security Sign-off, executable `DURABLE_DEFER`, Production Readiness, publishing or release authorization.
+
 If Root is missing, continue only where this local guidance and an approved Task ID are sufficient. If either reference is outdated, an ADR is missing, or guidance conflicts, report the exact issue and pause only the affected architecture-sensitive work. Update these references only through an authorized governance-alignment task.
 

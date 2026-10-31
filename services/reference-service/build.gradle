@@ -1,0 +1,21 @@
+plugins {
+    alias(libs.plugins.spring.boot)
+}
+
+dependencies {
+    implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation libs.spring.boot.starter.actuator
+    implementation libs.spring.boot.starter.validation
+    implementation libs.spring.boot.starter.web
+
+    testImplementation libs.spring.boot.starter.test
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+tasks.named('bootJar') {
+    archiveFileName = 'reference-service.jar'
+}
+
+tasks.named('jar') {
+    enabled = false
+}

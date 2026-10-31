@@ -1,0 +1,10 @@
+management:
+  endpoint:
+    health:
+      show-components: never
+      show-details: never
+
+neshane:
+  reference:
+    diagnostics:
+      enabled: false

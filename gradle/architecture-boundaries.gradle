@@ -5,7 +5,9 @@ def allowedProjectDependencies = [
     ':architecture-fixtures'            : [] as Set,
     ':architecture-fixtures:domain'     : [] as Set,
     ':architecture-fixtures:application': [':architecture-fixtures:domain'] as Set,
-    ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set
+    ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set,
+    ':services'                         : [] as Set,
+    ':services:reference-service'       : [] as Set
 ]
 
 def domainProject = project(':architecture-fixtures:domain')
@@ -16,7 +18,7 @@ def projectDependencyPath = { ProjectDependency dependency ->
 
 tasks.register('verifyModuleBoundaries') {
     group = 'verification'
-    description = 'Enforces the representative adapter -> application -> domain project graph.'
+    description = 'Enforces declared project dependency boundaries and service implementation isolation.'
 
     doLast {
         def graph = [:].withDefault { [] as Set }
