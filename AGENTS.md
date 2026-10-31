@@ -27,11 +27,11 @@ Read the smallest relevant set under `.agents/skills/`: `neshane-service`, `nesh
 
 ## Execution policy
 
-- Codex may inspect relevant files, edit source/documentation, and write required test source.
-- Codex may run local builds, unit tests, formatting, static analysis, module-boundary checks, offline dependency inspection, and isolated local integration tests only when the current Task ID explicitly authorizes that bounded execution.
-- Integration tests must use isolated non-production resources. Production access, live customer data, real credentials, destructive database operations, and shared mutable environments are forbidden.
-- Prefer offline execution when required by the task. Dependency installation, network access, downloads, or remote artifact resolution require separate explicit authorization and are not implied by build/test permission.
-- Do not disable tests, suppress meaningful failures, weaken checks, deploy, publish, execute CI/CD, commit, push, or change Git metadata/remotes without separate explicit authorization. Docker/containers and local services require explicit task scope and isolated non-production configuration.
+- An explicit Backend development Task authorizes ordinary in-scope source/documentation edits, Gradle/Java execution, builds, tests, static/format/boundary/contract checks, debugging, defect fixes and repeated validation without per-command approval.
+- Resolve pinned or controlled plugins/dependencies from repository-declared approved official HTTPS registries with normal TLS validation. Preserve verification metadata and lock state; reject untrusted mirrors, arbitrary executable installers and disabled integrity checks, and record material dependency changes.
+- Integration tests may use Task-owned disposable local databases, brokers, caches, fixtures, services and Docker containers. Use trusted base images with approved provenance/integrity controls; use no production access, customer data or real credentials; bind ports to localhost by default; avoid privileged/host-network containers and sensitive host/Docker-socket mounts; clean up only resources created by the Task.
+- Do not disable tests, suppress meaningful failures, weaken checks, or perform destructive operations against shared/non-disposable resources.
+- Commit only when the Task explicitly authorizes it. Deployment, publishing, CI/CD, push, remote infrastructure mutation, production migration and release require separate authorization; do not change remotes without explicit scope.
 - Keep validation task-scoped and proportionate. Do not claim unexecuted verification passed or treat local evidence as Security Sign-off, Production Readiness, or profile-wide runtime assurance.
 - For implementation tasks, report in Persian: implementation, changed files, configuration, exact commands executed and results, manual commands for unexecuted checks, and limitations.
 - For documentation-only tasks, do not invent build or deployment commands; report documents, approval gaps, manual review, conflicts, and the next authorized task.

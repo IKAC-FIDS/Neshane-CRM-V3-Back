@@ -49,7 +49,7 @@
 
 ## Test source
 
-- Write domain, application, adapter, contract, and integration tests proportional to changed risk. Execute them only under the controlled, Task-scoped local execution policy in `AGENTS.md`, using isolated non-production resources and the exact permissions of the active Task ID.
+- Write and execute domain, application, adapter, contract, and integration tests proportional to changed risk under the development-first policy in `AGENTS.md`. Use isolated non-production resources, keep execution within the active Task ID, and repeat failed checks after scoped fixes.
 - Tenant tests cover at least two tenants, missing/invalid context, cross-tenant access, and ordinary database roles.
 - Messaging tests cover duplicates and crash/retry boundaries. Skipped or unexecuted tests are not evidence of success.
 
