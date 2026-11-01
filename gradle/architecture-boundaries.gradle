@@ -7,7 +7,7 @@ def allowedProjectDependencies = [
     ':architecture-fixtures:application': [':architecture-fixtures:domain'] as Set,
     ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set,
     ':services'                         : [] as Set,
-    ':services:reference-service'       : [] as Set,
+    ':services:reference-service'       : [':platform-libraries:observability'] as Set,
     ':platform-libraries'               : [] as Set,
     ':platform-libraries:observability' : [] as Set,
     ':contract-tests'                   : [] as Set,
