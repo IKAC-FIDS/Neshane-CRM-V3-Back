@@ -1,0 +1,48 @@
+dependencies {
+    implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation libs.jackson.databind
+    implementation libs.json.schema.validator
+
+    testImplementation enforcedPlatform(libs.spring.boot.dependencies)
+    testImplementation libs.spring.boot.starter.test
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+def contractRoot = rootProject.layout.projectDirectory.dir('contracts/events')
+def defaultBaseline = contractRoot.file('baselines/v3-012/reference-event-v1.schema.json')
+def defaultCandidate = contractRoot.file('schemas/reference-event/v1/schema.json')
+
+tasks.register('validateEventContracts', JavaExec) {
+    group = 'verification'
+    description = 'Validates the event manifest, schemas and CloudEvents envelope policy.'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'ir.neshane.contract.event.EventContractVerifier'
+    args 'validate', contractRoot.asFile.absolutePath
+}
+
+tasks.register('verifyEventSchemaCompatibility', JavaExec) {
+    group = 'verification'
+    description = 'Fails when a candidate event payload schema is not consumer-backward compatible.'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'ir.neshane.contract.event.EventContractVerifier'
+    doFirst {
+        args = [
+                'diff',
+                providers.gradleProperty('eventBaseline')
+                        .getOrElse(defaultBaseline.asFile.absolutePath),
+                providers.gradleProperty('eventCandidate')
+                        .getOrElse(defaultCandidate.asFile.absolutePath)
+        ]
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('validateEventContracts')
+    dependsOn tasks.named('verifyEventSchemaCompatibility')
+}
+
+tasks.withType(Test).configureEach {
+    systemProperty 'eventContractRoot', contractRoot.asFile.absolutePath
+}

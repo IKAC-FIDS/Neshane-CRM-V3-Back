@@ -1,0 +1,15 @@
+{
+  "$schema": "./manifest.schema.json",
+  "manifestVersion": 1,
+  "events": [
+    {
+      "type": "io.neshane.contracts.reference.v1",
+      "payloadVersion": "1.0.0",
+      "schema": "schemas/reference-event/v1/schema.json",
+      "schemaId": "urn:neshane:event:contracts:reference:v1",
+      "owner": "technical-architecture",
+      "tenantMode": "required",
+      "status": "accepted-r1"
+    }
+  ]
+}

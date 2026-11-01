@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:event-envelope:v1",
+  "title": "Neshane CloudEvents-compatible JSON envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "specversion",
+    "id",
+    "source",
+    "type",
+    "time",
+    "datacontenttype",
+    "dataschema",
+    "correlationid",
+    "producerid",
+    "payloadversion",
+    "data"
+  ],
+  "properties": {
+    "specversion": {
+      "const": "1.0"
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "source": {
+      "type": "string",
+      "format": "uri-reference",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "type": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:\\.[a-z0-9-]+)+\\.v[1-9][0-9]*$"
+    },
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "datacontenttype": {
+      "const": "application/json"
+    },
+    "dataschema": {
+      "type": "string",
+      "pattern": "^urn:neshane:event:[a-z0-9:-]+:v[1-9][0-9]*$"
+    },
+    "correlationid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "causationid": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "tenantid": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "producerid": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[.-][a-z0-9]+)*$",
+      "maxLength": 128
+    },
+    "payloadversion": {
+      "type": "string",
+      "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$"
+    },
+    "data": {
+      "type": "object"
+    }
+  }
+}

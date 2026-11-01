@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:event:contracts:reference:v1",
+  "title": "Non-product reference event payload",
+  "description": "Engineering fixture for V3-012; it is not a Business Event.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["entityref", "changekind"],
+  "properties": {
+    "entityref": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "changekind": {
+      "type": "string",
+      "enum": ["created", "updated"]
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 256
+    }
+  }
+}
