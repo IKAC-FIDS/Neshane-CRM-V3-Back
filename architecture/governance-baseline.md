@@ -52,6 +52,24 @@ Architecture approval establishes neither Implementation nor Production Readines
 - Compatibility boundary: a candidate is consumer-backward compatible only when every candidate-permitted payload remains acceptable to the baseline consumer schema. Optional additions require a baseline that accepts unknown properties; enum narrowing is structurally compatible, while widening is breaking. Required-set changes, removals, type/format/identity/reference/array-item changes fail. Changed composition, definitions, conditionals, dynamic references, property policies, unknown keywords and advanced constraints require manual review and fail closed.
 - Governance alignment and non-approvals: API/event versioning is governed by DEC-014/ADR-V3-014; `OD-019` and `OD-020` remain Open. CI evidence is unavailable; runtime DLP, workload authentication, runtime Tenant Context validation and consumer authorization are not implemented or proven; no publisher, consumer, broker, Outbox/Inbox or Business Event runtime is implemented; no Independent Security Sign-off, Production Readiness, publishing or release authorization is established.
 
+## V3-013 bounded R1 acceptance
+
+- Task status: `CLOSED — OBSERVABILITY FOUNDATION R1 BASELINE`, effective upon the traceable Backend commit
+  containing this record and the complete observability-library implementation.
+- R1 disposition: `ACCEPTED — OBSERVABILITY LIBRARY ENGINEERING BASELINE ONLY`.
+- Authority: explicit CPO / Technical Architecture Owner approval under the project Level 1 task governance.
+- Accepted scope: Spring-independent structured JSON logging; W3C Trace Context and bounded correlation
+  propagation; standard HTTP/messaging metrics; sensitive-data redaction; fixed metric-attribute allowlists;
+  concurrent cardinality limits; explicit sampling, OTLP timeout/interval and bounded exporter queue settings;
+  failure-isolated export; dependency locking/verification; documentation; and local automated evidence.
+- Executable evidence: 15 unit tests and 5 synthetic HTTP/messaging propagation tests passed with zero failures
+  or skips; offline clean build, root `check`, formatting, module-boundary checks, HTTP contract validation and
+  compatibility, and Event contract validation and compatibility all passed.
+- Evidence boundary: no real RabbitMQ broker or OpenTelemetry Collector was used. Reference Service integration,
+  OTLP TLS/authentication, deployment-profile configuration, dashboards, alerts, retention, CI, Tenant Isolation
+  runtime proof, domain authorization runtime proof, Independent Security Sign-off and Production Readiness are
+  not established.
+
 ## P00-004 governance synchronization
 
 - Root authority: commit `92e14529d5529adc8c1c2da854e2035898cf2739`; DEC-014/ADR-V3-014.
