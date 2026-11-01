@@ -5,7 +5,7 @@
 - Java 21 LTS
 - Spring Boot 4.1.2 dependency baseline
 - Gradle 9.8.2 through the Gradle Wrapper
-- Architecture revision `NESHANE-V3-ARCH-P00-003`
+- Architecture revision `NESHANE-V3-ARCH-P00-004`
 
 Do not add Business Service code to `architecture-fixtures/`. Those projects exist only to make the dependency-direction checks non-vacuous.
 

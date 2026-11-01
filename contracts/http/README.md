@@ -8,8 +8,9 @@
 - R1 disposition: `ACCEPTED — HTTP CONTRACT ENGINEERING BASELINE ONLY`.
 - Task status: `CLOSED — CONTRACT-FIRST API CONVENTIONS R1 BASELINE`, effective upon the
   traceable Backend commit containing this baseline.
-- Open decisions: `OD-007`, `OD-008` and `OD-020` remain Open. This baseline does not select
-  production authentication, authorize a Business API or establish Production Readiness.
+- Governance authority: DEC-014/ADR-V3-014 governs REST/event versioning. `OD-007` and `OD-020`
+  remain Open. This baseline does not select production authentication, authorize a Business API
+  or establish Production Readiness.
 
 The machine-readable common contract is `common/v1/openapi.yaml`. The accepted explicit
 comparison baseline is `baselines/v3-011/common-v1.openapi.yaml`. Baselines are never rewritten
@@ -20,9 +21,9 @@ merely to make a breaking candidate pass.
 - OpenAPI is pinned to `3.1.0` with JSON Schema dialect 2020-12.
 - Every contract declares `x-neshane-contract-owner`, `x-neshane-contract-version` and
   `x-neshane-contract-status`.
-- Public paths use URI major versioning: `/api/v<major>/<plural-resources>`. This is the V3-011
-  bounded default pending final resolution of `OD-007/008`; operational/internal endpoints are
-  outside the public contract namespace.
+- Public paths use URI major versioning: `/api/v<major>/<plural-resources>` under ADR-V3-014;
+  operational/internal endpoints are outside the public contract namespace. Public REST versus
+  GraphQL/hybrid selection remains `OD-007`.
 - Operations use stable `operationId` values, standard HTTP methods/statuses and explicit
   `application/json` or `application/problem+json` media types.
 - A contract security declaration describes an expected trust mechanism only. It is never proof

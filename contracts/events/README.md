@@ -8,8 +8,9 @@
 - Scope: Git-versioned schemas, CloudEvents-compatible metadata, local validation and conservative
   compatibility analysis. This baseline creates no publisher, consumer, broker, Outbox, Inbox or
   Business Event.
-- `OD-008`, `OD-019` and `OD-020` remain Open. RabbitMQ topology, runtime delivery policy, a future
-  registry product and Production Readiness are not approved here.
+- DEC-014/ADR-V3-014 governs API/event versioning. `OD-019` and `OD-020` remain Open. RabbitMQ
+  topology, runtime delivery policy, a future registry product and Production Readiness are not
+  approved here.
 
 ## Envelope and identity
 

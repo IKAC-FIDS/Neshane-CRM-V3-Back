@@ -42,9 +42,11 @@ compatibility gate fails closed, not a failed acceptance run.
 
 ## Decisions and limitations
 
-- `/api/v<major>` URI versioning, zero-based offset pagination and the stated idempotency header
-  semantics are bounded V3-011 defaults awaiting R1 review. `OD-007`, `OD-008` and `OD-020`
-  remain Open.
+- At V3-011 R1 acceptance, `/api/v<major>` URI versioning, zero-based offset pagination and the
+  stated idempotency header semantics were bounded engineering defaults and `OD-008` was Open.
+  DEC-014/ADR-V3-014 subsequently accepted the URI-major REST and event-versioning rules.
+  `OD-007` and `OD-020` remain Open; pagination and runtime idempotency are not approved by
+  ADR-V3-014.
 - Idempotency retention/expiry, durable storage and runtime concurrency behavior remain
   unresolved and unimplemented.
 - Security declarations are contract expectations, not proof of runtime authentication,

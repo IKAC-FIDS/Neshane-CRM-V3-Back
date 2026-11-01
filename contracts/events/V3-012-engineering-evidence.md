@@ -24,8 +24,9 @@
 
 The baseline is aligned with ADR-V3-002 and ADR-V3-007/008: contracts remain versioned and
 producer-owned, tenant provenance is not authorization, unknown versions fail closed, and no
-broker, Outbox/Inbox, publisher, consumer or business event is implemented. `OD-008`, `OD-019`
-and `OD-020` remain Open.
+broker, Outbox/Inbox, publisher, consumer or business event is implemented. At V3-012 R1
+acceptance, `OD-008`, `OD-019` and `OD-020` were Open. DEC-014/ADR-V3-014 subsequently accepted
+the event-versioning rules; `OD-019` and `OD-020` remain Open.
 
 ## Envelope, versioning and registry decisions
 
@@ -96,5 +97,5 @@ Protocol. The acceptance covers only the Git-versioned envelope, manifest, schem
 compatibility gate, sensitive-field design-time policy, tests and build integration recorded here.
 It does not approve runtime DLP, workload authentication, runtime Tenant Context validation,
 consumer authorization, publishers, consumers, broker integration, Outbox/Inbox, Independent
-Security Sign-off, CI evidence or Production Readiness. `OD-008`, `OD-019` and `OD-020` remain
-Open.
+Security Sign-off, CI evidence or Production Readiness. DEC-014/ADR-V3-014 now governs the
+versioning baseline; `OD-019` and `OD-020` remain Open.

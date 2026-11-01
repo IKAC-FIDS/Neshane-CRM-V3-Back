@@ -1,14 +1,14 @@
 # Backend governance baseline
 
-- Architecture reference: `NESHANE-V3-ARCH-P00-003`.
+- Architecture reference: `NESHANE-V3-ARCH-P00-004`.
 - Governance reference: `NESHANE-V3-GOV-P00-000A`.
 - Repository role: independent Java/Spring Boot Backend.
 - Root source when the workspace is present: `../../architecture/governance-synchronization.md` and approved Root ADRs/standards.
 - This local file is a sufficient fallback when Root is unavailable; it does not convert proposed choices into approved decisions.
 
-Applicable accepted ADRs: ADR-V3-001 (Backend), ADR-V3-002 (ownership), ADR-V3-003 (hybrid tenancy), ADR-V3-004 (Sovereign authority), ADR-V3-005 (domain authorization), ADR-V3-006 (plugins), ADR-V3-007 (data/messaging), ADR-V3-008 (contract compatibility), ADR-V3-010 (operations), ADR-V3-011 (controlled co-deployment), ADR-V3-012 (readiness), and ADR-V3-013 (Java 21/Spring Boot 4.1.2/Gradle foundation).
+Applicable accepted ADRs: ADR-V3-001 (Backend), ADR-V3-002 (ownership), ADR-V3-003 (hybrid tenancy), ADR-V3-004 (Sovereign authority), ADR-V3-005 (domain authorization), ADR-V3-006 (plugins), ADR-V3-007 (data/messaging), ADR-V3-008 (contract compatibility), ADR-V3-010 (operations), ADR-V3-011 (controlled co-deployment), ADR-V3-012 (readiness), ADR-V3-013 (Java 21/Spring Boot 4.1.2/Gradle foundation), and ADR-V3-014 (REST/event versioning and schema evolution).
 
-Required invariants: DDD/Hexagonal Architecture; independent service build, test, version, artifact, deployment and data ownership; no cross-service implementation/database coupling; controlled co-deployment without boundary erosion; domain-owned authorization with shared policy governance and local Sovereign authority; contract-first compatible evolution; validated Tenant Context and Shared SaaS RLS; event-first plugins with controlled hooks; profile-specific operations; and evidence-based readiness.
+Required invariants: DDD/Hexagonal Architecture; independent service build, test, version, artifact, deployment and data ownership; no cross-service implementation/database coupling; controlled co-deployment without boundary erosion; domain-owned authorization with shared policy governance and local Sovereign authority; contract-first compatible evolution; public REST URI-major versioning; CloudEvents 1.0-compatible envelopes with independent event/payload/schema versions and immutable baselines; validated Tenant Context and Shared SaaS RLS; event-first plugins with controlled hooks; profile-specific operations; and evidence-based readiness.
 
 Architecture approval establishes neither Implementation nor Production Readiness. ADR-V3-013 selects Java 21 LTS, Spring Boot 4.1.2, and a Gradle multi-project build with Groovy DSL and the Gradle Wrapper. Exact Wrapper artifact integrity and all unselected tools/products remain implementation evidence or Open Decisions; they must not be inferred from local examples.
 
@@ -40,7 +40,7 @@ Architecture approval establishes neither Implementation nor Production Readines
 - Accepted scope: OpenAPI `3.1.0` common HTTP components; explicit contract ownership/status metadata; safe Problem Details and correlation conventions; bounded pagination, sorting and Idempotency-Key contract candidates; local validation and compatibility tooling; an immutable accepted comparison baseline; dependency locking/verification; and architecture-boundary enforcement for the contract-test module.
 - Executable evidence: six JUnit tests passed with zero failures or skips; two OpenAPI documents validated; the positive compatibility comparison passed; an intentionally breaking fixture was rejected with exit code `1`; offline clean build, root `check`, formatting and module-boundary verification passed.
 - Compatibility boundary: the checker covers removed paths/operations/parameters/responses/media types/schemas/properties, requiredness changes, request-parameter additions, type/format/default changes, enum narrowing, local parameter references, array items and positional composition/reference changes. Unsupported JSON Schema constraints and semantic equivalence cases remain explicit manual-review obligations.
-- Preserved decisions and non-approvals: `OD-007`, `OD-008` and `OD-020` remain Open; runtime idempotency is not implemented; authentication, authorization, Tenant Isolation and RLS runtime behavior are not proven or modified; CI evidence is unavailable; no Security Sign-off, Production Readiness, publishing or release authorization is established.
+- Governance alignment and non-approvals: API/event versioning is governed by DEC-014/ADR-V3-014; `OD-007` and `OD-020` remain Open. Runtime idempotency is not implemented; authentication, authorization, Tenant Isolation and RLS runtime behavior are not proven or modified; CI evidence is unavailable; no Security Sign-off, Production Readiness, publishing or release authorization is established.
 
 ## V3-012 bounded R1 acceptance
 
@@ -50,7 +50,15 @@ Architecture approval establishes neither Implementation nor Production Readines
 - Accepted scope: CloudEvents 1.0-compatible envelope policy; deterministic event type/payload/schema versioning; Git-versioned Draft 2020-12 schemas and manifest; fail-closed type/version resolution; design-time sensitive-field restrictions; conservative consumer-backward compatibility checking; local validation/test tooling; dependency locking/verification; and module-boundary enforcement.
 - Executable evidence: 17 Event contract tests passed with zero failures or skips; manifest, envelope and one non-product reference payload schema validated; the compatible comparison passed; an intentionally breaking fixture was rejected with exit code `1`; offline clean build, root `check`, formatting and module-boundary verification passed.
 - Compatibility boundary: a candidate is consumer-backward compatible only when every candidate-permitted payload remains acceptable to the baseline consumer schema. Optional additions require a baseline that accepts unknown properties; enum narrowing is structurally compatible, while widening is breaking. Required-set changes, removals, type/format/identity/reference/array-item changes fail. Changed composition, definitions, conditionals, dynamic references, property policies, unknown keywords and advanced constraints require manual review and fail closed.
-- Preserved decisions and non-approvals: `OD-008`, `OD-019` and `OD-020` remain Open; CI evidence is unavailable; runtime DLP, workload authentication, runtime Tenant Context validation and consumer authorization are not implemented or proven; no publisher, consumer, broker, Outbox/Inbox or Business Event runtime is implemented; no Independent Security Sign-off, Production Readiness, publishing or release authorization is established.
+- Governance alignment and non-approvals: API/event versioning is governed by DEC-014/ADR-V3-014; `OD-019` and `OD-020` remain Open. CI evidence is unavailable; runtime DLP, workload authentication, runtime Tenant Context validation and consumer authorization are not implemented or proven; no publisher, consumer, broker, Outbox/Inbox or Business Event runtime is implemented; no Independent Security Sign-off, Production Readiness, publishing or release authorization is established.
+
+## P00-004 governance synchronization
+
+- Root authority: commit `92e14529d5529adc8c1c2da854e2035898cf2739`; DEC-014/ADR-V3-014.
+- Synchronized scope: architecture reference and the governance status of the accepted V3-011 HTTP and V3-012 Event engineering baselines.
+- Consistency result: the existing `/api/v<major>/...` HTTP convention, CloudEvents 1.0-compatible envelope, `.v<major>` event type, independent `payloadversion`, immutable schema identity, consumer-backward compatibility direction and fail-closed unknown-version behavior conform to ADR-V3-014.
+- Historical evidence remains historical: V3-011/V3-012 evidence records that OD-008 was Open at their original R1 acceptance; ADR-V3-014 subsequently closed it. No executable contract, schema, compatibility checker or runtime service is changed by this synchronization.
+- Remaining decisions: OD-007 and OD-020 remain Open; OD-019 remains Open for its recorded scheduling scope. Runtime and release evidence remain separate.
 
 If Root is missing, continue only where this local guidance and an approved Task ID are sufficient. If either reference is outdated, an ADR is missing, or guidance conflicts, report the exact issue and pause only the affected architecture-sensitive work. Update these references only through an authorized governance-alignment task.
 
