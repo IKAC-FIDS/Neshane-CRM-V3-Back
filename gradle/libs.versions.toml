@@ -2,6 +2,7 @@
 java = "21"
 spring-boot = "4.1.2"
 gradle = "9.8.2"
+swagger-parser = "2.1.48"
 
 [libraries]
 spring-boot-dependencies = { module = "org.springframework.boot:spring-boot-dependencies", version.ref = "spring-boot" }
@@ -10,6 +11,7 @@ spring-boot-starter-test = { module = "org.springframework.boot:spring-boot-star
 spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
 spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
 junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher" }
+swagger-parser = { module = "io.swagger.parser.v3:swagger-parser-v3", version.ref = "swagger-parser" }
 
 [plugins]
 spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot" }

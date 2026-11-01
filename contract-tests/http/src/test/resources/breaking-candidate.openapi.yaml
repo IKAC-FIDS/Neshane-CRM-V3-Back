@@ -1,0 +1,75 @@
+openapi: 3.1.0
+info:
+  title: Breaking contract verifier candidate fixture
+  version: 2.0.0
+x-neshane-contract-owner: Contract verifier tests
+x-neshane-contract-version: v2
+x-neshane-contract-status: test-fixture
+paths:
+  /api/v1/examples:
+    post:
+      operationId: createExample
+      parameters: []
+      responses:
+        '201':
+          description: Test-only created response.
+        '409':
+          description: Test-only conflict response.
+components:
+  schemas:
+    Example:
+      type: object
+      required:
+        - state
+        - internalCode
+      properties:
+        id:
+          type: string
+          format: uuid
+        state:
+          type: string
+          enum:
+            - ACTIVE
+        internalCode:
+          type: string
+    ComposedExample:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+        - type: object
+          properties:
+            note:
+              type: string
+    ProblemDetails:
+      type: object
+      required:
+        - type
+        - title
+        - status
+        - detail
+        - instance
+        - code
+        - correlationId
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        instance:
+          type: string
+        code:
+          type: string
+        correlationId:
+          type: string
+          format: uuid
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+    PageMetadata:
+      type: object
+      properties:
+        page:
+          type: integer

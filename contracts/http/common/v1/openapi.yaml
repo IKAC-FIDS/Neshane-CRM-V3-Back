@@ -1,0 +1,159 @@
+openapi: 3.1.0
+jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
+info:
+  title: Neshane V3 Common HTTP Contract Components
+  version: 1.0.0
+  description: Portable HTTP components; this document exposes no Business API.
+x-neshane-contract-owner: Technical Architecture Owner
+x-neshane-contract-version: v1
+x-neshane-contract-status: accepted-r1
+paths: {}
+components:
+  headers:
+    CorrelationId:
+      description: Validated effective request correlation identifier.
+      schema:
+        type: string
+        format: uuid
+  parameters:
+    CorrelationId:
+      name: X-Correlation-ID
+      in: header
+      required: false
+      description: Optional UUID selector; invalid or absent values are replaced by the service.
+      schema:
+        type: string
+        format: uuid
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Opaque operation-scoped key; runtime durable enforcement is separately required.
+      schema:
+        type: string
+        minLength: 16
+        maxLength: 128
+        pattern: '^[A-Za-z0-9._~-]+$'
+    Page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 0
+        default: 0
+    Size:
+      name: size
+      in: query
+      required: false
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+        maximum: 100
+        default: 20
+    Sort:
+      name: sort
+      in: query
+      required: false
+      description: Repeatable stable sort in field,asc or field,desc form.
+      schema:
+        type: array
+        items:
+          type: string
+          pattern: '^[a-z][A-Za-z0-9]*(,(asc|desc))?$'
+      style: form
+      explode: true
+  schemas:
+    ProblemDetails:
+      type: object
+      additionalProperties: false
+      required:
+        - type
+        - title
+        - status
+        - detail
+        - instance
+        - code
+        - correlationId
+      properties:
+        type:
+          type: string
+          format: uri-reference
+        title:
+          type: string
+          minLength: 1
+        status:
+          type: integer
+          minimum: 400
+          maximum: 599
+        detail:
+          type: string
+          minLength: 1
+        instance:
+          type: string
+          format: uri-reference
+        code:
+          type: string
+          pattern: '^[A-Z][A-Z0-9_]{2,63}$'
+        correlationId:
+          type: string
+          format: uuid
+    ValidationViolation:
+      type: object
+      additionalProperties: false
+      required:
+        - field
+        - code
+        - message
+      properties:
+        field:
+          type: string
+          minLength: 1
+        code:
+          type: string
+          pattern: '^[A-Z][A-Z0-9_]{2,63}$'
+        message:
+          type: string
+          minLength: 1
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+        - type: object
+          required:
+            - violations
+          properties:
+            violations:
+              type: array
+              minItems: 1
+              items:
+                $ref: '#/components/schemas/ValidationViolation'
+    PageMetadata:
+      type: object
+      additionalProperties: false
+      required:
+        - page
+        - size
+        - totalElements
+        - totalPages
+        - sort
+      properties:
+        page:
+          type: integer
+          minimum: 0
+        size:
+          type: integer
+          minimum: 1
+          maximum: 100
+        totalElements:
+          type: integer
+          format: int64
+          minimum: 0
+        totalPages:
+          type: integer
+          minimum: 0
+        sort:
+          type: array
+          items:
+            type: string

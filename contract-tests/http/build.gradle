@@ -1,0 +1,47 @@
+dependencies {
+    implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation libs.swagger.parser
+
+    testImplementation enforcedPlatform(libs.spring.boot.dependencies)
+    testImplementation libs.spring.boot.starter.test
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+def contractRoot = rootProject.layout.projectDirectory.dir('contracts/http')
+def defaultBaseline = contractRoot.file('baselines/v3-011/common-v1.openapi.yaml')
+def defaultCandidate = contractRoot.file('common/v1/openapi.yaml')
+
+tasks.register('validateHttpContracts', JavaExec) {
+    group = 'verification'
+    description = 'Validates committed OpenAPI documents and Neshane HTTP conventions.'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'ir.neshane.contract.http.HttpContractVerifier'
+    args 'validate', contractRoot.asFile.absolutePath
+}
+
+tasks.register('verifyHttpApiCompatibility', JavaExec) {
+    group = 'verification'
+    description = 'Fails when the candidate OpenAPI contract breaks its explicit baseline.'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'ir.neshane.contract.http.HttpContractVerifier'
+    doFirst {
+        args = [
+                'diff',
+                providers.gradleProperty('httpBaseline')
+                        .getOrElse(defaultBaseline.asFile.absolutePath),
+                providers.gradleProperty('httpCandidate')
+                        .getOrElse(defaultCandidate.asFile.absolutePath)
+        ]
+    }
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('validateHttpContracts')
+    dependsOn tasks.named('verifyHttpApiCompatibility')
+}
+
+tasks.withType(Test).configureEach {
+    systemProperty 'contractRoot', contractRoot.asFile.absolutePath
+}

@@ -7,7 +7,9 @@ def allowedProjectDependencies = [
     ':architecture-fixtures:application': [':architecture-fixtures:domain'] as Set,
     ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set,
     ':services'                         : [] as Set,
-    ':services:reference-service'       : [] as Set
+    ':services:reference-service'       : [] as Set,
+    ':contract-tests'                   : [] as Set,
+    ':contract-tests:http'              : [] as Set
 ]
 
 def domainProject = project(':architecture-fixtures:domain')
