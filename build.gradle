@@ -16,7 +16,7 @@ apply from: 'gradle/architecture-boundaries.gradle'
 tasks.named('check') {
     dependsOn subprojects.collect { "${it.path}:check" }
     dependsOn tasks.named('verifyFormatting')
-    dependsOn tasks.named('verifyModuleBoundaries')
+    dependsOn tasks.named('verifyArchitectureBoundaries')
 }
 
 tasks.named('build') {

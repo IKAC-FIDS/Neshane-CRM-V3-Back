@@ -47,9 +47,12 @@ Useful module-scoped checks:
 .\gradlew.bat :architecture-fixtures:domain:build
 .\gradlew.bat :architecture-fixtures:application:build
 .\gradlew.bat :architecture-fixtures:adapter:build
+.\gradlew.bat verifyArchitectureBoundaries --offline
+.\gradlew.bat :architecture-tests:test verifyArchitectureBoundaryFixtures --offline
 ```
 
-The root `check` task includes formatting and module-boundary verification. No execution result is implied by this document.
+The root `check` task includes formatting, project-graph boundary verification, policy fixtures and ArchUnit
+tests through `verifyArchitectureBoundaries`. No execution result is implied by this document.
 
 Dependency locking is enabled for all Java projects. Generate or update lockfiles only in an authorized dependency-resolving task and review every resulting version change before commit.
 
@@ -58,5 +61,8 @@ Dependency locking is enabled for all Java projects. Generate or update lockfile
 - Domain has no project dependency and no Spring/Hibernate/JPA dependency.
 - Application may depend on Domain.
 - Adapter may depend on Application and obtains Domain transitively.
-- Cycles and undeclared project dependencies fail `verifyModuleBoundaries`.
+- Cycles, stale/missing policy registration, unauthorized direct/transitive project dependencies and service
+  API exposure of project dependencies fail `verifyModuleBoundaries`.
 - Business Services must remain independently buildable and may not depend on another service's implementation.
+- ArchUnit rejects protected Domain/Application direction violations, cross-service implementation imports and
+  Platform-to-Service imports; protected production scopes must not be empty.
