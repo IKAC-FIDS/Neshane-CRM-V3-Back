@@ -4,9 +4,10 @@ Independent Backend engineering workspace for Neshane CRM V3.
 
 ## Foundation baseline
 
-- Architecture: `NESHANE-V3-ARCH-P00-004`
+- Architecture: `NESHANE-V3-ARCH-P00-005`
 - Decision: `DEC-013` / `ADR-V3-013`
 - Contract versioning authority: `DEC-014` / `ADR-V3-014`
+- Contract testing authority: `DEC-015` / `ADR-V3-015`
 - Java: 21 LTS toolchain
 - Spring Boot: 4.1.2 dependency baseline
 - Build: Gradle 9.8.2 multi-project with Groovy DSL

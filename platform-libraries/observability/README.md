@@ -4,7 +4,7 @@ Status: `V3-013 = CLOSED — OBSERVABILITY FOUNDATION R1 BASELINE`
 
 R1 disposition: `ACCEPTED — OBSERVABILITY LIBRARY ENGINEERING BASELINE ONLY`
 
-Architecture baseline: `NESHANE-V3-ARCH-P00-004`
+Architecture baseline: `NESHANE-V3-ARCH-P00-005`
 
 This module provides a Spring-independent technical observability foundation. It does not own business
 authorization, Tenant Context, RLS, token validation, or any domain fact.

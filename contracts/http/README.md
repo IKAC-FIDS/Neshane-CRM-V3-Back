@@ -8,9 +8,10 @@
 - R1 disposition: `ACCEPTED — HTTP CONTRACT ENGINEERING BASELINE ONLY`.
 - Task status: `CLOSED — CONTRACT-FIRST API CONVENTIONS R1 BASELINE`, effective upon the
   traceable Backend commit containing this baseline.
-- Governance authority: DEC-014/ADR-V3-014 governs REST/event versioning. `OD-007` and `OD-020`
-  remain Open. This baseline does not select production authentication, authorize a Business API
-  or establish Production Readiness.
+- Governance authority: DEC-014/ADR-V3-014 governs REST/event versioning and DEC-015/ADR-V3-015
+  governs risk-based Contract Testing. `OD-020` is closed by DEC-015/ADR-V3-015; `OD-007` remains
+  Open. This baseline does not claim CI execution, select production authentication, authorize a
+  Business API or establish Production Readiness.
 
 The machine-readable common contract is `common/v1/openapi.yaml`. The accepted explicit
 comparison baseline is `baselines/v3-011/common-v1.openapi.yaml`. Baselines are never rewritten

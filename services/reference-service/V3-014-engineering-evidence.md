@@ -4,8 +4,8 @@ Status: `V3-014 = CLOSED — CONFIGURATION AND SECRET CONTRACTS R1 BASELINE`
 
 R1 disposition: `ACCEPTED — CONFIGURATION AND SECRET CONTRACT ENGINEERING BASELINE ONLY`
 
-Architecture reference: Root `NESHANE-V3-ARCH-P00-005`; Backend local governance reference remains
-`NESHANE-V3-ARCH-P00-004` pending a separately authorized governance synchronization.
+Architecture reference: Root and Backend local governance reference `NESHANE-V3-ARCH-P00-005`, synchronized
+under authorized Level 1 documentation task `GOV-V3-001` after this R1 evidence was accepted.
 
 ## Implemented scope
 
@@ -62,8 +62,8 @@ The CPO / Technical Architecture Owner accepted this bounded engineering baselin
 evidence passed. Acceptance covers the typed contract, fail-closed startup behavior, vendor-neutral external
 secret references, safe diagnostics, tests and documentation only. It does not establish runtime Tenant
 Isolation or Authorization proof, Production Secret Manager integration, live rotation, CI evidence,
-Independent Security Sign-off or Production Readiness. Backend P00-005 reference synchronization remains a
-separate governance follow-up.
+Independent Security Sign-off or Production Readiness. The later `GOV-V3-001` synchronization changes only
+the Backend governance reference; it does not expand this R1 acceptance.
 
 ## Known limitations and future provider boundary
 
@@ -73,8 +73,8 @@ separate governance follow-up.
   are not proven here. Java memory erasure is best-effort for owned buffers only.
 - A future Secret Provider must implement an approved outbound adapter, preserve the same fail-closed and
   non-disclosure contract, and receive separate architecture/security approval where required.
-- Backend propagation of architecture baseline P00-005 remains a governance synchronization action, not an
-  executable configuration change.
+- Backend propagation of architecture baseline P00-005 was completed as governance metadata under
+  `GOV-V3-001`; it is not an executable configuration change.
 
 ## Recovery and rollback
 
