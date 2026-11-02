@@ -28,7 +28,7 @@ public class ReferenceObservabilityConfiguration {
         ObservabilitySettings settings = new ObservabilitySettings(
                 serviceProperties.serviceName(),
                 optionalText(observabilityProperties.getServiceInstanceId()),
-                optionalText(observabilityProperties.getOtlpEndpoint()).map(URI::create),
+                optionalText(observabilityProperties.getOtlpEndpoint()).map(ReferenceObservabilityConfiguration::safeUri),
                 observabilityProperties.getTraceSampleRatio(),
                 observabilityProperties.getExportTimeout(),
                 observabilityProperties.getSpanExportInterval(),
@@ -47,5 +47,13 @@ public class ReferenceObservabilityConfiguration {
 
     private static Optional<String> optionalText(String candidate) {
         return candidate == null || candidate.isBlank() ? Optional.empty() : Optional.of(candidate.trim());
+    }
+
+    static URI safeUri(String candidate) {
+        try {
+            return URI.create(candidate);
+        } catch (IllegalArgumentException exception) {
+            throw new IllegalArgumentException("Invalid neshane.observability.otlp-endpoint");
+        }
     }
 }

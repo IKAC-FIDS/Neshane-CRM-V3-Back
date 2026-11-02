@@ -1,5 +1,6 @@
 package ir.neshane.reference.configuration;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Min;
@@ -19,6 +20,7 @@ public class ReferenceObservabilityProperties {
     private double traceSampleRatio;
 
     @NotNull private Duration exportTimeout = Duration.ofSeconds(2);
+
     @NotNull private Duration spanExportInterval = Duration.ofSeconds(5);
 
     @Min(1)
@@ -102,5 +104,21 @@ public class ReferenceObservabilityProperties {
 
     public void setMaximumMetricValuesPerKey(int maximumMetricValuesPerKey) {
         this.maximumMetricValuesPerKey = maximumMetricValuesPerKey;
+    }
+
+    @AssertTrue(message = "maximum-export-batch-size must not exceed maximum-queued-spans")
+    public boolean isExportBatchWithinQueueCapacity() {
+        return maximumExportBatchSize <= maximumQueuedSpans;
+    }
+
+    @AssertTrue(message = "observability durations must be positive")
+    public boolean isDurationConfigurationPositive() {
+        return isPositive(exportTimeout)
+                && isPositive(spanExportInterval)
+                && isPositive(metricExportInterval);
+    }
+
+    private static boolean isPositive(Duration duration) {
+        return duration != null && !duration.isZero() && !duration.isNegative();
     }
 }

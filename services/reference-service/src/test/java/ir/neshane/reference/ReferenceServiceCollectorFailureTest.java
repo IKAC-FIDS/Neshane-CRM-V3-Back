@@ -14,6 +14,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 @SpringBootTest(
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
+            "spring.profiles.active=test",
             "neshane.observability.otlp-endpoint=http://127.0.0.1:1",
             "neshane.observability.trace-sample-ratio=1.0",
             "neshane.observability.export-timeout=100ms",

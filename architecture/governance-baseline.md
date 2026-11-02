@@ -80,3 +80,23 @@ Architecture approval establishes neither Implementation nor Production Readines
 
 If Root is missing, continue only where this local guidance and an approved Task ID are sufficient. If either reference is outdated, an ADR is missing, or guidance conflicts, report the exact issue and pause only the affected architecture-sensitive work. Update these references only through an authorized governance-alignment task.
 
+## V3-014 bounded R1 acceptance
+
+- Task status: `CLOSED — CONFIGURATION AND SECRET CONTRACTS R1 BASELINE`, effective upon the traceable
+  Backend commit containing this record and the complete V3-014 implementation.
+- R1 disposition: `ACCEPTED — CONFIGURATION AND SECRET CONTRACT ENGINEERING BASELINE ONLY`.
+- Authority: explicit CPO / Technical Architecture Owner approval under the project Level 1 task governance.
+- Reviewed Root basis: `NESHANE-V3-ARCH-P00-005`; the local Backend architecture-reference field remains
+  P00-004 pending a separately authorized governance synchronization.
+- Accepted scope: typed Reference Service configuration; explicit development/test/production profiles;
+  profile-conflict rejection; vendor-neutral environment/file secret references; strict bounded file input;
+  fail-closed production startup; safe error/log/diagnostic behavior; Observability configuration validation;
+  documentation and local automated evidence.
+- Executable evidence: 31 Reference Service tests, 15 Observability unit tests, 5 synthetic Observability
+  integration tests, 6 HTTP contract tests and 17 Event contract tests passed with zero failures, errors or
+  skips. Offline clean build/check, Contract validation/compatibility, formatting, module-boundary and diff
+  checks passed.
+- Non-approvals: no production Secret Manager, live secret rotation, CI evidence, runtime Tenant Isolation or
+  Authorization proof, Independent Security Sign-off, Production Readiness, publishing or release
+  authorization is established.
+

@@ -1,6 +1,8 @@
 spring:
   application:
     name: ${SERVICE_NAME:reference-service}
+  profiles:
+    active: ${NESHANE_DEPLOYMENT_PROFILE:}
   jmx:
     enabled: false
   lifecycle:
