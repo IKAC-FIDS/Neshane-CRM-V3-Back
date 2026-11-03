@@ -1,4 +1,5 @@
 def ciPolicyScript = rootProject.file('ci/Invoke-CiSecurityPolicy.ps1')
+def buildEvidenceScript = rootProject.file('ci/Assert-BuildEvidence.ps1')
 
 def registerPolicyExec = { String taskName, String mode, String descriptionText ->
     tasks.register(taskName, Exec) {
@@ -17,6 +18,14 @@ registerPolicyExec(
     'ScanSecrets',
     'Fails on high-confidence credential material in repository text files.'
 )
+
+tasks.register('verifyBuildEvidencePolicyFixtures', Exec) {
+    group = 'verification'
+    description = 'Proves build-evidence completeness checks fail closed and accept valid JAR/SBOM outputs.'
+    inputs.file(buildEvidenceScript)
+    commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', buildEvidenceScript,
+        '-Mode', 'Fixtures'
+}
 
 registerPolicyExec(
     'verifyCiWorkflowPolicy',
@@ -56,6 +65,7 @@ tasks.register('verifyCiSecurityPolicy') {
     dependsOn tasks.named('verifyCiWorkflowPolicy')
     dependsOn tasks.named('verifySecurityExceptions')
     dependsOn tasks.named('verifyCiSecurityPolicyFixtures')
+    dependsOn tasks.named('verifyBuildEvidencePolicyFixtures')
     dependsOn tasks.named('verifyPromotionEvidenceFixture')
 }
 

@@ -1,6 +1,6 @@
 # V3-016 CI Security Pipeline — engineering evidence
 
-Status: `V3-016 = IN PROGRESS — DEPENDENCY VERIFICATION REMEDIATION VALIDATED; HOSTED CI RE-RUN PENDING`
+Status: `V3-016 = IN PROGRESS — BUILD ARTIFACT EVIDENCE REMEDIATION VALIDATED; HOSTED CI RE-RUN PENDING`
 
 R1 acceptance: `PENDING`
 
@@ -184,11 +184,64 @@ restored, `help --offline` passed from that trusted isolated cache and the requi
 completed in 59 seconds with all 65 actionable tasks and the same 80 tests passing. No version, dependency lock,
 repository or executable workflow changed.
 
+## Third hosted run and build-artifact evidence remediation
+
+Dependency-verification commit `3502d75d52e3d2bff483d0d9c26504d36362b3e5` triggered GitHub Actions run
+`41637973689`. Strict dependency verification, the Linux Wrapper, Trivy/current CISA KEV policy, Gitleaks and the
+full engineering lifecycle all passed. The engineering job completed 65 actionable tasks, but its command was
+`./gradlew clean ciLocalVerification --no-daemon --stacktrace`; `ciLocalVerification` does not depend on
+`:services:reference-service:bootJar`. The configured `reference-service.jar` was therefore not produced after
+`clean`.
+
+The upload step accepted the aggregate `build/reports/cyclonedx/bom.json` as its one matching file and uploaded
+an incomplete `ci-build-evidence` artifact. The mandatory Evidence Gate downloaded it and failed closed because
+`services/reference-service/build/libs/reference-service.jar` was absent. Independent inspection of artifact
+`13230644125` confirmed that its ZIP contained only the aggregate SBOM. Run `41637973689` remains failed historical
+evidence and is not reclassified.
+
+The bounded correction:
+
+- invokes `:services:reference-service:bootJar` explicitly in the PR engineering lifecycle;
+- validates the controlled JAR and aggregate SBOM paths before upload;
+- rejects missing or empty outputs, invalid/non-manifest JAR archives, invalid JSON/non-CycloneDX SBOMs and
+  incorrect artifact paths;
+- retains the downstream mandatory Evidence Gate; and
+- adds fail-closed fixtures for a missing or skipped prerequisite engineering stage.
+
+Corrective local validation on 3 November 2026 executed:
+
+```powershell
+pwsh -NoLogo -NoProfile -File ci\Assert-BuildEvidence.ps1 -Mode Fixtures
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode Fixtures -RepositoryRoot .
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode Workflow -RepositoryRoot .
+.\gradlew.bat clean ciLocalVerification :services:reference-service:bootJar --offline --no-daemon --stacktrace --rerun-tasks
+pwsh -NoLogo -NoProfile -File ci\Assert-BuildEvidence.ps1 -Mode Validate `
+  -ArtifactPath services/reference-service/build/libs/reference-service.jar `
+  -SbomPath build/reports/cyclonedx/bom.json
+actionlint .github/workflows/backend-ci.yml .github/workflows/backend-promotion-evidence.yml
+git diff --check
+```
+
+All commands exited zero. Gradle executed 68 actionable tasks, including `bootJar`; JUnit XML reported 80 tests
+across 25 reports with zero failures, errors or skips. Architecture, formatting, HTTP/Event contract validation
+and compatibility, secret, exception, workflow, supply-chain fixture and CycloneDX gates passed. The actual local
+outputs were nonempty and validated:
+
+| Output | Size | SHA-256 |
+| --- | ---: | --- |
+| `services/reference-service/build/libs/reference-service.jar` | 30,556,225 bytes | `c1ece704650e2ea719d3318f3c93401d33343df9db9b46763467d883d675e82b` |
+| `build/reports/cyclonedx/bom.json` | 329,675 bytes | `c86e78adf86bf04a44650747b984af765856127f5d0cae0d647598c1123f1cf0` |
+
+The build-evidence fixture matrix proved missing JAR, missing SBOM, empty JAR, empty SBOM and an incorrect JAR
+path each fail with their intended diagnostic; the valid JAR/SBOM counterpart passed. Evidence fixtures proved
+that a missing or `SKIPPED` engineering stage is rejected. Official `actionlint 1.7.12` was fetched from its
+GitHub release, its archive matched SHA-256
+`6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9`, and both workflow files passed.
+
 ## Hosted and organizational evidence still required
 
-- The dependency-verification corrective commit must be pushed and a new hosted run must prove clean dependency
-  resolution, Linux Wrapper execution, real Trivy/KEV
-  evaluation, build/SBOM artifact generation and the final mandatory evidence gate.
+- The build-artifact corrective commit must be pushed and a new hosted run must prove both JAR and SBOM upload,
+  artifact download, manifest hashing and the final mandatory Evidence Gate.
 - Required-check and protected-branch configuration has not been inspected or changed.
 - Exception approval metadata is structurally required, but approver identity/authority cannot be authenticated by
   the repository script; CODEOWNERS/review and protected-branch evidence remain required.

@@ -141,7 +141,8 @@ function Test-WorkflowPolicy {
     Assert-Condition ($ciContent -notmatch '(?im)^\s*(id-token|attestations|packages|actions):\s*write\s*$') `
         'PR workflow must not grant privileged write permissions'
     foreach ($marker in @('engineering-gates:', 'secret-scan:', 'vulnerability-scan:', 'evidence-gate:',
-            'ciLocalVerification', 'gitleaks-action', 'trivy-action', 'cyclonedx')) {
+            'ciLocalVerification', ':services:reference-service:bootJar', 'Assert-BuildEvidence.ps1',
+            'gitleaks-action', 'trivy-action', 'cyclonedx')) {
         Assert-Condition ($ciContent.Contains($marker)) "PR workflow is missing mandatory marker: $marker"
     }
     Assert-Condition ([regex]::Matches($ciContent, "cache:\s*'false'").Count -ge 1) `
@@ -393,6 +394,18 @@ function Invoke-PolicyFixtures {
     $missingEvidence.stages = [pscustomobject]@{ engineering = 'PASS'; secretScan = 'PASS'; sbom = 'PASS' }
     Assert-Fails { Test-EvidenceDocument $missingEvidence $policy } `
         'mandatory evidence stage is missing: vulnerabilityScan' 'Missing evidence fixture'
+    $missingEngineeringEvidence = $validEvidence.PSObject.Copy()
+    $missingEngineeringEvidence.stages = [pscustomobject]@{
+        secretScan = 'PASS'; vulnerabilityScan = 'PASS'; sbom = 'PASS'
+    }
+    Assert-Fails { Test-EvidenceDocument $missingEngineeringEvidence $policy } `
+        'mandatory evidence stage is missing: engineering' 'Missing engineering-stage evidence fixture'
+    $skippedEngineeringEvidence = $validEvidence.PSObject.Copy()
+    $skippedEngineeringEvidence.stages = [pscustomobject]@{
+        engineering = 'SKIPPED'; secretScan = 'PASS'; vulnerabilityScan = 'PASS'; sbom = 'PASS'
+    }
+    Assert-Fails { Test-EvidenceDocument $skippedEngineeringEvidence $policy } `
+        'mandatory evidence stage did not pass: engineering' 'Skipped engineering-stage evidence fixture'
     Test-EvidenceDocument $validEvidence $policy
     Write-Output 'Corrected evidence fixture: PASS'
 

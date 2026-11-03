@@ -37,7 +37,15 @@ jobs:
           validate-wrappers: true
 
       - name: Run deterministic engineering and local security-policy gates
-        run: ./gradlew clean ciLocalVerification --no-daemon --stacktrace
+        run: ./gradlew clean ciLocalVerification :services:reference-service:bootJar --no-daemon --stacktrace
+
+      - name: Validate build evidence completeness
+        shell: pwsh
+        run: >-
+          ./ci/Assert-BuildEvidence.ps1
+          -Mode Validate
+          -ArtifactPath services/reference-service/build/libs/reference-service.jar
+          -SbomPath build/reports/cyclonedx/bom.json
 
       - name: Upload traceable build and CycloneDX evidence
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
