@@ -1,6 +1,6 @@
 # V3-016 CI Security Pipeline — engineering evidence
 
-Status: `V3-016 = IN PROGRESS — CORRECTIVE COMMIT VALIDATED; HOSTED CI RE-RUN PENDING`
+Status: `V3-016 = IN PROGRESS — DEPENDENCY VERIFICATION REMEDIATION VALIDATED; HOSTED CI RE-RUN PENDING`
 
 R1 acceptance: `PENDING`
 
@@ -140,9 +140,54 @@ The first manual Windows invocation of `verifyPromotionEvidence` passed an unquo
 Gradle task selection before policy execution. Repeating it with the property argument quoted succeeded, and the
 same corrected synthetic promotion manifest is now validated automatically by `verifyCiSecurityPolicy`.
 
+## Second hosted run and dependency-verification remediation
+
+Corrective commit `ad3023d0d11447502d6e39a059663c649a77c4d7` triggered GitHub Actions run
+`41615454578`. The Linux executable-mode and Trivy parser corrections were proven: `./gradlew` started on Ubuntu,
+Wrapper validation succeeded, and the Trivy/CISA KEV policy job passed. The run still failed closed during clean
+Gradle configuration because four published Gradle Module Metadata files were not yet represented in strict
+dependency-verification metadata:
+
+| Coordinate and artifact | Verified SHA-256 |
+| --- | --- |
+| `org.junit:junit-bom:5.11.0-M2` — `junit-bom-5.11.0-M2.module` | `86477abcf490d6ca059aa9973cb108d22a506f49d1a5569bb32cc6cbf43c2cce` |
+| `org.junit:junit-bom:5.11.4` — `junit-bom-5.11.4.module` | `a9a4f27be94e99b9d570162d246a80f686d277d5d31aeb5481047cf51daf46e4` |
+| `org.junit:junit-bom:5.13.3` — `junit-bom-5.13.3.module` | `5dc84d74ef981d023c639eb0cbc4b1f9ef891034287ce1b101effbbc0f1534b4` |
+| `io.opentelemetry:opentelemetry-bom:1.49.0` — `opentelemetry-bom-1.49.0.module` | `ed8b705c0f275f3eb6dd4b25a87eadf966bb70459e0db0ba6d54d4d8e76aaf91` |
+
+Each exact artifact was fetched through both approved HTTPS entry points: Maven Central and the Gradle Plugin
+Portal. The Plugin Portal redirected to the same exact Maven Central artifact URI. For every artifact, the bytes
+from both paths had the same SHA-256 and matched the authoritative Maven Central `.sha256` sidecar. No dependency
+version, lock, repository, verification mode or trust wildcard changed; only these four exact checksums were
+added. Positive isolated-cache resolution, wrong-checksum and missing-metadata negative checks, restored offline
+resolution and the full local lifecycle are recorded below. Run `41615454578` remains failed
+historical evidence and is not reclassified.
+
+The first isolated online lifecycle encountered a transient TLS handshake termination while downloading
+`org.springframework:spring-core:7.0.10`; it did not report a verification mismatch. Repeating the same controlled
+command with the same isolated Gradle home completed in 3 minutes 9 seconds: 65 actionable tasks executed and 80
+JUnit tests across 25 reports had zero failures, errors or skips. Architecture, HTTP/Event compatibility,
+configuration, secret, workflow, exception, formatting and CycloneDX gates passed.
+
+Two separate empty Gradle homes then proved fail-closed behavior using the verified Gradle `9.8.2` distribution:
+
+- replacing the `5.11.0-M2` checksum with a deliberately incorrect value failed with the exact diagnostic
+  `One artifact failed verification: junit-bom-5.11.0-M2.module`; and
+- removing that artifact's verification entry failed with the same exact coordinate and the expected instruction
+  to update `gradle/verification-metadata.xml`.
+
+Both temporary mutations were restored. An already accepted Gradle cache does not necessarily rematerialize a
+module-metadata artifact merely because a lightweight `help` invocation follows a metadata-file mutation, so
+that path was not treated as negative evidence. Integrity decisions used fresh isolated homes; the positive
+offline cache was populated only after the correct checksums passed online verification. With valid metadata
+restored, `help --offline` passed from that trusted isolated cache and the required standard offline command
+completed in 59 seconds with all 65 actionable tasks and the same 80 tests passing. No version, dependency lock,
+repository or executable workflow changed.
+
 ## Hosted and organizational evidence still required
 
-- The corrective commit must be pushed and a new hosted run must prove Linux Wrapper execution, real Trivy/KEV
+- The dependency-verification corrective commit must be pushed and a new hosted run must prove clean dependency
+  resolution, Linux Wrapper execution, real Trivy/KEV
   evaluation, build/SBOM artifact generation and the final mandatory evidence gate.
 - Required-check and protected-branch configuration has not been inspected or changed.
 - Exception approval metadata is structurally required, but approver identity/authority cannot be authenticated by
