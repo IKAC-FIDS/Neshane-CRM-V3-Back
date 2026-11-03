@@ -1,6 +1,6 @@
 # V3-016 CI Security Pipeline — engineering evidence
 
-Status: `V3-016 = IN PROGRESS — LOCAL BASELINE COMMITTED; HOSTED CI EVIDENCE PENDING`
+Status: `V3-016 = IN PROGRESS — CORRECTIVE COMMIT VALIDATED; HOSTED CI RE-RUN PENDING`
 
 R1 acceptance: `PENDING`
 
@@ -90,9 +90,51 @@ archive matched official SHA-256
 `6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9`, and both workflows passed with exit code
 zero. The temporary validator was removed after execution.
 
-External Gitleaks and Trivy scans, live CISA correlation, GitHub attestation, hosted workflow execution and branch
-protection cannot be reported as executed by this local implementation task. Those tools are wired fail-closed
-for hosted execution; neither scanner was preinstalled locally and no hosted workflow was triggered.
+At the time of the original local baseline, external Gitleaks and Trivy scans, live CISA correlation, GitHub
+attestation, hosted workflow execution and branch protection had not been executed or inspected. The first hosted
+run described below supersedes only the hosted-execution part of that statement; promotion attestation and branch
+protection evidence remain pending.
+
+## First hosted run and corrective action
+
+Draft PR #1 triggered GitHub Actions run `41606936945` for commit
+`43111c62668037a1b04b33bddae5de841680b2a8`. The run failed closed and is retained as failed evidence:
+
+- the Linux engineering job exited with code 126 because `gradlew` was tracked with mode `100644`; and
+- Trivy `0.70.0` completed its filesystem scan, but the PowerShell policy verifier raised a StrictMode property
+  access exception when a valid analyzed result omitted the optional `Vulnerabilities` property.
+
+The bounded correction records `gradlew` as Git mode `100755` without replacing the Wrapper or changing its
+version. The vulnerability verifier now reads optional result properties explicitly, accepts both an absent
+`Vulnerabilities` property and an empty collection for an otherwise valid analyzed target, and still fails closed
+for missing targets, missing mandatory report metadata, malformed vulnerability records, missing reports,
+`HIGH`/`CRITICAL` findings, every CISA KEV match, and invalid or expired exceptions.
+
+Regression fixtures exercise all of those cases and assert the intended policy diagnostic rather than an
+unrelated parser exception. Local validation of the corrective revision is recorded below after execution; a new
+hosted run remains mandatory and the failed run is not reclassified.
+
+Corrective local validation on 3 November 2026 executed:
+
+```powershell
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode Fixtures -RepositoryRoot .
+.\gradlew.bat clean ciLocalVerification --offline --no-daemon --stacktrace --rerun-tasks
+actionlint .github/workflows/backend-ci.yml .github/workflows/backend-promotion-evidence.yml
+git diff --check
+```
+
+The fixture command and full Gradle lifecycle exited zero. Gradle executed 65 actionable tasks and JUnit XML
+reported 80 tests across 25 reports with zero failures, errors or skips. Architecture boundaries, HTTP/Event
+contract validation and compatibility, formatting, repository secret scanning, exception validation and
+CycloneDX validation passed. Official `actionlint 1.7.12` was downloaded from its GitHub release, its archive
+matched SHA-256 `6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9`, and both workflows passed.
+The temporary validator remained outside the repository and is not part of the corrective change.
+
+Git records `gradlew` as `100755`; the script contains LF line endings and no UTF-8 BOM. Windows execution
+confirmed Gradle `9.8.2`, Wrapper JAR SHA-256
+`3b8a25775a69158b5ad2b1d17a80a88dc7b40a352a73eb27d06c612a7ce68e98`, and the pinned distribution SHA-256
+`21bd5da2de49b642904077f38c0efdc7778e92b3ed0889392dca61b97e389607`. No suitable local Linux/JDK environment
+was available for an additional `./gradlew` execution; the new hosted Linux run is the mandatory execution proof.
 
 The first manual Windows invocation of `verifyPromotionEvidence` passed an unquoted `-P` path and failed during
 Gradle task selection before policy execution. Repeating it with the property argument quoted succeeded, and the
@@ -100,8 +142,8 @@ same corrected synthetic promotion manifest is now validated automatically by `v
 
 ## Hosted and organizational evidence still required
 
-- A commit must make the workflows available to GitHub before any hosted run can exist.
-- Actual hosted runs and their immutable URLs/IDs are absent.
+- The corrective commit must be pushed and a new hosted run must prove Linux Wrapper execution, real Trivy/KEV
+  evaluation, build/SBOM artifact generation and the final mandatory evidence gate.
 - Required-check and protected-branch configuration has not been inspected or changed.
 - Exception approval metadata is structurally required, but approver identity/authority cannot be authenticated by
   the repository script; CODEOWNERS/review and protected-branch evidence remain required.

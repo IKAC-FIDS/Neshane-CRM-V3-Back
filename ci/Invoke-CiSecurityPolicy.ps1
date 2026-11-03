@@ -38,6 +38,13 @@ function Assert-Condition([bool] $Condition, [string] $Message) {
     }
 }
 
+function Get-ObjectProperty($Object, [string] $Name) {
+    if ($null -eq $Object) {
+        return $null
+    }
+    return $Object.PSObject.Properties[$Name]
+}
+
 $policy = Read-JsonFile $policyPath
 $exceptionDocument = Read-JsonFile $exceptionsPath
 
@@ -175,25 +182,58 @@ function Get-ActiveException($Exceptions, [string] $FindingId, [DateTimeOffset] 
 }
 
 function Test-VulnerabilityDocument($Report, $KevDocument, $Policy, $Exceptions, [DateTimeOffset] $Now) {
-    Assert-Condition ($null -ne $Report.SchemaVersion) 'scanner report SchemaVersion is missing'
-    Assert-Condition ($null -ne $Report.Results) 'scanner report Results are missing'
-    Assert-Condition (@($Report.Results).Count -gt 0) 'scanner report contains no analyzed targets'
-    Assert-Condition ($null -ne $KevDocument.vulnerabilities) 'CISA KEV vulnerability list is missing'
+    Assert-Condition ($null -ne $Report) 'scanner report is missing'
+    $schemaVersionProperty = Get-ObjectProperty $Report 'SchemaVersion'
+    $artifactNameProperty = Get-ObjectProperty $Report 'ArtifactName'
+    $artifactTypeProperty = Get-ObjectProperty $Report 'ArtifactType'
+    $resultsProperty = Get-ObjectProperty $Report 'Results'
+    Assert-Condition ($null -ne $schemaVersionProperty -and $schemaVersionProperty.Value -is [ValueType] -and
+        [int64] $schemaVersionProperty.Value -gt 0) 'scanner report SchemaVersion is missing or invalid'
+    Assert-Condition ($null -ne $artifactNameProperty -and
+        -not [string]::IsNullOrWhiteSpace([string] $artifactNameProperty.Value)) `
+        'scanner report ArtifactName is missing'
+    Assert-Condition ($null -ne $artifactTypeProperty -and
+        -not [string]::IsNullOrWhiteSpace([string] $artifactTypeProperty.Value)) `
+        'scanner report ArtifactType is missing'
+    Assert-Condition ($null -ne $resultsProperty) 'scanner report Results are missing'
+    Assert-Condition (@($resultsProperty.Value).Count -gt 0) 'scanner report contains no analyzed targets'
+
+    Assert-Condition ($null -ne $KevDocument) 'CISA KEV document is missing'
+    $kevVulnerabilitiesProperty = Get-ObjectProperty $KevDocument 'vulnerabilities'
+    Assert-Condition ($null -ne $kevVulnerabilitiesProperty) 'CISA KEV vulnerability list is missing'
 
     $kevIds = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
-    foreach ($entry in @($KevDocument.vulnerabilities)) {
-        if (-not [string]::IsNullOrWhiteSpace([string] $entry.cveID)) {
-            [void] $kevIds.Add([string] $entry.cveID)
-        }
+    foreach ($entry in @($kevVulnerabilitiesProperty.Value)) {
+        $cveProperty = Get-ObjectProperty $entry 'cveID'
+        Assert-Condition ($null -ne $cveProperty -and
+            -not [string]::IsNullOrWhiteSpace([string] $cveProperty.Value)) `
+            'CISA KEV entry cveID is missing'
+        [void] $kevIds.Add([string] $cveProperty.Value)
     }
 
     $blocked = @()
-    foreach ($result in @($Report.Results)) {
-        Assert-Condition (-not [string]::IsNullOrWhiteSpace([string] $result.Target)) `
+    foreach ($result in @($resultsProperty.Value)) {
+        $targetProperty = Get-ObjectProperty $result 'Target'
+        Assert-Condition ($null -ne $targetProperty -and
+            -not [string]::IsNullOrWhiteSpace([string] $targetProperty.Value)) `
             'scanner result target is missing'
-        foreach ($finding in @($result.Vulnerabilities)) {
-            $findingId = [string] $finding.VulnerabilityID
-            $severity = ([string] $finding.Severity).ToUpperInvariant()
+        $vulnerabilitiesProperty = Get-ObjectProperty $result 'Vulnerabilities'
+        if ($null -eq $vulnerabilitiesProperty -or $null -eq $vulnerabilitiesProperty.Value) {
+            continue
+        }
+        foreach ($finding in @($vulnerabilitiesProperty.Value)) {
+            $findingIdProperty = Get-ObjectProperty $finding 'VulnerabilityID'
+            $severityProperty = Get-ObjectProperty $finding 'Severity'
+            Assert-Condition ($null -ne $findingIdProperty -and
+                -not [string]::IsNullOrWhiteSpace([string] $findingIdProperty.Value)) `
+                "scanner vulnerability in target '$($targetProperty.Value)' has no VulnerabilityID"
+            Assert-Condition ($null -ne $severityProperty -and
+                -not [string]::IsNullOrWhiteSpace([string] $severityProperty.Value)) `
+                "scanner vulnerability '$($findingIdProperty.Value)' has no Severity"
+            $findingId = [string] $findingIdProperty.Value
+            $severity = ([string] $severityProperty.Value).ToUpperInvariant()
+            Assert-Condition (@('UNKNOWN', 'LOW', 'MEDIUM', 'HIGH', 'CRITICAL') -contains $severity) `
+                "scanner vulnerability '$findingId' has unsupported Severity: $severity"
             if ($kevIds.Contains($findingId)) {
                 $blocked += "$findingId is listed in CISA KEV"
                 continue
@@ -266,25 +306,47 @@ function Invoke-PolicyFixtures {
 
     $cleanKev = [pscustomobject]@{ vulnerabilities = @() }
     $vulnerableReport = [pscustomobject]@{
-        SchemaVersion = 2
+        SchemaVersion = 2; ArtifactName = '.'; ArtifactType = 'filesystem'
         Results = @([pscustomobject]@{ Target = 'synthetic-vulnerable-target'; Vulnerabilities = @([pscustomobject]@{
             VulnerabilityID = 'CVE-2099-0001'; Severity = 'CRITICAL'
         }) })
     }
     Assert-Fails { Test-VulnerabilityDocument $vulnerableReport $cleanKev $policy $exceptionDocument $now } `
         'blocked severity CRITICAL' 'Vulnerable dependency fixture'
-    $missingTargetsReport = [pscustomobject]@{ SchemaVersion = 2; Results = @() }
+    $missingTargetsReport = [pscustomobject]@{
+        SchemaVersion = 2; ArtifactName = '.'; ArtifactType = 'filesystem'; Results = @()
+    }
     Assert-Fails { Test-VulnerabilityDocument $missingTargetsReport $cleanKev $policy $exceptionDocument $now } `
         'contains no analyzed targets' 'Missing scanner targets fixture'
+    $missingMetadataReport = [pscustomobject]@{
+        SchemaVersion = 2; ArtifactType = 'filesystem'
+        Results = @([pscustomobject]@{ Target = 'synthetic-target-with-missing-metadata' })
+    }
+    Assert-Fails { Test-VulnerabilityDocument $missingMetadataReport $cleanKev $policy $exceptionDocument $now } `
+        'scanner report ArtifactName is missing' 'Missing scanner metadata fixture'
+    $malformedFindingReport = [pscustomobject]@{
+        SchemaVersion = 2; ArtifactName = '.'; ArtifactType = 'filesystem'
+        Results = @([pscustomobject]@{ Target = 'synthetic-malformed-target'; Vulnerabilities = @([pscustomobject]@{
+            Severity = 'LOW'
+        }) })
+    }
+    Assert-Fails { Test-VulnerabilityDocument $malformedFindingReport $cleanKev $policy $exceptionDocument $now } `
+        'has no VulnerabilityID' 'Malformed vulnerability record fixture'
+    $absentVulnerabilitiesReport = [pscustomobject]@{
+        SchemaVersion = 2; ArtifactName = '.'; ArtifactType = 'filesystem'
+        Results = @([pscustomobject]@{ Target = 'synthetic-clean-target-with-absent-property' })
+    }
+    Test-VulnerabilityDocument $absentVulnerabilitiesReport $cleanKev $policy $exceptionDocument $now
+    Write-Output 'Absent Vulnerabilities property fixture: PASS'
     $cleanReport = [pscustomobject]@{
-        SchemaVersion = 2
+        SchemaVersion = 2; ArtifactName = '.'; ArtifactType = 'filesystem'
         Results = @([pscustomobject]@{ Target = 'synthetic-clean-target'; Vulnerabilities = @() })
     }
     Test-VulnerabilityDocument $cleanReport $cleanKev $policy $exceptionDocument $now
-    Write-Output 'Corrected vulnerability fixture: PASS'
+    Write-Output 'Empty Vulnerabilities collection fixture: PASS'
 
     $kevReport = [pscustomobject]@{
-        SchemaVersion = 2
+        SchemaVersion = 2; ArtifactName = '.'; ArtifactType = 'filesystem'
         Results = @([pscustomobject]@{ Target = 'synthetic-kev-target'; Vulnerabilities = @([pscustomobject]@{
             VulnerabilityID = 'CVE-2099-0002'; Severity = 'LOW'
         }) })
@@ -292,6 +354,11 @@ function Invoke-PolicyFixtures {
     $kev = [pscustomobject]@{ vulnerabilities = @([pscustomobject]@{ cveID = 'CVE-2099-0002' }) }
     Assert-Fails { Test-VulnerabilityDocument $kevReport $kev $policy $exceptionDocument $now } `
         'listed in CISA KEV' 'Known-exploited vulnerability fixture'
+
+    $missingScannerEvidence = Join-Path ([System.IO.Path]::GetTempPath()) `
+        "neshane-v3-016-missing-$([Guid]::NewGuid().ToString('N')).json"
+    Assert-Fails { Read-JsonFile $missingScannerEvidence } `
+        'required JSON file is missing' 'Missing scanner evidence fixture'
 
     $expired = [pscustomobject]@{
         schemaVersion = 1
