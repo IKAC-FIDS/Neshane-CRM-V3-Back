@@ -1,5 +1,6 @@
 plugins {
     id 'base'
+    id 'org.cyclonedx.bom' version '3.5.1'
 }
 
 allprojects {
@@ -12,11 +13,13 @@ subprojects {
 
 apply from: 'gradle/quality-conventions.gradle'
 apply from: 'gradle/architecture-boundaries.gradle'
+apply from: 'gradle/ci-security.gradle'
 
 tasks.named('check') {
     dependsOn subprojects.collect { "${it.path}:check" }
     dependsOn tasks.named('verifyFormatting')
     dependsOn tasks.named('verifyArchitectureBoundaries')
+    dependsOn tasks.named('verifyCiSecurityPolicy')
 }
 
 tasks.named('build') {

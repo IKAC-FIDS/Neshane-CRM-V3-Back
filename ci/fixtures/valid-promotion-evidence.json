@@ -1,0 +1,16 @@
+{
+  "kind": "PROMOTION",
+  "commitSha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "artifactSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "sbomSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+  "provenanceVerified": true,
+  "stages": {
+    "engineering": "PASS",
+    "secretScan": "PASS",
+    "vulnerabilityScan": "PASS",
+    "sbom": "PASS",
+    "containerScan": "PASS",
+    "provenance": "PASS",
+    "signatureVerification": "PASS"
+  }
+}
