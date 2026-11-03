@@ -4,11 +4,13 @@ plugins {
 
 dependencies {
     implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation project(':platform-libraries:observability')
     implementation libs.spring.boot.starter.actuator
     implementation libs.spring.boot.starter.validation
     implementation libs.spring.boot.starter.web
 
     testImplementation libs.spring.boot.starter.test
+    testImplementation libs.opentelemetry.sdk.testing
     testRuntimeOnly libs.junit.platform.launcher
 }
 

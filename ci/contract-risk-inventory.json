@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "contracts": [
+    {
+      "contractId": "neshane-http-common-v1",
+      "owner": "technical-architecture",
+      "baseline": "contracts/http/baselines/v3-011/common-v1.openapi.yaml",
+      "providerConformance": "NOT_APPLICABLE_NO_RUNTIME_PROVIDER",
+      "consumerDrivenTesting": "NOT_APPLICABLE_NO_KNOWN_CONSUMER",
+      "realIntegrationTesting": "DEFERRED_UNTIL_RUNTIME_PROVIDER_OR_CRITICAL_PATH",
+      "activationTrigger": "A service publishes or implements an HTTP operation using this convention"
+    },
+    {
+      "contractId": "io.neshane.contracts.reference.v1",
+      "owner": "technical-architecture",
+      "baseline": "contracts/events/baselines/v3-012/reference-event-v1.schema.json",
+      "providerConformance": "NOT_APPLICABLE_NO_RUNTIME_PUBLISHER",
+      "consumerDrivenTesting": "NOT_APPLICABLE_NO_RUNTIME_CONSUMER",
+      "realIntegrationTesting": "DEFERRED_UNTIL_BROKER_RUNTIME_OR_CRITICAL_PATH",
+      "activationTrigger": "A runtime publisher, consumer or broker-dependent critical path is introduced"
+    }
+  ]
+}

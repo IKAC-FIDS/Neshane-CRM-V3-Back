@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Invalid contract verifier fixture
+  version: 1.0.0
+x-neshane-contract-owner: Contract verifier tests
+x-neshane-contract-version: v1
+x-neshane-contract-status: test-fixture
+paths:
+  /API/examples:
+    post:
+      operationId: invalidExample
+      x-neshane-paginated: true
+      x-neshane-idempotent: true
+      responses:
+        '400':
+          description: Deliberately invalid test-only response.
+          content:
+            application/json:
+              schema:
+                type: object

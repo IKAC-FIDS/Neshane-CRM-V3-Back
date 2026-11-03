@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="serviceName" source="spring.application.name" defaultValue="reference-service"/>
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ir.neshane.platform.observability.SafeJsonLogEncoder">
+            <serviceName>${serviceName}</serviceName>
+            <maximumMessageLength>4096</maximumMessageLength>
+        </encoder>
+    </appender>
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

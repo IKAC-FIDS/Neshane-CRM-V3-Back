@@ -7,13 +7,83 @@ def allowedProjectDependencies = [
     ':architecture-fixtures:application': [':architecture-fixtures:domain'] as Set,
     ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set,
     ':services'                         : [] as Set,
-    ':services:reference-service'       : [] as Set
+    ':services:reference-service'       : [':platform-libraries:observability'] as Set,
+    ':platform-libraries'               : [] as Set,
+    ':platform-libraries:observability' : [] as Set,
+    ':contract-tests'                   : [] as Set,
+    ':contract-tests:http'              : [] as Set,
+    ':contract-tests:events'            : [] as Set,
+    ':architecture-tests'               : [
+        ':services:reference-service',
+        ':platform-libraries:observability'
+    ] as Set
 ]
 
 def domainProject = project(':architecture-fixtures:domain')
 
 def projectDependencyPath = { ProjectDependency dependency ->
     dependency.hasProperty('path') ? dependency.path : dependency.dependencyProject.path
+}
+
+def evaluateGraphBoundaries = { Map<String, Set<String>> graph, Map<String, Set<String>> policy ->
+    def violations = []
+
+    if (graph.isEmpty()) {
+        violations.add('protected project graph is empty')
+        return violations
+    }
+
+    def undeclaredProjects = graph.keySet() - policy.keySet()
+    undeclaredProjects.sort().each { path ->
+        violations.add("${path}: project is not declared in the boundary policy")
+    }
+
+    def stalePolicyEntries = policy.keySet() - graph.keySet()
+    stalePolicyEntries.sort().each { path ->
+        violations.add("${path}: boundary policy entry has no matching project")
+    }
+
+    graph.each { path, dependencies ->
+        def allowed = policy.get(path)
+        if (allowed != null) {
+            def forbidden = dependencies - allowed
+            if (!forbidden.isEmpty()) {
+                violations.add("${path}: forbidden project dependencies ${forbidden.sort()}")
+            }
+        }
+    }
+
+    def reachableFrom
+    reachableFrom = { String origin ->
+        def reachable = [] as Set
+        def pending = new ArrayDeque<String>()
+        pending.addAll(graph.get(origin) ?: [] as Set)
+        while (!pending.isEmpty()) {
+            def next = pending.removeFirst()
+            if (reachable.add(next)) {
+                pending.addAll(graph.get(next) ?: [] as Set)
+            }
+        }
+        reachable
+    }
+
+    graph.keySet().findAll { it ==~ /:services:[^:]+/ }.each { service ->
+        def otherServices = reachableFrom(service).findAll {
+            it ==~ /:services:[^:]+/ && it != service
+        }
+        if (!otherServices.isEmpty()) {
+            violations.add("${service}: transitively reaches other service implementations ${otherServices.sort()}")
+        }
+    }
+
+    graph.keySet().findAll { it ==~ /:platform-libraries:[^:]+/ }.each { library ->
+        def services = reachableFrom(library).findAll { it ==~ /:services:[^:]+/ }
+        if (!services.isEmpty()) {
+            violations.add("${library}: platform library reaches service implementations ${services.sort()}")
+        }
+    }
+
+    violations.unique()
 }
 
 tasks.register('verifyModuleBoundaries') {
@@ -30,16 +100,21 @@ tasks.register('verifyModuleBoundaries') {
             } as Set
 
             graph[candidate.path].addAll(actual)
-            def allowed = allowedProjectDependencies.get(candidate.path)
-            if (allowed == null) {
-                violations.add("${candidate.path}: project is not declared in the boundary policy")
-            } else {
-                def forbidden = actual - allowed
-                if (!forbidden.isEmpty()) {
-                    violations.add("${candidate.path}: forbidden project dependencies ${forbidden.sort()}")
+
+            if (candidate.path ==~ /:services:[^:]+/) {
+                def configuration = candidate.configurations.findByName('api')
+                if (configuration != null) {
+                    def exposedProjects = configuration.dependencies
+                        .withType(ProjectDependency)
+                        .collect(projectDependencyPath)
+                    if (!exposedProjects.isEmpty()) {
+                        violations.add("${candidate.path}: service API configuration exposes project dependencies ${exposedProjects.sort()}")
+                    }
                 }
             }
         }
+
+        violations.addAll(evaluateGraphBoundaries(graph, allowedProjectDependencies))
 
         def forbiddenDomainGroups = ['org.springframework', 'org.hibernate', 'jakarta.persistence']
         domainProject.configurations.each { configuration ->
@@ -73,4 +148,109 @@ tasks.register('verifyModuleBoundaries') {
             throw new GradleException("Module boundary violations:\n${violations.unique().join('\n')}")
         }
     }
+}
+
+tasks.register('verifyArchitectureBoundaryFixtures') {
+    group = 'verification'
+    description = 'Proves that project-boundary policy fixtures fail or pass for the intended reason.'
+
+    doLast {
+        def requireViolation = { String id, Map graph, Map policy, String expected ->
+            def violations = evaluateGraphBoundaries(graph, policy)
+            if (!violations.any { it.contains(expected) }) {
+                throw new GradleException("${id}: expected violation containing '${expected}', got ${violations}")
+            }
+            logger.lifecycle("${id}: detected expected violation: ${expected}")
+        }
+        def requirePass = { String id, Map graph, Map policy ->
+            def violations = evaluateGraphBoundaries(graph, policy)
+            if (!violations.isEmpty()) {
+                throw new GradleException("${id}: expected PASS, got ${violations}")
+            }
+            logger.lifecycle("${id}: PASS")
+        }
+
+        requireViolation(
+            'Fixture C — Cross-Service Implementation',
+            [
+                ':services:alpha': [':services:beta'] as Set,
+                ':services:beta' : [] as Set
+            ],
+            [
+                ':services:alpha': [] as Set,
+                ':services:beta' : [] as Set
+            ],
+            'forbidden project dependencies'
+        )
+        requirePass(
+            'Fixture C — violation removed',
+            [
+                ':services:alpha': [] as Set,
+                ':services:beta' : [] as Set
+            ],
+            [
+                ':services:alpha': [] as Set,
+                ':services:beta' : [] as Set
+            ]
+        )
+        requireViolation(
+            'Fixture E — Unauthorized Platform Boundary',
+            [
+                ':platform-libraries:shared': [':services:alpha'] as Set,
+                ':services:alpha'           : [] as Set
+            ],
+            [
+                ':platform-libraries:shared': [] as Set,
+                ':services:alpha'           : [] as Set
+            ],
+            'platform library reaches service implementations'
+        )
+        requirePass(
+            'Fixture E — violation removed',
+            [
+                ':platform-libraries:shared': [] as Set,
+                ':services:alpha'           : [] as Set
+            ],
+            [
+                ':platform-libraries:shared': [] as Set,
+                ':services:alpha'           : [] as Set
+            ]
+        )
+        requirePass(
+            'Fixture F — Allowed Contract Dependency',
+            [
+                ':services:alpha'       : [':contracts:customer-api'] as Set,
+                ':contracts:customer-api': [] as Set
+            ],
+            [
+                ':services:alpha'       : [':contracts:customer-api'] as Set,
+                ':contracts:customer-api': [] as Set
+            ]
+        )
+        requireViolation(
+            'Fail-closed empty graph',
+            [:],
+            [:],
+            'protected project graph is empty'
+        )
+        requireViolation(
+            'Fail-closed malformed registration',
+            [':services:alpha': [] as Set],
+            [:],
+            'project is not declared in the boundary policy'
+        )
+        requirePass(
+            'Fail-closed registration — corrected policy',
+            [':services:alpha': [] as Set],
+            [':services:alpha': [] as Set]
+        )
+    }
+}
+
+tasks.register('verifyArchitectureBoundaries') {
+    group = 'verification'
+    description = 'Runs project-graph checks, policy fixtures and ArchUnit architecture tests.'
+    dependsOn tasks.named('verifyModuleBoundaries')
+    dependsOn tasks.named('verifyArchitectureBoundaryFixtures')
+    dependsOn ':architecture-tests:test'
 }

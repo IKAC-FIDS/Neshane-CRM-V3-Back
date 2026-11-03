@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "vulnerability": {
+    "blockedSeverities": [
+      "HIGH",
+      "CRITICAL"
+    ],
+    "knownExploitedDisposition": "BLOCK_ALL",
+    "scannerFailureDisposition": "BLOCK",
+    "unavailableDatabaseDisposition": "BLOCK",
+    "maximumDatabaseAgeHours": 24
+  },
+  "exceptions": {
+    "maximumLifetimeDays": 30,
+    "requiredFields": [
+      "id",
+      "control",
+      "findingId",
+      "owner",
+      "approvedBy",
+      "approvalReference",
+      "reason",
+      "compensatingControl",
+      "createdAt",
+      "expiresAt"
+    ],
+    "nonWaivableControls": [
+      "SECRET_EXPOSURE",
+      "KNOWN_EXPLOITED_VULNERABILITY",
+      "INVALID_SBOM",
+      "INVALID_PROVENANCE",
+      "INVALID_SIGNATURE",
+      "MISSING_MANDATORY_EVIDENCE"
+    ]
+  },
+  "evidence": {
+    "pullRequestRequiredStages": [
+      "engineering",
+      "secretScan",
+      "vulnerabilityScan",
+      "sbom"
+    ],
+    "promotionRequiredStages": [
+      "engineering",
+      "secretScan",
+      "vulnerabilityScan",
+      "sbom",
+      "containerScan",
+      "provenance",
+      "signatureVerification"
+    ]
+  }
+}

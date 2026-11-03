@@ -1,0 +1,146 @@
+openapi: 3.1.0
+info:
+  title: Compatible contract verifier candidate fixture
+  version: 1.1.0
+x-neshane-contract-owner: Contract verifier tests
+x-neshane-contract-version: v1
+x-neshane-contract-status: test-fixture
+paths:
+  /api/v1/examples:
+    get:
+      operationId: listExamples
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/Size'
+        - $ref: '#/components/parameters/Sort'
+      responses:
+        '200':
+          description: Test-only response.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Example'
+        '400':
+          description: Invalid test-only request.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    post:
+      operationId: createExample
+      parameters:
+        - $ref: '#/components/parameters/IdempotencyKey'
+      responses:
+        '201':
+          description: Test-only created response.
+        '409':
+          description: Test-only conflict response.
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /api/v1/example-summaries:
+    get:
+      operationId: listExampleSummaries
+      responses:
+        '200':
+          description: Additive test-only response.
+components:
+  parameters:
+    Page:
+      name: page
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 0
+    Size:
+      name: size
+      in: query
+      required: false
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+    Sort:
+      name: sort
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: string
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      required: true
+      schema:
+        type: string
+        minLength: 16
+        maxLength: 128
+  schemas:
+    Example:
+      type: object
+      required:
+        - id
+        - displayName
+        - state
+      properties:
+        id:
+          type: string
+          format: uuid
+        displayName:
+          type: string
+        state:
+          type: string
+          enum:
+            - ACTIVE
+            - INACTIVE
+            - ARCHIVED
+        description:
+          type: string
+    ComposedExample:
+      allOf:
+        - $ref: '#/components/schemas/Example'
+        - type: object
+          properties:
+            note:
+              type: string
+            description:
+              type: string
+    ProblemDetails:
+      type: object
+      required:
+        - type
+        - title
+        - status
+        - detail
+        - instance
+        - code
+        - correlationId
+      properties:
+        type:
+          type: string
+        title:
+          type: string
+        status:
+          type: integer
+        detail:
+          type: string
+        instance:
+          type: string
+        code:
+          type: string
+        correlationId:
+          type: string
+          format: uuid
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+    PageMetadata:
+      type: object
+      properties:
+        page:
+          type: integer

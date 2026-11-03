@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:event:contracts:reference:v1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["entityref", "changekind"],
+  "properties": {
+    "entityref": {"type": "string"},
+    "changekind": {"type": "string", "enum": ["created", "updated"]},
+    "description": {"type": "string"},
+    "tags": {"type": "array", "items": {"type": "string"}},
+    "detail": {"$ref": "#/$defs/detail"}
+  },
+  "$defs": {
+    "detail": {"type": "object"}
+  }
+}
