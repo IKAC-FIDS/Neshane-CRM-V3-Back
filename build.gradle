@@ -25,3 +25,17 @@ tasks.named('check') {
 tasks.named('build') {
     dependsOn subprojects.collect { "${it.path}:build" }
 }
+
+tasks.register('verifySourceIgnorePolicy', Exec) {
+    group = 'verification'
+    description = 'Ensures application source paths are not hidden by Git ignore rules.'
+    workingDir rootProject.projectDir
+    inputs.file(rootProject.file('.gitignore'))
+    inputs.file(rootProject.file('ci/Assert-SourceIgnorePolicy.ps1'))
+    commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File',
+        rootProject.file('ci/Assert-SourceIgnorePolicy.ps1')
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifySourceIgnorePolicy')
+}
