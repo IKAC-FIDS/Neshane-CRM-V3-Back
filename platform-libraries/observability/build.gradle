@@ -1,0 +1,40 @@
+dependencies {
+    api enforcedPlatform(libs.spring.boot.dependencies)
+    api libs.logback.classic
+    api libs.opentelemetry.api
+
+    implementation libs.jackson.databind
+    implementation libs.opentelemetry.sdk
+    implementation libs.opentelemetry.exporter.otlp
+
+    testImplementation enforcedPlatform(libs.spring.boot.dependencies)
+    testImplementation libs.opentelemetry.sdk.testing
+    testImplementation libs.spring.boot.starter.test
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+sourceSets {
+    syntheticIntegrationTest {
+        java.srcDir 'src/syntheticIntegrationTest/java'
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += output + compileClasspath
+    }
+}
+
+configurations {
+    syntheticIntegrationTestImplementation.extendsFrom testImplementation
+    syntheticIntegrationTestRuntimeOnly.extendsFrom testRuntimeOnly
+}
+
+tasks.register('syntheticIntegrationTest', Test) {
+    description = 'Runs in-memory HTTP and messaging propagation tests without a broker or collector.'
+    group = 'verification'
+    testClassesDirs = sourceSets.syntheticIntegrationTest.output.classesDirs
+    classpath = sourceSets.syntheticIntegrationTest.runtimeClasspath
+    useJUnitPlatform()
+    shouldRunAfter tasks.named('test')
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('syntheticIntegrationTest')
+}

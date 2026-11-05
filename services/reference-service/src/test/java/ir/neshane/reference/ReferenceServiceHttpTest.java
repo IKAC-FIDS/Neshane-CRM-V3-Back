@@ -17,6 +17,9 @@ import org.springframework.boot.test.web.server.LocalServerPort;
         webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = {
             "neshane.reference.diagnostics.enabled=true",
+            "neshane.reference.peer.base-url=http://127.0.0.1:1",
+            "neshane.reference.peer.connect-timeout=100ms",
+            "neshane.reference.peer.request-timeout=100ms",
             "spring.profiles.active=test"
         })
 class ReferenceServiceHttpTest {
@@ -68,6 +71,38 @@ class ReferenceServiceHttpTest {
         HttpResponse<String> response = get("/api/v1/customers");
 
         assertThat(response.statusCode()).isEqualTo(404);
+    }
+
+    @Test
+    void unavailablePeerProducesSafeServiceUnavailableProblem() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(uri("/api/v1/reference-relays"))
+                .header("Content-Type", "application/json")
+                .header("X-Correlation-ID", CORRELATION_ID)
+                .POST(HttpRequest.BodyPublishers.ofString("{\"message\":\"hello\"}"))
+                .build();
+
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+
+        assertThat(response.statusCode()).isEqualTo(503);
+        assertThat(response.body())
+                .contains("\"code\":\"REFERENCE_PEER_UNAVAILABLE\"")
+                .contains("\"correlationId\":\"" + CORRELATION_ID + "\"")
+                .doesNotContain("ConnectException", "ReferencePeerUnavailableException", "stackTrace");
+    }
+
+    @Test
+    void invalidRelayRequestFailsBeforeCallingPeer() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(uri("/api/v1/reference-relays"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString("{\"message\":\"\"}"))
+                .build();
+        HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
+        assertThat(response.statusCode()).isEqualTo(400);
+        assertThat(response.body())
+                .contains("\"code\":\"REFERENCE_REQUEST_INVALID\"")
+                .doesNotContain("MethodArgumentNotValidException", "stackTrace");
     }
 
     private HttpResponse<String> get(String path) throws IOException, InterruptedException {

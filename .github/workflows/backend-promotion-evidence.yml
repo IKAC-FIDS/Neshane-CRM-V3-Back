@@ -1,0 +1,156 @@
+name: Backend promotion evidence
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  promotion-evidence:
+    name: Build, scan, attest and verify promotion candidate
+    if: github.ref == 'refs/heads/main'
+    environment: promotion-evidence
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      id-token: write
+      attestations: write
+    steps:
+      - name: Checkout full history without persistent credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Validate Gradle Wrapper and configure Gradle
+        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
+        with:
+          validate-wrappers: true
+
+      - name: Run engineering gates and build promotion candidate
+        run: ./gradlew clean ciLocalVerification :services:reference-service:bootJar --no-daemon --stacktrace
+
+      - name: Scan repository history and worktree for secrets
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Produce fresh filesystem vulnerability report
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          format: json
+          output: trivy-filesystem.json
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+          cache: 'false'
+          skip-dirs: .gradle,**/build
+
+      - name: Fetch current CISA Known Exploited Vulnerabilities catalog
+        shell: pwsh
+        run: |
+          Invoke-WebRequest `
+            -Uri 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json' `
+            -OutFile 'cisa-kev.json' `
+            -MaximumRedirection 3
+
+      - name: Enforce filesystem vulnerability and KEV policy
+        shell: pwsh
+        run: >-
+          ./ci/Invoke-CiSecurityPolicy.ps1
+          -Mode Vulnerability
+          -RepositoryRoot .
+          -InputPath trivy-filesystem.json
+          -SecondaryPath cisa-kev.json
+
+      - name: Build local non-published container image
+        run: >-
+          docker build
+          --file services/reference-service/Dockerfile
+          --tag neshane-reference-service:${{ github.sha }}
+          services/reference-service
+
+      - name: Scan promotion container image
+        id: container-scan
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: image
+          image-ref: neshane-reference-service:${{ github.sha }}
+          scanners: vuln
+          format: json
+          output: trivy-container.json
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+          cache: 'false'
+
+      - name: Enforce container vulnerability and KEV policy
+        shell: pwsh
+        run: >-
+          ./ci/Invoke-CiSecurityPolicy.ps1
+          -Mode Vulnerability
+          -RepositoryRoot .
+          -InputPath trivy-container.json
+          -SecondaryPath cisa-kev.json
+
+      - name: Attest build provenance for the exact JAR
+        uses: actions/attest-build-provenance@977bb373ede98d70efdf65b84cb5f73e068dcc2a # v3.0.0
+        with:
+          subject-path: services/reference-service/build/libs/reference-service.jar
+
+      - name: Verify hosted provenance signature
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: >-
+          gh attestation verify
+          services/reference-service/build/libs/reference-service.jar
+          --repo "${{ github.repository }}"
+
+      - name: Create promotion evidence manifest
+        shell: pwsh
+        run: |
+          $artifact = 'services/reference-service/build/libs/reference-service.jar'
+          $sbom = 'build/reports/cyclonedx/bom.json'
+          @{
+            kind = 'PROMOTION'
+            commitSha = '${{ github.sha }}'
+            artifactSha256 = (Get-FileHash $artifact -Algorithm SHA256).Hash.ToLowerInvariant()
+            sbomSha256 = (Get-FileHash $sbom -Algorithm SHA256).Hash.ToLowerInvariant()
+            provenanceVerified = $true
+            stages = @{
+              engineering = 'PASS'
+              secretScan = 'PASS'
+              vulnerabilityScan = 'PASS'
+              sbom = 'PASS'
+              containerScan = 'PASS'
+              provenance = 'PASS'
+              signatureVerification = 'PASS'
+            }
+          } | ConvertTo-Json -Depth 10 | Set-Content promotion-evidence.json -Encoding utf8NoBOM
+
+      - name: Verify promotion eligibility evidence
+        run: >-
+          ./gradlew verifyPromotionEvidence
+          -PevidenceFile=promotion-evidence.json
+          --no-daemon
+
+      - name: Upload bounded promotion evidence without publishing
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: promotion-evidence-${{ github.sha }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            promotion-evidence.json
+            build/reports/cyclonedx/bom.json
+            trivy-filesystem.json
+            trivy-container.json

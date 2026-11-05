@@ -1,0 +1,39 @@
+{
+  "$schema": "./manifest.schema.json",
+  "manifestVersion": 1,
+  "status": "proposed-r2",
+  "contracts": [
+    {
+      "name": "authority-metadata",
+      "version": "1.0.0",
+      "schema": "v1/authority-metadata.schema.json",
+      "schemaId": "urn:neshane:tenant:authority-metadata:v1",
+      "owner": "tenant-control-plane",
+      "status": "proposed-r2"
+    },
+    {
+      "name": "tenant-registry",
+      "version": "1.0.0",
+      "schema": "v1/tenant-registry.schema.json",
+      "schemaId": "urn:neshane:tenant:registry:v1",
+      "owner": "tenant-control-plane",
+      "status": "proposed-r2"
+    },
+    {
+      "name": "tenant-lifecycle",
+      "version": "1.0.0",
+      "schema": "v1/tenant-lifecycle.schema.json",
+      "schemaId": "urn:neshane:tenant:lifecycle:v1",
+      "owner": "tenant-control-plane",
+      "status": "proposed-r2"
+    },
+    {
+      "name": "tenant-placement",
+      "version": "1.0.0",
+      "schema": "v1/tenant-placement.schema.json",
+      "schemaId": "urn:neshane:tenant:placement:v1",
+      "owner": "tenant-control-plane",
+      "status": "proposed-r2"
+    }
+  ]
+}

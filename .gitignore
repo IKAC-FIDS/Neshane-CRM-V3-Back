@@ -3,7 +3,7 @@ build/
 **/build/
 bin/
 **/bin/
-out/
+/out/
 target/
 .idea/
 .vscode/

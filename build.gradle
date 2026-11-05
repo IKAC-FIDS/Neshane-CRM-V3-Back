@@ -1,5 +1,6 @@
 plugins {
     id 'base'
+    id 'org.cyclonedx.bom' version '3.5.1'
 }
 
 allprojects {
@@ -12,13 +13,29 @@ subprojects {
 
 apply from: 'gradle/quality-conventions.gradle'
 apply from: 'gradle/architecture-boundaries.gradle'
+apply from: 'gradle/ci-security.gradle'
 
 tasks.named('check') {
     dependsOn subprojects.collect { "${it.path}:check" }
     dependsOn tasks.named('verifyFormatting')
-    dependsOn tasks.named('verifyModuleBoundaries')
+    dependsOn tasks.named('verifyArchitectureBoundaries')
+    dependsOn tasks.named('verifyCiSecurityPolicy')
 }
 
 tasks.named('build') {
     dependsOn subprojects.collect { "${it.path}:build" }
+}
+
+tasks.register('verifySourceIgnorePolicy', Exec) {
+    group = 'verification'
+    description = 'Ensures application source paths are not hidden by Git ignore rules.'
+    workingDir rootProject.projectDir
+    inputs.file(rootProject.file('.gitignore'))
+    inputs.file(rootProject.file('ci/Assert-SourceIgnorePolicy.ps1'))
+    commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File',
+        rootProject.file('ci/Assert-SourceIgnorePolicy.ps1')
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifySourceIgnorePolicy')
 }

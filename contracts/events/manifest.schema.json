@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:event:manifest:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifestVersion", "events"],
+  "properties": {
+    "$schema": {
+      "const": "./manifest.schema.json"
+    },
+    "manifestVersion": {
+      "const": 1
+    },
+    "events": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "type",
+          "payloadVersion",
+          "schema",
+          "schemaId",
+          "owner",
+          "tenantMode",
+          "status"
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:\\.[a-z0-9-]+)+\\.v[1-9][0-9]*$"
+          },
+          "payloadVersion": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$"
+          },
+          "schema": {
+            "type": "string",
+            "pattern": "^schemas/[a-z0-9-]+/v[1-9][0-9]*/schema\\.json$"
+          },
+          "schemaId": {
+            "type": "string",
+            "pattern": "^urn:neshane:event:[a-z0-9:-]+:v[1-9][0-9]*$"
+          },
+          "owner": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "tenantMode": {
+            "enum": ["required", "forbidden"]
+          },
+          "status": {
+            "enum": ["candidate-r1", "accepted-r1", "deprecated"]
+          }
+        }
+      }
+    }
+  }
+}

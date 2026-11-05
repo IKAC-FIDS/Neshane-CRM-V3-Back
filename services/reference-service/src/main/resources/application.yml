@@ -1,6 +1,8 @@
 spring:
   application:
     name: ${SERVICE_NAME:reference-service}
+  profiles:
+    active: ${NESHANE_DEPLOYMENT_PROFILE:}
   jmx:
     enabled: false
   lifecycle:
@@ -33,7 +35,21 @@ management:
         include: health
 
 neshane:
+  observability:
+    service-instance-id: ${OTEL_SERVICE_INSTANCE_ID:}
+    otlp-endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:}
+    trace-sample-ratio: ${OTEL_TRACE_SAMPLE_RATIO:0.0}
+    export-timeout: ${OTEL_EXPORT_TIMEOUT:2s}
+    span-export-interval: ${OTEL_SPAN_EXPORT_INTERVAL:5s}
+    maximum-queued-spans: ${OTEL_MAX_QUEUED_SPANS:2048}
+    maximum-export-batch-size: ${OTEL_MAX_EXPORT_BATCH_SIZE:512}
+    metric-export-interval: ${OTEL_METRIC_EXPORT_INTERVAL:15s}
+    maximum-metric-values-per-key: ${OTEL_MAX_METRIC_VALUES_PER_KEY:64}
   reference:
     service-name: ${SERVICE_NAME:reference-service}
+    peer:
+      base-url: ${REFERENCE_PEER_BASE_URL:http://127.0.0.1:8081}
+      connect-timeout: ${REFERENCE_PEER_CONNECT_TIMEOUT:1s}
+      request-timeout: ${REFERENCE_PEER_REQUEST_TIMEOUT:2s}
     diagnostics:
       enabled: false

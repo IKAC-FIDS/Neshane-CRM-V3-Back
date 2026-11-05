@@ -5,7 +5,7 @@
 - Work only on the explicitly requested Task ID and do not modify unrelated files.
 - This is an independent Java/Spring Boot Backend repository. It must remain independently buildable and understandable.
 - Read `architecture/governance-baseline.md` and `architecture/standards/backend-engineering.md` before architecture-sensitive work.
-- The recorded references are architecture `NESHANE-V3-ARCH-P00-003` and governance `NESHANE-V3-GOV-P00-000A`. Root architecture and approved V3 ADRs are authoritative when available.
+- The recorded references are architecture `NESHANE-V3-ARCH-P00-005` and governance `NESHANE-V3-GOV-P00-000A`. Root architecture and approved V3 ADRs are authoritative when available.
 - If Root guidance is missing, use the local baseline without inventing decisions. If it is stale or conflicts with Root, report the mismatch and stop the affected work until an authorized alignment task or architecture decision resolves it.
 
 ## Architecture
@@ -17,7 +17,8 @@
 - Controlled co-deployment is allowed only when independent boundaries, artifacts, ownership, authorization, and future extraction remain intact.
 - Shared Policy Governance may provide common policy contracts, but each resource-owning service makes and enforces final authorization decisions; Sovereign policy authority is local.
 - Preserve validated Tenant Context; Shared SaaS tenant tables require PostgreSQL RLS and non-bypass runtime roles.
-- Use contract-first compatible evolution. Breaking API/event changes require a new version, coexistence, explicit deprecation and consumer migration planning.
+- Use contract-first compatible evolution under ADR-V3-014. Public REST uses `/api/v<major>/...`; events use CloudEvents 1.0-compatible envelopes with independent protocol, event-major, payload and immutable schema versions. Breaking API/event changes require a new major, coexistence, explicit deprecation, consumer migration ownership and removal evidence.
+- Apply the risk-based Contract Testing governance in ADR-V3-015. Applicable Provider Conformance, Consumer-driven, Real Integration, compatibility, negative and Manual Review gates remain blocking where the ADR assigns them; architecture acceptance is not CI/runtime evidence.
 - Architecture, Implementation, and Production Readiness are separate evidence gates; operational evidence is profile-specific.
 - Never commit secrets or silently introduce architecture decisions.
 

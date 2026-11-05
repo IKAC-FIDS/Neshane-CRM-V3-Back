@@ -1,0 +1,116 @@
+def ciPolicyScript = rootProject.file('ci/Invoke-CiSecurityPolicy.ps1')
+def buildEvidenceScript = rootProject.file('ci/Assert-BuildEvidence.ps1')
+
+def registerPolicyExec = { String taskName, String mode, String descriptionText ->
+    tasks.register(taskName, Exec) {
+        group = 'verification'
+        description = descriptionText
+        inputs.file(ciPolicyScript)
+        inputs.file(rootProject.file('ci/security-policy.json'))
+        inputs.file(rootProject.file('ci/security-exceptions.json'))
+        inputs.file(rootProject.file('ci/security-authorities.json'))
+        commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
+            '-Mode', mode, '-RepositoryRoot', rootProject.projectDir
+    }
+}
+
+registerPolicyExec(
+    'verifyRepositorySecrets',
+    'ScanSecrets',
+    'Fails on high-confidence credential material in repository text files.'
+)
+
+tasks.register('verifyBuildEvidencePolicyFixtures', Exec) {
+    group = 'verification'
+    description = 'Proves build-evidence completeness checks fail closed and accept valid JAR/SBOM outputs.'
+    inputs.file(buildEvidenceScript)
+    commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', buildEvidenceScript,
+        '-Mode', 'Fixtures'
+}
+
+registerPolicyExec(
+    'verifyCiWorkflowPolicy',
+    'Workflow',
+    'Validates mandatory CI jobs, immutable action pins and fail-closed workflow settings.'
+)
+
+registerPolicyExec(
+    'verifySecurityExceptions',
+    'Exceptions',
+    'Validates bounded, time-limited security exceptions and non-waivable controls.'
+)
+
+registerPolicyExec(
+    'verifyCiSecurityPolicyFixtures',
+    'Fixtures',
+    'Runs deterministic negative and corrected supply-chain policy fixtures.'
+)
+
+tasks.register('verifyPromotionEvidenceFixture', Exec) {
+    group = 'verification'
+    description = 'Validates the corrected synthetic promotion-evidence counterpart.'
+    def fixture = rootProject.file('ci/fixtures/valid-promotion-evidence.json')
+    inputs.file(ciPolicyScript)
+    inputs.file(rootProject.file('ci/security-policy.json'))
+    inputs.file(rootProject.file('ci/security-exceptions.json'))
+    inputs.file(rootProject.file('ci/security-authorities.json'))
+    inputs.file(fixture)
+    commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
+        '-Mode', 'Evidence', '-RepositoryRoot', rootProject.projectDir,
+        '-InputPath', fixture
+}
+
+tasks.register('verifyCiSecurityPolicy') {
+    group = 'verification'
+    description = 'Runs local CI security policy, workflow, secret and negative-fixture gates.'
+    dependsOn tasks.named('verifyRepositorySecrets')
+    dependsOn tasks.named('verifyCiWorkflowPolicy')
+    dependsOn tasks.named('verifySecurityExceptions')
+    dependsOn tasks.named('verifyCiSecurityPolicyFixtures')
+    dependsOn tasks.named('verifyBuildEvidencePolicyFixtures')
+    dependsOn tasks.named('verifyPromotionEvidenceFixture')
+}
+
+tasks.register('validateCycloneDxBom', Exec) {
+    group = 'verification'
+    description = 'Generates and validates the aggregate CycloneDX SBOM.'
+    dependsOn tasks.named('cyclonedxBom')
+    inputs.file(ciPolicyScript)
+    inputs.file(rootProject.file('ci/security-policy.json'))
+    inputs.file(rootProject.file('ci/security-exceptions.json'))
+    inputs.file(rootProject.file('ci/security-authorities.json'))
+    inputs.file(layout.buildDirectory.file('reports/cyclonedx/bom.json'))
+    commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
+        '-Mode', 'Sbom', '-RepositoryRoot', rootProject.projectDir,
+        '-InputPath', layout.buildDirectory.file('reports/cyclonedx/bom.json').get().asFile
+}
+
+tasks.register('verifyPromotionEvidence', Exec) {
+    group = 'verification'
+    description = 'Fails unless the supplied CI evidence manifest contains every mandatory promotion gate.'
+    inputs.file(ciPolicyScript)
+    inputs.file(rootProject.file('ci/security-policy.json'))
+    inputs.file(rootProject.file('ci/security-exceptions.json'))
+    inputs.file(rootProject.file('ci/security-authorities.json'))
+    def evidenceFileProvider = providers.gradleProperty('evidenceFile').map { rootProject.file(it) }
+    inputs.files(evidenceFileProvider)
+    doFirst {
+        if (!evidenceFileProvider.isPresent()) {
+            throw new GradleException('verifyPromotionEvidence requires -PevidenceFile=<manifest.json>')
+        }
+        def evidence = evidenceFileProvider.get()
+        if (!evidence.isFile()) {
+            throw new GradleException("promotion evidence file does not exist: ${evidence}")
+        }
+        commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
+            '-Mode', 'Evidence', '-RepositoryRoot', rootProject.projectDir,
+            '-InputPath', evidence
+    }
+}
+
+tasks.register('ciLocalVerification') {
+    group = 'verification'
+    description = 'Runs all locally executable V3-016 engineering, contract, security-policy and SBOM gates.'
+    dependsOn tasks.named('check')
+    dependsOn tasks.named('validateCycloneDxBom')
+}

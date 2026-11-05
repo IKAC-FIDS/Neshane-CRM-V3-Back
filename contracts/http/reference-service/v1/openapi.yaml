@@ -1,0 +1,106 @@
+openapi: 3.1.0
+info:
+  title: Reference Service Relay API
+  version: 1.0.0
+x-neshane-contract-owner: reference-service
+x-neshane-contract-version: v1
+x-neshane-contract-status: proposed-v3-017
+paths:
+  /api/v1/reference-relays:
+    post:
+      operationId: relayReferenceMessage
+      x-public-access-approved: true
+      summary: Relays bounded synthetic reference data to the peer reference service.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReferenceRequest'
+      responses:
+        '200':
+          description: Peer response.
+          headers:
+            X-Correlation-ID:
+              $ref: '#/components/headers/CorrelationId'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReferenceResponse'
+        '400':
+          description: Invalid request.
+          headers:
+            X-Correlation-ID:
+              $ref: '#/components/headers/CorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        '503':
+          description: Peer is unavailable or returned an unusable response.
+          headers:
+            X-Correlation-ID:
+              $ref: '#/components/headers/CorrelationId'
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+components:
+  headers:
+    CorrelationId:
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    ReferenceRequest:
+      type: object
+      additionalProperties: false
+      required: [message]
+      properties:
+        message:
+          type: string
+          minLength: 1
+          maxLength: 128
+    ReferenceResponse:
+      type: object
+      additionalProperties: false
+      required: [responder, message, correlationId, traceId]
+      properties:
+        responder: {type: string, const: reference-peer-service}
+        message: {type: string, maxLength: 128}
+        correlationId: {type: string, format: uuid}
+        traceId: {type: string, pattern: '^[0-9a-f]{32}$'}
+    ProblemDetails:
+      type: object
+      required: [type, title, status, detail, instance, code, correlationId]
+      properties:
+        type: {type: string, format: uri-reference}
+        title: {type: string}
+        status: {type: integer, minimum: 400, maximum: 599}
+        detail: {type: string}
+        instance: {type: string, format: uri-reference}
+        code: {type: string}
+        correlationId: {type: string, format: uuid}
+    ValidationProblemDetails:
+      allOf:
+        - $ref: '#/components/schemas/ProblemDetails'
+        - type: object
+          required: [violations]
+          properties:
+            violations:
+              type: array
+              items:
+                type: object
+                required: [field, code, message]
+                properties:
+                  field: {type: string}
+                  code: {type: string}
+                  message: {type: string}
+    PageMetadata:
+      type: object
+      required: [page, size, totalElements, totalPages]
+      properties:
+        page: {type: integer, minimum: 0}
+        size: {type: integer, minimum: 1}
+        totalElements: {type: integer, minimum: 0}
+        totalPages: {type: integer, minimum: 0}

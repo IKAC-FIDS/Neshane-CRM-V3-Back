@@ -1,0 +1,28 @@
+dependencies {
+    implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation libs.jackson.databind
+    implementation libs.json.schema.validator
+
+    testImplementation enforcedPlatform(libs.spring.boot.dependencies)
+    testImplementation libs.spring.boot.starter.test
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+def contractRoot = rootProject.layout.projectDirectory.dir('contracts/tenant')
+
+tasks.register('validateTenantCandidateContracts', JavaExec) {
+    group = 'verification'
+    description = 'Validates proposed V3-021 tenant contract artifacts without accepting a baseline.'
+    dependsOn tasks.named('classes')
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'ir.neshane.contract.tenant.TenantContractVerifier'
+    args 'validate-candidate', contractRoot.asFile.absolutePath
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('validateTenantCandidateContracts')
+}
+
+tasks.withType(Test).configureEach {
+    systemProperty 'tenantContractRoot', contractRoot.asFile.absolutePath
+}

@@ -4,6 +4,8 @@ def qualityFiles = fileTree(rootDir) {
     include '**/*.md'
     include '**/*.properties'
     include '**/*.toml'
+    include '**/*.json'
+    include '**/*.ps1'
     include '**/*.yml'
     include '**/*.yaml'
     exclude '.git/**'

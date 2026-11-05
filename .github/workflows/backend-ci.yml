@@ -1,0 +1,167 @@
+name: Backend CI security gates
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backend-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  engineering-gates:
+    name: Engineering, contracts, architecture and SBOM
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    steps:
+      - name: Checkout without persistent credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Set up Java 21
+        uses: actions/setup-java@c5195efecf7bdfc987ee8bae7a71cb8b11521c00 # v4.7.1
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - name: Validate Gradle Wrapper and configure Gradle
+        uses: gradle/actions/setup-gradle@017a9effdb900e5b5b2fddfb590a105619dca3c3 # v4.4.2
+        with:
+          validate-wrappers: true
+
+      - name: Run deterministic engineering and local security-policy gates
+        run: ./gradlew clean ciLocalVerification :services:reference-service:bootJar --no-daemon --stacktrace
+
+      - name: Validate build evidence completeness
+        shell: pwsh
+        run: >-
+          ./ci/Assert-BuildEvidence.ps1
+          -Mode Validate
+          -ArtifactPath services/reference-service/build/libs/reference-service.jar
+          -SbomPath build/reports/cyclonedx/bom.json
+
+      - name: Upload traceable build and CycloneDX evidence
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ci-build-evidence
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            services/reference-service/build/libs/reference-service.jar
+            build/reports/cyclonedx/bom.json
+
+  secret-scan:
+    name: Secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Checkout full history without persistent credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Scan repository history and worktree for secrets
+        uses: gitleaks/gitleaks-action@ff98106e4c7b2bc287b24eaf42907196329070c7 # v2.3.9
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+  vulnerability-scan:
+    name: Dependency vulnerability and known-exploited scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - name: Checkout without persistent credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Produce fresh Trivy filesystem vulnerability report
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln
+          format: json
+          output: trivy-results.json
+          severity: UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL
+          exit-code: '0'
+          cache: 'false'
+          skip-dirs: .gradle,**/build
+
+      - name: Fetch current CISA Known Exploited Vulnerabilities catalog
+        shell: pwsh
+        run: |
+          Invoke-WebRequest `
+            -Uri 'https://www.cisa.gov/sites/default/files/feeds/known_exploited_vulnerabilities.json' `
+            -OutFile 'cisa-kev.json' `
+            -MaximumRedirection 3
+
+      - name: Enforce vulnerability, KEV and exception policy
+        shell: pwsh
+        run: >-
+          ./ci/Invoke-CiSecurityPolicy.ps1
+          -Mode Vulnerability
+          -RepositoryRoot .
+          -InputPath trivy-results.json
+          -SecondaryPath cisa-kev.json
+
+  evidence-gate:
+    name: Mandatory CI evidence gate
+    if: always()
+    needs:
+      - engineering-gates
+      - secret-scan
+      - vulnerability-scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - name: Checkout policy without persistent credentials
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Download build and SBOM evidence
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: ci-build-evidence
+          path: ci-evidence
+
+      - name: Create evidence manifest from actual prerequisite results
+        shell: pwsh
+        env:
+          ENGINEERING_RESULT: ${{ needs.engineering-gates.result }}
+          SECRET_RESULT: ${{ needs.secret-scan.result }}
+          VULNERABILITY_RESULT: ${{ needs.vulnerability-scan.result }}
+        run: |
+          $artifact = Get-ChildItem ci-evidence -Recurse -Filter reference-service.jar | Select-Object -First 1
+          $sbom = Get-ChildItem ci-evidence -Recurse -Filter bom.json | Select-Object -First 1
+          if ($null -eq $artifact -or $null -eq $sbom) { throw 'mandatory artifact or SBOM evidence is missing' }
+          $status = { param($value) if ($value -eq 'success') { 'PASS' } else { $value.ToUpperInvariant() } }
+          @{
+            kind = 'PULL_REQUEST'
+            commitSha = '${{ github.sha }}'
+            artifactSha256 = (Get-FileHash $artifact.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            sbomSha256 = (Get-FileHash $sbom.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+            stages = @{
+              engineering = (& $status $env:ENGINEERING_RESULT)
+              secretScan = (& $status $env:SECRET_RESULT)
+              vulnerabilityScan = (& $status $env:VULNERABILITY_RESULT)
+              sbom = (& $status $env:ENGINEERING_RESULT)
+            }
+          } | ConvertTo-Json -Depth 10 | Set-Content ci-evidence-manifest.json -Encoding utf8NoBOM
+
+      - name: Fail closed on missing, skipped or failed mandatory evidence
+        shell: pwsh
+        run: >-
+          ./ci/Invoke-CiSecurityPolicy.ps1
+          -Mode Evidence
+          -RepositoryRoot .
+          -InputPath ci-evidence-manifest.json
