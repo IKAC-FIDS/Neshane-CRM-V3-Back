@@ -92,10 +92,59 @@ bounded tmpfs at `/tmp`.
 
 - R1 acceptance has not been granted; V3-017 remains in progress.
 - The new contracts are proposed and lack an accepted previous baseline by design.
-- No hosted CI run, remote merge gate or release evidence exists for these changes.
-- No production workload authentication, authorization, Tenant Context, RLS, rate limiting, service discovery,
+- Hosted Pull Request CI has passed all four mandatory checks on a previous revision, including engineering, secret scanning, vulnerability scanning and mandatory evidence validation. Final hosted CI verification for commit 9eae110 remains to be recorded.
+- Protected branch governance, independent reviewer approval and promotion evidence remain unverified.- No production workload authentication, authorization, Tenant Context, RLS, rate limiting, service discovery,
   TLS/mTLS, retry, circuit breaker or production networking was selected or proven.
 - The E2E path uses real processes and real Docker networking, but no external gateway, service mesh or deployment
   platform.
 - The test proves recovery after a peer restart; it does not claim live reconnection semantics.
 - Independent Security Sign-off and Production Readiness remain outside this engineering baseline.
+
+## V3-017 R1 — Final Engineering Review Record
+
+**Architecture baseline:** `NESHANE-V3-ARCH-P00-005`
+**Review date:** `2026-11-05`
+**Latest implementation commit:** `9eae110`
+**Disposition:** `ENGINEERING VALIDATED — FORMAL R1 ACCEPTANCE PENDING`
+
+### Remediation evidence
+
+| Finding | Remediation commit | Disposition |
+|---|---|---|
+| Incomplete HTTP peer response validation | `55c94f1` | Remediated; local tests passed |
+| Missing tracked application port | `f213a2b` | Remediated; subsequent Hosted CI passed |
+| Overbroad `.gitignore` rule | `9eae110` | Remediated; positive and negative local tests passed |
+
+### Final local verification
+
+- `clean ciLocalVerification :services:reference-service:bootJar --offline`: PASS, 75 Gradle tasks.
+- `verifySourceIgnorePolicy`: PASS.
+- Source-ignore negative regression test: PASS, expected rejection of `out/`.
+- `git diff --check`: PASS.
+- Real process smoke test after HTTP adapter remediation: PASS.
+- Earlier independent Docker smoke test: PASS; not rerun after subsequent changes.
+
+### V3-016 dependency disposition
+
+V3-016 provides the CI security pipeline and hosted-governance foundation. Its CI implementation has demonstrated successful execution, but full governance acceptance is not established.
+
+Outstanding governance dependencies:
+
+- Verified independent GitHub reviewer.
+- Effective CODEOWNERS configuration.
+- Protected `main` branch ruleset and required review controls.
+- Protected `promotion-evidence` environment.
+- Independent authorization and supporting governance evidence.
+
+### R1 decision
+
+**Implementation:** COMPLETE
+**Local engineering validation:** PASS
+**Hosted CI for final commit:** EVIDENCE PENDING
+**Formal R1 acceptance:** PENDING
+**V3-016 governance acceptance:** PENDING
+**Merge authorization:** NOT GRANTED
+**Production readiness:** NOT ASSESSED
+**Security sign-off:** NOT GRANTED
+
+Final acceptance requires current-revision CI evidence, the recorded engineering review decision and resolution or explicit disposition of applicable governance prerequisites.
