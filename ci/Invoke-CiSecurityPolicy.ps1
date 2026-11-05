@@ -16,6 +16,7 @@ Set-StrictMode -Version Latest
 $repository = (Resolve-Path -LiteralPath $RepositoryRoot).Path
 $policyPath = Join-Path $repository 'ci/security-policy.json'
 $exceptionsPath = Join-Path $repository 'ci/security-exceptions.json'
+$authorityPath = Join-Path $repository 'ci/security-authorities.json'
 
 function Fail-Policy([string] $Message) {
     throw "CI security policy violation: $Message"
@@ -47,8 +48,54 @@ function Get-ObjectProperty($Object, [string] $Name) {
 
 $policy = Read-JsonFile $policyPath
 $exceptionDocument = Read-JsonFile $exceptionsPath
+$authorityDocument = Read-JsonFile $authorityPath
 
-function Test-ExceptionDocument($Document, $Policy, [DateTimeOffset] $Now) {
+function Test-AuthorityDocument($Document) {
+    Assert-Condition ($Document.schemaVersion -eq 1) 'security authority schemaVersion must be 1'
+    $authoritiesProperty = Get-ObjectProperty $Document 'authorities'
+    Assert-Condition ($null -ne $authoritiesProperty) 'security authority list is missing'
+
+    $logins = [System.Collections.Generic.HashSet[string]]::new([StringComparer]::OrdinalIgnoreCase)
+    foreach ($authority in @($authoritiesProperty.Value)) {
+        foreach ($field in @('githubLogin', 'authorityScopes', 'delegationReference', 'validFrom', 'validUntil',
+                'revoked', 'auditRequirements')) {
+            $property = Get-ObjectProperty $authority $field
+            Assert-Condition ($null -ne $property) "security authority is missing required field: $field"
+        }
+
+        Assert-Condition (-not [string]::IsNullOrWhiteSpace([string] $authority.githubLogin)) `
+            'security authority githubLogin is blank'
+        Assert-Condition ([string] $authority.githubLogin -match '^[A-Za-z0-9](?:[A-Za-z0-9-]{0,37}[A-Za-z0-9])?$') `
+            "security authority GitHub login is invalid: $($authority.githubLogin)"
+        Assert-Condition ($logins.Add([string] $authority.githubLogin)) `
+            "duplicate security authority GitHub login: $($authority.githubLogin)"
+        Assert-Condition (@($authority.authorityScopes).Count -gt 0) `
+            "security authority has no scopes: $($authority.githubLogin)"
+        Assert-Condition (-not [string]::IsNullOrWhiteSpace([string] $authority.delegationReference)) `
+            "security authority delegation reference is blank: $($authority.githubLogin)"
+        Assert-Condition (@($authority.auditRequirements).Count -gt 0) `
+            "security authority has no audit requirements: $($authority.githubLogin)"
+        Assert-Condition ($authority.revoked -is [bool]) `
+            "security authority revoked state must be boolean: $($authority.githubLogin)"
+
+        $validFrom = [DateTimeOffset]::Parse([string] $authority.validFrom)
+        $validUntil = [DateTimeOffset]::Parse([string] $authority.validUntil)
+        Assert-Condition ($validUntil -gt $validFrom) `
+            "security authority validity window is invalid: $($authority.githubLogin)"
+    }
+}
+
+function Get-SecurityAuthority($Authorities, [string] $GitHubLogin) {
+    foreach ($authority in @($Authorities.authorities)) {
+        if ([string] $authority.githubLogin -ieq $GitHubLogin) {
+            return $authority
+        }
+    }
+    return $null
+}
+
+function Test-ExceptionDocument($Document, $Policy, $Authorities, [DateTimeOffset] $Now) {
+    Test-AuthorityDocument $Authorities
     Assert-Condition ($Document.schemaVersion -eq 1) 'security exception schemaVersion must be 1'
     Assert-Condition ($null -ne $Document.exceptions) 'security exception list is missing'
 
@@ -70,6 +117,23 @@ function Test-ExceptionDocument($Document, $Policy, [DateTimeOffset] $Now) {
         Assert-Condition ($expires -gt $created) "exception expiry is not after creation: $($exception.id)"
         Assert-Condition (($expires - $created).TotalDays -le [double] $Policy.exceptions.maximumLifetimeDays) `
             "exception lifetime exceeds policy maximum: $($exception.id)"
+
+        Assert-Condition ([string] $exception.owner -ine [string] $exception.approvedBy) `
+            "security exception requester cannot self-approve: $($exception.id)"
+        Assert-Condition ([string] $exception.approvalEvidenceStatus -eq 'VERIFIED') `
+            "security exception approval evidence is not independently verified: $($exception.id)"
+
+        $authority = Get-SecurityAuthority $Authorities ([string] $exception.approvedBy)
+        Assert-Condition ($null -ne $authority) `
+            "security exception approver is not registered: $($exception.approvedBy)"
+        Assert-Condition ($authority.revoked -eq $false) `
+            "security exception approver authority is revoked: $($exception.approvedBy)"
+        $authorityFrom = [DateTimeOffset]::Parse([string] $authority.validFrom)
+        $authorityUntil = [DateTimeOffset]::Parse([string] $authority.validUntil)
+        Assert-Condition ($created -ge $authorityFrom -and $created -lt $authorityUntil) `
+            "security exception approval is outside approver delegation validity: $($exception.approvedBy)"
+        Assert-Condition (@($authority.authorityScopes) -contains [string] $exception.control) `
+            "security exception approver lacks scope for control: $($exception.control)"
     }
 }
 
@@ -155,10 +219,54 @@ function Test-WorkflowPolicy {
     }
     Assert-Condition ($promotionContent -match "if:\s*github\.ref\s*==\s*'refs/heads/main'") `
         'promotion evidence must be restricted to the main branch'
+    Test-PromotionEnvironmentDeclaration $promotionContent
     Assert-Condition ([regex]::Matches($promotionContent, "cache:\s*'false'").Count -ge 2) `
         'promotion filesystem and container scans must disable the reusable scanner cache'
 
     Write-Output 'Workflow policy validation passed with immutable action pins and mandatory fail-closed stages.'
+}
+
+function Test-PromotionEnvironmentDeclaration([string] $Content) {
+    Assert-Condition ($Content -match '(?m)^\s{4}environment:\s*promotion-evidence\s*$') `
+        'promotion evidence job must declare environment: promotion-evidence'
+}
+
+function Test-CodeownersDocument([string] $Content, [string[]] $EligibleOwners) {
+    Assert-Condition (-not [string]::IsNullOrWhiteSpace($Content)) 'CODEOWNERS configuration is empty'
+    Assert-Condition ($EligibleOwners.Count -gt 0) 'CODEOWNERS has no verified eligible owners'
+
+    $requiredPatterns = @(
+        '.github/workflows/**',
+        '.github/CODEOWNERS',
+        'ci/security-policy.json',
+        'ci/security-authorities.json',
+        'ci/security-exceptions.json',
+        'ci/Invoke-CiSecurityPolicy.ps1',
+        'gradle/verification-metadata.xml',
+        'gradle/ci-security.gradle',
+        'gradle/wrapper/**',
+        'gradlew',
+        'gradlew.bat'
+    )
+    $entries = @{}
+    foreach ($line in ($Content -split '\r?\n')) {
+        $trimmed = $line.Trim()
+        if ([string]::IsNullOrWhiteSpace($trimmed) -or $trimmed.StartsWith('#')) {
+            continue
+        }
+        $tokens = @($trimmed -split '\s+' | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+        Assert-Condition ($tokens.Count -ge 2) "CODEOWNERS entry has no owner: $trimmed"
+        foreach ($owner in $tokens[1..($tokens.Count - 1)]) {
+            Assert-Condition ($owner -match '^@[A-Za-z0-9][A-Za-z0-9-]{0,38}$') `
+                "CODEOWNERS owner is invalid: $owner"
+            Assert-Condition ($EligibleOwners -icontains $owner.TrimStart('@')) `
+                "CODEOWNERS owner is not verified eligible: $owner"
+        }
+        $entries[$tokens[0]] = $true
+    }
+    foreach ($pattern in $requiredPatterns) {
+        Assert-Condition ($entries.ContainsKey($pattern)) "CODEOWNERS required pattern is missing: $pattern"
+    }
 }
 
 function Test-SbomDocument($Document) {
@@ -366,11 +474,22 @@ function Invoke-PolicyFixtures {
         exceptions = @([pscustomobject]@{
             id = 'EX-TEST'; control = 'VULNERABILITY_FINDING'; findingId = 'CVE-2099-0003'; owner = 'fixture-owner'
             approvedBy = 'fixture-approver'; approvalReference = 'fixture-approval-reference'
+            approvalEvidenceStatus = 'VERIFIED'
             reason = 'fixture'; compensatingControl = 'fixture-control'
             createdAt = $now.AddDays(-2).ToString('o'); expiresAt = $now.AddDays(-1).ToString('o')
         })
     }
-    Assert-Fails { Test-ExceptionDocument $expired $policy $now } 'exception is expired' 'Expired exception fixture'
+    $validAuthority = [pscustomobject]@{
+        schemaVersion = 1
+        authorities = @([pscustomobject]@{
+            githubLogin = 'fixture-approver'; authorityScopes = @('VULNERABILITY_FINDING')
+            delegationReference = 'fixture-delegation'; validFrom = $now.AddDays(-10).ToString('o')
+            validUntil = $now.AddDays(10).ToString('o'); revoked = $false
+            auditRequirements = @('protected-review', 'approval-record')
+        })
+    }
+    Assert-Fails { Test-ExceptionDocument $expired $policy $validAuthority $now } `
+        'exception is expired' 'Expired exception fixture'
     $missingApproval = [pscustomobject]@{
         schemaVersion = 1
         exceptions = @([pscustomobject]@{
@@ -380,10 +499,89 @@ function Invoke-PolicyFixtures {
             expiresAt = $now.AddDays(1).ToString('o')
         })
     }
-    Assert-Fails { Test-ExceptionDocument $missingApproval $policy $now } `
+    Assert-Fails { Test-ExceptionDocument $missingApproval $policy $validAuthority $now } `
         'exception is missing required field: approvalReference' 'Unapproved exception fixture'
-    Test-ExceptionDocument $exceptionDocument $policy $now
+
+    $validException = [pscustomobject]@{
+        schemaVersion = 1
+        exceptions = @([pscustomobject]@{
+            id = 'EX-VALID'; control = 'VULNERABILITY_FINDING'; findingId = 'CVE-2099-0005'
+            owner = 'fixture-requester'; approvedBy = 'fixture-approver'; approvalReference = 'fixture-approval'
+            approvalEvidenceStatus = 'VERIFIED'; reason = 'fixture'; compensatingControl = 'fixture-control'
+            createdAt = $now.AddHours(-1).ToString('o'); expiresAt = $now.AddDays(1).ToString('o')
+        })
+    }
+    $unknownApprover = $validException | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $unknownApprover.exceptions[0].approvedBy = 'unknown-approver'
+    Assert-Fails { Test-ExceptionDocument $unknownApprover $policy $validAuthority $now } `
+        'approver is not registered' 'Unknown approver fixture'
+
+    $expiredAuthority = $validAuthority | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $expiredAuthority.authorities[0].validFrom = $now.AddDays(-20).ToString('o')
+    $expiredAuthority.authorities[0].validUntil = $now.AddDays(-10).ToString('o')
+    Assert-Fails { Test-ExceptionDocument $validException $policy $expiredAuthority $now } `
+        'outside approver delegation validity' 'Expired delegation fixture'
+
+    $revokedAuthority = $validAuthority | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $revokedAuthority.authorities[0].revoked = $true
+    Assert-Fails { Test-ExceptionDocument $validException $policy $revokedAuthority $now } `
+        'approver authority is revoked' 'Revoked authority fixture'
+
+    $wrongScopeAuthority = $validAuthority | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $wrongScopeAuthority.authorities[0].authorityScopes = @('SOME_OTHER_CONTROL')
+    Assert-Fails { Test-ExceptionDocument $validException $policy $wrongScopeAuthority $now } `
+        'lacks scope for control' 'Unauthorized approval scope fixture'
+
+    $selfApproved = $validException | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $selfApproved.exceptions[0].owner = 'fixture-approver'
+    Assert-Fails { Test-ExceptionDocument $selfApproved $policy $validAuthority $now } `
+        'requester cannot self-approve' 'Self-approval fixture'
+
+    $unverifiedApproval = $validException | ConvertTo-Json -Depth 20 | ConvertFrom-Json
+    $unverifiedApproval.exceptions[0].approvalEvidenceStatus = 'UNVERIFIED'
+    Assert-Fails { Test-ExceptionDocument $unverifiedApproval $policy $validAuthority $now } `
+        'approval evidence is not independently verified' 'Unverified approval evidence fixture'
+
+    $invalidAuthority = [pscustomobject]@{ schemaVersion = 1 }
+    Assert-Fails { Test-AuthorityDocument $invalidAuthority } `
+        'security authority list is missing' 'Invalid authority register fixture'
+    $missingAuthorityRegister = Join-Path ([System.IO.Path]::GetTempPath()) `
+        "neshane-v3-016-missing-authorities-$([Guid]::NewGuid().ToString('N')).json"
+    Assert-Fails { Read-JsonFile $missingAuthorityRegister } `
+        'required JSON file is missing' 'Missing authority register fixture'
+
+    Test-ExceptionDocument $validException $policy $validAuthority $now
+    Test-ExceptionDocument $exceptionDocument $policy $authorityDocument $now
     Write-Output 'Corrected exception fixture: PASS'
+
+    $eligibleOwners = @('verified-reviewer')
+    $validCodeowners = @'
+.github/workflows/** @verified-reviewer
+.github/CODEOWNERS @verified-reviewer
+ci/security-policy.json @verified-reviewer
+ci/security-authorities.json @verified-reviewer
+ci/security-exceptions.json @verified-reviewer
+ci/Invoke-CiSecurityPolicy.ps1 @verified-reviewer
+gradle/verification-metadata.xml @verified-reviewer
+gradle/ci-security.gradle @verified-reviewer
+gradle/wrapper/** @verified-reviewer
+gradlew @verified-reviewer
+gradlew.bat @verified-reviewer
+'@
+    $invalidCodeowners = $validCodeowners.Replace('.github/workflows/** @verified-reviewer',
+        '.github/workflows/** @unverified-owner')
+    Assert-Fails { Test-CodeownersDocument $invalidCodeowners $eligibleOwners } `
+        'owner is not verified eligible' 'Invalid CODEOWNERS fixture'
+    Test-CodeownersDocument $validCodeowners $eligibleOwners
+    Write-Output 'Corrected CODEOWNERS fixture: PASS'
+
+    $promotionWorkflow = Get-Content -Raw -LiteralPath `
+        (Join-Path $repository '.github/workflows/backend-promotion-evidence.yml')
+    $missingPromotionEnvironment = $promotionWorkflow -replace '(?m)^\s{4}environment:\s*promotion-evidence\s*\r?\n', ''
+    Assert-Fails { Test-PromotionEnvironmentDeclaration $missingPromotionEnvironment } `
+        'must declare environment: promotion-evidence' 'Missing Promotion environment fixture'
+    Test-PromotionEnvironmentDeclaration $promotionWorkflow
+    Write-Output 'Corrected Promotion environment fixture: PASS'
 
     $hash = 'a' * 64
     $validEvidence = [pscustomobject]@{
@@ -439,7 +637,7 @@ switch ($Mode) {
         Test-WorkflowPolicy
     }
     'Exceptions' {
-        Test-ExceptionDocument $exceptionDocument $policy ([DateTimeOffset]::UtcNow)
+        Test-ExceptionDocument $exceptionDocument $policy $authorityDocument ([DateTimeOffset]::UtcNow)
         Write-Output 'Security exception policy validation passed.'
     }
     'Fixtures' {
@@ -451,7 +649,7 @@ switch ($Mode) {
         Write-Output "CycloneDX SBOM validation passed: $InputPath"
     }
     'Vulnerability' {
-        Test-ExceptionDocument $exceptionDocument $policy ([DateTimeOffset]::UtcNow)
+        Test-ExceptionDocument $exceptionDocument $policy $authorityDocument ([DateTimeOffset]::UtcNow)
         Test-VulnerabilityDocument (Read-JsonFile $InputPath) (Read-JsonFile $SecondaryPath) `
             $policy $exceptionDocument ([DateTimeOffset]::UtcNow)
         Write-Output 'Vulnerability and CISA KEV policy validation passed.'

@@ -8,6 +8,7 @@ def registerPolicyExec = { String taskName, String mode, String descriptionText 
         inputs.file(ciPolicyScript)
         inputs.file(rootProject.file('ci/security-policy.json'))
         inputs.file(rootProject.file('ci/security-exceptions.json'))
+        inputs.file(rootProject.file('ci/security-authorities.json'))
         commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
             '-Mode', mode, '-RepositoryRoot', rootProject.projectDir
     }
@@ -52,6 +53,7 @@ tasks.register('verifyPromotionEvidenceFixture', Exec) {
     inputs.file(ciPolicyScript)
     inputs.file(rootProject.file('ci/security-policy.json'))
     inputs.file(rootProject.file('ci/security-exceptions.json'))
+    inputs.file(rootProject.file('ci/security-authorities.json'))
     inputs.file(fixture)
     commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
         '-Mode', 'Evidence', '-RepositoryRoot', rootProject.projectDir,
@@ -76,6 +78,7 @@ tasks.register('validateCycloneDxBom', Exec) {
     inputs.file(ciPolicyScript)
     inputs.file(rootProject.file('ci/security-policy.json'))
     inputs.file(rootProject.file('ci/security-exceptions.json'))
+    inputs.file(rootProject.file('ci/security-authorities.json'))
     inputs.file(layout.buildDirectory.file('reports/cyclonedx/bom.json'))
     commandLine 'pwsh', '-NoLogo', '-NoProfile', '-File', ciPolicyScript,
         '-Mode', 'Sbom', '-RepositoryRoot', rootProject.projectDir,
@@ -88,6 +91,7 @@ tasks.register('verifyPromotionEvidence', Exec) {
     inputs.file(ciPolicyScript)
     inputs.file(rootProject.file('ci/security-policy.json'))
     inputs.file(rootProject.file('ci/security-exceptions.json'))
+    inputs.file(rootProject.file('ci/security-authorities.json'))
     def evidenceFileProvider = providers.gradleProperty('evidenceFile').map { rootProject.file(it) }
     inputs.files(evidenceFileProvider)
     doFirst {

@@ -10,6 +10,7 @@ jobs:
   promotion-evidence:
     name: Build, scan, attest and verify promotion candidate
     if: github.ref == 'refs/heads/main'
+    environment: promotion-evidence
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     permissions:

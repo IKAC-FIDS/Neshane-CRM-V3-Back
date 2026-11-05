@@ -1,6 +1,8 @@
 # V3-016 CI Security Pipeline — engineering evidence
 
-Status: `V3-016 = IN PROGRESS — BUILD ARTIFACT EVIDENCE REMEDIATION VALIDATED; HOSTED CI RE-RUN PENDING`
+Status: `V3-016 = IN PROGRESS — GOVERNANCE IMPLEMENTATION COMMITTED; HOSTED ENFORCEMENT PENDING`
+
+Governance Phase A: `V3-016_GOVERNANCE_PHASE_A = ENGINEERING ACCEPTED`
 
 R1 acceptance: `PENDING`
 
@@ -240,9 +242,53 @@ GitHub release, its archive matched SHA-256
 
 ## Hosted and organizational evidence still required
 
-- The build-artifact corrective commit must be pushed and a new hosted run must prove both JAR and SBOM upload,
-  artifact download, manifest hashing and the final mandatory Evidence Gate.
-- Required-check and protected-branch configuration has not been inspected or changed.
+Hosted pull-request run `41701483719` at commit `a7bf575fff3ad09f3fa632725c3de69cf67f833c`
+completed all four mandatory Backend CI jobs successfully. It validates the hosted PR execution baseline only;
+it does not establish protected-branch enforcement, independent review or Promotion eligibility.
+
+## Phase A repository-governance implementation
+
+- The Promotion job now declares `environment: promotion-evidence`; actual protected-environment reviewers and
+  branch restrictions remain GitHub administrative work and no Promotion run was executed.
+- `security-authorities.json` is a mandatory machine-readable allowlist. It is deliberately empty because no
+  independent exception authority login and authenticated delegation have been supplied.
+- Exception validation fails closed for an unknown, expired, revoked or out-of-scope authority, self-approval,
+  missing approval reference and approval evidence not marked `VERIFIED`. Existing non-waivable controls and the
+  existing 30-day maximum lifetime remain unchanged.
+- Deterministic fixtures cover malformed authority data, each authority failure, invalid CODEOWNERS ownership and
+  a missing Promotion environment declaration, with corrected counterparts.
+- `.github/CODEOWNERS` is not created: the only verified repository account is the owner/admin account and no
+  eligible independent reviewer has been designated. The exact proposed path mapping and safe hosted bootstrap
+  sequence are recorded in `repository-governance-bootstrap.md` without unresolved executable placeholders.
+
+Phase A local validation on 4 November 2026 executed:
+
+```powershell
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode Fixtures -RepositoryRoot .
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode Workflow -RepositoryRoot .
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode Exceptions -RepositoryRoot .
+pwsh -NoLogo -NoProfile -File ci\Invoke-CiSecurityPolicy.ps1 -Mode ScanSecrets -RepositoryRoot .
+.\gradlew.bat clean ciLocalVerification :services:reference-service:bootJar --offline --no-daemon --stacktrace --rerun-tasks
+actionlint .github/workflows/backend-ci.yml .github/workflows/backend-promotion-evidence.yml
+git diff --check
+```
+
+All commands exited zero. The final rerun completed 68 actionable tasks in 51 seconds. JUnit XML reported 80 tests in 25
+reports with zero failures, errors or skips. Architecture boundaries, formatting, HTTP/Event validation and
+compatibility, CycloneDX validation, repository secret scanning and all governance/supply-chain fixtures passed.
+The secret policy scanned 161 repository text files. Official actionlint 1.7.12 validated both workflows with
+exit code zero. This evidence is local only and does not activate CODEOWNERS, a ruleset, environment reviewers or
+hosted Promotion enforcement.
+
+Final Phase A engineering review on 5 November 2026 repeated the full offline lifecycle. It completed 68
+actionable tasks in 55 seconds; the same 80 tests in 25 reports had zero failures, errors or skips. Actionlint
+1.7.12, the 161-file secret scan and `git diff --check` exited zero. The Technical Architecture Owner accepts the
+repository-side engineering contract only. R1 remains pending because independent reviewer identities, authenticated
+authority evidence, active CODEOWNERS/ruleset enforcement and protected `promotion-evidence` reviewers are absent.
+
+- Required-check and protected-branch enforcement is not verified or changed; no active repository ruleset was
+  evidenced during the governance review and the legacy protection settings were not accessible through the
+  available integration.
 - Exception approval metadata is structurally required, but approver identity/authority cannot be authenticated by
   the repository script; CODEOWNERS/review and protected-branch evidence remain required.
 - Promotion attestation permissions and repository eligibility have not been proven by execution.

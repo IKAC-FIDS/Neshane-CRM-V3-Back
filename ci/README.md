@@ -1,6 +1,8 @@
 # V3-016 CI security pipeline
 
-Status: `V3-016 = IN PROGRESS — LOCAL BASELINE COMMITTED; HOSTED CI EVIDENCE PENDING`
+Status: `V3-016 = IN PROGRESS — GOVERNANCE IMPLEMENTATION COMMITTED; HOSTED ENFORCEMENT PENDING`
+
+Governance Phase A: `ENGINEERING ACCEPTED`
 
 R1 acceptance: `PENDING`
 
@@ -47,11 +49,22 @@ The machine-readable policy is `security-policy.json`.
 - A false-positive disposition remains evidence separate from the original scanner result; adding an exception
   never converts a scanner finding into a clean scan.
 
-No exception is currently registered in `security-exceptions.json`.
+No exception and no delegated exception authority is currently registered. `security-authorities.json` is the
+machine-readable authority allowlist. The validator rejects unknown, expired, revoked or out-of-scope approvers,
+self-approval and any exception whose approval evidence is not explicitly marked `VERIFIED`. The marker remains
+structural evidence only: protected independent review and an authenticated approval reference must establish the
+actual authority.
 
-The local validator establishes required approval metadata but cannot authenticate the named approver. Repository
-review ownership and protected-branch enforcement must independently prevent an untrusted change from self-approving
-an exception; that hosted governance evidence remains pending.
+The connected repository owner account is not treated as an independent reviewer. Because no eligible independent
+GitHub login and delegation are recorded, `.github/CODEOWNERS` is intentionally absent and every real exception
+remains blocked. The exact proposed ownership map and hosted bootstrap sequence are documented in
+`repository-governance-bootstrap.md`.
+
+## Promotion governance
+
+The Promotion job declares the `promotion-evidence` environment. This is only a workflow-side prerequisite;
+GitHub environment protection, required reviewers and branch restrictions remain unconfigured/unverified and the
+workflow must not be executed until separately authorized.
 
 ## Contract-testing activation boundary
 
