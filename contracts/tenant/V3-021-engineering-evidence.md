@@ -282,3 +282,21 @@ Post-remediation verification:
 
 All contracts remain PROPOSED.
 Formal R2 acceptance and hosted CI verification remain pending.
+
+### Hosted CI Verification
+
+- Repository: IKAC-FIDS/Neshane-CRM-V3-Back
+- Commit: cec3bc4505087a9d07532cb3ca71946fa0dfdbfe
+- Workflow Run ID: 42118709151
+- Run attempt: 1
+- Trigger: pull_request
+- Workflow conclusion: success
+- Engineering, contracts, architecture and SBOM: PASS
+- Dependency vulnerability and known-exploited scan: PASS
+- Secret scan: PASS
+- Mandatory CI evidence gate: PASS
+- Run URL: https://github.com/IKAC-FIDS/Neshane-CRM-V3-Back/actions/runs/42118709151
+
+Hosted CI verification is complete for the referenced commit.
+This does not constitute independent security approval,
+formal R2 acceptance, merge authorization or production readiness.
