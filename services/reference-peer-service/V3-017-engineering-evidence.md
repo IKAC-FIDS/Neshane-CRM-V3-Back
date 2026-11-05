@@ -140,7 +140,7 @@ Outstanding governance dependencies:
 
 **Implementation:** COMPLETE
 **Local engineering validation:** PASS
-**Hosted CI for final commit:** EVIDENCE PENDING
+**Hosted CI verification:** PASS — four mandatory PR checks for commit cec3bc4505087a9d07532cb3ca71946fa0dfdbfe (including V3-017 implementation); run https://github.com/IKAC-FIDS/Neshane-CRM-V3-Back/actions/runs/42118709151
 **Formal R1 acceptance:** PENDING
 **V3-016 governance acceptance:** PENDING
 **Merge authorization:** NOT GRANTED
