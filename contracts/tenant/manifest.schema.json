@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:tenant:manifest:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifestVersion", "status", "contracts"],
+  "properties": {
+    "$schema": {
+      "const": "./manifest.schema.json"
+    },
+    "manifestVersion": {
+      "const": 1
+    },
+    "status": {
+      "const": "proposed-r2"
+    },
+    "contracts": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "version", "schema", "schemaId", "owner", "status"],
+        "properties": {
+          "name": {
+            "enum": [
+              "authority-metadata",
+              "tenant-registry",
+              "tenant-lifecycle",
+              "tenant-placement"
+            ]
+          },
+          "version": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*\\.[0-9]+\\.[0-9]+$"
+          },
+          "schema": {
+            "type": "string",
+            "pattern": "^v[1-9][0-9]*/[a-z0-9-]+\\.schema\\.json$"
+          },
+          "schemaId": {
+            "type": "string",
+            "pattern": "^urn:neshane:tenant:[a-z0-9-]+:v[1-9][0-9]*$"
+          },
+          "owner": {
+            "const": "tenant-control-plane"
+          },
+          "status": {
+            "const": "proposed-r2"
+          }
+        }
+      }
+    }
+  }
+}

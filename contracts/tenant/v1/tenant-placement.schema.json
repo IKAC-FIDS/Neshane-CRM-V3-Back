@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:tenant:placement:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "contractVersion",
+    "tenantId",
+    "decision",
+    "activation"
+  ],
+  "properties": {
+    "contractVersion": {
+      "const": "1.0.0"
+    },
+    "tenantId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "deploymentProfile",
+        "deploymentId",
+        "placementReference",
+        "placementGeneration",
+        "authorityMetadata"
+      ],
+      "properties": {
+        "deploymentProfile": {
+          "enum": [
+            "SHARED_SAAS",
+            "DEDICATED_MANAGED",
+            "DEDICATED_SOVEREIGN"
+          ]
+        },
+        "deploymentId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "placementReference": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "value"
+          ],
+          "properties": {
+            "kind": {
+              "enum": [
+                "CELL_ID",
+                "APPROVED_PLACEMENT_REFERENCE"
+              ]
+            },
+            "value": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
+          }
+        },
+        "placementGeneration": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "authorityMetadata": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "deploymentProfile",
+            "authorityScope",
+            "authorityKind",
+            "authorityRef",
+            "provenanceVersion",
+            "issuedAt"
+          ],
+          "properties": {
+            "deploymentProfile": {
+              "enum": [
+                "SHARED_SAAS",
+                "DEDICATED_MANAGED",
+                "DEDICATED_SOVEREIGN"
+              ]
+            },
+            "authorityScope": {
+              "const": "PLACEMENT"
+            },
+            "authorityKind": {
+              "enum": [
+                "PROVIDER_PLACEMENT_AUTHORITY",
+                "GLOBAL_MANAGED_PLACEMENT_AUTHORITY",
+                "SOVEREIGN_PLACEMENT_AUTHORITY"
+              ]
+            },
+            "authorityRef": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "sourceDeploymentId": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            },
+            "provenanceVersion": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "issuedAt": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "deploymentProfile": {
+                    "const": "SHARED_SAAS"
+                  },
+                  "authorityScope": {
+                    "const": "PLACEMENT"
+                  }
+                },
+                "required": [
+                  "deploymentProfile",
+                  "authorityScope"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "authorityKind": {
+                    "const": "PROVIDER_PLACEMENT_AUTHORITY"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "deploymentProfile": {
+                    "const": "DEDICATED_MANAGED"
+                  },
+                  "authorityScope": {
+                    "const": "PLACEMENT"
+                  }
+                },
+                "required": [
+                  "deploymentProfile",
+                  "authorityScope"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "authorityKind": {
+                    "const": "GLOBAL_MANAGED_PLACEMENT_AUTHORITY"
+                  }
+                }
+              }
+            },
+            {
+              "if": {
+                "properties": {
+                  "deploymentProfile": {
+                    "const": "DEDICATED_SOVEREIGN"
+                  },
+                  "authorityScope": {
+                    "const": "PLACEMENT"
+                  }
+                },
+                "required": [
+                  "deploymentProfile",
+                  "authorityScope"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "authorityKind": {
+                    "const": "SOVEREIGN_PLACEMENT_AUTHORITY"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "activation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "activationStatus",
+        "activationVersion",
+        "activatedAt",
+        "activatorRef"
+      ],
+      "properties": {
+        "activationStatus": {
+          "enum": [
+            "PENDING_ACTIVATION",
+            "ACTIVE",
+            "RETIRED"
+          ]
+        },
+        "activationVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "activatedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "activatorRef": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
+        }
+      }
+    }
+  }
+}

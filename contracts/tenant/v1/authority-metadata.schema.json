@@ -1,0 +1,270 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:tenant:authority-metadata:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "deploymentProfile",
+    "authorityScope",
+    "authorityKind",
+    "authorityRef",
+    "provenanceVersion",
+    "issuedAt"
+  ],
+  "properties": {
+    "deploymentProfile": {
+      "enum": [
+        "SHARED_SAAS",
+        "DEDICATED_MANAGED",
+        "DEDICATED_SOVEREIGN"
+      ]
+    },
+    "authorityScope": {
+      "enum": [
+        "REGISTRY",
+        "LIFECYCLE",
+        "PLACEMENT"
+      ]
+    },
+    "authorityKind": {
+      "enum": [
+        "PROVIDER_TENANT_REGISTRY_AUTHORITY",
+        "GLOBAL_MANAGED_TENANT_REGISTRY_AUTHORITY",
+        "SOVEREIGN_TENANT_REGISTRY_AUTHORITY",
+        "PROVIDER_TENANT_LIFECYCLE_AUTHORITY",
+        "GLOBAL_MANAGED_TENANT_LIFECYCLE_AUTHORITY",
+        "SOVEREIGN_TENANT_LIFECYCLE_AUTHORITY",
+        "PROVIDER_PLACEMENT_AUTHORITY",
+        "GLOBAL_MANAGED_PLACEMENT_AUTHORITY",
+        "SOVEREIGN_PLACEMENT_AUTHORITY"
+      ]
+    },
+    "authorityRef": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 160
+    },
+    "sourceDeploymentId": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "provenanceVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "issuedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "SHARED_SAAS"
+          },
+          "authorityScope": {
+            "const": "REGISTRY"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "PROVIDER_TENANT_REGISTRY_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "SHARED_SAAS"
+          },
+          "authorityScope": {
+            "const": "LIFECYCLE"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "PROVIDER_TENANT_LIFECYCLE_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "SHARED_SAAS"
+          },
+          "authorityScope": {
+            "const": "PLACEMENT"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "PROVIDER_PLACEMENT_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "DEDICATED_MANAGED"
+          },
+          "authorityScope": {
+            "const": "REGISTRY"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "GLOBAL_MANAGED_TENANT_REGISTRY_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "DEDICATED_MANAGED"
+          },
+          "authorityScope": {
+            "const": "LIFECYCLE"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "GLOBAL_MANAGED_TENANT_LIFECYCLE_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "DEDICATED_MANAGED"
+          },
+          "authorityScope": {
+            "const": "PLACEMENT"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "GLOBAL_MANAGED_PLACEMENT_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "DEDICATED_SOVEREIGN"
+          },
+          "authorityScope": {
+            "const": "REGISTRY"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "SOVEREIGN_TENANT_REGISTRY_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "DEDICATED_SOVEREIGN"
+          },
+          "authorityScope": {
+            "const": "LIFECYCLE"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "SOVEREIGN_TENANT_LIFECYCLE_AUTHORITY"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "deploymentProfile": {
+            "const": "DEDICATED_SOVEREIGN"
+          },
+          "authorityScope": {
+            "const": "PLACEMENT"
+          }
+        },
+        "required": [
+          "deploymentProfile",
+          "authorityScope"
+        ]
+      },
+      "then": {
+        "properties": {
+          "authorityKind": {
+            "const": "SOVEREIGN_PLACEMENT_AUTHORITY"
+          }
+        }
+      }
+    }
+  ]
+}
