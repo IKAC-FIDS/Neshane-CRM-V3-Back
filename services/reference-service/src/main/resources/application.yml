@@ -47,5 +47,9 @@ neshane:
     maximum-metric-values-per-key: ${OTEL_MAX_METRIC_VALUES_PER_KEY:64}
   reference:
     service-name: ${SERVICE_NAME:reference-service}
+    peer:
+      base-url: ${REFERENCE_PEER_BASE_URL:http://127.0.0.1:8081}
+      connect-timeout: ${REFERENCE_PEER_CONNECT_TIMEOUT:1s}
+      request-timeout: ${REFERENCE_PEER_REQUEST_TIMEOUT:2s}
     diagnostics:
       enabled: false

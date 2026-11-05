@@ -8,6 +8,7 @@ def allowedProjectDependencies = [
     ':architecture-fixtures:adapter'    : [':architecture-fixtures:application'] as Set,
     ':services'                         : [] as Set,
     ':services:reference-service'       : [':platform-libraries:observability'] as Set,
+    ':services:reference-peer-service'  : [':platform-libraries:observability'] as Set,
     ':platform-libraries'               : [] as Set,
     ':platform-libraries:observability' : [] as Set,
     ':contract-tests'                   : [] as Set,
@@ -15,6 +16,7 @@ def allowedProjectDependencies = [
     ':contract-tests:events'            : [] as Set,
     ':architecture-tests'               : [
         ':services:reference-service',
+        ':services:reference-peer-service',
         ':platform-libraries:observability'
     ] as Set
 ]

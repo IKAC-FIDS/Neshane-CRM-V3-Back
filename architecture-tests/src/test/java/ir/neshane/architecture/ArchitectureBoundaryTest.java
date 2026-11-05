@@ -26,10 +26,14 @@ class ArchitectureBoundaryTest {
     @Test
     void existingArchitecturePassesAllRulesAndContainsProtectedScopes() {
         JavaClasses classes = productionImporter.importPackages(
-                "ir.neshane.reference", "ir.neshane.platform.observability");
+                "ir.neshane.reference", "ir.neshane.referencepeer", "ir.neshane.platform.observability");
 
         ArchitectureScope.requirePackages(
-                classes, List.of("ir.neshane.reference", "ir.neshane.platform.observability"));
+                classes,
+                List.of(
+                        "ir.neshane.reference",
+                        "ir.neshane.referencepeer",
+                        "ir.neshane.platform.observability"));
         ArchitecturePolicy.domainIsolation().check(classes);
         ArchitecturePolicy.applicationDependencyDirection().check(classes);
         ArchitecturePolicy.serviceAndPlatformIsolation().check(classes);
@@ -98,7 +102,11 @@ class ArchitectureBoundaryTest {
         JavaClasses contractOnly = fixtureImporter.importClasses(CustomerContract.class);
 
         assertThatThrownBy(() -> ArchitectureScope.requirePackages(
-                        contractOnly, List.of("ir.neshane.reference", "ir.neshane.platform.observability")))
+                        contractOnly,
+                        List.of(
+                                "ir.neshane.reference",
+                                "ir.neshane.referencepeer",
+                                "ir.neshane.platform.observability")))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("protected package is missing");
     }

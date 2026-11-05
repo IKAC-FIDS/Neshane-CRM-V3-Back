@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: ${SERVICE_NAME:reference-peer-service}
+  profiles:
+    active: ${NESHANE_DEPLOYMENT_PROFILE:}
+  jmx:
+    enabled: false
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  mvc:
+    problemdetails:
+      enabled: true
+
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
+  error:
+    include-binding-errors: never
+    include-exception: false
+    include-message: never
+    include-stacktrace: never
+
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-components: never
+      show-details: never
+  endpoints:
+    web:
+      exposure:
+        include: health
+
+neshane:
+  reference-peer:
+    service-name: ${SERVICE_NAME:reference-peer-service}
+  observability:
+    service-instance-id: ${OTEL_SERVICE_INSTANCE_ID:}
+    otlp-endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:}
+    trace-sample-ratio: ${OTEL_TRACE_SAMPLE_RATIO:0.0}
+    export-timeout: ${OTEL_EXPORT_TIMEOUT:2s}
+    span-export-interval: ${OTEL_SPAN_EXPORT_INTERVAL:5s}
+    maximum-queued-spans: ${OTEL_MAX_QUEUED_SPANS:2048}
+    maximum-export-batch-size: ${OTEL_MAX_EXPORT_BATCH_SIZE:512}
+    metric-export-interval: ${OTEL_METRIC_EXPORT_INTERVAL:15s}
+    maximum-metric-values-per-key: ${OTEL_MAX_METRIC_VALUES_PER_KEY:64}

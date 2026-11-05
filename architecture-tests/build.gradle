@@ -3,8 +3,10 @@ description = 'Executable architecture-boundary policy tests for V3-015.'
 dependencies {
     testImplementation enforcedPlatform(libs.spring.boot.dependencies)
     testImplementation project(':services:reference-service')
+    testImplementation project(':services:reference-peer-service')
     testImplementation project(':platform-libraries:observability')
     testImplementation files(rootProject.project(':services:reference-service').sourceSets.main.output)
+    testImplementation files(rootProject.project(':services:reference-peer-service').sourceSets.main.output)
     testImplementation libs.archunit
     testImplementation libs.spring.boot.starter.test
     testRuntimeOnly libs.junit.platform.launcher

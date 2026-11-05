@@ -1,0 +1,23 @@
+plugins {
+    alias(libs.plugins.spring.boot)
+}
+
+dependencies {
+    implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation project(':platform-libraries:observability')
+    implementation libs.spring.boot.starter.actuator
+    implementation libs.spring.boot.starter.validation
+    implementation libs.spring.boot.starter.web
+
+    testImplementation libs.spring.boot.starter.test
+    testImplementation libs.opentelemetry.sdk.testing
+    testRuntimeOnly libs.junit.platform.launcher
+}
+
+tasks.named('bootJar') {
+    archiveFileName = 'reference-peer-service.jar'
+}
+
+tasks.named('jar') {
+    enabled = false
+}
