@@ -46,6 +46,52 @@ Primary evidence:
 - reference-runtime.Dockerfile
 - Routing contract tests and reference harnesses
 
+### 3.1 Fail-Closed Forwarding Verification
+
+Evidence revision: 8f538ae
+
+Test class:
+`contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingFailClosedForwardingTest.java`
+
+The reference Forwarding Gate was tested with one valid routing
+control and five invalid routing scenarios.
+
+| Scenario | Expected outcome | Outbound calls | Result |
+| --- | --- | --- | --- |
+| Valid reference routing | ROUTE_ALLOWED | 1 | PASS |
+| Stale placement generation | STALE_PLACEMENT | 0 | PASS |
+| Snapshot missing Tenant placement | INVALID_SNAPSHOT | 0 | PASS |
+| Expired snapshot activation | ROUTING_UNAVAILABLE | 0 | PASS |
+| Modified Cell Registry fixture | ROUTING_UNAVAILABLE | 0 | PASS |
+| Missing Global Directory at runtime | ROUTING_UNAVAILABLE | 0 | PASS |
+
+Every denied scenario verified:
+- `forwarded()` is false.
+- The forwarding response is null.
+- No target Cell, placement generation or snapshot ID is returned.
+- The outbound handler is never invoked.
+
+Verification commands:
+- `:contract-tests:routing:test --tests "*ReferenceRoutingFailClosedForwardingTest"`
+- `:contract-tests:routing:check --rerun-tasks --offline`
+- `verifyFormatting verifyArchitectureBoundaries --offline`
+
+All completed successfully on 2026-11-06.
+
+#### Verification Levels
+
+- Policy tests verify routing decisions and rejection outcomes.
+- Forwarding Gate tests verify that denied decisions do not invoke
+  the outbound handler.
+- Docker tests verify selected HTTP routing and denial scenarios,
+  Peer call counters and the tested direct TCP network segmentation.
+
+The additional scenarios above were executed at the Java
+Forwarding Gate level, not through Docker runtime fault injection.
+
+They do not prove production authentication, tenant data
+isolation, PostgreSQL RLS or complete end-to-end isolation.
+
 ## 4. Evidence Boundaries
 
 The implementation uses synthetic Tenants, static fixtures,
