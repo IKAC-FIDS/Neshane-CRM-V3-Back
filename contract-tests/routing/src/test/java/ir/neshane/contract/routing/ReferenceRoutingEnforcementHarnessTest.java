@@ -491,4 +491,151 @@ class ReferenceRoutingEnforcementHarnessTest {
                 .isEqualTo(TenantRoutingPolicy.Outcome.TENANT_SUSPENDED);
         assertThat(outboundCalls.get()).isZero();
     }
+
+    @Test
+    void httpAdapterDeniesBeforePeerRequest() throws Exception {
+        java.util.concurrent.atomic.AtomicInteger peerCalls =
+                new java.util.concurrent.atomic.AtomicInteger();
+
+        java.net.InetAddress loopback =
+                java.net.InetAddress.getByName("127.0.0.1");
+
+        com.sun.net.httpserver.HttpServer peer =
+                com.sun.net.httpserver.HttpServer.create(
+                        new java.net.InetSocketAddress(loopback, 0), 0);
+
+        com.sun.net.httpserver.HttpServer gateway =
+                com.sun.net.httpserver.HttpServer.create(
+                        new java.net.InetSocketAddress(loopback, 0), 0);
+
+        try {
+            peer.createContext("/echo", exchange -> {
+                peerCalls.incrementAndGet();
+                byte[] response = "peer-ok".getBytes(
+                        java.nio.charset.StandardCharsets.UTF_8);
+                exchange.sendResponseHeaders(200, response.length);
+                try (var output = exchange.getResponseBody()) {
+                    output.write(response);
+                }
+            });
+
+            peer.start();
+
+            String peerUrl = "http://127.0.0.1:"
+                    + peer.getAddress().getPort() + "/echo";
+
+            java.net.http.HttpClient client =
+                    java.net.http.HttpClient.newHttpClient();
+
+            ReferenceRoutingEnforcementHarness enforcement =
+                    harness(
+                            fixtures(),
+                            stateA(
+                                    TenantRoutingPolicy.TenantLifecycleState.ACTIVE));
+
+            ReferenceRoutingForwardingGate gate =
+                    new ReferenceRoutingForwardingGate(enforcement);
+
+            java.util.function.Function<CellId, String> outbound = cell -> {
+                try {
+                    java.net.http.HttpRequest request =
+                            java.net.http.HttpRequest.newBuilder(
+                                            java.net.URI.create(peerUrl))
+                                    .POST(
+                                            java.net.http.HttpRequest.BodyPublishers
+                                                    .noBody())
+                                    .build();
+
+                    return client.send(
+                            request,
+                            java.net.http.HttpResponse.BodyHandlers.ofString())
+                            .body();
+                } catch (Exception exception) {
+                    throw new IllegalStateException(
+                            "Reference peer request failed", exception);
+                }
+            };
+
+            gateway.createContext("/", exchange -> {
+                String route = exchange.getRequestURI().getPath();
+
+                if (!"/allowed".equals(route)
+                        && !"/denied".equals(route)) {
+                    exchange.sendResponseHeaders(404, -1);
+                    exchange.close();
+                    return;
+                }
+
+                CellId requestedCell =
+                        "/denied".equals(route)
+                                ? PolicyFixtures.CELL_B
+                                : null;
+
+                ReferenceRoutingForwardingGate.ForwardingResult<String> result =
+                        gate.forward(
+                                context(PolicyFixtures.TENANT),
+                                requestedCell,
+                                PolicyFixtures.NOW,
+                                outbound);
+
+                int status = result.forwarded() ? 200 : 403;
+                String body =
+                        result.forwarded() ? result.response() : "denied";
+
+                byte[] response = body.getBytes(
+                        java.nio.charset.StandardCharsets.UTF_8);
+
+                exchange.sendResponseHeaders(status, response.length);
+
+                try (var output = exchange.getResponseBody()) {
+                    output.write(response);
+                }
+            });
+
+            gateway.start();
+
+            String gatewayUrl = "http://127.0.0.1:"
+                    + gateway.getAddress().getPort();
+
+            java.net.http.HttpRequest allowedRequest =
+                    java.net.http.HttpRequest.newBuilder(
+                                    java.net.URI.create(gatewayUrl + "/allowed"))
+                            .POST(
+                                    java.net.http.HttpRequest.BodyPublishers
+                                            .noBody())
+                            .build();
+
+            java.net.http.HttpResponse<String> allowed =
+                    client.send(
+                            allowedRequest,
+                            java.net.http.HttpResponse.BodyHandlers.ofString());
+
+            assertThat(allowed.statusCode()).isEqualTo(200);
+            assertThat(allowed.body()).isEqualTo("peer-ok");
+            assertThat(peerCalls.get()).isEqualTo(1);
+
+            java.net.http.HttpRequest deniedRequest =
+                    java.net.http.HttpRequest.newBuilder(
+                                    java.net.URI.create(gatewayUrl + "/denied"))
+                            .POST(
+                                    java.net.http.HttpRequest.BodyPublishers
+                                            .noBody())
+                            .build();
+
+            java.net.http.HttpResponse<String> denied =
+                    client.send(
+                            deniedRequest,
+                            java.net.http.HttpResponse.BodyHandlers.ofString());
+
+            assertThat(denied.statusCode()).isEqualTo(403);
+            assertThat(denied.body()).isEqualTo("denied");
+
+            // Denied requests must not reach the peer.
+            assertThat(peerCalls.get()).isEqualTo(1);
+
+        } finally {
+            gateway.stop(0);
+            peer.stop(0);
+        }
+    }
 }
