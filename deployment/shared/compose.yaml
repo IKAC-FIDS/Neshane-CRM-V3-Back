@@ -1,0 +1,49 @@
+name: neshane-v3-023-reference
+
+services:
+  reference-peer:
+    build:
+      context: ../../services/reference-peer-service
+      dockerfile: Dockerfile
+    image: neshane-v3-023-reference-peer:local
+    environment:
+      NESHANE_DEPLOYMENT_PROFILE: test
+      SERVICE_NAME: v3-023-reference-peer
+      SERVER_PORT: "8080"
+    expose:
+      - "8080"
+    networks:
+      - reference-network
+    restart: "no"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+  reference-service:
+    build:
+      context: ../../services/reference-service
+      dockerfile: Dockerfile
+    image: neshane-v3-023-reference-service:local
+    environment:
+      NESHANE_DEPLOYMENT_PROFILE: test
+      SERVICE_NAME: v3-023-reference-service
+      SERVER_PORT: "8080"
+      REFERENCE_PEER_BASE_URL: http://reference-peer:8080
+    ports:
+      - "127.0.0.1::8080"
+    depends_on:
+      - reference-peer
+    networks:
+      - reference-network
+    restart: "no"
+    read_only: true
+    tmpfs:
+      - /tmp
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  reference-network:
+    driver: bridge

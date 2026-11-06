@@ -1,0 +1,93 @@
+name: neshane-v3-023-routing-reference
+
+services:
+  reference-gateway:
+    image: neshane-v3-023-reference-runtime:local
+    command:
+      - ir.neshane.contract.routing.ReferenceRoutingGatewayMain
+      - /opt/reference/contracts
+      - /opt/reference/fixtures
+      - http://cell-a-peer:8080/echo
+      - http://cell-b-peer:8080/echo
+      - "8080"
+    environment:
+      JAVA_TOOL_OPTIONS: >-
+        -Dneshane.referenceOnly.enabled=true
+        -Dneshane.referenceOnly.dockerEnabled=true
+    ports:
+      - "127.0.0.1:18080:8080"
+    volumes:
+      - ../../contracts/routing:/opt/reference/contracts:ro
+      - ./fixtures/v1:/opt/reference/fixtures:ro
+    depends_on:
+      - cell-a-peer
+      - cell-b-peer
+    networks:
+      - ingress-network
+      - cell-a-network
+      - cell-b-network
+    read_only: true
+    tmpfs:
+      - /tmp
+    user: "10001:10001"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: "no"
+
+  cell-a-peer:
+    image: neshane-v3-023-reference-runtime:local
+    command:
+      - ir.neshane.contract.routing.ReferenceCellPeerMain
+      - cell-a
+      - "8080"
+    environment:
+      JAVA_TOOL_OPTIONS: "-Dneshane.referenceOnly.enabled=true"
+    expose:
+      - "8080"
+    networks:
+      - cell-a-network
+    read_only: true
+    tmpfs:
+      - /tmp
+    user: "10001:10001"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: "no"
+
+  cell-b-peer:
+    image: neshane-v3-023-reference-runtime:local
+    command:
+      - ir.neshane.contract.routing.ReferenceCellPeerMain
+      - cell-b
+      - "8080"
+    environment:
+      JAVA_TOOL_OPTIONS: "-Dneshane.referenceOnly.enabled=true"
+    expose:
+      - "8080"
+    networks:
+      - cell-b-network
+    read_only: true
+    tmpfs:
+      - /tmp
+    user: "10001:10001"
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    restart: "no"
+
+networks:
+  ingress-network:
+    driver: bridge
+
+  cell-a-network:
+    driver: bridge
+    internal: true
+
+  cell-b-network:
+    driver: bridge
+    internal: true

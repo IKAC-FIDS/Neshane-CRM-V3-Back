@@ -25,4 +25,26 @@ tasks.named('check') {
 
 tasks.withType(Test).configureEach {
     systemProperty 'routingContractRoot', contractRoot.asFile.absolutePath
+
+    inputs.dir(
+        rootProject.layout.projectDirectory.dir(
+            'deployment/shared/fixtures/v1'
+        )
+    ).withPathSensitivity(PathSensitivity.RELATIVE)
+}
+tasks.register('stageReferenceGatewayRuntime', Sync) {
+    group = 'verification'
+    description = 'Stages REFERENCE_ONLY gateway classes and runtime dependencies.'
+    dependsOn tasks.named('testClasses')
+
+    into layout.buildDirectory.dir('reference-gateway')
+
+    into('classes') {
+        from sourceSets.main.output
+        from sourceSets.test.output
+    }
+
+    into('lib') {
+        from configurations.runtimeClasspath
+    }
 }
