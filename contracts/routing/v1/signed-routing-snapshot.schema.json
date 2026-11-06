@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"urn:neshane:routing:signed-snapshot:v1","type":"object","additionalProperties":false,
+  "required":["contractVersion","payload","signature"],
+  "properties":{"contractVersion":{"const":"1.0.0"},"payload":{"$ref":"routing-snapshot-payload.schema.json"},"signature":{"type":"object","additionalProperties":false,"required":["signingInputProfile","algorithmProfile","keyReference","signatureValue"],"properties":{"signingInputProfile":{"type":"string","minLength":1,"maxLength":128},"algorithmProfile":{"type":"string","minLength":1,"maxLength":128},"keyReference":{"type":"string","minLength":1,"maxLength":160},"signatureValue":{"type":"string","minLength":1,"maxLength":8192}}}}
+}

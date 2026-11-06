@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"urn:neshane:routing:fencing-evidence:v1","type":"object","additionalProperties":false,
+  "required":["contractVersion","tenantId","targetCellId","placementGeneration","snapshotId","snapshotSequence","placementAuthorityRef","evidenceId"],
+  "properties":{"contractVersion":{"const":"1.0.0"},"tenantId":{"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},"targetCellId":{"type":"string","minLength":1,"maxLength":128},"placementGeneration":{"type":"integer","minimum":1},"snapshotId":{"type":"string","format":"uuid"},"snapshotSequence":{"type":"integer","minimum":1},"placementAuthorityRef":{"type":"string","minLength":1,"maxLength":160},"evidenceId":{"type":"string","format":"uuid"}}
+}

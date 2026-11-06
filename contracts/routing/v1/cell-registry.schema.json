@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"urn:neshane:routing:cell-registry:v1","type":"object","additionalProperties":false,
+  "required":["contractVersion","cellId","deploymentId","deploymentProfile","registryVersion","lifecycleState","authority"],
+  "properties":{
+    "contractVersion":{"const":"1.0.0"},"cellId":{"type":"string","minLength":1,"maxLength":128},"deploymentId":{"type":"string","minLength":1,"maxLength":128},
+    "deploymentProfile":{"enum":["SHARED_SAAS","DEDICATED_MANAGED","DEDICATED_SOVEREIGN"]},"registryVersion":{"type":"integer","minimum":1},
+    "lifecycleState":{"enum":["REGISTERED","ACTIVE","DISABLED","RETIRED"]},
+    "authority":{"$ref":"#/$defs/authority"}
+  },
+  "$defs":{"authority":{"type":"object","additionalProperties":false,"required":["authorityKind","authorityRef","provenanceVersion"],"properties":{"authorityKind":{"enum":["PROVIDER_CELL_REGISTRY_AUTHORITY","GLOBAL_MANAGED_CELL_REGISTRY_AUTHORITY","SOVEREIGN_CELL_REGISTRY_AUTHORITY"]},"authorityRef":{"type":"string","minLength":1,"maxLength":160},"provenanceVersion":{"type":"integer","minimum":1}}}}
+}

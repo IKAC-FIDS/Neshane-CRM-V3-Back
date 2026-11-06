@@ -15,6 +15,7 @@ def allowedProjectDependencies = [
     ':contract-tests:http'              : [] as Set,
     ':contract-tests:events'            : [] as Set,
     ':contract-tests:tenant'            : [] as Set,
+    ':contract-tests:routing'           : [] as Set,
     ':architecture-tests'               : [
         ':services:reference-service',
         ':services:reference-peer-service',
