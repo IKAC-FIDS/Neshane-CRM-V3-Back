@@ -147,3 +147,24 @@ Final V3-023 acceptance: PENDING.
 
 No approval is implied for merge, contract publication,
 Stage B2 implementation, production routing or deployment.
+## 8. Preliminary Architecture and Security Review
+
+A preliminary architecture and security review was conducted
+against implementation revision 9e13f69.
+
+Review document:
+`V3-023-B1-preliminary-review.md`
+
+The preliminary assessment identified five findings:
+
+- B1-F01: Synthetic Tenant Context trust boundary.
+- B1-F02: Cell Peer workload identity limitation.
+- B1-F03: Startup readiness verification.
+- B1-F04: Fail-closed verification depth.
+- B1-F05: V3-017 reference dependency traceability.
+
+All findings remain open for reviewer disposition.
+
+This assessment does not constitute independent review
+approval, formal Stage B1 acceptance or authorization
+for merge, contract publication or production promotion.
