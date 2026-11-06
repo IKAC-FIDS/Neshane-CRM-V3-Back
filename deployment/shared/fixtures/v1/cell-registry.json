@@ -4,7 +4,7 @@
   "deploymentId": "shared-reference",
   "deploymentProfile": "SHARED_SAAS",
   "registryVersion": 1,
-  "lifecycleState": "ACTIVE",
+  "lifecycleState": "REGISTERED",
   "authority": {
     "authorityKind": "PROVIDER_CELL_REGISTRY_AUTHORITY",
     "authorityRef": "reference-provider-cell-registry",
