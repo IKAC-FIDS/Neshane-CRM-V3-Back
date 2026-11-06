@@ -1,0 +1,14 @@
+{
+  "$schema": "./manifest.schema.json",
+  "manifestVersion": 1,
+  "status": "proposed-r2",
+  "contracts": [
+    {"name":"cell-registry","version":"1.0.0","schema":"v1/cell-registry.schema.json","schemaId":"urn:neshane:routing:cell-registry:v1","owner":"cell-routing-control-plane","status":"proposed-r2"},
+    {"name":"cell-availability","version":"1.0.0","schema":"v1/cell-availability.schema.json","schemaId":"urn:neshane:routing:cell-availability:v1","owner":"cell-routing-control-plane","status":"proposed-r2"},
+    {"name":"routing-snapshot-payload","version":"1.0.0","schema":"v1/routing-snapshot-payload.schema.json","schemaId":"urn:neshane:routing:snapshot-payload:v1","owner":"cell-routing-control-plane","status":"proposed-r2"},
+    {"name":"signed-routing-snapshot","version":"1.0.0","schema":"v1/signed-routing-snapshot.schema.json","schemaId":"urn:neshane:routing:signed-snapshot:v1","owner":"cell-routing-control-plane","status":"proposed-r2"},
+    {"name":"local-routing-activation","version":"1.0.0","schema":"v1/local-routing-activation.schema.json","schemaId":"urn:neshane:routing:local-activation:v1","owner":"cell-routing-control-plane","status":"proposed-r2"},
+    {"name":"route-resolution","version":"1.0.0","schema":"v1/route-resolution.schema.json","schemaId":"urn:neshane:routing:route-resolution:v1","owner":"cell-routing-control-plane","status":"proposed-r2"},
+    {"name":"destination-fencing-evidence","version":"1.0.0","schema":"v1/destination-fencing-evidence.schema.json","schemaId":"urn:neshane:routing:fencing-evidence:v1","owner":"cell-routing-control-plane","status":"proposed-r2"}
+  ]
+}

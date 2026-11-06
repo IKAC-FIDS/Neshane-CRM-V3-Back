@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:neshane:routing:manifest:v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["manifestVersion", "status", "contracts"],
+  "properties": {
+    "$schema": {"const": "./manifest.schema.json"},
+    "manifestVersion": {"const": 1},
+    "status": {"const": "proposed-r2"},
+    "contracts": {
+      "type": "array", "minItems": 7, "maxItems": 7,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["name", "version", "schema", "schemaId", "owner", "status"],
+        "properties": {
+          "name": {"enum": ["cell-registry", "cell-availability", "routing-snapshot-payload", "signed-routing-snapshot", "local-routing-activation", "route-resolution", "destination-fencing-evidence"]},
+          "version": {"const": "1.0.0"},
+          "schema": {"pattern": "^v1/[a-z0-9-]+\\.schema\\.json$"},
+          "schemaId": {"pattern": "^urn:neshane:routing:[a-z0-9-]+:v1$"},
+          "owner": {"const": "cell-routing-control-plane"},
+          "status": {"const": "proposed-r2"}
+        }
+      }
+    }
+  }
+}

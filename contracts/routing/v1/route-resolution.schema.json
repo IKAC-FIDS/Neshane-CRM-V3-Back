@@ -1,0 +1,5 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"urn:neshane:routing:route-resolution:v1","type":"object","additionalProperties":false,
+  "required":["contractVersion","outcome","tenantId"],
+  "properties":{"contractVersion":{"const":"1.0.0"},"outcome":{"enum":["ROUTE_ALLOWED","INVALID_TENANT_CONTEXT","UNKNOWN_TENANT","TENANT_NOT_ROUTABLE","TENANT_SUSPENDED","UNKNOWN_CELL","CELL_NOT_ROUTABLE","INVALID_AUTHORITY","INVALID_SNAPSHOT","STALE_PLACEMENT","CONFLICTING_ROUTING_STATE","ROUTING_UNAVAILABLE"]},"tenantId":{"type":"string","pattern":"^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},"targetCellId":{"type":"string","minLength":1,"maxLength":128},"placementGeneration":{"type":"integer","minimum":1},"snapshotId":{"type":"string","format":"uuid"}}
+}
