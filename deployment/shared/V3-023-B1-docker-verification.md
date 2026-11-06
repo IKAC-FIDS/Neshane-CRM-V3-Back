@@ -61,6 +61,38 @@ TCP port: 8080
 Each Peer was observed only on its dedicated Docker network.
 Positive self-connectivity controls succeeded before cross-cell tests.
 
+## Lifecycle Verification
+
+Execution date: 2026-11-06
+
+The reference deployment was tested through a complete lifecycle:
+
+1. `docker compose down --remove-orphans` removed all three
+   reference containers and all three reference networks.
+2. A subsequent Compose inspection confirmed that no reference
+   containers remained.
+3. `docker compose up -d --no-build` recreated all three
+   networks and started all three services.
+4. HTTP readiness was verified with bounded retries.
+5. All three containers were confirmed to be running.
+
+| Check | Observed result | Status |
+| --- | --- | --- |
+| Container and network cleanup | Completed | PASS |
+| No remaining reference containers | Confirmed | PASS |
+| Reproducible startup | Completed | PASS |
+| POST /tenant-a after restart | 200 cell-a-ok, attempt 2 | PASS |
+| POST /tenant-b after restart | 200 cell-b-ok, attempt 1 | PASS |
+| Gateway container running | Confirmed | PASS |
+| Cell A Peer running | Confirmed | PASS |
+| Cell B Peer running | Confirmed | PASS |
+
+Conclusion: The complete Docker reference lifecycle passed.
+
+Readiness required a retry for Tenant A. Immediate readiness
+after container startup was not established. Startup ordering
+alone must not be treated as an application health guarantee.
+
 ## Limitations
 
 - Synthetic tenants, static fixtures, and controlled reference trust only.
