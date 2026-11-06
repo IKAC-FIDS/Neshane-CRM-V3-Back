@@ -206,6 +206,58 @@ Acceptance impact:
 Architecture-owner clarification recommended before
 formal Stage B1 disposition.
 
+### B1-F05 Dependency Traceability Analysis
+
+Assessment basis: implementation revision 71b9ae9.
+
+| Component | V3-017 reference | V3-023 B1 routing fixture |
+| --- | --- | --- |
+| Primary service | Spring Boot reference-service | ReferenceRoutingGatewayMain |
+| Peer service | Spring Boot reference-peer-service | ReferenceCellPeerMain |
+| Primary endpoint | POST /api/v1/reference-relays | POST /tenant-a and /tenant-b |
+| Peer endpoint | POST /api/v1/reference-echoes | POST /echo |
+| Trace propagation | Demonstrated by V3-017 evidence | Equivalent behavior not established |
+| Tenant routing | Not part of V3-017 reference scope | Synthetic two-Tenant routing |
+| Runtime composition | compose.yaml | compose-routing-reference.yaml |
+| Direct use of V3-017 services | Yes, in compose.yaml | Not observed in routing Compose |
+
+Repository evidence:
+- services/reference-peer-service/V3-017-engineering-evidence.md
+- services/reference-peer-service/README.md
+- deployment/shared/compose.yaml
+- deployment/shared/compose-routing-reference.yaml
+- V3-023-R2-acceptance.md
+
+Assessment:
+
+The V3-017 reference services remain available and have
+recorded engineering evidence. Their formal R1 acceptance
+remains pending.
+
+The B1 routing Compose uses separate synthetic Java
+Gateway and Peer implementations rather than directly
+running the V3-017 Spring Boot services.
+
+Therefore, direct runtime integration with V3-017 has
+not been demonstrated by the inspected routing deployment.
+
+This is a dependency traceability gap requiring
+architecture-owner interpretation, not an automatic
+failure of the approved reference implementation.
+
+Possible dispositions for Technical Architecture Owner:
+
+A. Accept separate reference deployments with V3-017
+   serving as an evaluation-only architectural reference.
+
+B. Require a bounded, authorized integration exercise
+   using the V3-017 reference services before Stage B1
+   formal disposition.
+
+Neither option is approved by this analysis.
+
+B1-F05 status: OPEN — ARCHITECTURE OWNER DECISION REQUIRED.
+
 ## 4. Verified Engineering Strengths
 
 - Explicit REFERENCE_ONLY runtime opt-in.
