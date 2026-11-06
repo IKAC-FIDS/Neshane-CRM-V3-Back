@@ -390,4 +390,105 @@ class ReferenceRoutingEnforcementHarnessTest {
         assertThat(crossA.snapshotId()).isNull();
         assertThat(crossB.snapshotId()).isNull();
     }
+
+    @Test
+    void deniedRoutingNeverInvokesOutbound() {
+        ReferenceRoutingEnforcementHarness enforcement =
+                harness(
+                        fixtures(),
+                        stateA(TenantRoutingPolicy.TenantLifecycleState.ACTIVE));
+
+        ReferenceRoutingForwardingGate gate =
+                new ReferenceRoutingForwardingGate(enforcement);
+
+        java.util.concurrent.atomic.AtomicInteger outboundCalls =
+                new java.util.concurrent.atomic.AtomicInteger();
+
+        java.util.function.Function<CellId, String> outbound = cell -> {
+            outboundCalls.incrementAndGet();
+            return cell.value();
+        };
+
+        ReferenceRoutingForwardingGate.ForwardingResult<String> allowed =
+                gate.forward(
+                        context(PolicyFixtures.TENANT),
+                        null,
+                        PolicyFixtures.NOW,
+                        outbound);
+
+        assertThat(allowed.forwarded()).isTrue();
+        assertThat(allowed.response()).isEqualTo("cell-a");
+        assertThat(allowed.decision().outcome())
+                .isEqualTo(TenantRoutingPolicy.Outcome.ROUTE_ALLOWED);
+        assertThat(outboundCalls.get()).isEqualTo(1);
+
+        ReferenceRoutingForwardingGate.ForwardingResult<String> denied =
+                gate.forward(
+                        context(PolicyFixtures.TENANT),
+                        PolicyFixtures.CELL_B,
+                        PolicyFixtures.NOW,
+                        outbound);
+
+        assertThat(denied.forwarded()).isFalse();
+        assertThat(denied.response()).isNull();
+        assertThat(denied.decision().targetCellId()).isNull();
+        assertThat(denied.decision().outcome())
+                .isEqualTo(
+                        TenantRoutingPolicy.Outcome.INVALID_TENANT_CONTEXT);
+        assertThat(outboundCalls.get()).isEqualTo(1);
+    }
+
+    @Test
+    void unknownAndSuspendedTenantsNeverForward() {
+        java.util.concurrent.atomic.AtomicInteger outboundCalls =
+                new java.util.concurrent.atomic.AtomicInteger();
+
+        java.util.function.Function<CellId, String> outbound = cell -> {
+            outboundCalls.incrementAndGet();
+            return cell.value();
+        };
+
+        ReferenceRoutingForwardingGate activeGate =
+                new ReferenceRoutingForwardingGate(
+                        harness(
+                                fixtures(),
+                                stateA(
+                                        TenantRoutingPolicy.TenantLifecycleState.ACTIVE)));
+
+        TenantId unknown = new TenantId(
+                "550e8400-e29b-41d4-a716-446655440099");
+
+        ReferenceRoutingForwardingGate.ForwardingResult<String> unknownResult =
+                activeGate.forward(
+                        context(unknown),
+                        null,
+                        PolicyFixtures.NOW,
+                        outbound);
+
+        assertThat(unknownResult.forwarded()).isFalse();
+        assertThat(unknownResult.response()).isNull();
+        assertThat(unknownResult.decision().outcome())
+                .isEqualTo(TenantRoutingPolicy.Outcome.UNKNOWN_TENANT);
+        assertThat(outboundCalls.get()).isZero();
+
+        ReferenceRoutingForwardingGate suspendedGate =
+                new ReferenceRoutingForwardingGate(
+                        harness(
+                                fixtures(),
+                                stateA(
+                                        TenantRoutingPolicy.TenantLifecycleState.SUSPENDED)));
+
+        ReferenceRoutingForwardingGate.ForwardingResult<String> suspendedResult =
+                suspendedGate.forward(
+                        context(PolicyFixtures.TENANT),
+                        null,
+                        PolicyFixtures.NOW,
+                        outbound);
+
+        assertThat(suspendedResult.forwarded()).isFalse();
+        assertThat(suspendedResult.response()).isNull();
+        assertThat(suspendedResult.decision().outcome())
+                .isEqualTo(TenantRoutingPolicy.Outcome.TENANT_SUSPENDED);
+        assertThat(outboundCalls.get()).isZero();
+    }
 }
