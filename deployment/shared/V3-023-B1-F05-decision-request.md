@@ -10,7 +10,7 @@
 - Request date: 2026-11-06
 - Implementation revision: f040909
 - Decision authority: Technical Architecture Owner
-- Decision status: REQUESTED — NOT APPROVED
+- Decision status: OPTION A APPROVED — ADR-V3-023-B1-F05-001
 
 ## 2. Decision Required
 
@@ -99,24 +99,30 @@ This recommendation is not an architecture decision.
 
 ## 6. Required Decision Record
 
-Decision: PENDING
+Decision: OPTION A APPROVED
 
-Selected option: NOT RECORDED
+Selected option: A — Separate Evaluation Deployments
 
 Decision authority: Technical Architecture Owner
 
-Decision date: NOT RECORDED
+Decision date: 2026-11-06
 
-Rationale: NOT RECORDED
+Decision record: ADR-V3-023-B1-F05-001.md
 
-Conditions and required follow-up: NOT RECORDED
+Rationale: The V3-017 dependency is evaluation-only
+under the approved synthetic Stage B1 scope.
 
-The finding must remain OPEN until the authorized
-decision is recorded.
+Conditions and required follow-up:
+Independent review and formal Stage B1 acceptance
+remain pending. No direct V3-017 integration is required
+for the B1-F05 architecture dependency interpretation.
+
+B1-F05 architecture decision is recorded.
+Independent reviewer disposition remains pending.
 
 ## 7. Governance Restrictions
 
-- B1-F05: OPEN.
+- B1-F05: ARCHITECTURE DECISION RECORDED; INDEPENDENT REVIEW PENDING.
 - Stage B1 Formal Acceptance: PENDING.
 - V3-017 Formal R1: PENDING.
 - Independent Security Sign-off: PENDING.

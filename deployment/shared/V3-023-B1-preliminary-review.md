@@ -172,7 +172,7 @@ Evidence sufficiency requires reviewer determination.
 ### B1-F05 — V3-017 Reference Dependency Traceability
 
 Severity: REVIEW REQUIRED
-Disposition: OPEN — TRACEABILITY CHECK
+Disposition: ARCHITECTURE DECISION RECORDED — INDEPENDENT REVIEW PENDING
 
 Observation:
 The dedicated Docker routing fixture uses synthetic
@@ -254,9 +254,9 @@ B. Require a bounded, authorized integration exercise
    using the V3-017 reference services before Stage B1
    formal disposition.
 
-Neither option is approved by this analysis.
+Option A was subsequently approved by the Technical Architecture Owner in ADR-V3-023-B1-F05-001.
 
-B1-F05 status: OPEN — ARCHITECTURE OWNER DECISION REQUIRED.
+B1-F05 status: ARCHITECTURE DECISION RECORDED — INDEPENDENT REVIEW PENDING.
 
 ## 4. Verified Engineering Strengths
 
@@ -282,7 +282,7 @@ documented reference test conditions.
 | B1-F02 | Confirm Peer identity limitation adequacy | Security Reviewer | PENDING |
 | B1-F03 | Decide whether a readiness healthcheck is required | Architecture Reviewer | PENDING |
 | B1-F04 | Decide whether further fault injection is required | Architecture / Security Reviewer | PENDING |
-| B1-F05 | Trace V3-017 evaluation-only dependency | Technical Architecture Owner | PENDING |
+| B1-F05 | Review approved Option A decision in ADR-V3-023-B1-F05-001 | Independent Reviewer | PENDING |
 
 No reviewer approval or finding closure is recorded.
 
