@@ -156,6 +156,25 @@ with zero failures, zero errors and zero skips.
 - V3-016 independent governance acceptance: PENDING.
 - Stage B2 runtime authorization: NOT GRANTED.
 - Merge and production promotion: NOT AUTHORIZED.
+## Hosted CI verification
+
+- Repository: IKAC-FIDS/Neshane-CRM-V3-Back
+- Pull Request: #3 (Draft)
+- Workflow: Backend CI security gates
+- Event: pull_request
+- Run ID: 42220400255
+- Run attempt: 1
+- Verified commit: a1c15cc61df38e6a72c51675ce54429aae3f9c18
+- Workflow conclusion: SUCCESS
+- Engineering, contracts, architecture and SBOM: PASS
+- Dependency vulnerability and known-exploited scan: PASS
+- Secret scan: PASS
+- Mandatory CI evidence gate: PASS
+- Evidence URL: https://github.com/IKAC-FIDS/Neshane-CRM-V3-Back/actions/runs/42220400255
+
+This verifies hosted CI for the implementation commit above.
+It does not constitute formal R2 acceptance, independent Security
+Sign-off, runtime acceptance or authorization to merge.
 ## Architecture traceability
 
 - ADR-V3-003: stable Tenant identity, Cell placement generation and stale-generation rejection.
