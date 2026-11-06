@@ -44,8 +44,16 @@ final class ReferenceRoutingGatewayMain {
         Path contractRoot = Path.of(args[0]);
         Path fixtureRoot = Path.of(args[1]);
 
-        URI peerA = requireLoopbackPeer(args[2]);
-        URI peerB = requireLoopbackPeer(args[3]);
+        boolean dockerMode = "true".equals(System.getProperty(
+                "neshane.referenceOnly.dockerEnabled"));
+
+        URI peerA = dockerMode
+                ? requireDockerPeer(args[2], "cell-a-peer")
+                : requireLoopbackPeer(args[2]);
+
+        URI peerB = dockerMode
+                ? requireDockerPeer(args[3], "cell-b-peer")
+                : requireLoopbackPeer(args[3]);
 
         int port = Integer.parseInt(args[4]);
         if (port < 0 || port > 65535) {
@@ -69,9 +77,11 @@ final class ReferenceRoutingGatewayMain {
                 .connectTimeout(Duration.ofSeconds(3))
                 .build();
 
+        String bindAddress = dockerMode ? "0.0.0.0" : "127.0.0.1";
+
         HttpServer server = HttpServer.create(
                 new InetSocketAddress(
-                        InetAddress.getByName("127.0.0.1"), port),
+                        InetAddress.getByName(bindAddress), port),
                 0);
 
         server.createContext("/", exchange -> {
@@ -87,7 +97,8 @@ final class ReferenceRoutingGatewayMain {
         server.start();
 
         System.out.println(
-                "REFERENCE_ONLY Gateway listening on 127.0.0.1:"
+                "REFERENCE_ONLY Gateway listening on "
+                        + bindAddress + ":"
                         + server.getAddress().getPort());
 
         return server;
@@ -108,6 +119,26 @@ final class ReferenceRoutingGatewayMain {
         return uri;
     }
 
+    private static URI requireDockerPeer(
+            String value, String expectedHost) {
+
+        URI uri = URI.create(value);
+
+        if (!"http".equals(uri.getScheme())
+                || !expectedHost.equals(uri.getHost())
+                || uri.getPort() != 8080
+                || uri.getRawUserInfo() != null
+                || uri.getRawQuery() != null
+                || uri.getRawFragment() != null
+                || !"/echo".equals(uri.getPath())
+                || uri.getRawAuthority() == null
+                || !uri.getRawAuthority().equals(expectedHost + ":8080")) {
+            throw new IllegalArgumentException(
+                    "Invalid REFERENCE_ONLY Docker peer destination");
+        }
+
+        return uri;
+    }
     private static void handle(
             HttpExchange exchange,
             ReferenceRoutingForwardingGate gate,

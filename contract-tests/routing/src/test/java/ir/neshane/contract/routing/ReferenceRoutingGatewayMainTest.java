@@ -43,6 +43,77 @@ class ReferenceRoutingGatewayMainTest {
     }
 
     @Test
+    void dockerModeRejectsInvalidPeerDestinations() {
+        String previousOptIn = System.getProperty(OPT_IN);
+        String dockerProperty = "neshane.referenceOnly.dockerEnabled";
+        String previousDocker = System.getProperty(dockerProperty);
+
+        String validA = "http://cell-a-peer:8080/echo";
+        String validB = "http://cell-b-peer:8080/echo";
+
+        try {
+            System.setProperty(OPT_IN, "true");
+            System.setProperty(dockerProperty, "true");
+
+            String[] invalidA = {
+                    "http://cell-b-peer:8080/echo",
+                    "http://cell-a-peer:8081/echo",
+                    "http://127.0.0.1:8080/echo",
+                    "https://cell-a-peer:8080/echo",
+                    "http://cell-a-peer:8080/wrong",
+                    "http://cell-a-peer:8080/echo?cell=b",
+                    "http://cell-a-peer:8080/echo#fragment",
+                    "http://user@cell-a-peer:8080/echo",
+                    "http://cell-a-peer:8080@evil.example/echo"
+            };
+
+            for (String candidate : invalidA) {
+                assertThatThrownBy(
+                        () -> ReferenceRoutingGatewayMain.start(
+                                arguments(candidate, validB)))
+                        .as("Invalid Cell A destination: " + candidate)
+                        .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            String[] invalidB = {
+                    "http://cell-a-peer:8080/echo",
+                    "http://cell-b-peer:8081/echo",
+                    "http://127.0.0.1:8080/echo",
+                    "https://cell-b-peer:8080/echo",
+                    "http://cell-b-peer:8080/wrong",
+                    "http://cell-b-peer:8080/echo?cell=a",
+                    "http://cell-b-peer:8080/echo#fragment",
+                    "http://user@cell-b-peer:8080/echo",
+                    "http://cell-b-peer:8080@evil.example/echo"
+            };
+
+            for (String candidate : invalidB) {
+                assertThatThrownBy(
+                        () -> ReferenceRoutingGatewayMain.start(
+                                arguments(validA, candidate)))
+                        .as("Invalid Cell B destination: " + candidate)
+                        .isInstanceOf(IllegalArgumentException.class);
+            }
+
+            System.clearProperty(OPT_IN);
+
+            assertThatThrownBy(
+                    () -> ReferenceRoutingGatewayMain.start(
+                            arguments(validA, validB)))
+                    .isInstanceOf(IllegalStateException.class)
+                    .hasMessageContaining("REFERENCE_ONLY");
+
+        } finally {
+            restoreOptIn(previousOptIn);
+
+            if (previousDocker == null) {
+                System.clearProperty(dockerProperty);
+            } else {
+                System.setProperty(dockerProperty, previousDocker);
+            }
+        }
+    }
+    @Test
     void startupRequiresExplicitReferenceOnlyOptIn() {
         String previous = System.getProperty(OPT_IN);
 
