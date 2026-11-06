@@ -106,7 +106,7 @@ Reviewer determination required; no production claim permitted.
 ### B1-F03 — Startup Readiness Verification
 
 Severity: LOW
-Disposition: OPEN — IMPROVEMENT PROPOSED
+Disposition: ARCHITECTURE DECISION RECORDED — INDEPENDENT REVIEW PENDING
 
 Observation:
 Docker Compose uses depends_on for startup ordering,
@@ -258,6 +258,23 @@ Option A was subsequently approved by the Technical Architecture Owner in ADR-V3
 
 B1-F05 status: ARCHITECTURE DECISION RECORDED — INDEPENDENT REVIEW PENDING.
 
+### B1-F03 Architecture Decision
+
+Decision record: `ADR-V3-023-B1-F03-001.md`
+
+The Technical Architecture Owner approved Option A:
+bounded HTTP readiness verification is sufficient
+for the authorized disposable REFERENCE_ONLY Stage B1
+environment.
+
+No additional application-level Compose healthcheck
+is required for the B1-F03 architecture disposition.
+
+The observed readiness retry remains documented.
+
+Independent reviewer disposition remains PENDING.
+This is not a production readiness approval.
+
 ## 4. Verified Engineering Strengths
 
 - Explicit REFERENCE_ONLY runtime opt-in.
@@ -280,7 +297,7 @@ documented reference test conditions.
 | --- | --- | --- | --- |
 | B1-F01 | Confirm synthetic trust boundary adequacy | Security Reviewer | PENDING |
 | B1-F02 | Confirm Peer identity limitation adequacy | Security Reviewer | PENDING |
-| B1-F03 | Decide whether a readiness healthcheck is required | Architecture Reviewer | PENDING |
+| B1-F03 | Review approved bounded readiness decision in ADR-V3-023-B1-F03-001 | Independent Reviewer | PENDING |
 | B1-F04 | Decide whether further fault injection is required | Architecture / Security Reviewer | PENDING |
 | B1-F05 | Review approved Option A decision in ADR-V3-023-B1-F05-001 | Independent Reviewer | PENDING |
 
