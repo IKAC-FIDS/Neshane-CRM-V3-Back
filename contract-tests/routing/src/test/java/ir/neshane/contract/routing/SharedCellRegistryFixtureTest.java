@@ -1,3 +1,4 @@
+
 package ir.neshane.contract.routing;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -5,87 +6,141 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.nio.file.Path;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 class SharedCellRegistryFixtureTest {
 
+    private static final List<String> CELL_IDS =
+        List.of("cell-a", "cell-b");
+
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private Path fixturePath() {
+    private Path fixtureRoot() {
         return Path.of(System.getProperty("routingContractRoot"))
-                .toAbsolutePath()
-                .getParent()
-                .getParent()
-                .resolve("deployment/shared/fixtures/v1/cell-registry.json");
+            .toAbsolutePath()
+            .getParent()
+            .getParent()
+            .resolve("deployment/shared/fixtures/v1");
     }
 
-    private JsonNode fixture() throws Exception {
-        return mapper.readTree(fixturePath().toFile());
+    private JsonNode fixture(String cellId) throws Exception {
+        return mapper.readTree(
+            fixtureRoot().resolve(cellId + ".json").toFile());
     }
 
     private CellRegistryPolicy.CellRecord record(JsonNode node) {
         JsonNode authority = node.path("authority");
 
         DeploymentProfile profile = DeploymentProfile.valueOf(
-                node.path("deploymentProfile").asText());
+            node.path("deploymentProfile").asText());
 
         return new CellRegistryPolicy.CellRecord(
-                new CellId(node.path("cellId").asText()),
-                node.path("deploymentId").asText(),
+            new CellId(node.path("cellId").asText()),
+            node.path("deploymentId").asText(),
+            profile,
+            node.path("registryVersion").asLong(),
+            CellRegistryPolicy.LifecycleState.valueOf(
+                node.path("lifecycleState").asText()),
+            new AuthorityProvenance(
                 profile,
-                node.path("registryVersion").asLong(),
-                CellRegistryPolicy.LifecycleState.valueOf(
-                        node.path("lifecycleState").asText()),
-                new AuthorityProvenance(
-                        profile,
-                        node.path("deploymentId").asText(),
-                        AuthorityScope.CELL_REGISTRY,
-                        AuthorityKind.valueOf(
-                                authority.path("authorityKind").asText()),
-                        authority.path("authorityRef").asText(),
-                        authority.path("provenanceVersion").asLong()));
+                node.path("deploymentId").asText(),
+                AuthorityScope.CELL_REGISTRY,
+                AuthorityKind.valueOf(
+                    authority.path("authorityKind").asText()),
+                authority.path("authorityRef").asText(),
+                authority.path("provenanceVersion").asLong()));
     }
 
     @Test
-    void fixtureMatchesRoutingContract() throws Exception {
-        JsonNode node = fixture();
+    void bothFixturesMatchRoutingContract() throws Exception {
+        for (String cellId : CELL_IDS) {
+            JsonNode node = fixture(cellId);
 
-        assertThat(RoutingContractVerifier.validateInstance(
+            assertThat(RoutingContractVerifier.validateInstance(
                 Path.of(System.getProperty("routingContractRoot")),
                 "cell-registry",
                 "1.0.0",
-                node)).isEmpty();
+                node)).as(cellId).isEmpty();
+        }
     }
 
     @Test
-    void initialFixtureIsAcceptedByLifecyclePolicy() throws Exception {
-        JsonNode node = fixture();
+    void bothCellsStartRegisteredAndCanActivate() throws Exception {
+        CellRegistryPolicy policy = new CellRegistryPolicy();
 
-        assertThat(node.path("deploymentProfile").asText())
+        for (String cellId : CELL_IDS) {
+            JsonNode node = fixture(cellId);
+
+            assertThat(node.path("cellId").asText())
+                .isEqualTo(cellId);
+            assertThat(node.path("deploymentId").asText())
+                .isEqualTo("shared-deployment");
+            assertThat(node.path("deploymentProfile").asText())
                 .isEqualTo("SHARED_SAAS");
-        assertThat(node.path("registryVersion").asLong())
+            assertThat(node.path("registryVersion").asLong())
                 .isEqualTo(1);
-        assertThat(node.path("lifecycleState").asText())
+            assertThat(node.path("lifecycleState").asText())
                 .isEqualTo("REGISTERED");
 
-        CellRegistryPolicy policy = new CellRegistryPolicy();
-        CellRegistryPolicy.CellRecord candidate = record(node);
+            CellRegistryPolicy.CellRecord initial = record(node);
+            assertThat(policy.apply(initial)).isEqualTo(initial);
 
-        assertThat(policy.apply(candidate)).isEqualTo(candidate);
+            ObjectNode activeNode = (ObjectNode) node.deepCopy();
+            activeNode.put("registryVersion", 2);
+            activeNode.put("lifecycleState", "ACTIVE");
+
+            CellRegistryPolicy.CellRecord active =
+                record(activeNode);
+            assertThat(policy.apply(active)).isEqualTo(active);
+        }
     }
 
     @Test
-    void directActiveRegistrationIsRejected() throws Exception {
-        JsonNode node = fixture().deepCopy();
+    void directActiveRegistrationIsRejectedForBothCells()
+        throws Exception {
+        for (String cellId : CELL_IDS) {
+            ObjectNode node = (ObjectNode) fixture(cellId).deepCopy();
+            node.put("lifecycleState", "ACTIVE");
 
-        ((com.fasterxml.jackson.databind.node.ObjectNode) node)
-                .put("lifecycleState", "ACTIVE");
+            CellRegistryPolicy policy = new CellRegistryPolicy();
 
-        CellRegistryPolicy policy = new CellRegistryPolicy();
-
-        assertThatThrownBy(() -> policy.apply(record(node)))
+            assertThatThrownBy(() -> policy.apply(record(node)))
                 .isInstanceOf(RoutingContractException.class)
                 .hasMessageContaining("start REGISTERED");
+        }
+    }
+
+    @Test
+    void globalDirectoryMatchesBothRegisteredCells()
+        throws Exception {
+        JsonNode directory = mapper.readTree(
+            fixtureRoot().resolve("global-directory.json").toFile());
+
+        assertThat(directory.path("referenceOnly").asBoolean()).isTrue();
+        assertThat(directory.path("directoryVersion").asInt())
+            .isEqualTo(1);
+        assertThat(directory.path("deploymentId").asText())
+            .isEqualTo("shared-deployment");
+        assertThat(directory.path("deploymentProfile").asText())
+            .isEqualTo("SHARED_SAAS");
+
+        assertThat(directory.path("cells").size()).isEqualTo(2);
+        assertThat(directory.path("tenants").size()).isEqualTo(2);
+
+        for (String cellId : CELL_IDS) {
+            assertThat(directory.path("cells").findValuesAsText("cellId"))
+                .contains(cellId);
+            assertThat(directory.path("tenants").findValuesAsText("cellId"))
+                .contains(cellId);
+        }
+
+        assertThat(directory.path("tenants")
+            .findValuesAsText("tenantId"))
+            .containsExactlyInAnyOrder(
+                "550e8400-e29b-41d4-a716-446655440000",
+                "550e8400-e29b-41d4-a716-446655440001");
     }
 }

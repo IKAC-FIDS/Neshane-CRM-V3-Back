@@ -26,9 +26,9 @@ tasks.named('check') {
 tasks.withType(Test).configureEach {
     systemProperty 'routingContractRoot', contractRoot.asFile.absolutePath
 
-    inputs.file(
-        rootProject.layout.projectDirectory.file(
-            'deployment/shared/fixtures/v1/cell-registry.json'
+    inputs.dir(
+        rootProject.layout.projectDirectory.dir(
+            'deployment/shared/fixtures/v1'
         )
     ).withPathSensitivity(PathSensitivity.RELATIVE)
 }
