@@ -243,7 +243,7 @@ class ReferenceRoutingEnforcementHarnessTest {
     }
 
     @Test
-    void twoTenantsRouteThroughSharedSnapshot() {
+    void twoTenantsRouteThroughSharedSnapshot() throws Exception {
         TenantId tenantA = PolicyFixtures.TENANT;
         TenantId tenantB = new TenantId(
                 "550e8400-e29b-41d4-a716-446655440001");
@@ -389,6 +389,223 @@ class ReferenceRoutingEnforcementHarnessTest {
         assertThat(crossB.targetCellId()).isNull();
         assertThat(crossA.snapshotId()).isNull();
         assertThat(crossB.snapshotId()).isNull();
+
+        // Two-cell HTTP integration: test-only.
+        java.util.concurrent.atomic.AtomicInteger callsA =
+                new java.util.concurrent.atomic.AtomicInteger();
+        java.util.concurrent.atomic.AtomicInteger callsB =
+                new java.util.concurrent.atomic.AtomicInteger();
+
+        java.net.InetAddress loopback =
+                java.net.InetAddress.getByName("127.0.0.1");
+
+        com.sun.net.httpserver.HttpServer peerA =
+                com.sun.net.httpserver.HttpServer.create(
+                        new java.net.InetSocketAddress(loopback, 0), 0);
+        com.sun.net.httpserver.HttpServer peerB =
+                com.sun.net.httpserver.HttpServer.create(
+                        new java.net.InetSocketAddress(loopback, 0), 0);
+        com.sun.net.httpserver.HttpServer gateway =
+                com.sun.net.httpserver.HttpServer.create(
+                        new java.net.InetSocketAddress(loopback, 0), 0);
+
+        try {
+            peerA.createContext("/echo", exchange -> {
+                callsA.incrementAndGet();
+                byte[] body = "cell-a-ok".getBytes(
+                        java.nio.charset.StandardCharsets.UTF_8);
+                exchange.sendResponseHeaders(200, body.length);
+                try (var output = exchange.getResponseBody()) {
+                    output.write(body);
+                }
+            });
+
+            peerB.createContext("/echo", exchange -> {
+                callsB.incrementAndGet();
+                byte[] body = "cell-b-ok".getBytes(
+                        java.nio.charset.StandardCharsets.UTF_8);
+                exchange.sendResponseHeaders(200, body.length);
+                try (var output = exchange.getResponseBody()) {
+                    output.write(body);
+                }
+            });
+
+            peerA.start();
+            peerB.start();
+
+            java.util.Map<String, java.net.URI> peerUris = Map.of(
+                    "cell-a",
+                    java.net.URI.create(
+                            "http://127.0.0.1:"
+                                    + peerA.getAddress().getPort() + "/echo"),
+                    "cell-b",
+                    java.net.URI.create(
+                            "http://127.0.0.1:"
+                                    + peerB.getAddress().getPort() + "/echo"));
+
+            java.net.http.HttpClient client =
+                    java.net.http.HttpClient.newBuilder()
+                            .connectTimeout(java.time.Duration.ofSeconds(3))
+                            .build();
+
+            ReferenceRoutingForwardingGate gate =
+                    new ReferenceRoutingForwardingGate(routing);
+
+            java.util.function.Function<CellId, String> outbound = cell -> {
+                java.net.URI destination = peerUris.get(cell.value());
+
+                if (destination == null) {
+                    throw new IllegalStateException(
+                            "Unrecognized approved target Cell");
+                }
+
+                try {
+                    java.net.http.HttpRequest request =
+                            java.net.http.HttpRequest.newBuilder(destination)
+                                    .timeout(java.time.Duration.ofSeconds(5))
+                                    .POST(
+                                            java.net.http.HttpRequest.BodyPublishers
+                                                    .noBody())
+                                    .build();
+
+                    java.net.http.HttpResponse<String> response =
+                            client.send(
+                                    request,
+                                    java.net.http.HttpResponse.BodyHandlers
+                                            .ofString());
+
+                    if (response.statusCode() != 200) {
+                        throw new IllegalStateException(
+                                "Reference peer rejected request");
+                    }
+
+                    return response.body();
+                } catch (Exception exception) {
+                    throw new IllegalStateException(
+                            "Reference outbound HTTP failed", exception);
+                }
+            };
+
+            TenantId unknownTenant = new TenantId(
+                    "550e8400-e29b-41d4-a716-446655440099");
+
+            gateway.createContext("/", exchange -> {
+                String path = exchange.getRequestURI().getPath();
+
+                if (!java.util.Set.of(
+                        "/tenant-a", "/tenant-b", "/cross-a",
+                        "/cross-b", "/unknown").contains(path)) {
+                    exchange.sendResponseHeaders(404, -1);
+                    exchange.close();
+                    return;
+                }
+
+                // Server-owned synthetic identity: never read identity
+                // from HTTP headers or query parameters.
+                TenantId selectedTenant = switch (path) {
+                    case "/tenant-a", "/cross-a" -> tenantA;
+                    case "/tenant-b", "/cross-b" -> tenantB;
+                    default -> unknownTenant;
+                };
+
+                CellId requestedCell = switch (path) {
+                    case "/cross-a" -> PolicyFixtures.CELL_B;
+                    case "/cross-b" -> PolicyFixtures.CELL_A;
+                    default -> null;
+                };
+
+                int status;
+                String responseBody;
+
+                try {
+                    ReferenceRoutingForwardingGate.ForwardingResult<String>
+                            result = gate.forward(
+                                    context(selectedTenant),
+                                    requestedCell,
+                                    PolicyFixtures.NOW,
+                                    outbound);
+
+                    status = result.forwarded() ? 200 : 403;
+                    responseBody =
+                            result.forwarded() ? result.response() : "denied";
+                } catch (RuntimeException exception) {
+                    status = 503;
+                    responseBody = "unavailable";
+                }
+
+                byte[] body = responseBody.getBytes(
+                        java.nio.charset.StandardCharsets.UTF_8);
+
+                exchange.sendResponseHeaders(status, body.length);
+                try (var output = exchange.getResponseBody()) {
+                    output.write(body);
+                }
+            });
+
+            gateway.start();
+
+            String gatewayUrl = "http://127.0.0.1:"
+                    + gateway.getAddress().getPort();
+
+            java.util.Map<String, String> allowedPaths = Map.of(
+                    "/tenant-a", "cell-a-ok",
+                    "/tenant-b", "cell-b-ok");
+
+            for (var entry : allowedPaths.entrySet()) {
+                java.net.http.HttpRequest request =
+                        java.net.http.HttpRequest.newBuilder(
+                                        java.net.URI.create(
+                                                gatewayUrl + entry.getKey()))
+                                .timeout(java.time.Duration.ofSeconds(5))
+                                .POST(
+                                        java.net.http.HttpRequest.BodyPublishers
+                                                .noBody())
+                                .build();
+
+                java.net.http.HttpResponse<String> response =
+                        client.send(
+                                request,
+                                java.net.http.HttpResponse.BodyHandlers
+                                        .ofString());
+
+                assertThat(response.statusCode()).isEqualTo(200);
+                assertThat(response.body()).isEqualTo(entry.getValue());
+            }
+
+            assertThat(callsA.get()).isEqualTo(1);
+            assertThat(callsB.get()).isEqualTo(1);
+
+            for (String deniedPath : java.util.List.of(
+                    "/cross-a", "/cross-b", "/unknown")) {
+                java.net.http.HttpRequest request =
+                        java.net.http.HttpRequest.newBuilder(
+                                        java.net.URI.create(
+                                                gatewayUrl + deniedPath))
+                                .timeout(java.time.Duration.ofSeconds(5))
+                                .POST(
+                                        java.net.http.HttpRequest.BodyPublishers
+                                                .noBody())
+                                .build();
+
+                java.net.http.HttpResponse<String> response =
+                        client.send(
+                                request,
+                                java.net.http.HttpResponse.BodyHandlers
+                                        .ofString());
+
+                assertThat(response.statusCode()).isEqualTo(403);
+                assertThat(response.body()).isEqualTo("denied");
+            }
+
+            // No denied request reached either physical HTTP peer.
+            assertThat(callsA.get()).isEqualTo(1);
+            assertThat(callsB.get()).isEqualTo(1);
+
+        } finally {
+            gateway.stop(0);
+            peerA.stop(0);
+            peerB.stop(0);
+        }
     }
 
     @Test
