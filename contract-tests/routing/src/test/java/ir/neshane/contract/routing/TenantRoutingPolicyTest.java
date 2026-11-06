@@ -346,63 +346,6 @@ class TenantRoutingPolicyTest {
                                 directoryPlacements.get(tenantA.value())))
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("Runtime Cell identity mismatch");
-        java.nio.file.Path contractRoot = java.nio.file.Path.of(
-                System.getProperty("routingContractRoot"));
-        java.nio.file.Path fixtureRoot = contractRoot.toAbsolutePath()
-                .getParent()
-                .getParent()
-                .resolve("deployment/shared/fixtures/v1");
-
-        com.fasterxml.jackson.databind.JsonNode directory =
-                new ReferenceGlobalDirectoryLoader().load(
-                        fixtureRoot.resolve("global-directory.json"));
-
-        ReferenceCellIdentityValidator cellA =
-                new ReferenceCellIdentityValidator(
-                        fixtureRoot.resolve("global-directory.json"),
-                        fixtureRoot.resolve("cell-a.json"),
-                        contractRoot,
-                        "cell-a");
-
-        ReferenceCellIdentityValidator cellB =
-                new ReferenceCellIdentityValidator(
-                        fixtureRoot.resolve("global-directory.json"),
-                        fixtureRoot.resolve("cell-b.json"),
-                        contractRoot,
-                        "cell-b");
-
-        java.util.Map<String, String> directoryPlacements =
-                new java.util.HashMap<>();
-
-        for (com.fasterxml.jackson.databind.JsonNode tenant :
-                directory.path("tenants")) {
-            String previous = directoryPlacements.putIfAbsent(
-                    tenant.path("tenantId").asText(),
-                    tenant.path("cellId").asText());
-
-            assertThat(previous).isNull();
-        }
-
-        assertThat(directoryPlacements)
-                .containsEntry(tenantA.value(), PolicyFixtures.CELL_A.value())
-                .containsEntry(tenantB.value(), PolicyFixtures.CELL_B.value());
-
-        cellA.requireMatchingCell(
-                directoryPlacements.get(tenantA.value()));
-        cellB.requireMatchingCell(
-                directoryPlacements.get(tenantB.value()));
-
-        org.assertj.core.api.Assertions.assertThatThrownBy(
-                        () -> cellA.requireMatchingCell(
-                                directoryPlacements.get(tenantB.value())))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("Runtime Cell identity mismatch");
-
-        org.assertj.core.api.Assertions.assertThatThrownBy(
-                        () -> cellB.requireMatchingCell(
-                                directoryPlacements.get(tenantA.value())))
-                .isInstanceOf(IllegalStateException.class)
-                .hasMessageContaining("Runtime Cell identity mismatch");
         TenantRoutingPolicy routing = new TenantRoutingPolicy();
 
         TenantRoutingPolicy.Decision decisionA =
