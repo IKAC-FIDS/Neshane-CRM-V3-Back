@@ -29,6 +29,30 @@ Docker lifecycle tests. Neither establishes authenticated runtime Tenant data is
 No V3-024 test has been executed. Recommendation: design is ready for R2 review;
 implementation remains blocked by section 18.
 
+### Current Owner Selections and Historical Context
+
+The original proposal and source revisions above are retained as historical
+preparation context. At review baseline `e3d6bf3957376944d7f5f450e03eade08aa79ee3`,
+the Technical Architecture Owner's six selections are recorded in the following
+proposed ADRs. They supersede the earlier presentation of these reference options
+as entirely unselected, without constituting formal R2 acceptance.
+
+| Topic | Owner-selected direction | Proposed source ADR |
+| --- | --- | --- |
+| Database | A — Database per Service/Cell; shared cluster permitted for disposable reference | [DB-001](ADR-V3-024-R2-DB-001.md) |
+| Runtime | A — Disposable Docker Compose | [RT-002](ADR-V3-024-R2-RT-002.md) |
+| Operations | B — Scoped Agent + Operations Controller | [OA-003](ADR-V3-024-R2-OA-003.md) |
+| Credentials | B — Scoped Credentials + Controlled Rotation | [CL-004](ADR-V3-024-R2-CL-004.md) |
+| Routing | B — Validated Placement + Fail-Closed Routing | [RTR-005](ADR-V3-024-R2-RTR-005.md) |
+| Outage | B — Bounded Valid Local State | [OF-006](ADR-V3-024-R2-OF-006.md) |
+
+All six ADRs remain `PROPOSED — R2 REVIEW PENDING`. Owner selection is not
+formal R2 acceptance or implementation authorization. Production-specific
+mechanisms and applicable Open Decisions remain unresolved. OA-003's execution-
+time checks, command/content binding and adapter limits and CL-004's separate
+routine/emergency revocation requirements govern the corresponding proposed
+details; concise descriptions here do not relax those requirements.
+
 ## 2. Scope and Explicit Exclusions
 
 This proposal specifies topology, authority, routing admission, database/credential
@@ -55,7 +79,7 @@ DEC, OD or official Security Requirement identifiers.
 | V3-016 | Governance Phase A engineering accepted; R1/hosted governance enforcement pending [S16] | Partially implemented; governance blocked | Preserve independent reviewer, CODEOWNERS/protection and promotion requirements. |
 | OD-009/010/011/012 | Identity/session/workload/secrets choices OPEN [S13] | Open architecture decisions | Production identity, agent trust and credential lifecycle require decisions. |
 | OD-013/014 | Migration and Java/RLS mechanism OPEN [S13] | Open architecture decisions | Block first applicable migration and tenant-aware repository integration. |
-| OD-015 | Production orchestration OPEN [S13] | Open architecture decision | Reference Compose/process exception needs scoped approval; no production selection. |
+| OD-015 | Production orchestration OPEN [S13]; reference Compose direction owner-selected in RT-002 | Open production decision; proposed reference selection | Formal R2 and scoped implementation authorization still required; no production selection. |
 | OD-019/022/023 | Scheduling/migration/objectives remain OPEN [S13] | Open architecture decisions | No automatic reconciliation winner, migration protocol or numeric SLA implied. |
 
 Repository inspection found no authoritative complete Roadmap/task matrix file.
@@ -85,9 +109,10 @@ V3-017/V3-023 synthetic HTTP reference behavior or V3-024 implementation.
 They require separately authorized identity, trust and integration work,
 followed by executable evidence and independent review.
 
-The namespace/network/process boundary is an architectural requirement; technology
-is not selected. A future disposable Compose project or isolated OS process fixture
-is recommended for evaluation, subject to explicit authorization. Separate containers
+The namespace/network/process boundary is an architectural requirement. Disposable
+Docker Compose is the owner-selected reference direction in RT-002, pending R2
+acceptance and separate implementation authorization. OS processes remain a historical
+alternative, not the current selected topology. Separate containers
 on a common host do not prove host, network or Tenant data isolation. Production
 namespace/host isolation and egress enforcement require OD-015 and threat review.
 
@@ -137,6 +162,21 @@ generation. Real writes require atomic fence validation and mutation; an unprote
 check-then-write is unsafe. This remains a runtime dependency, not an authorized V3-024
 implementation. V3-022 activationScope wire-to-Java mapping is still unresolved.
 
+**F06 — deterministic fence/mutation race requirement:** a future test must
+coordinate the following explicit ordering: (1) validate a mutation under the
+older placement generation; (2) advance the authoritative effective fence;
+(3) attempt the older mutation's commit; (4) assert zero unauthorized committed
+effect after that fence. Include a valid current-generation commit as a positive
+control and observe the mutation/effect boundary, not just an error response.
+
+Reference-level deterministic policy verification models this ordering only.
+Future real persistence/concurrency integration must reproduce the race using
+the actual transaction/effect boundary, including in-flight mutations, and prove
+that fence validation and mutation are atomic or equivalently serialized. A
+passing reference test cannot satisfy the real persistence criterion. No fence
+is implemented or mechanism selected here; relevant Open Decisions remain open
+and V3-022 Stage B2 remains NOT AUTHORIZED.
+
 Global Directory permits only Tenant/Cell/deployment identifiers, registry/lifecycle/
 placement versions, profile, authority references and integrity/activation references
 needed for routing. Secret material is delivered through a separate scoped channel.
@@ -148,14 +188,15 @@ winner is proposed.
 
 | Alternative | Isolation properties and limitations | Proposed disposition |
 | --- | --- | --- |
-| Dedicated database per service/Cell | Separate database access boundary and credentials; may share PostgreSQL host/cluster, so not dedicated compute or administrator isolation | Recommended reference design, pending explicit architecture approval |
+| Dedicated database per service/Cell | Separate database access boundary and credentials; may share PostgreSQL host/cluster, so not dedicated compute or administrator isolation | Owner-selected reference direction A in DB-001; PROPOSED, formal R2 acceptance pending |
 | Dedicated schema in shared database | Requires CONNECT/schema/object/default-privilege controls and search_path review; database-level and privileged operator exposure remain shared | Alternative requiring explicit review; never a shared cross-service schema |
 | Shared database/tables with distinct credentials | Credential separation alone cannot isolate rows; requires proven Tenant Context/RLS and pooled-connection safety | Not recommended for the Dedicated Managed reference; requires explicit ADR and OD-014 integration |
 
 ADR-V3-007 permits logical or physical service-owned isolation but does not select the
-Dedicated Managed physical model. Selecting that model requires a traceable architecture
-decision/addendum before implementation; no ADR number is allocated here. Database-per-
-service is distinct from a database server per Cell or Tenant; the latter remains an option.
+Dedicated Managed physical model. DB-001 now records the owner-selected reference
+model; formal R2 acceptance remains pending. Production topology is still unselected.
+A database per service is distinct from a database server per Cell or Tenant;
+the latter remains a production option.
 
 **PROPOSED credential binding:** each runtime identity is limited to one owning service,
 database, Cell/deployment and synthetic Tenant. Separate runtime/migration/privileged roles;
@@ -170,14 +211,26 @@ authorization, and applicable data-layer Tenant keys/RLS; isolation needs both
 negative read/write tests and database-role/connection-pool checks. None of these
 real-data enforcement claims is verified by the existing synthetic reference.
 
+**F05 — required PostgreSQL evidence:** apply DB-001 section 7.1 to inventory
+database/schema/table ownership, direct and inherited privileges, memberships,
+SET ROLE paths, runtime-to-migration escalation, effective PUBLIC privileges and
+default grants. Verify read/write RLS, missing/conflicting Tenant Context and
+pooled-connection reuse after commit, rollback and error. Test cross-service and
+cross-Cell access with positive controls using correctly scoped ordinary,
+non-owner/non-bypass roles. Record actual database effects and effective grants;
+synthetic policy decisions are not real PostgreSQL isolation evidence. OD-013
+and OD-014 remain OPEN; no role, SQL or migration change is authorized here.
+
 Provision secrets outside Git/images/Directory; mount or resolve only to the consuming
 service with least privilege. An agent may request opaque credential references but must
 not read database secrets. Validate TLS/server identity for database communication under
 the approved trust profile. No production secret provider or crypto algorithm is selected.
 
-Rotation sequence: authorize scoped rotation; provision new credential; validate a new
-connection; switch service configuration/pools; drain old connections; revoke old credential;
-verify both new success and old denial; audit safe version references. Revocation must
+Routine rotation follows CL-004: authorize scoped rotation; provision and validate the
+replacement; switch service configuration/pools; block new old-credential connections;
+drain/terminate old sessions and pools; verify no unauthorized access remains before
+reporting completion. Emergency compromise uses CL-004's separate containment-first
+workflow and does not wait for replacement readiness. Revocation must
 address existing sessions, not only new connections. Any overlap duration and revocation
 latency require approved policy. Missing/invalid/expired/revoked credentials cause readiness
 and affected operations to fail closed. Never fall back to a shared/admin credential.
@@ -229,7 +282,8 @@ affected path. Health observation expiry leads to UNKNOWN, not fabricated AVAILA
 | Telemetry/Audit | Redaction, attribute allowlists, tenant-safe visibility, required durable owned Audit evidence | Export availability cannot imply Audit success or a command channel |
 
 Network isolation is defense in depth. Direct service access must still authenticate and
-authorize. Operator identity never becomes Tenant identity. Preserve DEC-014's Customer
+authorize. Operator identity never becomes Tenant identity. Preserve
+[V3-003-DEC-014](../../../architecture/reviews/V3-003-decision-record.md#v3-003-dec-014--customer-core-durable-deferred-audit-eligibility-and-safety-gates)'s Customer
 audit prerequisites, owned durable obligations, authoritative Audit confirmation, invalid-
 evidence rejection and Sovereign-local authority; executable DURABLE_DEFER stays unapproved.
 
@@ -325,6 +379,8 @@ Each negative needs a valid positive control, exact denial reason and zero forbi
 | N15 recovery integration | Failed startup/upgrade | Restore valid prior artifact/config | Revalidate before readiness; no version rollback or revoked-secret reuse | Digest/version/readiness report | Approved runtime/recovery scope |
 | N16 authenticated DB integration | Tenant A role and pooled connections | Query/write B; omit context; reuse connection | Deny A-to-B; no stale transaction context | SQL/JUnit read/write matrix | OD-014, ordinary non-bypass roles and RLS |
 | N17 contract/smoke | Active A | Suspend Tenant; disable/retire Cell; expire observation | Ordinary route denied in each independent case | Lifecycle/availability outcomes | Profile authority and activation policies |
+| N18 deterministic policy, then real persistence/concurrency integration | Mutation validated under old generation | Advance effective fence before old commit attempt | No unauthorized old-generation committed effect; current-generation positive control succeeds | Ordered race/effect report; simulated and real evidence reported separately | Section 6 F06; real fencing requires separate authorization, including applicable V3-022 B2 |
+| N19 real PostgreSQL integration | Ordinary scoped runtime roles and authorized positive reads/writes | Ownership/inherited grants, SET ROLE/migration escalation, PUBLIC/default grants, cross-service/Cell access, missing/conflicting context and pool reuse | No privilege or Tenant-context escape; no unauthorized reads/writes | DB-001 section 7.1 effective-role/grant/ownership and transaction/pool evidence | Approved persistence scope; OD-013/014 remain OPEN |
 
 Real signature/issuer/audience/token-expiry/workload tests cannot be replaced with
 caller-controlled booleans. Process/TCP segmentation tests cannot substitute for N03/N16.
@@ -334,12 +390,20 @@ No destructive or production-connected test is proposed.
 
 Future isolated environment: one synthetic Tenant A and Dedicated Cell A, an unauthorized
 Tenant B/control target, separately credentialed service databases, one scoped agent and
-an optional reference management controller. Use disposable resources and ephemeral test
+a mandatory scoped Operations Controller for the complete management-path reference
+smoke test, as selected in OA-003. Use disposable resources and ephemeral test
 credentials generated outside Git; no real customer data or real credentials.
+
+**F04 — complete management path:** the Controller must perform admission and
+the Agent must independently verify and enforce execution authorization using
+the existing OA-003 boundaries. An Agent-only test with a Controller test double
+is a component test; it cannot independently satisfy AC08 or the full management-
+path smoke criterion. Synthetic trust evidence remains explicitly synthetic,
+including when both components run; their presence does not prove real identity.
 
 Proposed order: verify policy authorization and pinned artifact/image integrity; capture
 pre-existing resource inventory; create isolated networks and database targets; provision
-least-privilege credentials; validate registry/placement/trust; start services and agent;
+least-privilege credentials; validate registry/placement/trust; start services, Controller and Agent;
 verify bounded application health readiness; activate after all checks; run positive
 routing and negative matrix; inject DB/agent/GCP/startup failures; recover and repeat
 checks; collect sanitized reports; remove only explicitly inventoried task-owned resources.
@@ -359,34 +423,40 @@ hosted run; no remote CI or deployment command is executed or authorized by this
 
 The labels below are section-local review items, not registered decision identifiers.
 
-| Review item / existing OD | Alternatives | Recommendation and rationale | Authority / blocking impact |
+| Review item / existing OD | Alternatives / historical context | Owner selection or remaining recommendation | Authority / blocking impact |
 | --- | --- | --- | --- |
 | Reference dependency treatment | Wait for V3-017 R1; scoped evaluation use | Propose scoped non-production use without inheritance of V3-023 approval | Technical Architecture Owner; blocks any implementation until explicit disposition |
-| Runtime / OD-015 | Disposable Compose/process; production orchestrators | Reference fixture only first; preserve production choice | Platform Operations + Architecture; explicit scoped authorization needed |
-| Database physical boundary | Database/service/Cell; schema; shared tables | Database per service/Cell for clear credential boundary; cluster dedication separately reviewed | Architecture/Data; traceable ADR/addendum needed before implementation |
-| Credential lifecycle / OD-012 | Environment/file reference; dedicated secret provider | Vendor-neutral references for evaluation; production custody/rotation/revocation separately decided | Security + Operations; blocks real credential lifecycle claim |
-| Agent identity/commands / OD-011/012/019 | Reference simulation; authenticated actuator with durable admission | Design narrow operations and authenticated evidence first; no arbitrary exec | Security + Platform/Operations; blocks real agent authorization |
-| Routing trust / V3-022 B2 | Test-only model; real crypto/durable activation/fencing | Keep model reference-only; separately authorize B2 before relying on runtime guarantees | Architecture + required Security authorities; runtime blocked |
+| Runtime / OD-015 | Compose, OS processes, production orchestrators | RT-002: A — Disposable Docker Compose selected for reference only; production choice open | Formal R2 and implementation authorization pending; OD-015 unchanged |
+| Database physical boundary | Database/service/Cell, schema, instance/Cell | DB-001: A — Database per Service/Cell selected; shared cluster permitted for disposable reference | Formal R2 pending; production cluster/host dedication unresolved |
+| Credential lifecycle / OD-012 | Static, scoped controlled rotation, dynamic credentials | CL-004: B — Scoped credentials with controlled rotation selected; production custody/provider unresolved | Security + Operations dependencies and implementation gate remain |
+| Agent identity/commands / OD-011/012/019 | Direct agent, Controller + scoped Agent, external orchestrator | OA-003: B — Controller + scoped Agent selected; concrete trust/replay/adapter mechanisms unresolved | Formal R2 and required Security/Platform/Operations decisions pending |
+| Routing trust / V3-022 B2 | Static mapping, validated placement, continuous central validation | RTR-005: B — Validated placement + fail-closed routing selected; real trust/durability/fencing unresolved | Formal R2 pending; B2 remains NOT AUTHORIZED |
 | Persistence / OD-013/014 | Migration and transaction-context mechanisms | Follow owned migrations and transaction-local RLS after decision | Data + Security + Backend Architecture; blocks first repository/migration |
-| Outage/freshness / OD-023 | Stop all; continue only valid local operations | Explicit operation-specific valid-state policy, no numeric/offline guarantee | Product + Operations + Security + service owners; blocks claimed continuation policy |
+| Outage/freshness / OD-023 | Strict online, bounded local state, unrestricted continuation | OF-006: B — Bounded valid local state selected; no actual continuation permission or numeric guarantee | Formal R2 pending; operation-specific policy and required independent review unresolved |
 
 **Decision status and authorization separation (applies to every row above):**
 
-- `RECOMMENDED OPTION` means a design recommendation in this proposal only.
+- `OWNER-SELECTED DIRECTION` means one of the six options recorded in the proposed
+  ADRs listed in section 1. Earlier recommendations are historical context, not
+  a request to reselect unchanged options. Additional implementation details and
+  dependency dispositions in this table may still require decisions.
 - `ARCHITECTURE APPROVAL` requires an explicit, traceable disposition by the
   named authority under the existing governance process. All V3-024 choices in
-  this table remain `PENDING`; no ADR/addendum is approved by this proposal.
+  this table remain pending formal R2 acceptance; owner selections are recorded,
+  but no ADR/addendum is accepted by creating or reconciling this proposal.
 - `IMPLEMENTATION AUTHORIZATION` is a separate scope-specific gate. It remains
   `NOT GRANTED / BLOCKED` even if an R2 design recommendation is later approved.
   Approval of one reference fixture must not imply production authorization.
 
 **Reference-scope decisions required before any separately authorized synthetic
-implementation increment:** scoped V3-017 dependency treatment; a disposable
-runtime topology/OD-015 exception; the exact reference database model and whether
-an authorized real database probe is included; bounded synthetic routing/trust
-fixtures; and the explicit file/test allowlist. If an Operations Agent is in the
-reference increment, its permitted simulated actions and test-only trust model
-must also receive scoped approval. None of these choices authorizes bypass of
+implementation increment:** scoped V3-017 dependency treatment; formal R2
+disposition of the owner-selected Compose/database/Controller-Agent/credential/
+routing/outage directions; whether an authorized real database probe is included;
+bounded synthetic routing/trust fixtures; and the explicit file/test allowlist.
+A management-path increment must include Controller and Agent. Any narrower
+component-test increment must be labeled as such; permitted simulated actions
+and test-only trust model still require scoped implementation approval.
+None of these choices authorizes bypass of
 existing trust, RLS or Tenant isolation controls.
 
 **Real-security, durable-runtime or production-dependent decisions:** real
@@ -426,14 +496,14 @@ retain their current register states; OD-022 migration and OD-001 Air Gap remain
 All items await reviewer disposition; the list is not an approval record.
 
 - Confirm separate Registry, Lifecycle, Placement, Trust, Operations, Recovery and Domain authority.
-- Review one-Tenant/Cell and service-owned database/credential model; choose physical isolation.
+- Review the owner-selected one-Tenant/Cell database and credential model; keep production physical isolation unresolved.
 - Confirm agent operation allowlist, identity, no data access and independently verified approvals.
 - Review canonical state separation, terminal/non-reuse rules and admission conjunction.
 - Confirm fail-closed trust, placement, credential, network, outage and recovery behavior.
 - Review positive controls and zero-effect negative tests, including direct access and RLS.
 - Distinguish reference simulations, recorded engineering evidence and real runtime requirements.
 - Resolve scoped dependency/reference deployment decisions without changing OD-015 or V3-022 B2.
-- Preserve V3-016 independent review, CI/security gates, contract compatibility and DEC-014 boundaries.
+- Preserve V3-016 independent review, CI/security gates, contract compatibility and V3-003-DEC-014 Audit boundaries.
 - Record reviewed revision/hash, named actual authority, disposition and outstanding conditions
   through the existing governance process; no signature or independent approval is invented.
 
@@ -447,7 +517,8 @@ All items await reviewer disposition; the list is not an approval record.
 
 Before implementation: obtain explicit scoped R2 disposition and implementation authorization;
 resolve/disposition V3-017 dependency and applicable pending acceptance/security conditions;
-select approved reference topology and database model; define the exact future file allowlist;
+obtain formal disposition of the owner-selected reference topology/database model and
+the other proposed ADRs; define the exact future file allowlist;
 resolve applicable identity/secrets/agent/persistence decisions; satisfy or explicitly preserve
 the required independent gates without treating them as waived. Any runtime use requiring
 V3-022 B2 needs separate authorization first. A synthetic-only increment, if later approved,
