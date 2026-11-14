@@ -2,6 +2,22 @@
 
 Independent Backend engineering workspace for Neshane CRM V3.
 
+## Root governance awareness — documentation only
+
+Root Main `094c966de745285bd5a8d1975312eb06d930d4a8` records
+`NESHANE-V3-ARCH-P00-006 / ADR-V3-016 / DEC-016` and limited G-R2, G-Security and
+Tenant Isolation design/reference acceptances. G-Tenant's design scope is closed;
+**Final Runtime Tenant Isolation Acceptance remains PENDING — REAL EVIDENCE REQUIRED**.
+The Product Decision Owner / TAO's unified internal authority is recorded by Root
+commit `d75dd6f54a09b70dfa8d4103df642a85a646edd8`.
+
+See the [current awareness record, restrictions and source links](architecture/governance-baseline.md#v3-024-root-governance-awareness).
+This three-file documentation alignment does not relabel the Backend P00-005
+engineering baseline below as P00-006, approve Backend implementation/architecture,
+or establish code, CI, runtime, isolation or deployment synchronization/verification.
+Implementation, broader synchronization, B2, publication, deployment and release
+still need their own scoped authorization and technical prerequisites.
+
 ## Foundation baseline
 
 - Architecture: `NESHANE-V3-ARCH-P00-005`
