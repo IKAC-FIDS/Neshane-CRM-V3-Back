@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "task": "V3-024-DR-REF-IMPLEMENTATION-AND-VERIFICATION",
+  "baseline": "453638ee0b063d40e1e412d0b466f0eafcd3e30a",
+  "scenarioCount": 20,
+  "mandatoryVariantCount": 60,
+  "scenarios": [
+    {"id":"DR01","variants":["tls-identity","scram-negatives","role-restrictions"]},
+    {"id":"DR02","variants":["backup-a","backup-b","separate-restore-quarantine"]},
+    {"id":"DR03","variants":["wrong-cell-a","wrong-cell-b","cross-tenant"]},
+    {"id":"DR04","variants":["tenant-metadata","cell-metadata","deployment-metadata"]},
+    {"id":"DR05","variants":["backup-id","signed-metadata-tamper","archive-integrity"]},
+    {"id":"DR06","variants":["stale-placement","stale-credential-epoch","stale-fence"]},
+    {"id":"DR07","variants":["revoked-workload","old-database-credential","missing-credential"]},
+    {"id":"DR08","variants":["wrong-recovery-authorization","expired-grant","unauthorized-executor"]},
+    {"id":"DR09","variants":["authority-unavailable","conflicting-version","authority-rollback"]},
+    {"id":"DR10","variants":["quarantine-select","quarantine-write","quarantine-replay"]},
+    {"id":"DR11","variants":["operation-digest-conflict","completion-gap","unknown-outcome"]},
+    {"id":"DR12","variants":["completed-result-reconstruction","missing-payload","incomplete-checkpoint-range"]},
+    {"id":"DR13","variants":["repeat-reconciliation","coordinator-restart","target-restart-revalidation"]},
+    {"id":"DR14","variants":["concurrent-identical","conflicting-attempts","reconcile-vs-write"]},
+    {"id":"DR15","variants":["crash-validating","crash-reconciling","crash-local-commit-before-ack"]},
+    {"id":"DR16","variants":["placement-during-reconciliation","revocation-during-reconciliation","suspension-during-reconciliation"]},
+    {"id":"DR17","variants":["active-a","active-b","new-authorized-operation"]},
+    {"id":"DR18","variants":["historical-operation-replay","current-credential-stale-fence","current-operation-duplicate"]},
+    {"id":"DR19","variants":["backup-to-restore-substitution","restored-data-to-activation-substitution","restored-active-gate"]},
+    {"id":"DR20","variants":["independent-state-reconciliation","zero-exposure-and-effects","cleanup"]}
+  ],
+  "additionalRequirements": {
+    "A": ["DR13/repeat-reconciliation", "DR14/conflicting-attempts", "DR08/wrong-recovery-authorization", "DR08/expired-grant"],
+    "B": ["DR09/authority-rollback", "DR09/conflicting-version"],
+    "C": ["DR15/crash-local-commit-before-ack", "DR13/target-restart-revalidation"],
+    "D": ["DR19/backup-to-restore-substitution", "DR19/restored-data-to-activation-substitution", "DR19/restored-active-gate"],
+    "E": ["DR12/completed-result-reconstruction", "DR11/unknown-outcome", "DR18/historical-operation-replay"],
+    "F": ["DR02/backup-a", "DR02/backup-b", "DR20/cleanup"],
+    "G": ["DR20/independent-state-reconciliation", "DR20/zero-exposure-and-effects", "DR20/cleanup"]
+  },
+  "coverageNotes": {
+    "DR08/wrong-recovery-authorization": "Signature, backup digest, tenant, cell, destination identity/incarnation, executor, attempt, current epochs and consumed-grant mismatch negatives are mandatory subchecks.",
+    "DR13/repeat-reconciliation": "Same-attempt retry is idempotent; a consumed grant must reject a different attempt.",
+    "DR19/backup-to-restore-substitution": "Substitution at validation-to-restore, including an archive with valid checksum for a different backup, must be rejected.",
+    "DR19/restored-data-to-activation-substitution": "Both restore-to-reconciliation and reconciliation-to-activation substitution are mandatory subchecks.",
+    "DR01/tls-identity": "Includes wrong target hostname/certificate identity; verify-full remains enabled.",
+    "DR20/cleanup": "PASS can be finalized only after independent post-run container/network/volume/private-scratch absence verification."
+  }
+}
