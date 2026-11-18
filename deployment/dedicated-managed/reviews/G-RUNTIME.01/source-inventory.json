@@ -1,0 +1,627 @@
+{
+  "backendBaseline": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "originalNegativeCases": [
+    {
+      "originalIdentifier": "Cross-Tenant reads and writes",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Cross-Tenant reads and writes",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 68
+    },
+    {
+      "originalIdentifier": "Tenant Context or trusted-header spoofing",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Tenant Context or trusted-header spoofing",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 69
+    },
+    {
+      "originalIdentifier": "Cross-Cell forwarding",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Cross-Cell forwarding",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 70
+    },
+    {
+      "originalIdentifier": "Incorrect or stale placement assignments",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Incorrect or stale placement assignments",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 71
+    },
+    {
+      "originalIdentifier": "RLS bypass through privileged roles",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "RLS bypass through privileged roles",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 72
+    },
+    {
+      "originalIdentifier": "Pool reuse across Tenant/Cell boundaries",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Pool reuse across Tenant/Cell boundaries",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 73
+    },
+    {
+      "originalIdentifier": "Credential reuse across service/Cell boundaries",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Credential reuse across service/Cell boundaries",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 74
+    },
+    {
+      "originalIdentifier": "Expired or revoked workload identity",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Expired or revoked workload identity",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 75
+    },
+    {
+      "originalIdentifier": "Unauthorized command/adapter execution",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Unauthorized command/adapter execution",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 76
+    },
+    {
+      "originalIdentifier": "Replay after revocation or crash",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Replay after revocation or crash",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 77
+    },
+    {
+      "originalIdentifier": "Fail-open routing or fallback",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Fail-open routing or fallback",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 78
+    },
+    {
+      "originalIdentifier": "Incorrect recovery or restoration into another Cell",
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "sourceGitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "originalDisposition": "TEST REQUIRED",
+      "originalRequirement": "Incorrect recovery or restoration into another Cell",
+      "sourceDocument": "architecture/governance-synchronization.md",
+      "sourceLine": 79
+    }
+  ],
+  "authoritativeMain": "094c966de745285bd5a8d1975312eb06d930d4a8",
+  "sources": [
+    {
+      "canonicalGitSha256": "701D3E0A84C3D2A65E0B26A1918E32607B0A655E940AFD4DEE41D9DEEBD5D1B5",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "worktreeSha256": "7B3D93FCFA04E3F8B6DB87197BE14E7CA17E0E6E0BE1A56B36B58F1AA4AE56E7",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "id": "architecture/adr/016-dedicated-managed-reference-architecture.md"
+    },
+    {
+      "canonicalGitSha256": "4FBD1C9B3557CFE6AD8B5FCC4E232B23D6A8505C7E546D0B1F592F27AA47E8BC",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "worktreeSha256": "5A9A3BC20078A547AF3C00F43BCE79227BFFEB8734320ECF8178CAD0D9B3CD8B",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/governance-synchronization.md",
+      "id": "architecture/governance-synchronization.md"
+    },
+    {
+      "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+      "worktreeSha256": "F489F4EA8334DF8B5A29C79381FCCD2A44813E342ECE3225F858A29626CD2DEF",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/open-decisions.md",
+      "id": "architecture/open-decisions.md"
+    },
+    {
+      "canonicalGitSha256": "09737DDF927BF14C72B1C5C8D02A1C606C7703BC8F712F01C6820930551BC59B",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "c90dd36a9b270138915eb696475e1405ee88f789",
+      "worktreeSha256": "1274E460D103CEFE5CC071CF1578B61A48D4764F98BF635CB9D16584A8A77D70",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/task-governance.md",
+      "id": "architecture/task-governance.md"
+    },
+    {
+      "canonicalGitSha256": "B2E49BE31B516E004B82859FBF197CD2E704F250392C34FB75BACBC58CA33C83",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "81eb12cc0362af7460564a4516d8f5ba76f5621b",
+      "worktreeSha256": "B2E49BE31B516E004B82859FBF197CD2E704F250392C34FB75BACBC58CA33C83",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-DB-001.md",
+      "id": "DB-001"
+    },
+    {
+      "canonicalGitSha256": "40E6C9706BEC00A65856919CEB9B76EE60D8C9FA372F3F17501199C69D876113",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "6269034d7c321a9afb5c0a67f659c1e9a3e6a816",
+      "worktreeSha256": "40E6C9706BEC00A65856919CEB9B76EE60D8C9FA372F3F17501199C69D876113",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-RT-002.md",
+      "id": "RT-002"
+    },
+    {
+      "canonicalGitSha256": "6A44287B0D3414008B7DA5D6D81A845764E95A8E533F9F904EDBE24B7D35F1A1",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "9e246be2879b8b24875cb569fb66d17b0c6e0973",
+      "worktreeSha256": "6A44287B0D3414008B7DA5D6D81A845764E95A8E533F9F904EDBE24B7D35F1A1",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-OA-003.md",
+      "id": "OA-003"
+    },
+    {
+      "canonicalGitSha256": "9E0BCDB1D95CD622162033275B969D62B939E92A83BB04670ABBB2A2E4C2DEB6",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "3b512c71c3ebb8aed5df6992c652b692fbb0d7cb",
+      "worktreeSha256": "9E0BCDB1D95CD622162033275B969D62B939E92A83BB04670ABBB2A2E4C2DEB6",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-CL-004.md",
+      "id": "CL-004"
+    },
+    {
+      "canonicalGitSha256": "76ECA24266FB93DBAD6E0EEA9EBCE8D8266C9DA2DC348FE40C7630C08F0094A8",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "2d4dd88d029ad1aa9acce4825d80ed1f20fdacc3",
+      "worktreeSha256": "76ECA24266FB93DBAD6E0EEA9EBCE8D8266C9DA2DC348FE40C7630C08F0094A8",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-RTR-005.md",
+      "id": "RTR-005"
+    },
+    {
+      "canonicalGitSha256": "74E28DE08462C323DA2C6CEE09C0149A7A6297CFC101236291BDFF966939DB25",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "db226b286032eb93e0762b5c2eca92569f66f2c6",
+      "worktreeSha256": "74E28DE08462C323DA2C6CEE09C0149A7A6297CFC101236291BDFF966939DB25",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-OF-006.md",
+      "id": "OF-006"
+    }
+  ],
+  "approvedArtifactSha256": "AA651E4E45355FB4BC80ADF40CF6CD0FC125A702AFB686891C28DE4535BF0040",
+  "negativeIdentifierNote": "The original source assigns no numeric IDs. The verbatim case label is its original identifier; no N01–N12 authority is invented.",
+  "baselineRepositories": [
+    {
+      "status": "M integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1",
+      "path": "E:\\Neshane-CRM-V3\\Backend",
+      "head": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+      "branch": "codex/v3-024-dedicated-managed-design",
+      "statusExcludesTaskReviewArtifacts": true
+    },
+    {
+      "status": "A  Local-Infra/.env.example\nAM Local-Infra/.gitignore\nA  Local-Infra/README.md\nAM Local-Infra/compose.yaml\nAM Local-Infra/observability/grafana-datasources.yaml\nAM Local-Infra/observability/otel-collector.yaml\nAM Local-Infra/observability/prometheus.yml\nAM Local-Infra/observability/tempo.yaml\n?? Local-Infra/seaweedfs-downloaded.txt\n?? Local-Infra/seaweedfs-test.txt",
+      "path": "E:\\Neshane-CRM-V3",
+      "head": "c3926e6a8c9847281d49987abdbafbbced562dbb",
+      "branch": "codex/v3-024-root-preservation",
+      "statusExcludesTaskReviewArtifacts": true
+    },
+    {
+      "status": "",
+      "path": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "head": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "branch": "main",
+      "statusExcludesTaskReviewArtifacts": true
+    },
+    {
+      "status": "",
+      "path": "E:\\Neshane-CRM-V3\\Frontend",
+      "head": "faa563f8f5c3bda25c3e5f40c7a8688c1bc245e7",
+      "branch": "main",
+      "statusExcludesTaskReviewArtifacts": true
+    }
+  ],
+  "originalConditions": [
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 1",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Maintain a separate database and separate runtime credentials for each owning service within each Cell. A shared PostgreSQL cluster does not permit shared cross-service databases or runtime privileges.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 367
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 2",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve separation between Runtime and Migration roles and enforce least-privilege permissions.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 368
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 3",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Prohibit administrative access, privilege escalation, and RLS bypass by Runtime roles.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 369
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 4",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require validated Tenant Context and applicable RLS controls for both read and write operations.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 370
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 5",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve credential isolation and prohibit Operations Agent access to database secrets.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 371
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 6",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require real PostgreSQL, role, RLS, Connection Pool, and cross-service/Cell unauthorized-access verification before Runtime Isolation acceptance.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 372
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "DB-001 / condition 7",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Keep OD-012, OD-013, and OD-014 open until independently dispositioned. Do not select the production database topology at this stage.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 373
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RT-002 / condition 1",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Restrict the Reference Environment to one synthetic Tenant and one Dedicated Cell.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 387
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RT-002 / condition 2",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve separation of service Containers, Configuration, Runtime Identities, and network boundaries.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 388
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RT-002 / condition 3",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Prohibit Privileged Containers, unrestricted Docker Socket access, and unrestricted Host administration.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 389
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RT-002 / condition 4",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Enforce Controller and Agent authority restrictions in accordance with OA-003.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 390
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RT-002 / condition 5",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve database and credential isolation in accordance with DB-001 and CL-004.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 391
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RT-002 / condition 6",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require separately authorized verification of Network Isolation, Readiness, Service Lifecycle, Recovery, and cleanup limited to owned resources.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 392
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 1",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Maintain independent Controller and Agent identities and separate Authorization and Execution responsibilities.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 408
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 2",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Validate authorization at request admission and immediately before consequential execution.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 409
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 3",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Bind authorization to the exact Operation, Parameters, Target, Deployment/Cell, Resource Version, and immutable Digest.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 410
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 4",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Enforce Allowlisting scoped to operation type, resource, and configuration.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 411
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 5",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Prohibit arbitrary Shell execution, unrestricted Docker Socket access, broad Host administrative privileges, and access to database secrets or Tenant business data.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 412
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 6",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Enforce Replay, Concurrency, Conflict, and Crash Recovery safeguards.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 413
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 7",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Enforce Fail-Closed behavior for invalid, expired, revoked, superseded, or unverifiable authority.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 414
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OA-003 / condition 8",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require separately authorized real verification of Identity, Trust, Execution, Adapter Isolation, and Recovery.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 415
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 1",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Maintain independent least-privilege credentials for each owning service, Cell, and database.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 431
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 2",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve Runtime and Migration separation and prohibit administrative privilege escalation.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 432
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 3",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Prevent unauthorized storage or disclosure of Secret Material.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 433
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 4",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Distinguish routine Rotation from emergency revocation, and prevent new connections using old credentials before completing cleanup of existing sessions.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 434
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 5",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Define independent Emergency Revocation that does not wait for replacement credentials to become available.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 435
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 6",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Address active database sessions, Transactions, and Connection Pools.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 436
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 7",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Prohibit reporting success after failed or uncertain lifecycle phases, and prevent restoration of revoked credentials through Rollback or Backup.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 437
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "CL-004 / condition 8",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require separately authorized real database and Credential Lifecycle verification before Runtime acceptance.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 438
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 1",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Derive Tenant Context from an approved authentication boundary.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 454
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 2",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Validate Authoritative Placement, Cell assignment, Deployment identity, Lifecycle State, and Generation.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 455
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 3",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Reject stale, expired, conflicting, or unauthorized Placement evidence.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 456
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 4",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Verify Cell Eligibility, Activation, Suspension, and Deployment Profile.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 457
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 5",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Authenticate the destination independently of network reachability.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 458
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 6",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Enforce Fail-Closed Routing with Zero Unauthorized Forwarding and no fallback to an unrelated Cell.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 459
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 7",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve separation of Placement, Trust, Gateway, and Operations authorities.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 460
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "RTR-005 / condition 8",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require separately authorized positive and negative verification of Routing, Trust, and Forwarding.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 461
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 1",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require validated Tenant Context.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 479
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 2",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Use only Placement Evidence previously validated by an authoritative source.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 480
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 3",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Preserve the authenticity and integrity of retained Local State.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 481
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 4",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Reject known superseded or conflicting Generations.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 482
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 5",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Enforce approved Freshness limits without automatically extending validity during outages.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 483
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 6",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Honor known Suspension and Revocation states.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 484
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 7",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Validate the target Cell and Deployment identities.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 485
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 8",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Maintain applicable Destination Trust requirements.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 486
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 9",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Consider continuation only for operations that were previously authorized.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 487
+    },
+    {
+      "sourceRevision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "id": "OF-006 / condition 10",
+      "sourceGitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "originalRequirement": "Require a separately approved, operation-specific continuation Policy.",
+      "sourceDocument": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "sourceLine": 488
+    }
+  ],
+  "task": "G-RUNTIME.01"
+}

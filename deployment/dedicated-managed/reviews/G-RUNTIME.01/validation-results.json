@@ -1,0 +1,968 @@
+{
+  "negativeCasesRepresentedExactlyOnce": true,
+  "conditionsRepresentedExactlyOnce": true,
+  "disposition": "COVERAGE REVIEW COMPLETE; gaps/dependencies remain; final runtime acceptance pending independent TAO/authority",
+  "recordedAt": "2026-11-17T21:37:14.2893907Z",
+  "gRuntime02Started": false,
+  "productCodeModified": false,
+  "testsRerun": false,
+  "evidenceIds": 131,
+  "negativeCaseCount": 12,
+  "conditionCount": 47,
+  "negativeCaseCounts": {
+    "COVERED": 6,
+    "PARTIAL": 6,
+    "MISSING": 0,
+    "CONFLICTING": 0,
+    "NOT_APPLICABLE": 0
+  },
+  "conditionCounts": {
+    "COVERED": 17,
+    "PARTIAL": 28,
+    "MISSING": 1,
+    "CONFLICTING": 1,
+    "NOT_APPLICABLE": 0
+  },
+  "authorityAcceptance": "NOT ISSUED",
+  "task": "G-RUNTIME.01",
+  "phaseIntegrity": [
+    {
+      "directory": "integration-tests/v3-024-db-isolation",
+      "originalIndependentAssessments": [
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-db-isolation/build/recovery/20261115T1135035393389Z/recovery-assessment.md",
+          "bytes": 10089,
+          "sha256": "49AA77EAD31A5658C36539189B70B2E1D0ECE8DCD09835B162B5FB032CF85C40"
+        }
+      ],
+      "phase": {
+        "verified": 210,
+        "status": "VERIFIED",
+        "pinMatches": true,
+        "manifest": {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-db-isolation/build/recovery/20261115T1135035393389Z/recovery-integrity-manifest.json",
+          "bytes": 38802,
+          "sha256": "A1BE8FA61B0E910CBF4EECBF4E6E7F8113E23105DF39054D03C2FD10D20C8C7F"
+        },
+        "members": 210,
+        "expectedManifestSha256": "A1BE8FA61B0E910CBF4EECBF4E6E7F8113E23105DF39054D03C2FD10D20C8C7F",
+        "issues": []
+      },
+      "additionalReferencedManifests": [
+        {
+          "verified": 31,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-db-isolation/build/runs/20261115T1142586934897Z/evidence/integrity-manifest.json",
+            "bytes": 4239,
+            "sha256": "7EB97A823D337C803AD2FCA1AA85302C23F5D1236FD332CD01566D84AD920CB0"
+          },
+          "members": 31,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 31,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-db-isolation/build/runs/20261115T1146287923119Z/evidence/integrity-manifest.json",
+            "bytes": 4239,
+            "sha256": "EE5CA971AFE33C4570996D57B0BD7227A9A2F411626162157AAB67498757C443"
+          },
+          "members": 31,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 31,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-db-isolation/build/runs/20261115T1146512562011Z/evidence/integrity-manifest.json",
+            "bytes": 4239,
+            "sha256": "A3A749ECE4B9CA45D8264A3C0EC9B511E1AF980B829C51B001832025D00157AA"
+          },
+          "members": 31,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 30,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-db-isolation/build/runs/20261115T1148184225315Z/evidence/integrity-manifest.json",
+            "bytes": 4097,
+            "sha256": "0A29CB9E341374FF9E5F94E49F129A3A3EEF40A5F52DF70409FBFE8479A02FEF"
+          },
+          "members": 30,
+          "expectedManifestSha256": "",
+          "issues": []
+        }
+      ],
+      "stage": "DB",
+      "closureReadmeCommit": "d74a3279fc6c85674899afaa9a493e0ff5eeeded",
+      "runs": [
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-db-isolation/build/runs/20261115T1147137351564Z/evidence/integrity-manifest.json",
+              "bytes": 4243,
+              "sha256": "A823D3C4E3FA1A2C3264BE47E0C30ACF8C6413B2F030DB9121B1555FE4B5E59F"
+            },
+            "expectedManifestSha256": "",
+            "verified": 31,
+            "pinMatches": true,
+            "issues": [],
+            "members": 31
+          },
+          "timestamp": "20261115T1147137351564Z"
+        },
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-db-isolation/build/runs/20261115T1147466345018Z/evidence/integrity-manifest.json",
+              "bytes": 4243,
+              "sha256": "6B19659F2EA0A7008F4A57CDF24BC8D0ABB4A6C63A86E0F217887E0A79267D14"
+            },
+            "expectedManifestSha256": "",
+            "verified": 31,
+            "pinMatches": true,
+            "issues": [],
+            "members": 31
+          },
+          "timestamp": "20261115T1147466345018Z"
+        }
+      ]
+    },
+    {
+      "directory": "integration-tests/v3-024-runtime-routing",
+      "originalIndependentAssessments": [
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-runtime-routing/build/verification/independent-verification.json",
+          "bytes": 13049,
+          "sha256": "4D0B136A8CCE8F3D6F4B5D2D8868731F5697C16C0D354A1351AE8488B5C8754A"
+        }
+      ],
+      "phase": {
+        "verified": 274,
+        "status": "VERIFIED",
+        "pinMatches": true,
+        "manifest": {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-runtime-routing/build/verification/phase-integrity-manifest.json",
+          "bytes": 51190,
+          "sha256": "8086D54E85A7377CCFC518B4213298B6BE68C9E6501A59BAC91BA9067007B532"
+        },
+        "members": 274,
+        "expectedManifestSha256": "8086D54E85A7377CCFC518B4213298B6BE68C9E6501A59BAC91BA9067007B532",
+        "issues": []
+      },
+      "additionalReferencedManifests": [
+        {
+          "verified": 20,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-runtime-routing/build/runs/20261115T1415305304782Z/evidence/integrity-manifest.json",
+            "bytes": 2785,
+            "sha256": "A9DCE58C4C459A315B22D69F84783ED6F2F89B43C4C47C158C4FE4FE35B12B7B"
+          },
+          "members": 20,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 27,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-runtime-routing/build/runs/20261115T1418534069597Z/evidence/integrity-manifest.json",
+            "bytes": 3718,
+            "sha256": "E3F0FB8DBD2A012CDED342EBFCBCAAC68E5CDA47DB79BFF3D0C6443A606F782D"
+          },
+          "members": 27,
+          "expectedManifestSha256": "",
+          "issues": []
+        }
+      ],
+      "stage": "R",
+      "closureReadmeCommit": "80c7de45d0a3374c836fc32f8c588daa587a35bd",
+      "runs": [
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-runtime-routing/build/runs/20261115T1422055196059Z/evidence/integrity-manifest.json",
+              "bytes": 15208,
+              "sha256": "1831E905D4DE83845ADDB421464A1EE770FCE6CE4A887CAC3C6256052DDCA71C"
+            },
+            "expectedManifestSha256": "",
+            "verified": 109,
+            "pinMatches": true,
+            "issues": [],
+            "members": 109
+          },
+          "timestamp": "20261115T1422055196059Z"
+        },
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-runtime-routing/build/runs/20261115T1424318111251Z/evidence/integrity-manifest.json",
+              "bytes": 15208,
+              "sha256": "B4EAD3DA42E043C5A760DC7C35995DD57A2D663B77C35D167A3B53C0C687BBCC"
+            },
+            "expectedManifestSha256": "",
+            "verified": 109,
+            "pinMatches": true,
+            "issues": [],
+            "members": 109
+          },
+          "timestamp": "20261115T1424318111251Z"
+        }
+      ]
+    },
+    {
+      "directory": "integration-tests/v3-024-workload-identity",
+      "originalIndependentAssessments": [
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-workload-identity/build/verification/first-complete-independent.json",
+          "bytes": 647,
+          "sha256": "7AFDDD7F26AF89E6D3CA824B5DFA29DF2C711FBC5E19931DAEC0FF5CBBA26EAD"
+        },
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-workload-identity/build/verification/second-complete-independent.json",
+          "bytes": 246,
+          "sha256": "BC02AC8BAAF34EFB9B71A75CBDE42AF846BB9DED719057A7F9E73F901D5CCD62"
+        },
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-workload-identity/build/verification/two-run-source-pki-comparison.json",
+          "bytes": 127,
+          "sha256": "7F055F5022BA9E54AC7C19328A9949230610A41AF60486480ED11463CA473EC2"
+        }
+      ],
+      "phase": {
+        "verified": 1362,
+        "status": "VERIFIED_EXCEPT_DOCUMENTED_CLOSURE_README",
+        "pinMatches": true,
+        "manifest": {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-workload-identity/build/verification/phase-integrity-manifest.json",
+          "bytes": 260949,
+          "sha256": "69551028AD629787BFCD9E56BA9B3BBBA1E0DD6E9D1A69E5BADBDA126310E608"
+        },
+        "members": 1363,
+        "expectedManifestSha256": "69551028AD629787BFCD9E56BA9B3BBBA1E0DD6E9D1A69E5BADBDA126310E608",
+        "issues": [
+          {
+            "status": "MISMATCH",
+            "path": "integration-tests/v3-024-workload-identity/README.md",
+            "actual": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-workload-identity/README.md",
+              "bytes": 12070,
+              "sha256": "9B94F4870FCFC176BF9662624E8F37FB6CB48C36008180EABBDAC46E0B7E2D59"
+            },
+            "expected": {
+              "sha256": "3EAC1C4BEE0BDBF9DE975AE6011BA2D80B808C69ABC1DA7D3405581703039C31",
+              "bytes": 7066
+            },
+            "documentedClosureReadme": true
+          }
+        ]
+      },
+      "additionalReferencedManifests": [
+        {
+          "verified": 24,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-workload-identity/build/runs/20261115T1633045917432Z/evidence/integrity-manifest.json",
+            "bytes": 3408,
+            "sha256": "8888EF6050CE987F4207E2CBDD5FB295C211ED2EED10689A9BCF40A90DE4F051"
+          },
+          "members": 24,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 136,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-workload-identity/build/runs/20261115T1635190532998Z/evidence/integrity-manifest.json",
+            "bytes": 19128,
+            "sha256": "2902EEF358986790A40D572CE818D70A33BE725308E45A0693C4D3AE96150BF7"
+          },
+          "members": 136,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 263,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-workload-identity/build/runs/20261115T1645165754545Z/evidence/integrity-manifest.json",
+            "bytes": 36919,
+            "sha256": "276B77EAE86B5730C02FFECD3A50BE651A6D3F87582C2F5145B9911E2C59DA63"
+          },
+          "members": 263,
+          "expectedManifestSha256": "",
+          "issues": []
+        }
+      ],
+      "stage": "W",
+      "closureReadmeCommit": "ad0b41e58d365375825981f9f3ad1cabdf2e2a95",
+      "runs": [
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-workload-identity/build/runs/20261115T1654478165264Z/evidence/integrity-manifest.json",
+              "bytes": 58938,
+              "sha256": "A9F4EC6E80082ABBF0113F674929DDF299D4BF1869B9C9ECFB1DF27B15CA5CFD"
+            },
+            "expectedManifestSha256": "",
+            "verified": 416,
+            "pinMatches": true,
+            "issues": [],
+            "members": 416
+          },
+          "timestamp": "20261115T1654478165264Z"
+        },
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-workload-identity/build/runs/20261115T1700058271536Z/evidence/integrity-manifest.json",
+              "bytes": 58938,
+              "sha256": "D16EDCADA42DE950C16A03C8AAAA70F68420F573CD9BB9CBDC415F4172DE00AA"
+            },
+            "expectedManifestSha256": "",
+            "verified": 416,
+            "pinMatches": true,
+            "issues": [],
+            "members": 416
+          },
+          "timestamp": "20261115T1700058271536Z"
+        }
+      ]
+    },
+    {
+      "directory": "integration-tests/v3-024-operations-safety",
+      "originalIndependentAssessments": [
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-operations-safety/build/verification/phase-assessment.md",
+          "bytes": 4498,
+          "sha256": "85F008CE28DA509F75AB74B2C7D220B8592343E4FE70EA84DABFA052E67C3316"
+        }
+      ],
+      "phase": {
+        "verified": 1123,
+        "status": "VERIFIED_EXCEPT_DOCUMENTED_CLOSURE_README",
+        "pinMatches": true,
+        "manifest": {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-operations-safety/build/verification/phase-integrity-manifest.json",
+          "bytes": 212920,
+          "sha256": "8AA5CDA4F6368A6E615B18807EAFADE9D89CF39D4D22D03CB171A08422A8E5EA"
+        },
+        "members": 1124,
+        "expectedManifestSha256": "8AA5CDA4F6368A6E615B18807EAFADE9D89CF39D4D22D03CB171A08422A8E5EA",
+        "issues": [
+          {
+            "status": "MISMATCH",
+            "path": "integration-tests/v3-024-operations-safety/README.md",
+            "actual": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-operations-safety/README.md",
+              "bytes": 16440,
+              "sha256": "DD70892AA5A6E43AA8192747112539687E9FB0E184F7F39540EA6B817CB2E93C"
+            },
+            "expected": {
+              "sha256": "60D17C30BF70D88D7043358165CD604FD4887D592B45A006B513D48D55174A28",
+              "bytes": 10257
+            },
+            "documentedClosureReadme": true
+          }
+        ]
+      },
+      "additionalReferencedManifests": [
+        {
+          "verified": 25,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-operations-safety/build/runs/20261115T1735519617822Z/evidence/integrity-manifest.json",
+            "bytes": 3560,
+            "sha256": "02F606E5EEAA0A71DFFB9E7D3FBA5625C5CE109FB22944AF03060BB263863CA3"
+          },
+          "members": 25,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 35,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-operations-safety/build/runs/20261115T1740354286463Z/evidence/integrity-manifest.json",
+            "bytes": 5029,
+            "sha256": "A46958829E5C7ABDFAE9E97D91F1916C8E6AF0DAF8D334EB3C94EBE3A98ABF07"
+          },
+          "members": 35,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 30,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-operations-safety/build/runs/20261115T1755554254049Z/evidence/integrity-manifest.json",
+            "bytes": 4239,
+            "sha256": "F56DBBA4DDBB4FAA6B448983BC8D3F7891C54EE39E0A5D3A89BEFCC7FCAE3EC2"
+          },
+          "members": 30,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 297,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-operations-safety/build/runs/20261115T1758549467430Z/evidence/integrity-manifest.json",
+            "bytes": 40787,
+            "sha256": "AD9DF2D743BC4A4630A8469AD201CF831F295D145059095DF1FB3B98A058A6A2"
+          },
+          "members": 297,
+          "expectedManifestSha256": "",
+          "issues": []
+        }
+      ],
+      "stage": "O",
+      "closureReadmeCommit": "453638ee0b063d40e1e412d0b466f0eafcd3e30a",
+      "runs": [
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-operations-safety/build/runs/20261115T1814499518088Z/evidence/integrity-manifest.json",
+              "bytes": 43466,
+              "sha256": "B9211B420B3440D44339BAD8AD373024BE1ED3627568D67276FB654B02D3EEC3"
+            },
+            "expectedManifestSha256": "",
+            "verified": 316,
+            "pinMatches": true,
+            "issues": [],
+            "members": 316
+          },
+          "timestamp": "20261115T1814499518088Z"
+        },
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-operations-safety/build/runs/20261115T1829405753975Z/evidence/integrity-manifest.json",
+              "bytes": 43466,
+              "sha256": "18ADB1E7AC6854C6FD414C35DE98BC9876DAEA26DF7B249595F90EC0350B7E99"
+            },
+            "expectedManifestSha256": "",
+            "verified": 316,
+            "pinMatches": true,
+            "issues": [],
+            "members": 316
+          },
+          "timestamp": "20261115T1829405753975Z"
+        }
+      ]
+    },
+    {
+      "directory": "integration-tests/v3-024-disaster-recovery",
+      "originalIndependentAssessments": [
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-disaster-recovery/build/verification/two-run-independent-verification.json",
+          "bytes": 1243,
+          "sha256": "8E14CAC5914C0616ED111C83FB3BA328154EB04543A2A1324759A25F78960E52"
+        }
+      ],
+      "phase": {
+        "verified": 1457,
+        "status": "VERIFIED_EXCEPT_DOCUMENTED_CLOSURE_README",
+        "pinMatches": true,
+        "manifest": {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-disaster-recovery/build/verification/phase-integrity-manifest.json",
+          "bytes": 287596,
+          "sha256": "51A900881CCCA20192562D7574211045D274211F9B0A1446E9CC8D7755B511D7"
+        },
+        "members": 1458,
+        "expectedManifestSha256": "51A900881CCCA20192562D7574211045D274211F9B0A1446E9CC8D7755B511D7",
+        "issues": [
+          {
+            "status": "MISMATCH",
+            "path": "integration-tests/v3-024-disaster-recovery/README.md",
+            "actual": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-disaster-recovery/README.md",
+              "bytes": 21239,
+              "sha256": "76DAD0F8FDDBDC650E26B999DAFBE4428ED87189A4F79C4C8A5EDC72B42AECB0"
+            },
+            "expected": {
+              "sha256": "AE50EEEE5BE2B47981C72B74DD718E3E5EB6DA9914784BA1908B85F87E41DC9B",
+              "bytes": 9173
+            },
+            "documentedClosureReadme": true
+          }
+        ]
+      },
+      "additionalReferencedManifests": [
+        {
+          "verified": 30,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T0843482853050Z/evidence/integrity-manifest.json",
+            "bytes": 4257,
+            "sha256": "603878230E1AB61224CBA747154BD19AC702C0187E145CC0D322FA36E3F8182C"
+          },
+          "members": 30,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 57,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T0934429929741Z/evidence/integrity-manifest.json",
+            "bytes": 8383,
+            "sha256": "BF280EF039F13A9E10B7E1C64A51DD943491A5476158FE1A840C1FFD24A75010"
+          },
+          "members": 57,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 61,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T0955119077464Z/evidence/integrity-manifest.json",
+            "bytes": 8925,
+            "sha256": "7BFFDF4A94CF891814F2C2A911827C07857766C16183C73D3E956BBD6D81D710"
+          },
+          "members": 61,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 62,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T0959387450495Z/evidence/integrity-manifest.json",
+            "bytes": 9076,
+            "sha256": "3995F2225C616BB0765E70C8A744FBA2AAC30AC9DA458628C2D0F66B8DE55A79"
+          },
+          "members": 62,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 132,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1004341724361Z/evidence/integrity-manifest.json",
+            "bytes": 19334,
+            "sha256": "E18E70529A0939935FA07C6A9F6E3B16A2EC16FE2E9D4B088633EA42BF2BA1E3"
+          },
+          "members": 132,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 134,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1023478694372Z/evidence/integrity-manifest.json",
+            "bytes": 19634,
+            "sha256": "E669847304E5936CB383066903EB99DF0314C2883850EDEC307932A3DE3D612B"
+          },
+          "members": 134,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 135,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1037395258475Z/evidence/integrity-manifest.json",
+            "bytes": 19772,
+            "sha256": "AC77A5BCEFAB37EF460727C2F16E075DA8D0AFFE641C40FAB3163132530700C7"
+          },
+          "members": 135,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 135,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1048087807470Z/evidence/integrity-manifest.json",
+            "bytes": 19772,
+            "sha256": "AF6C9C07967E22086BD0682786868F43FE2CC0E5AA667DBB2C01DF53AA8C1364"
+          },
+          "members": 135,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 135,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1054256171251Z/evidence/integrity-manifest.json",
+            "bytes": 19772,
+            "sha256": "CAE9FA71B6D0705C408B09BDED7A278A64B01988063088D02465BE2569F5A6DE"
+          },
+          "members": 135,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 135,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1100433179716Z/evidence/integrity-manifest.json",
+            "bytes": 19772,
+            "sha256": "917ADF1C4DDB6A5E697F3983B63F89B0F804D9D3F052E8EB40DE808097802F81"
+          },
+          "members": 135,
+          "expectedManifestSha256": "",
+          "issues": []
+        }
+      ],
+      "stage": "DR",
+      "closureReadmeCommit": "0ffa28bc0400e199dc35ced0cf9660e40b8b3db6",
+      "runs": [
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1106430258654Z/evidence/integrity-manifest.json",
+              "bytes": 19772,
+              "sha256": "1DD3DB133F968EA3A3D9BE71E10CF0555720BA1BDB3E240EEC7529EDB8288FD3"
+            },
+            "expectedManifestSha256": "",
+            "verified": 135,
+            "pinMatches": true,
+            "issues": [],
+            "members": 135
+          },
+          "timestamp": "20261116T1106430258654Z"
+        },
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-disaster-recovery/build/runs/20261116T1112098212687Z/evidence/integrity-manifest.json",
+              "bytes": 19772,
+              "sha256": "231385E00CC6F9A99FD9356E537AB7497B4C302A300708BBBBE9BE067946C770"
+            },
+            "expectedManifestSha256": "",
+            "verified": 135,
+            "pinMatches": true,
+            "issues": [],
+            "members": 135
+          },
+          "timestamp": "20261116T1112098212687Z"
+        }
+      ]
+    },
+    {
+      "directory": "integration-tests/v3-024-cross-control-integration",
+      "originalIndependentAssessments": [
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-cross-control-integration/build/verification/frontier-full-1802167784054Z/two-run-independent-verification.json",
+          "bytes": 48389,
+          "sha256": "2BE746A7BA43A301C7A30D551EEF00D49FE737F80698B16CEDA25E2D53308741"
+        },
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-cross-control-integration/build/verification/frontier-full-1802167784054Z/verifier-correction-record.json",
+          "bytes": 1073,
+          "sha256": "A72D3830AE4C60E4CC83EE144526672E913E9B9A3A0DC1FB826A397EA4A3E868"
+        },
+        {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-cross-control-integration/build/verification/frontier-full-1802167784054Z/verifier-path-list-diff.json",
+          "bytes": 2031,
+          "sha256": "61A9ACA6C29D56D54FC076661A0D94DADB9B4676A4F556581B48F3745FD9DA45"
+        }
+      ],
+      "phase": {
+        "verified": 15,
+        "status": "VERIFIED",
+        "pinMatches": true,
+        "manifest": {
+          "integrity": "HASHED",
+          "path": "integration-tests/v3-024-cross-control-integration/build/verification/frontier-full-1802167784054Z/phase-integrity-manifest.json",
+          "bytes": 6413,
+          "sha256": "58B59E6FA7A9A330D065A9ACC5F713F776FF56D6F07851E4145AB385A0C24087"
+        },
+        "members": 15,
+        "expectedManifestSha256": "58B59E6FA7A9A330D065A9ACC5F713F776FF56D6F07851E4145AB385A0C24087",
+        "issues": []
+      },
+      "additionalReferencedManifests": [
+        {
+          "verified": 600,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-cross-control-integration/build/runs/20261117T1623356100254Z/evidence/integrity-manifest.json",
+            "bytes": 87331,
+            "sha256": "861DF840B6B6B6C6522DD633A75E8FCC95FCA44109DEF12C31014F301C83C96B"
+          },
+          "members": 600,
+          "expectedManifestSha256": "",
+          "issues": []
+        },
+        {
+          "verified": 4,
+          "status": "VERIFIED",
+          "pinMatches": true,
+          "manifest": {
+            "integrity": "HASHED",
+            "path": "integration-tests/v3-024-cross-control-integration/build/execution-recovery/20261117T1621586890559Z/recovery-integrity-manifest.json",
+            "bytes": 585,
+            "sha256": "4BA6665E0069BB9063D01EB8FE167FD2C379C1B7AEE814E7DFBACE361FA83104"
+          },
+          "members": 4,
+          "expectedManifestSha256": "",
+          "issues": []
+        }
+      ],
+      "stage": "X",
+      "closureReadmeCommit": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+      "runs": [
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-cross-control-integration/build/runs/20261117T1802167784054Z/evidence/integrity-manifest.json",
+              "bytes": 115438,
+              "sha256": "93951216FFB68009FC54910C97249758F6A6AA58AF99BFCA36F0181376536BE2"
+            },
+            "expectedManifestSha256": "",
+            "verified": 801,
+            "pinMatches": true,
+            "issues": [],
+            "members": 801
+          },
+          "timestamp": "20261117T1802167784054Z"
+        },
+        {
+          "manifest": {
+            "status": "VERIFIED",
+            "phaseBindingMatches": true,
+            "manifest": {
+              "integrity": "HASHED",
+              "path": "integration-tests/v3-024-cross-control-integration/build/runs/20261117T1928378508875Z/evidence/integrity-manifest.json",
+              "bytes": 115438,
+              "sha256": "266DF0DE2D4D9D13E503E0BDCCACAE7B7216DE6F3E8CEBA36AF2E9FCA1E95C28"
+            },
+            "expectedManifestSha256": "",
+            "verified": 801,
+            "pinMatches": true,
+            "issues": [],
+            "members": 801
+          },
+          "timestamp": "20261117T1928378508875Z"
+        }
+      ]
+    }
+  ],
+  "sourceDrift": [
+    {
+      "run": "20261115T1147137351564Z",
+      "executedSha256": "3E4551056BFB2CFC7DC53FBF44B97975B97DCE7BF9031FDD4BE54E8F663480D2",
+      "currentSha256": "F78F1F98CFF331E42E79ACEB995755558D024E8314C58B53BA5B9D3EBE949292",
+      "stage": "DB",
+      "path": "integration-tests/v3-024-db-isolation/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1147466345018Z",
+      "executedSha256": "3E4551056BFB2CFC7DC53FBF44B97975B97DCE7BF9031FDD4BE54E8F663480D2",
+      "currentSha256": "F78F1F98CFF331E42E79ACEB995755558D024E8314C58B53BA5B9D3EBE949292",
+      "stage": "DB",
+      "path": "integration-tests/v3-024-db-isolation/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1422055196059Z",
+      "executedSha256": "2B5F31F230E40E7A46A5B6E7B50E9FD351321B450B6DF851976499D36C086AD8",
+      "currentSha256": "3D48AD835ED28268C4DF43EDD3C42D5A61D0F45027A7B4E58788B0A7D5F9DA9C",
+      "stage": "R",
+      "path": "integration-tests/v3-024-runtime-routing/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1424318111251Z",
+      "executedSha256": "2B5F31F230E40E7A46A5B6E7B50E9FD351321B450B6DF851976499D36C086AD8",
+      "currentSha256": "3D48AD835ED28268C4DF43EDD3C42D5A61D0F45027A7B4E58788B0A7D5F9DA9C",
+      "stage": "R",
+      "path": "integration-tests/v3-024-runtime-routing/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1654478165264Z",
+      "executedSha256": "3EAC1C4BEE0BDBF9DE975AE6011BA2D80B808C69ABC1DA7D3405581703039C31",
+      "currentSha256": "9B94F4870FCFC176BF9662624E8F37FB6CB48C36008180EABBDAC46E0B7E2D59",
+      "stage": "W",
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1700058271536Z",
+      "executedSha256": "3EAC1C4BEE0BDBF9DE975AE6011BA2D80B808C69ABC1DA7D3405581703039C31",
+      "currentSha256": "9B94F4870FCFC176BF9662624E8F37FB6CB48C36008180EABBDAC46E0B7E2D59",
+      "stage": "W",
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1814499518088Z",
+      "executedSha256": "60D17C30BF70D88D7043358165CD604FD4887D592B45A006B513D48D55174A28",
+      "currentSha256": "DD70892AA5A6E43AA8192747112539687E9FB0E184F7F39540EA6B817CB2E93C",
+      "stage": "O",
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261115T1829405753975Z",
+      "executedSha256": "60D17C30BF70D88D7043358165CD604FD4887D592B45A006B513D48D55174A28",
+      "currentSha256": "DD70892AA5A6E43AA8192747112539687E9FB0E184F7F39540EA6B817CB2E93C",
+      "stage": "O",
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261116T1106430258654Z",
+      "executedSha256": "AE50EEEE5BE2B47981C72B74DD718E3E5EB6DA9914784BA1908B85F87E41DC9B",
+      "currentSha256": "76DAD0F8FDDBDC650E26B999DAFBE4428ED87189A4F79C4C8A5EDC72B42AECB0",
+      "stage": "DR",
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261116T1112098212687Z",
+      "executedSha256": "AE50EEEE5BE2B47981C72B74DD718E3E5EB6DA9914784BA1908B85F87E41DC9B",
+      "currentSha256": "76DAD0F8FDDBDC650E26B999DAFBE4428ED87189A4F79C4C8A5EDC72B42AECB0",
+      "stage": "DR",
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261117T1802167784054Z",
+      "executedSha256": "5001D387EA4D2CB9DE521E9D7FB3DE04FDF77341C9AA93AA645E11EC717EB791",
+      "currentSha256": "514D856E45E5C45C9BFD36B792A3C39E2681D7DF1CAB4984D835EFD70E6D7CA4",
+      "stage": "X",
+      "path": "integration-tests/v3-024-cross-control-integration/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261117T1802167784054Z",
+      "executedSha256": "74110D45F8E7D2943FA15E72085BBF7FE51AA3FE4AB9634E2047397357691E7A",
+      "currentSha256": "0C51BE7DBE21D08FD868A694E9A304A0C27536358425252A7B90FEEDAB2E9445",
+      "stage": "X",
+      "path": "integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1",
+      "kind": "PRE_EXISTING_WORKTREE_VERIFIER_CORRECTION; NOT EXECUTED SOURCE"
+    },
+    {
+      "run": "20261117T1928378508875Z",
+      "executedSha256": "5001D387EA4D2CB9DE521E9D7FB3DE04FDF77341C9AA93AA645E11EC717EB791",
+      "currentSha256": "514D856E45E5C45C9BFD36B792A3C39E2681D7DF1CAB4984D835EFD70E6D7CA4",
+      "stage": "X",
+      "path": "integration-tests/v3-024-cross-control-integration/README.md",
+      "kind": "DOCUMENTED_POST_EXECUTION_CLOSURE_README"
+    },
+    {
+      "run": "20261117T1928378508875Z",
+      "executedSha256": "74110D45F8E7D2943FA15E72085BBF7FE51AA3FE4AB9634E2047397357691E7A",
+      "currentSha256": "0C51BE7DBE21D08FD868A694E9A304A0C27536358425252A7B90FEEDAB2E9445",
+      "stage": "X",
+      "path": "integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1",
+      "kind": "PRE_EXISTING_WORKTREE_VERIFIER_CORRECTION; NOT EXECUTED SOURCE"
+    }
+  ]
+}

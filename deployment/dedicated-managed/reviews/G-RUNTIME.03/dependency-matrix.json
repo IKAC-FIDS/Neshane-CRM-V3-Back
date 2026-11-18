@@ -1,0 +1,821 @@
+{
+  "task": "G-RUNTIME.03",
+  "categories": [
+    "Missing technical evidence",
+    "Missing integration evidence",
+    "Missing production validation",
+    "Missing policy",
+    "Missing ownership",
+    "Missing authority decision",
+    "Scope conflict"
+  ],
+  "dependencies": [
+    {
+      "stableDependencyIdentifier": "DEP-RUNTIME",
+      "originalCoverageReferences": [
+        "RT-002 / condition 1",
+        "RT-002 / condition 4",
+        "RT-002 / condition 6",
+        "OA-003 / condition 5",
+        "OA-003 / condition 8",
+        "RTR-005 / condition 8"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-03",
+        "GS-06",
+        "GS-07",
+        "RR-RT-002-01",
+        "OD-013",
+        "OD-014",
+        "OD-015",
+        "OD-022",
+        "OD-023",
+        "RR-PROVENANCE",
+        "F-R2-02",
+        "F-R2-05"
+      ],
+      "requiredClosureEvidence": "Exact profile/service integration and evidence sufficiency against the original 47/12; preserve all five mandatory verification obligations.",
+      "crossDependencies": [
+        "DEP-IAM-AUTH",
+        "DEP-JAVA-RLS",
+        "DEP-POOL",
+        "DEP-HOST",
+        "DEP-SUPPLY",
+        "DEP-ROUTING",
+        "DEP-RECOVERY",
+        "DEP-FRESHNESS-OFFLINE",
+        "DEP-DEPLOYMENT"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-013,OD-014,OD-015,OD-022,OD-023",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Runtime Tenant Isolation",
+      "authoritativeOpenDecisions": [
+        "OD-013",
+        "OD-014",
+        "OD-015",
+        "OD-022",
+        "OD-023"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing authority decision",
+        "Scope conflict"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-RT-002-C01",
+        "G03-RT-002-C04",
+        "G03-RT-002-C06",
+        "G03-OA-003-C05",
+        "G03-OA-003-C08",
+        "G03-RTR-005-C08"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-IAM-AUTH",
+      "originalCoverageReferences": [
+        "DB-001 / condition 1",
+        "DB-001 / condition 4",
+        "DB-001 / condition 5",
+        "RT-002 / condition 5",
+        "CL-004 / condition 1",
+        "CL-004 / condition 3",
+        "CL-004 / condition 4",
+        "CL-004 / condition 5",
+        "CL-004 / condition 8",
+        "RTR-005 / condition 1",
+        "OF-006 / condition 3",
+        "OF-006 / condition 5",
+        "Cross-Tenant reads and writes",
+        "Tenant Context or trusted-header spoofing",
+        "Credential reuse across service/Cell boundaries",
+        "Expired or revoked workload identity"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-02",
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "RR-CREDENTIAL-LIFECYCLE",
+        "RR-FRESHNESS"
+      ],
+      "requiredClosureEvidence": "Approved principal/membership and workload issuance/bootstrap/trust-domain boundaries with corresponding real lifecycle evidence; no AUTH or FE-BE implementation authorization.",
+      "crossDependencies": [
+        "DEP-CREDENTIALS",
+        "DEP-JAVA-RLS",
+        "DEP-FRESHNESS-OFFLINE",
+        "DEP-ROUTING"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-009,OD-010,OD-011,OD-012",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "IAM and AUTH dependency boundary only",
+      "authoritativeOpenDecisions": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing policy",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-DB-001-C01",
+        "G03-DB-001-C04",
+        "G03-DB-001-C05",
+        "G03-RT-002-C05",
+        "G03-CL-004-C01",
+        "G03-CL-004-C03",
+        "G03-CL-004-C04",
+        "G03-CL-004-C05",
+        "G03-CL-004-C08",
+        "G03-RTR-005-C01",
+        "G03-OF-006-C03",
+        "G03-OF-006-C05",
+        "G03-NC-01",
+        "G03-NC-02",
+        "G03-NC-07",
+        "G03-NC-08"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-CREDENTIALS",
+      "originalCoverageReferences": [
+        "DB-001 / condition 5",
+        "DB-001 / condition 6",
+        "RT-002 / condition 5",
+        "CL-004 / condition 1",
+        "CL-004 / condition 3",
+        "CL-004 / condition 4",
+        "CL-004 / condition 5",
+        "CL-004 / condition 6",
+        "CL-004 / condition 8",
+        "RTR-005 / condition 1",
+        "OF-006 / condition 1",
+        "OF-006 / condition 2",
+        "OF-006 / condition 4",
+        "OF-006 / condition 6",
+        "OF-006 / condition 7",
+        "OF-006 / condition 8",
+        "OF-006 / condition 9",
+        "OF-006 / condition 10",
+        "Tenant Context or trusted-header spoofing",
+        "Pool reuse across Tenant/Cell boundaries",
+        "Credential reuse across service/Cell boundaries",
+        "Expired or revoked workload identity"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-02",
+        "RR-OF-006-10",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014",
+        "RR-CREDENTIAL-LIFECYCLE",
+        "RR-OPERATIONAL-RECOVERY"
+      ],
+      "requiredClosureEvidence": "Full scoped routine replacement versus emergency containment, new-admission block before session/pool cleanup, concurrent reconnect and failed/unknown/crash phases under approved policy.",
+      "crossDependencies": [
+        "DEP-IAM-AUTH",
+        "DEP-POOL",
+        "DEP-RECOVERY",
+        "DEP-FRESHNESS-OFFLINE"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-010,OD-011,OD-012,OD-014",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Credential lifecycle",
+      "authoritativeOpenDecisions": [
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing technical evidence",
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing policy",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-DB-001-C05",
+        "G03-DB-001-C06",
+        "G03-RT-002-C05",
+        "G03-CL-004-C01",
+        "G03-CL-004-C03",
+        "G03-CL-004-C04",
+        "G03-CL-004-C05",
+        "G03-CL-004-C06",
+        "G03-CL-004-C08",
+        "G03-RTR-005-C01",
+        "G03-OF-006-C01",
+        "G03-OF-006-C02",
+        "G03-OF-006-C04",
+        "G03-OF-006-C06",
+        "G03-OF-006-C07",
+        "G03-OF-006-C08",
+        "G03-OF-006-C09",
+        "G03-OF-006-C10",
+        "G03-NC-02",
+        "G03-NC-06",
+        "G03-NC-07",
+        "G03-NC-08"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-JAVA-RLS",
+      "originalCoverageReferences": [
+        "DB-001 / condition 1",
+        "DB-001 / condition 4",
+        "DB-001 / condition 6",
+        "CL-004 / condition 6",
+        "Cross-Tenant reads and writes",
+        "Pool reuse across Tenant/Cell boundaries"
+      ],
+      "affectedResidualIdentifiers": [
+        "RR-SESSION-GUC",
+        "OD-013",
+        "OD-014",
+        "RR-PRODUCTION-POOL"
+      ],
+      "requiredClosureEvidence": "Approved actual owning-service Tenant Context binding, transaction/persistence integration and real read/write denial evidence; synthetic logins alone are insufficient.",
+      "crossDependencies": [
+        "DEP-IAM-AUTH",
+        "DEP-POOL",
+        "DEP-CREDENTIALS"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-013,OD-014",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Java/RLS",
+      "authoritativeOpenDecisions": [
+        "OD-013",
+        "OD-014"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-DB-001-C01",
+        "G03-DB-001-C04",
+        "G03-DB-001-C06",
+        "G03-CL-004-C06",
+        "G03-NC-01",
+        "G03-NC-06"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-POOL",
+      "originalCoverageReferences": [
+        "DB-001 / condition 6",
+        "CL-004 / condition 4",
+        "CL-004 / condition 5",
+        "CL-004 / condition 6",
+        "CL-004 / condition 8",
+        "Pool reuse across Tenant/Cell boundaries"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-02",
+        "RR-SESSION-GUC",
+        "OD-010",
+        "OD-012",
+        "OD-014",
+        "RR-PRODUCTION-POOL",
+        "RR-CREDENTIAL-LIFECYCLE"
+      ],
+      "requiredClosureEvidence": "Actual product borrower/context reset and commit/rollback/error/cancellation/reconnect/revocation integration; retain raw Hikari FAIL and separately scoped safe-path PASS.",
+      "crossDependencies": [
+        "DEP-JAVA-RLS",
+        "DEP-CREDENTIALS",
+        "DEP-RECOVERY"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-010,OD-012,OD-014",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Production connection pools",
+      "authoritativeOpenDecisions": [
+        "OD-010",
+        "OD-012",
+        "OD-014"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing technical evidence",
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-DB-001-C06",
+        "G03-CL-004-C04",
+        "G03-CL-004-C05",
+        "G03-CL-004-C06",
+        "G03-CL-004-C08",
+        "G03-NC-06"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-HOST",
+      "originalCoverageReferences": [
+        "RT-002 / condition 1",
+        "RT-002 / condition 2",
+        "RT-002 / condition 3",
+        "RLS bypass through privileged roles"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-01",
+        "RR-RT-002-01",
+        "OD-015"
+      ],
+      "requiredClosureEvidence": "GS-01 approved profile host/operator capability model/topology and applicable control evidence; containers do not contain hostile administrators.",
+      "crossDependencies": [
+        "DEP-DEPLOYMENT",
+        "DEP-SUPPLY",
+        "DEP-RECOVERY"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-015",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Infrastructure and host isolation",
+      "authoritativeOpenDecisions": [
+        "OD-015"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing production validation",
+        "Missing policy",
+        "Missing ownership",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-RT-002-C01",
+        "G03-RT-002-C02",
+        "G03-RT-002-C03",
+        "G03-NC-05"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-SUPPLY",
+      "originalCoverageReferences": [],
+      "affectedResidualIdentifiers": [
+        "GS-04",
+        "OD-015",
+        "RR-PROVENANCE"
+      ],
+      "requiredClosureEvidence": "GS-04 accountable owner assignment before dependent milestone; actual hosted protection, provenance, digest binding and vulnerability-policy enforcement. Local pins are not supply-chain acceptance.",
+      "crossDependencies": [
+        "DEP-HOST",
+        "DEP-DEPLOYMENT"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-015",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "GS-04 owner and applicable enforcement prerequisites apply before the dependent milestone; overall G-RUNTIME decision remains authority-owned.",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Supply-chain governance",
+      "authoritativeOpenDecisions": [
+        "OD-015"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing technical evidence",
+        "Missing production validation",
+        "Missing ownership",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-RECOVERY",
+      "originalCoverageReferences": [
+        "RT-002 / condition 4",
+        "RT-002 / condition 6",
+        "OA-003 / condition 5",
+        "OA-003 / condition 8",
+        "CL-004 / condition 4",
+        "CL-004 / condition 5",
+        "CL-004 / condition 8",
+        "RTR-005 / condition 8"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-03",
+        "OD-012",
+        "OD-013",
+        "OD-015",
+        "OD-019",
+        "OD-022",
+        "OD-023",
+        "RR-OPERATIONAL-RECOVERY"
+      ],
+      "requiredClosureEvidence": "Domain/profile recovery semantics, independent authority/anchor custody, production backup/restore/activation and operational objective evidence beyond marker reconstruction.",
+      "crossDependencies": [
+        "DEP-CREDENTIALS",
+        "DEP-POOL",
+        "DEP-HOST",
+        "DEP-ROUTING",
+        "DEP-DEPLOYMENT"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-012,OD-013,OD-015,OD-019,OD-022,OD-023",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Operational recovery",
+      "authoritativeOpenDecisions": [
+        "OD-012",
+        "OD-013",
+        "OD-015",
+        "OD-019",
+        "OD-022",
+        "OD-023"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing policy",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-RT-002-C04",
+        "G03-RT-002-C06",
+        "G03-OA-003-C05",
+        "G03-OA-003-C08",
+        "G03-CL-004-C04",
+        "G03-CL-004-C05",
+        "G03-CL-004-C08",
+        "G03-RTR-005-C08"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-FRESHNESS-OFFLINE",
+      "originalCoverageReferences": [
+        "OF-006 / condition 1",
+        "OF-006 / condition 2",
+        "OF-006 / condition 3",
+        "OF-006 / condition 4",
+        "OF-006 / condition 5",
+        "OF-006 / condition 6",
+        "OF-006 / condition 7",
+        "OF-006 / condition 8",
+        "OF-006 / condition 9",
+        "OF-006 / condition 10"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-05",
+        "TI-14",
+        "RR-OF-006-10",
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-019",
+        "OD-023",
+        "RR-FRESHNESS",
+        "RR-DISTRIBUTED-ROUTING",
+        "F-R2-03"
+      ],
+      "requiredClosureEvidence": "Separately approved operation-specific continuation/freshness/clock/restart/revocation-exposure policy and corresponding evidence; OF-006/10 remains MISSING and offline PROHIBITED.",
+      "crossDependencies": [
+        "DEP-IAM-AUTH",
+        "DEP-CREDENTIALS",
+        "DEP-ROUTING",
+        "DEP-RECOVERY"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-009,OD-010,OD-011,OD-012,OD-019,OD-023",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "Actual offline continuation remains prohibited without its separate policy/approvals; overall G-RUNTIME decision remains authority-owned.",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Freshness and offline policy",
+      "authoritativeOpenDecisions": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-019",
+        "OD-023"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing technical evidence",
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing policy",
+        "Missing ownership",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-OF-006-C01",
+        "G03-OF-006-C02",
+        "G03-OF-006-C03",
+        "G03-OF-006-C04",
+        "G03-OF-006-C05",
+        "G03-OF-006-C06",
+        "G03-OF-006-C07",
+        "G03-OF-006-C08",
+        "G03-OF-006-C09",
+        "G03-OF-006-C10"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-DEPLOYMENT",
+      "originalCoverageReferences": [
+        "RT-002 / condition 1",
+        "RT-002 / condition 4",
+        "RT-002 / condition 6",
+        "OA-003 / condition 5",
+        "OA-003 / condition 8",
+        "RTR-005 / condition 8"
+      ],
+      "affectedResidualIdentifiers": [
+        "GS-03",
+        "RR-RT-002-01",
+        "OD-015",
+        "OD-019",
+        "OD-022",
+        "OD-023",
+        "RR-DISTRIBUTED-ROUTING",
+        "RR-OPERATIONAL-RECOVERY",
+        "RR-PROVENANCE",
+        "F-R2-04",
+        "F-R2-06"
+      ],
+      "requiredClosureEvidence": "Profile deployment/management lifecycle, original RT-002 scope interpretation, operator/supply-chain prerequisites and separately authorized rollout; no deployment is authorized by this package.",
+      "crossDependencies": [
+        "DEP-HOST",
+        "DEP-SUPPLY",
+        "DEP-RUNTIME",
+        "DEP-RECOVERY",
+        "DEP-ROUTING"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-015,OD-019,OD-022,OD-023",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Deployment governance",
+      "authoritativeOpenDecisions": [
+        "OD-015",
+        "OD-019",
+        "OD-022",
+        "OD-023"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing ownership",
+        "Missing authority decision",
+        "Scope conflict"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-RT-002-C01",
+        "G03-RT-002-C04",
+        "G03-RT-002-C06",
+        "G03-OA-003-C05",
+        "G03-OA-003-C08",
+        "G03-RTR-005-C08"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    },
+    {
+      "stableDependencyIdentifier": "DEP-ROUTING",
+      "originalCoverageReferences": [
+        "RT-002 / condition 6",
+        "RTR-005 / condition 8",
+        "OF-006 / condition 1",
+        "OF-006 / condition 2",
+        "OF-006 / condition 3",
+        "OF-006 / condition 4",
+        "OF-006 / condition 5",
+        "OF-006 / condition 6",
+        "OF-006 / condition 7",
+        "OF-006 / condition 8",
+        "OF-006 / condition 9",
+        "OF-006 / condition 10"
+      ],
+      "affectedResidualIdentifiers": [
+        "RR-OF-006-10",
+        "OD-009",
+        "OD-011",
+        "OD-012",
+        "OD-015",
+        "OD-022",
+        "OD-023",
+        "RR-FRESHNESS",
+        "RR-DISTRIBUTED-ROUTING"
+      ],
+      "requiredClosureEvidence": "Real authority distribution, destination trust and profile-specific distributed effect/fence/restart semantics; local JVM/database serialization does not prove universal distributed atomicity.",
+      "crossDependencies": [
+        "DEP-IAM-AUTH",
+        "DEP-FRESHNESS-OFFLINE",
+        "DEP-RECOVERY",
+        "DEP-DEPLOYMENT"
+      ],
+      "sourceReferences": [
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/governance-synchronization.md",
+          "locator": "GS-01–GS-07, TI-14, five verification obligations",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        },
+        {
+          "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+          "path": "architecture/open-decisions.md",
+          "locator": "OD-009,OD-011,OD-012,OD-015,OD-022,OD-023",
+          "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption"
+        }
+      ],
+      "blockingEffect": "AUTHORITY DECISION REQUIRED",
+      "proposedOwnerRolesAreNotAssignments": true,
+      "identifierNamespace": "REVIEW-LOCAL DEPENDENCY GROUP",
+      "area": "Distributed routing and fencing",
+      "authoritativeOpenDecisions": [
+        "OD-009",
+        "OD-011",
+        "OD-012",
+        "OD-015",
+        "OD-022",
+        "OD-023"
+      ],
+      "missingEvidenceOrDecisionTypes": [
+        "Missing technical evidence",
+        "Missing integration evidence",
+        "Missing production validation",
+        "Missing policy",
+        "Missing authority decision"
+      ],
+      "affectedGapIdentifiers": [
+        "G03-RT-002-C06",
+        "G03-RTR-005-C08",
+        "G03-OF-006-C01",
+        "G03-OF-006-C02",
+        "G03-OF-006-C03",
+        "G03-OF-006-C04",
+        "G03-OF-006-C05",
+        "G03-OF-006-C06",
+        "G03-OF-006-C07",
+        "G03-OF-006-C08",
+        "G03-OF-006-C09",
+        "G03-OF-006-C10"
+      ],
+      "documentedOwner": "UNASSIGNED",
+      "currentStatus": "UNRESOLVED — NO IMPLEMENTATION OR CLOSURE AUTHORIZED"
+    }
+  ],
+  "implementationAuthorization": "NONE; IAM/AUTH/FE-BE and G-RUNTIME.04 are not started"
+}

@@ -1,0 +1,99 @@
+{
+  "authIamAuthorization": "PENDING",
+  "runtimeDecisionStatus": "AUTHORITY_DECISION_RECORDED",
+  "controls": [
+    {
+      "canonicalGitSha256": "75987580D0C894FAF65D533F84E7140826B798223503DA41C91265120B514BFA",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "locator": "Decision, consequences and verification expectations",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "gitBlob": "65bc1c77272b99e6098d833cf82ae9707cf36b63",
+      "path": "architecture/adr/009-frontend-architecture.md"
+    },
+    {
+      "canonicalGitSha256": "41CA85AC28BBBC05EBD7B6B2801D8AAD20B4808042E23F95D563832B49930B06",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "locator": "Identity/Tenant Context/secret and approval boundaries",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "gitBlob": "9ed662b8838e35953894ebbea1dfb5d578ed4e5f",
+      "path": "architecture/standards/security.md"
+    },
+    {
+      "canonicalGitSha256": "4FBD1C9B3557CFE6AD8B5FCC4E232B23D6A8505C7E546D0B1F592F27AA47E8BC",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "locator": "GS-01/04/TI-14, G-Tenant milestones and preserved restrictions",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "gitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "path": "architecture/governance-synchronization.md"
+    }
+  ],
+  "automaticProgression": false,
+  "preservedCounts": {
+    "residualObligationRecords": 32,
+    "authorityItems": 79,
+    "dependencyGroups": 11,
+    "gaps": 36,
+    "originalRawSessionGucFails": 4
+  },
+  "reviewOnly": true,
+  "offline": "PROHIBITED",
+  "reason": "No authoritative named forward task/scope/criteria was located; design-only potential is not clearance of a named item",
+  "feBeAuthorization": "PENDING",
+  "independentlyEligibleItems": [],
+  "criteriaAmended": false,
+  "runtimeEvidenceBaselineSha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+  "allMandatoryBoundaryQuestions": [
+    {
+      "assessment": "No item-level scope supplied. Work asserting or relying on accepted tenant isolation cannot be cleared while G-RUNTIME is BLOCKED; document-only proposals require authority-defined scope, not assumed dependency exemption.",
+      "question": "Depends on accepted Runtime Tenant Isolation?",
+      "id": "acceptedRuntime"
+    },
+    {
+      "assessment": "Not independently eligible here; requires exact authorization and applicable runtime/control evidence or reassessment. No cross-Tenant execution now.",
+      "question": "Requires actual cross-tenant runtime behavior?",
+      "id": "crossTenantRuntime"
+    },
+    {
+      "assessment": "PROHIBITED for any candidate independent pre-runtime proposal; synthetic/non-sensitive descriptions only. No actual data processing authorized.",
+      "question": "Processes real customer/production tenant data?",
+      "id": "realData"
+    },
+    {
+      "assessment": "Provider/token/session/secret/workload/rotation/revocation/freshness-dependent implementation cannot bypass OD-009/010/011/012/014 or missing controls. Design analysis is distinct and still needs a named task/approval.",
+      "question": "Depends on unresolved credential or IAM controls?",
+      "id": "iamCredentials"
+    },
+    {
+      "assessment": "Excluded. GS-01/04, deployment/supply-chain prerequisites and OD-015/023 remain; local fixtures are not production permission.",
+      "question": "Requires production infrastructure?",
+      "id": "productionInfra"
+    },
+    {
+      "assessment": "PROHIBITED; OF-006/10 MISSING and TI-14 partial remain; no cached allow, invented authority, continuation or fallback.",
+      "question": "Relies on offline continuation?",
+      "id": "offline"
+    },
+    {
+      "assessment": "Must stop/refer to authority rather than claim eligibility. No owner, risk acceptance, waiver or new provider/topology is created.",
+      "question": "Could bypass GS-01, GS-04 or TI-14?",
+      "id": "residualBypass"
+    },
+    {
+      "assessment": "PROHIBITED. Four raw DB09 FAILs and original seals/history remain; safe-path/UI/mTLS success is not pool repair.",
+      "question": "Could conceal/replace existing FAIL evidence?",
+      "id": "failEvidence"
+    },
+    {
+      "assessment": "PROHIBITED. No framework, IAM library/provider, public API/BFF strategy, persistence or runtime topology selection; scoped original task/criteria and required ADR decisions must precede dependent implementation.",
+      "question": "Could implicitly expand architecture scope?",
+      "id": "architectureExpansion"
+    }
+  ],
+  "existingFailEvidence": "PRESERVED",
+  "implementationAuthorized": false,
+  "productionAuthorization": "NONE",
+  "task": "G-RUNTIME.05",
+  "residualClosures": 0,
+  "noNewRoadmapItems": true,
+  "runtimeGate": "BLOCKED"
+}

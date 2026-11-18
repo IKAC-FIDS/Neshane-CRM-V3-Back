@@ -1,0 +1,119 @@
+{
+  "reviewFiles": 14,
+  "recordedRuntimeDecisionStatus": "AUTHORITY_DECISION_RECORDED",
+  "rootMain": "094c966de745285bd5a8d1975312eb06d930d4a8",
+  "originalEvidenceProductCodePredecessors": "UNCHANGED",
+  "gateStatus": "BLOCKED",
+  "pushPerformed": false,
+  "runtimeEvidenceBaselineSha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+  "originalConditions": 47,
+  "provenance": "Local/uncommitted review and ignored evidence; correspondence is not external immutable custody or specialist sign-off",
+  "commitsCreated": 0,
+  "independentlyEligibleItems": 0,
+  "productionAuthorization": "NONE",
+  "confirmedRawSessionGucFails": 4,
+  "authIamDecisionStatus": "AWAITING_AUTHORITY_DECISION",
+  "nextAction": "STOP; request authoritative named original scope/criteria and explicit separate authority decisions. No automatic FE-BE/AUTH progression.",
+  "validationOutcome": "PASS — DOCUMENTATION, SOURCE AND EXISTING EVIDENCE CORRESPONDENCE ONLY; NOT PRODUCT TESTING OR AUTHORIZATION",
+  "protectedTrackedFiles": 554,
+  "undecidedAuthorityItems": 79,
+  "offline": "PROHIBITED",
+  "successfulRunManifests": 12,
+  "feBeAuthorization": "PENDING",
+  "roadmapItems": 0,
+  "reviewInputHashes": {
+    "product-scope-review.md": {
+      "sha256": "C84743D7ADE78181E89303B5CBD351C13979BDFAD1C9612FF5246226C26B940C",
+      "bytes": 8569
+    },
+    "roadmap-dependency-matrix.json": {
+      "sha256": "C7EB9292977D79348A838298DB879C092E675D84862D12004EAD62C364994366",
+      "bytes": 63872
+    },
+    "fe-be-scope-proposal.md": {
+      "sha256": "665F67579AEA680A5D9A13EEDF8792FCC2128FAA09D0C7E325C3AD4E7F6C041B",
+      "bytes": 4625
+    },
+    "fe-be-scope-decision.json": {
+      "sha256": "6FBBA1D88690BACCE41747A4E870FCCDB8D286E552579B4CE9164F19731853B6",
+      "bytes": 8175
+    },
+    "auth-iam-scope-proposal.md": {
+      "sha256": "C988ACEA20373089A0AD94A02F218BD3661807040B80A7C5306ACB54F82CEF82",
+      "bytes": 5191
+    },
+    "auth-iam-scope-decision.json": {
+      "sha256": "DF6A777E22623821B1754D73F05585F294992A5E9148F815A6A98B5AF24AA4F8",
+      "bytes": 8177
+    },
+    "prohibited-activities.md": {
+      "sha256": "81F36FF114A64F7BDDDD1FD1D3F3275A98A361F65D65A9DC2D878CFFBD477429",
+      "bytes": 2506
+    },
+    "scope-boundaries.json": {
+      "sha256": "3622BB982BA04479E4AE8966F375AB0CB7840F4D123A062FDDAAEE76F92F970B",
+      "bytes": 4948
+    },
+    "authority-decision-brief.md": {
+      "sha256": "1825923E729CA5FC4828D24A277BC9F55BBC1C90544FB482DD353B7D055B3720",
+      "bytes": 5121
+    },
+    "phase-11j-summary.md": {
+      "sha256": "EF8CCC763E2722218CC22798C0565D3A75D9116B1EF02AF010A9515A79D33C2D",
+      "bytes": 1624
+    },
+    "source-inventory.json": {
+      "sha256": "BA5F42E500E6534F39B1EC0A85B33827013CD08EA1BE060020A93268BA055AF0",
+      "bytes": 175063
+    },
+    "review-report.md": {
+      "sha256": "80531D4AD0482BBA4703630C3EEC1BF3E2E1A7747E399CB5DAF2563BC6513EE0",
+      "bytes": 13297
+    },
+    "Validate-ProductScope.ps1": {
+      "sha256": "309C3BBB77E5B55EF333C4113DECCAF0D0E530511EDA61E4501C991FB6D54EA3",
+      "bytes": 43487
+    }
+  },
+  "historicalReadmeDifferences": [
+    {
+      "stage": "W",
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "meaning": "Preserved documented post-seal closure README difference; no successful-run exception"
+    },
+    {
+      "stage": "O",
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "meaning": "Preserved documented post-seal closure README difference; no successful-run exception"
+    },
+    {
+      "stage": "DR",
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "meaning": "Preserved documented post-seal closure README difference; no successful-run exception"
+    }
+  ],
+  "recordedAt": "2026-11-18T09:08:50.2778890+03:30",
+  "successfulRunMembersRehashed": 3616,
+  "residualClosures": 0,
+  "backendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "dependencyGroups": 11,
+  "scopeEligibility": "AUTHORITY_INTERPRETATION_REQUIRED",
+  "openDecisionDependencies": 13,
+  "automaticProgression": false,
+  "residualObligationRecords": 32,
+  "originalEvidenceArtifactsRehashed": 997,
+  "historyPreparationFilesPreserved": 11,
+  "task": "G-RUNTIME.05",
+  "newRuntimeTests": 0,
+  "historicalTaskReferences": 6,
+  "implementationAuthorization": "NONE",
+  "authIamAuthorization": "PENDING",
+  "mandatoryBoundaryQuestions": 9,
+  "predecessorFilesPreserved": 61,
+  "additionalHistoricalManifestPackages": 25,
+  "originalNegativeCases": 12,
+  "stagingPerformed": false,
+  "coverageLinks": 59,
+  "feBeDecisionStatus": "AWAITING_AUTHORITY_DECISION",
+  "gaps": 36
+}

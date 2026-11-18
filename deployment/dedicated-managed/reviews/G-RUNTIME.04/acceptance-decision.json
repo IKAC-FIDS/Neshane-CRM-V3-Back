@@ -1,0 +1,266 @@
+{
+  "designatedAuthorityRole": "Product Decision Owner / TAO",
+  "preparationScope": "Historical preparation authorized a pending unsigned package. The current explicit authority instruction now authorizes recording the BLOCKED disposition only; the original preparation is preserved under history/pre-authority/.",
+  "actualDecisionIssuer": "Product Decision Owner / TAO, as explicitly attributed in the authorizing instruction",
+  "gateStatus": "BLOCKED",
+  "blockingRequirements": {
+    "rawSessionGucApplicability": "Four original FAIL observations are supporting concerns with accepted-path applicability to establish, NOT standalone automatic blockers.",
+    "unresolvedMaterialScopeConflict": "RT-002 / condition 1 remains CONFLICTING and unresolved; authority BLOCKED decision does not amend or resolve it.",
+    "residualAndPolicyTreatment": "GS-01, GS-04 and TI-14 remain unresolved; OF-006 condition 10 remains MISSING and offline prohibited. Applicable credential lifecycle/freshness dependencies remain unresolved.",
+    "noAutomaticItemClosure": "This single final Gate disposition does not decide/close all 79 underlying decision items or accept any residual risk.",
+    "authorityApproved": true,
+    "incompleteMandatoryEvidence": "Five mandatory verification requirements remain PARTIAL; required Context/Java-RLS/pool/IAM integration evidence remains insufficient for final acceptance under existing criteria.",
+    "mandatoryRequirementReferences": [
+      "DB-001 / condition 6",
+      "RT-002 / condition 6",
+      "OA-003 / condition 8",
+      "CL-004 / condition 8",
+      "RTR-005 / condition 8"
+    ]
+  },
+  "decisionRecordingTimestamp": "2026-11-18T08:40:15.9345230+03:30",
+  "allowedFinalDecisions": [
+    "PASS",
+    "BLOCKED"
+  ],
+  "designatedAuthorityIdentity": "Product Decision Owner / TAO — existing project-conversation role attribution; personal/legal identity not asserted",
+  "feBeAuthorization": "NONE",
+  "recordingState": "AUTHORITY-AUTHORIZED BLOCKED DECISION RECORDED; no cryptographic signature supplied or fabricated",
+  "productionAuthorization": "NONE",
+  "residualRiskDisposition": {
+    "authorityDisposition": "Preserve original classifications, all 36 gaps, all 32 residual/obligation records, all 11 dependency groups and all 79 underlying undecided items. Offline continuation remains PROHIBITED. No residual is accepted or closed.",
+    "status": "UNRESOLVED — NO RISK ACCEPTANCE, WAIVER, DOWNGRADE OR CLOSURE AUTHORIZED",
+    "closures": [],
+    "acceptedRisks": [],
+    "source": "../G-RUNTIME.03/residual-risk-register.json",
+    "waivers": [],
+    "originalRecordCount": 32
+  },
+  "authorityDesignationReference": {
+    "section": "Unified final internal decision authority, lines 25–73",
+    "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+    "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+    "basis": "Existing scoped project authority is recognized. An attributable explicit owner conversation decision suffices for internal authorization; no additional appointment certificate is required solely to re-establish that role. Actual applicable higher-priority independence obligations remain binding.",
+    "existingRole": "Product Decision Owner / Technical Architecture Owner (TAO)",
+    "path": "architecture/task-governance.md"
+  },
+  "approvalReference": {
+    "exactDecision": "BLOCKED",
+    "reviewedEvidenceBaselineSha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+    "authorityAttribution": "Product Decision Owner / TAO, existing documented project authority; no personal or legal identity asserted",
+    "reviewedBackendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+    "approvalMechanism": "Explicit attributable project-conversation instruction under existing unified authority policy; no cryptographic signature supplied or invented",
+    "gate": "G-RUNTIME",
+    "permission": "Record and validate this BLOCKED decision only. No mitigation, product/AUTH/IAM/FE-BE implementation, tests, residual closure, staging, commit, push or G-RUNTIME.05.",
+    "decisionDate": "2026-11-18",
+    "exactApprovalText": "The Product Decision Owner / TAO has explicitly approved the proposed BLOCKED disposition and authorized recording the decision.",
+    "source": "Current project conversation user instruction: Finalize G-RUNTIME.04 — Record Authorized BLOCKED Decision.",
+    "reviewedRootMain": "094c966de745285bd5a8d1975312eb06d930d4a8",
+    "issuanceTimeOfDay": null,
+    "authorityInstructionSections": [
+      "1. Decision baseline",
+      "2. Formal decision",
+      "3. Decision scope",
+      "4. Decision rationale",
+      "5. Residual treatment",
+      "6. Reassessment prerequisites",
+      "7. Update decision artifacts",
+      "8. Validation",
+      "9. Restrictions",
+      "10. Final report"
+    ]
+  },
+  "finalDecision": "BLOCKED",
+  "gateName": "Final Runtime Tenant Isolation Acceptance",
+  "recommendation": {
+    "bindingEffect": "NONE",
+    "suggestedDisposition": "BLOCKED",
+    "classification": "NON-BINDING RECOMMENDATION",
+    "source": "acceptance-recommendation.md",
+    "historicalStatus": "Original NON-BINDING RECOMMENDATION preserved unchanged; current Gate decision is separately authority-approved"
+  },
+  "exclusionBasis": "Explicit authority instruction sections 3, 5, 6 and 9; original governing boundaries remain unchanged",
+  "exactAuthorizedAcceptanceScope": "Final Runtime Tenant Isolation acceptance under the existing authoritative acceptance criteria, on the verified Backend/Root Main/evidence baseline. The authority approves BLOCKED; no acceptance-criterion amendment or production-readiness determination is made.",
+  "decisionStatus": "AUTHORITY_DECISION_RECORDED",
+  "authorityRecordingAuthorizationReference": {
+    "source": "Current project conversation user instruction: Finalize G-RUNTIME.04 — Record Authorized BLOCKED Decision.",
+    "authorization": "The Product Decision Owner / TAO has explicitly approved the proposed BLOCKED disposition and authorized recording the decision.",
+    "scope": "Record and validate this BLOCKED decision only. No mitigation, product/AUTH/IAM/FE-BE implementation, tests, residual closure, staging, commit, push or G-RUNTIME.05."
+  },
+  "approvalProvided": true,
+  "decisionDate": "2026-11-18",
+  "excludedScope": [
+    "Production readiness, production implementation, release or deployment authorization",
+    "AUTH/IAM implementation or FE-BE product development",
+    "Offline continuation, fallback or missing continuation-policy approval",
+    "Risk acceptance, residual closure, waiver, downgrade or acceptance-criteria amendment",
+    "New tests/laboratory execution, evidence replacement or mitigation implementation",
+    "Staging, commit, push or starting G-RUNTIME.05"
+  ],
+  "proposedFollowUpReference": "reassessment-prerequisites.md",
+  "decisionIdentifier": "G-RUNTIME.04-DRAFT-001",
+  "requiredFollowUpActions": {
+    "action": "Reassessment may be requested only with the existing prerequisites and a new independent authority review",
+    "clarification": "Required follow-up/evidence descriptions do not themselves authorize remediation, tests, implementation or another stage.",
+    "implementationAuthorization": "NONE"
+  },
+  "evidenceBaseline": {
+    "backendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+    "sourceInventory": "source-inventory.json",
+    "artifactHash": {
+      "bytes": 639531,
+      "sha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE"
+    },
+    "predecessorCount": 37,
+    "path": "evidence-baseline.json"
+  },
+  "independenceStatement": "No independent reviewer identity, appointment, signature or specialist review is claimed by this agent. Actual applicable binding independence requirements must be specifically sourced. Existing project owner authority is not rejected for lack of new appointment paperwork.",
+  "reassessmentPrerequisites": {
+    "source": "reassessment-prerequisites.md — original proposal retained and incorporated by current instruction section 6",
+    "prerequisites": [
+      "Explicit resolution of the RT-002 scope conflict",
+      "Sufficient verification evidence for applicable mandatory requirements",
+      "Demonstrated integration of relevant production control paths",
+      "Documented residual treatment consistent with governing criteria",
+      "Required policy and ownership decisions",
+      "Resolution of applicable IAM and credential dependencies",
+      "A new independent authority review"
+    ],
+    "implementationAuthorization": "NONE",
+    "status": "AUTHORITY-RECORDED PREREQUISITES; NOT IMPLEMENTATION AUTHORIZATION"
+  },
+  "gRuntime05Started": false,
+  "gateIdentifier": "G-RUNTIME",
+  "decisionRationale": {
+    "supportingConcerns": [
+      {
+        "findings": [
+          "F04-SESSION-GUC",
+          "F04-JAVA-RLS",
+          "F04-PRODUCTION-POOL"
+        ],
+        "treatment": "All four original raw SESSION-GUC leakage FAILs are retained; applicability to the actual accepted pool path must be established. They are NOT automatic independent blockers merely because a laboratory test failed; private safe-path PASS does not invalidate them"
+      },
+      {
+        "findings": [
+          "F04-IAM-CREDENTIALS",
+          "F04-FRESHNESS"
+        ],
+        "treatment": "Credential rotation/revocation, trust/custody, clock/freshness/exposure dependencies remain unresolved for relevant reliance"
+      },
+      {
+        "findings": [
+          "F04-ROUTING-FENCING",
+          "F04-RECOVERY-OPERATIONS",
+          "F04-PROVENANCE"
+        ],
+        "treatment": "Profile-specific distributed routing/fencing, recovery/operations and local/uncommitted evidence-custody limits remain; laboratory successes are preserved and not extrapolated to production"
+      }
+    ],
+    "sourceTrace": "Each cited finding retains original requirements/source revisions/locators and original evidence IDs/paths in decision-rationale-matrix.json; all 59 records and 36/32/11/79 registers remain linked in evidence-baseline.json",
+    "insufficientIntegrationEvidence": [
+      "Validated Tenant Context and principal-to-membership binding",
+      "Relevant production Java/RLS integration",
+      "Actual accepted connection-pool control paths",
+      "IAM/workload identity and credential lifecycle integration"
+    ],
+    "mandatoryBlockingRequirements": [
+      {
+        "reason": "Applicable real PostgreSQL/roles/RLS/pool/cross-service-Cell verification satisfaction remains insufficiently demonstrated in the submission",
+        "finding": "F04-MANDATORY-VERIFICATION",
+        "coverage": "PARTIAL",
+        "requirement": "DB-001 / condition 6"
+      },
+      {
+        "reason": "Applicable complete runtime/network/readiness/lifecycle/recovery/owned-cleanup verification satisfaction remains insufficiently demonstrated",
+        "finding": "F04-MANDATORY-VERIFICATION",
+        "coverage": "PARTIAL",
+        "requirement": "RT-002 / condition 6"
+      },
+      {
+        "reason": "Applicable identity/trust/execution/adapter/recovery verification satisfaction remains insufficiently demonstrated",
+        "finding": "F04-MANDATORY-VERIFICATION",
+        "coverage": "PARTIAL",
+        "requirement": "OA-003 / condition 8"
+      },
+      {
+        "reason": "Applicable real database and credential lifecycle integration verification satisfaction remains insufficiently demonstrated",
+        "finding": "F04-MANDATORY-VERIFICATION",
+        "coverage": "PARTIAL",
+        "requirement": "CL-004 / condition 8"
+      },
+      {
+        "reason": "Applicable complete routing/trust/forwarding verification satisfaction remains insufficiently demonstrated",
+        "finding": "F04-MANDATORY-VERIFICATION",
+        "coverage": "PARTIAL",
+        "requirement": "RTR-005 / condition 8"
+      }
+    ],
+    "unresolvedAuthorityInterpretations": [
+      {
+        "finding": "F04-SCOPE",
+        "treatment": "Material single-Tenant/single-Cell versus adversarial multi-scope conflict remains unresolved; this BLOCKED disposition does not resolve equivalence, narrow scope or amend the criterion",
+        "coverage": "CONFLICTING",
+        "requirement": "RT-002 / condition 1"
+      },
+      {
+        "treatment": "No continuation policy approved or invented; offline remains prohibited; exact future reliance/applicability requires authority decision",
+        "findings": [
+          "F04-OFFLINE-POLICY",
+          "F04-TI14"
+        ],
+        "coverage": "MISSING",
+        "requirement": "OF-006 / condition 10"
+      },
+      {
+        "treatment": "Unresolved original obligations, applicable host/admin, supply-chain ownership/enforcement and offline restrictions are preserved; no residual is accepted or closed",
+        "findings": [
+          "F04-HOST",
+          "F04-SUPPLY",
+          "F04-TI14"
+        ],
+        "requirements": [
+          "GS-01",
+          "GS-04",
+          "TI-14"
+        ]
+      }
+    ],
+    "authorityApprovedDisposition": "BLOCKED",
+    "source": "Current project conversation user instruction: Finalize G-RUNTIME.04 — Record Authorized BLOCKED Decision.",
+    "rationaleMatrix": "decision-rationale-matrix.json — original pre-authority findings retained as supporting analysis, not silently rewritten"
+  },
+  "candidateBlockingRequirements": {
+    "classification": "NON-BINDING RECOMMENDATION; applicability/impact remain authority-owned",
+    "findings": [
+      "F04-SCOPE",
+      "F04-OFFLINE-POLICY",
+      "F04-HOST",
+      "F04-SUPPLY",
+      "F04-TI14",
+      "F04-SESSION-GUC",
+      "F04-JAVA-RLS",
+      "F04-PRODUCTION-POOL",
+      "F04-IAM-CREDENTIALS",
+      "F04-ROUTING-FENCING",
+      "F04-FRESHNESS",
+      "F04-RECOVERY-OPERATIONS",
+      "F04-MANDATORY-VERIFICATION",
+      "F04-PROVENANCE"
+    ]
+  },
+  "scopeStatus": "EXPLICIT AUTHORITY-SUPPLIED FINAL ACCEPTANCE SCOPE; underlying RT-002 interpretation and technical issues remain unresolved",
+  "authAuthorization": "NONE",
+  "identifierNamespace": "Stable review-local record alias retained from the draft for continuity; authority approval concerns this baseline/scope/disposition, not a fabricated authority-issued numbering scheme",
+  "signature": null,
+  "draftRationaleReference": "decision-rationale-matrix.json",
+  "recordingTimestampMeaning": "Actual local recording event with timezone; not substituted for the authority-supplied decision date or unknown issuance time of day",
+  "history": {
+    "preservedOriginalFiles": 11,
+    "directory": "history/pre-authority/",
+    "manifest": "history/pre-authority/snapshot-manifest.json",
+    "note": "Complete original pending/unsigned package, recommendation and validation results are retained without rewriting. Historical PENDING statements describe preparation, not current Gate state."
+  },
+  "validLaboratoryEvidence": "PRESERVED; successful laboratory executions remain valid in their recorded bounded scopes; no production readiness established",
+  "offlineContinuation": "PROHIBITED"
+}

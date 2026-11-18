@@ -1,0 +1,138 @@
+{
+  "residualClosures": 0,
+  "referencedArtifactsRehashed": 997,
+  "rt002Condition1": "CONFLICTING — AUTHORITY INTERPRETATION UNRESOLVED",
+  "reviewInputHashes": {
+    "authority-decision-items.json": {
+      "bytes": 413901,
+      "sha256": "81BC2EA9F05220BE510BD33ADDB92CB83B0951B9A6EAE357F2DBAEA91FD4F639"
+    },
+    "authority-decision-items.md": {
+      "bytes": 30208,
+      "sha256": "3D8A8042A491C55934D9555CFFE5AB464F0B7C70F220A82D81818A7FE130C43A"
+    },
+    "authority-review-brief.md": {
+      "bytes": 14676,
+      "sha256": "487369DBAC67319BCA40B0106C9FF89DD550A0566627F9FCFEB00108007A0569"
+    },
+    "consolidated-gap-register.json": {
+      "bytes": 346464,
+      "sha256": "C9C25418D5436A16253DC3C29FC63EC77F765E208399FC5F0792643819AE3CD6"
+    },
+    "consolidated-gap-register.md": {
+      "bytes": 13133,
+      "sha256": "A6F9A4AE917A8DCC69186363C4A518BAF7435FBBCEFDB8ECB527720A17DE2CD1"
+    },
+    "dependency-matrix.json": {
+      "bytes": 28596,
+      "sha256": "3C37B20D520A8F443E9A4B6C3752D071C3EE2692B81A1B865E5721F5E5799574"
+    },
+    "dependency-matrix.md": {
+      "bytes": 7951,
+      "sha256": "0F2FA067EBD3C28DE828A99C613D1893006BE702A373778E57D775F741C55E0C"
+    },
+    "residual-risk-register.json": {
+      "bytes": 323657,
+      "sha256": "FD57863640A38639C900C456ACA995389621085CDD329EAE878E1B8E6D7E7ABD"
+    },
+    "residual-risk-register.md": {
+      "bytes": 15720,
+      "sha256": "7B64DE6B70D3DA9A279BE373552AF80FEFAD702B8B2A52A6F346390A6B879D94"
+    },
+    "review-report.md": {
+      "bytes": 9855,
+      "sha256": "8D225B06F0719DAAF18519B8EDA9B8D9F7399EF5EFDEF7F1483D95382403B45A"
+    },
+    "source-inventory.json": {
+      "bytes": 133786,
+      "sha256": "2B208DA5E7468641113919D1AB6593441AAE1CEECF08602525F152246D7175CD"
+    },
+    "Validate-Consolidation.ps1": {
+      "bytes": 59597,
+      "sha256": "13A765CF831F8A131B29AF2CAADE9C2D1926C8E421294758BB57794D9B7A36DA"
+    }
+  },
+  "conditions": 47,
+  "gs01Gs04Ti14": "OPEN OBLIGATIONS; EXACT ORIGINAL DEFINITIONS/STATUS PRESERVED",
+  "gRuntime04Started": false,
+  "newStaging": 0,
+  "predecessors": {
+    "all24BytesPreserved": true,
+    "uncommittedProvenanceLimitation": "RETAINED; no external predecessor seal or historical commit invented",
+    "gRuntime02": 10,
+    "gRuntime01": 14
+  },
+  "recordedAt": "2026-11-17T22:20:53.6254035Z",
+  "newSeverityRatings": 0,
+  "offline": "PROHIBITED",
+  "newAuthorityDecisions": 0,
+  "gs07InternalAuthority": "ALREADY SATISFIED; NOT REOPENED",
+  "testsOrLabRuns": 0,
+  "mitigationImplementation": 0,
+  "task": "G-RUNTIME.03",
+  "protectedTrackedWorktreeFiles": 554,
+  "originalCoverageStatistics": {
+    "conditions": {
+      "COVERED": 17,
+      "PARTIAL": 28,
+      "MISSING": 1,
+      "CONFLICTING": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "negativeCases": {
+      "COVERED": 6,
+      "PARTIAL": 6,
+      "MISSING": 0,
+      "CONFLICTING": 0,
+      "NOT_APPLICABLE": 0
+    }
+  },
+  "validationOutcome": "PASS — DOCUMENTATION/EXISTING-EVIDENCE CORRESPONDENCE ONLY",
+  "pushes": 0,
+  "undecidedAuthorityPreparationItems": 79,
+  "dependencyGroups": 11,
+  "applicableOpenDecisions": "OD-009/010/011/012/013/014/015/019/022/023 remain unresolved; proposed roles/milestones are not new assignments/deadlines",
+  "authOrFeBeAuthorization": "NONE",
+  "documentedHistoricalReadmeDifferences": [
+    {
+      "explanation": "Original documented post-seal closure README; original run members unchanged",
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "stage": "W"
+    },
+    {
+      "explanation": "Original documented post-seal closure README; original run members unchanged",
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "stage": "O"
+    },
+    {
+      "explanation": "Original documented post-seal closure README; original run members unchanged",
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "stage": "DR"
+    }
+  ],
+  "additionalHistoricalManifestPackages": 25,
+  "originalSessionGucFailObservations": 4,
+  "nonCoveredRecordsAccounted": 36,
+  "finalRuntimeAcceptance": "PENDING — EXCLUSIVELY INDEPENDENT TAO/AUTHORITY",
+  "allCoverageRecordsTraceable": 59,
+  "newOwnerAssignments": 0,
+  "successfulRunMembersRehashed": 3616,
+  "negativeCases": 12,
+  "nonCoveredBreakdown": {
+    "missingConditions": 1,
+    "partialConditions": 28,
+    "conflictingConditions": 1,
+    "partialNegativeCases": 6
+  },
+  "backendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "residualOrObligationRecords": 32,
+  "preExistingVerifier": "UNCHANGED",
+  "finalGRuntimeDecision": "NOT ISSUED — NO OVERALL PASS OR BLOCKED DETERMINATION",
+  "hashScope": "Twelve authored inputs; this result excludes its own hash. Correspondence metadata is not an independent authority signature.",
+  "successfulRunManifests": 12,
+  "originalEvidenceProductCodePredecessors": "UNCHANGED",
+  "of006Condition10": "MISSING",
+  "newCommits": 0,
+  "newDeadlines": 0,
+  "recommendedG03Disposition": "CONSOLIDATION COMPLETE — ALL GAPS/FAILS/RESIDUALS/DECISIONS RETAINED"
+}

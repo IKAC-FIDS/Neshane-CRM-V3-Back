@@ -1,0 +1,27 @@
+{
+  "allArtifactsTextOnly": true,
+  "newCommitCreated": false,
+  "existingVerifierSha256": "0C51BE7DBE21D08FD868A694E9A304A0C27536358425252A7B90FEEDAB2E9445",
+  "allArtifactsNonIgnored": true,
+  "task": "G-RUNTIME.01",
+  "reviewArtifactCount": 14,
+  "files": [
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/conditions-coverage.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/conditions-coverage.md",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/evidence-traceability-index.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/gaps-and-dependencies.md",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/git-status-review.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/negative-case-coverage.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/negative-case-coverage.md",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/Review-Evidence.ps1",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/review-map.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/review-report.md",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/source-inventory.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/Validate-Coverage.ps1",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/validation-checks.json",
+    "deployment/dedicated-managed/reviews/G-RUNTIME.01/validation-results.json"
+  ],
+  "newStaging": false,
+  "status": " M integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/Review-Evidence.ps1\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/Validate-Coverage.ps1\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/conditions-coverage.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/conditions-coverage.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/evidence-traceability-index.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/gaps-and-dependencies.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/git-status-review.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/negative-case-coverage.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/negative-case-coverage.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/review-map.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/review-report.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/source-inventory.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/validation-checks.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/validation-results.json",
+  "head": "3d60d399123906fe53ff8577d32fa610f0c348ae"
+}

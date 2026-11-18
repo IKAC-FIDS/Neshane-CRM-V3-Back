@@ -1,0 +1,143 @@
+{
+  "rt002Condition1": "CONFLICTING — UNRESOLVED AUTHORITY INTERPRETATION",
+  "originalNegativeCasesValidated": 12,
+  "gRuntime03Started": false,
+  "productionReadiness": "NOT ESTABLISHED",
+  "successfulRunManifestsValidated": 12,
+  "residualsPreserved": [
+    "GS-01",
+    "GS-04",
+    "TI-14"
+  ],
+  "successfulRunMembersRehashed": 3616,
+  "reviewInputHashes": {
+    "dependency-review.md": {
+      "bytes": 9627,
+      "sha256": "A273331063C3FBEA3F3F19B0268851584A0578610B79869B5408EB61B2DFB518"
+    },
+    "governance-residual-matrix.json": {
+      "bytes": 9364,
+      "sha256": "E2868BDC9B07ED4D74F6D63A1370C11F0D518271DC2D4B2FB7CE5670836FD3BC"
+    },
+    "governance-residual-review.md": {
+      "bytes": 3743,
+      "sha256": "CABDD07C1B826FD74F899ACC33CA3664BB646173E16C05C71456D2B57351ABEB"
+    },
+    "production-boundary-matrix.json": {
+      "bytes": 23115,
+      "sha256": "45EFA9F68E5DB8C49B3192926B6BFF1DBF01EB476DED3B375B14482221521204"
+    },
+    "production-boundary-review.md": {
+      "bytes": 6692,
+      "sha256": "184AD3BB8C218D437C90FED10266A0888343E71F47A1AAFAC44013A2D0BB4E2A"
+    },
+    "review-report.md": {
+      "bytes": 12570,
+      "sha256": "2E6F6ED568A55614DE6D76A2C68C79A3EB21613F1ADDD8931DC8169748C607CC"
+    },
+    "scope-conflict-review.md": {
+      "bytes": 3994,
+      "sha256": "35C7F6BDB41F5EABB75BC06A0FECB183257F7037C055EED9C93D8B1499A26359"
+    },
+    "source-inventory.json": {
+      "bytes": 131824,
+      "sha256": "DF28F748796993733FF6533C6999E4B42FCA4EA0B3D6A503F470D1BB932FB8CF"
+    },
+    "Validate-Boundaries.ps1": {
+      "bytes": 23083,
+      "sha256": "6A572536B8BA1A3F3212FF899B94014CCC137B5395E377A4729C5B3EE88B4F72"
+    }
+  },
+  "predecessorCoverageUnchanged": {
+    "conditions": {
+      "COVERED": 17,
+      "PARTIAL": 28,
+      "MISSING": 1,
+      "CONFLICTING": 1,
+      "NOT_APPLICABLE": 0
+    },
+    "negativeCases": {
+      "COVERED": 6,
+      "PARTIAL": 6,
+      "MISSING": 0,
+      "CONFLICTING": 0,
+      "NOT_APPLICABLE": 0
+    }
+  },
+  "status": "PASS — DOCUMENTATION AND EXISTING-EVIDENCE REVIEW ONLY",
+  "preExistingVerifier": "UNCHANGED",
+  "recordedAt": "2026-11-17T22:00:14.8854262Z",
+  "reviewInputHashNote": "All nine authored review inputs are hashed here; validation-results.json excludes itself. These are review correspondence checks, not an independent authority signature.",
+  "offline": "PROHIBITED",
+  "newCommits": 0,
+  "residualOwners": "UNASSIGNED in reviewed authoritative records; no appointments made",
+  "originalConditionsValidated": 47,
+  "independentAuthorityAcceptance": "PENDING — EXCLUSIVELY INDEPENDENT TAO/AUTHORITY",
+  "baseline": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "predecessorArtifactsByteIdentical": true,
+  "additionalReferencedManifestPackagesValidated": 25,
+  "riskClosures": 0,
+  "familiesReviewed": [
+    "DB",
+    "R",
+    "W",
+    "O",
+    "DR",
+    "X"
+  ],
+  "testOrLaboratoryExecutions": 0,
+  "predecessorVersionControl": "UNCOMMITTED; no external predecessor seal supplied; hashes pinned at this review initialization",
+  "newStaging": 0,
+  "protectedTrackedWorktreeFilesValidated": 554,
+  "dependencyDownloads": 0,
+  "pushes": 0,
+  "predecessorArtifactsValidated": 14,
+  "productCodeAndOriginalEvidence": "UNCHANGED",
+  "recommendedDisposition": "G-RUNTIME.02 REVIEW COMPLETE — PRODUCTION BOUNDARIES AND RESIDUALS RETAINED",
+  "phaseReadmeDifferences": [
+    {
+      "explanation": "Original documented post-seal closure README only; original run members unchanged",
+      "current": {
+        "bytes": 12070,
+        "sha256": "9B94F4870FCFC176BF9662624E8F37FB6CB48C36008180EABBDAC46E0B7E2D59"
+      },
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "stage": "W",
+      "expectedHistorical": {
+        "sha256": "3EAC1C4BEE0BDBF9DE975AE6011BA2D80B808C69ABC1DA7D3405581703039C31",
+        "bytes": 7066
+      }
+    },
+    {
+      "explanation": "Original documented post-seal closure README only; original run members unchanged",
+      "current": {
+        "bytes": 16440,
+        "sha256": "DD70892AA5A6E43AA8192747112539687E9FB0E184F7F39540EA6B817CB2E93C"
+      },
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "stage": "O",
+      "expectedHistorical": {
+        "sha256": "60D17C30BF70D88D7043358165CD604FD4887D592B45A006B513D48D55174A28",
+        "bytes": 10257
+      }
+    },
+    {
+      "explanation": "Original documented post-seal closure README only; original run members unchanged",
+      "current": {
+        "bytes": 21239,
+        "sha256": "76DAD0F8FDDBDC650E26B999DAFBE4428ED87189A4F79C4C8A5EDC72B42AECB0"
+      },
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "stage": "DR",
+      "expectedHistorical": {
+        "sha256": "AE50EEEE5BE2B47981C72B74DD718E3E5EB6DA9914784BA1908B85F87E41DC9B",
+        "bytes": 9173
+      }
+    }
+  ],
+  "task": "G-RUNTIME.02",
+  "scopeRelation": "DIFFERENT; NOT DEMONSTRATED EQUIVALENT OR NARROWER",
+  "of006Condition10": "MISSING",
+  "originalArtifactsValidated": 997,
+  "rawHikariFailObservationsPreserved": 4
+}

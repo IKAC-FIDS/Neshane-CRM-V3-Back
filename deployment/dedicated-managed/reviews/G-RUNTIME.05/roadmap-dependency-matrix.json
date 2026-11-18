@@ -1,0 +1,1168 @@
+{
+  "runtimeGate": "BLOCKED",
+  "allowedEligibilityClassifications": [
+    "ELIGIBLE_FOR_SEPARATE_AUTHORIZATION",
+    "BLOCKED_BY_RUNTIME_DEPENDENCY",
+    "BLOCKED_BY_OTHER_DEPENDENCY",
+    "AUTHORITY_INTERPRETATION_REQUIRED",
+    "OUT_OF_SCOPE"
+  ],
+  "phaseDependencies": [
+    "G-RUNTIME.04 BLOCKED remains in force; this later explicit Task authorizes G-RUNTIME.05 review only",
+    "No automatic progression into FE-BE or AUTH/IAM; item-level applicability and separate approval required"
+  ],
+  "sourceDependencyAndHistoricalRecords": [
+    {
+      "originalIdentifier": "OD-005",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Frontend Architecture + Product UX",
+      "originalMilestone": "Before first Frontend source",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "FE-BE",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design-only scope need not necessarily rely on Runtime acceptance; actual tenant-aware integration does. No actual product item/scope located to clear this dependency.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-005",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Frontend framework/rendering: React/Angular/Vue/other; SPA/SSR variants",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-006",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Frontend Architecture + UX",
+      "originalMilestone": "Before first affected feature/design system",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "FE-BE",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design-only scope need not necessarily rely on Runtime acceptance; actual tenant-aware integration does. No actual product item/scope located to clear this dependency.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-006",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "State/server-cache/UI libraries: library or framework-native approaches",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-007",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "API Architecture + Backend/Frontend owners",
+      "originalMilestone": "Before first public contract",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "FE-BE",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design-only scope need not necessarily rely on Runtime acceptance; actual tenant-aware integration does. No actual product item/scope located to clear this dependency.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-007",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Public API and GraphQL BFF: REST-first, GraphQL BFF, hybrid, or per-client boundary",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-009",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Identity + Security + Product",
+      "originalMilestone": "Before production authentication",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "AUTH/IAM",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-009",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "IdP integrations: generic OIDC first versus named enterprise providers/federation",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-010",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Identity + Security",
+      "originalMilestone": "Before production session implementation",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "AUTH/IAM",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-010",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Session lifecycle/revocation: stateless short-lived, stateful sessions, refresh families, hybrid",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-011",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Security + Platform Operations",
+      "originalMilestone": "Before production service-to-service trust",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "AUTH/IAM",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-011",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Workload identity: platform-issued credentials, mTLS PKI, SPIFFE/SPIRE, hybrid",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-012",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Security + Operations + Sovereign owner",
+      "originalMilestone": "Before production credential storage/signing",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "AUTH/IAM",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-012",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Secrets/keys: platform-native, Vault-class, cloud KMS/HSM, Sovereign-local mix",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-013",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Data Architecture",
+      "originalMilestone": "Before first schema migration",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "SHARED",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-013",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "PostgreSQL migrations: Flyway, Liquibase, framework-native, other",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-014",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Data + Security + Backend Architecture",
+      "originalMilestone": "Before first tenant-aware repository",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "SHARED",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-014",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Java/RLS integration: transaction interceptor, explicit unit-of-work, connection wrapper",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-015",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Platform Operations + Architecture",
+      "originalMilestone": "Before deployment implementation",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "SHARED",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-015",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Runtime orchestration: Compose-equivalent reference, Kubernetes, Nomad, other profile-specific runtime",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-019",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Backend Architecture + Operations",
+      "originalMilestone": "Before durable scheduled workflows",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "SHARED",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-019",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Background scheduling: in-service scheduler, DB-coordinated jobs, workflow engine, broker scheduling",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-022",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Cell Management + Data + Security",
+      "originalMilestone": "Before tenant placement migration is supported",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "SHARED",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-022",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "Tenant migration automation: offline transfer, dual-run, event replication, cell-native workflow",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "originalIdentifier": "OD-023",
+      "isolationRequirements": [
+        "No actual cross-Tenant runtime behavior in an independently cleared pre-runtime proposal",
+        "No claimed production shared-credential/pool safety from fixtures",
+        "No silent architecture or topology/provider selection"
+      ],
+      "classificationMeaning": "Any dependent IMPLEMENTATION relying on this unresolved choice cannot be cleared here. This is NOT a blanket prohibition of separately scoped design review. No roadmap task or implementation authorization is created.",
+      "prerequisiteGates": [
+        "Explicit scoped task/acceptance criteria and competent architectural decisions before the dependent milestone",
+        "G-RUNTIME remains BLOCKED for final Runtime Tenant Isolation acceptance",
+        "Actual applicable Security/contract/production gates remain distinct"
+      ],
+      "potentialResidualImpacts": [
+        "GS-01 host/admin assumptions",
+        "GS-04 owner/enforcement milestones",
+        "TI-14 remains prohibited",
+        "GS-02 credential trust and raw Hikari/OD-014 dependencies stay open"
+      ],
+      "sourceStatus": "OPEN",
+      "requiredSecurityControls": [
+        "Validated Tenant provenance; resource-owning Backend authorization; browser controls are UX only",
+        "No real credentials or customer data; no admin fallback",
+        "Separate runtime/migration roles and approved Context/pool integration when applicable",
+        "No offline continuation, fake authority, source/evidence substitution or risk waiver"
+      ],
+      "originalTaskIdentifier": null,
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED — exact named scope, criteria and authorization absent",
+      "originalProposedOwner": "Product + Operations + Security + service owners",
+      "originalMilestone": "Before production architecture sign-off",
+      "proposedEligibilityClassification": "BLOCKED_BY_OTHER_DEPENDENCY",
+      "validationRequirements": [
+        "Exact named original task and authoritative acceptance criteria must be supplied",
+        "Documentation/architecture approval is not runtime or security proof",
+        "Subsequent executable evidence only after separate task authorization; none runs now"
+      ],
+      "area": "SHARED",
+      "sourceTraceOnly": true,
+      "productionInfrastructureDependencies": [
+        "OD-015",
+        "OD-023",
+        "GS-01",
+        "GS-04"
+      ],
+      "runtimeTenantIsolationDependency": "Design decision and actual enforcement are distinct; any reliance on accepted runtime control paths requires gate applicability/reassessment decision.",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012"
+      ],
+      "recordKind": "OPEN_DECISION_DEPENDENCY — NOT A ROADMAP TASK",
+      "authoritativeSource": {
+        "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+        "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+        "locator": "OD-023",
+        "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+        "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+        "path": "architecture/open-decisions.md"
+      },
+      "ownerStatus": "Proposed source roles only; no assignment made",
+      "originalScope": "SLO/RTO/RPO/capacity: per-profile/service objectives and measurement",
+      "additionalRuntimeApplicability": "AUTHORITY_INTERPRETATION_REQUIRED"
+    },
+    {
+      "sourceTraceOnly": true,
+      "prerequisiteGates": [
+        "Independent scoped reuse/implementation authorization",
+        "Applicable contract/identity/isolation/deployment prerequisites"
+      ],
+      "classificationMeaning": "Historical baseline is not a new product work item or permission to resume/expand it",
+      "originalIdentifier": "V3-010",
+      "potentialResidualImpacts": [
+        "Would bypass existing reuse/B2/identity/pool restrictions if silently promoted"
+      ],
+      "originalScope": "Independent reference Java service/template engineering, not a business-service generator",
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED if a separately identified reuse proposal is later supplied",
+      "productionInfrastructureDependencies": [
+        "GS-01",
+        "GS-04",
+        "OD-015",
+        "OD-023"
+      ],
+      "authoritativeSource": {
+        "canonicalGitSha256": "8358366ED8DAB519FB394BE31A4ECAB8675CBB61AEAB8C7D7FB61799C62E24BF",
+        "repository": "E:\\Neshane-CRM-V3\\Backend",
+        "locator": "lines 3–5, 48–49, 66–76",
+        "revision": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+        "gitBlob": "7d7291b10e2c9e9a5142273cabce45cdf93d1b74",
+        "path": "docs/service-template.md"
+      },
+      "requiredSecurityControls": [
+        "Do not reuse public/synthetic echo endpoints as Business API authentication precedent",
+        "Tenant IDs/schema metadata do not authorize access",
+        "Final owning-service authorization and versioned contracts remain required"
+      ],
+      "isolationRequirements": [
+        "No production or cross-Tenant integration inferred from historical fixture scope"
+      ],
+      "area": "FE-BE/AUTH dependency context only",
+      "originalTaskIdentifier": "V3-010",
+      "recordKind": "HISTORICAL TASK REFERENCE — NOT A DISCOVERED FORWARD PRODUCT ROADMAP ITEM",
+      "validationRequirements": [
+        "Original source trace, current authority applicability and separately approved task criteria before reuse"
+      ],
+      "proposedEligibilityClassification": "OUT_OF_SCOPE",
+      "runtimeTenantIsolationDependency": "No inherited final isolation acceptance from a completed or synthetic reference stage",
+      "sourceStatus": "Historical source scope retained; later Root limited awareness governs later design status, not new implementation permission",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ]
+    },
+    {
+      "sourceTraceOnly": true,
+      "prerequisiteGates": [
+        "Independent scoped reuse/implementation authorization",
+        "Applicable contract/identity/isolation/deployment prerequisites"
+      ],
+      "classificationMeaning": "Historical baseline is not a new product work item or permission to resume/expand it",
+      "originalIdentifier": "V3-011",
+      "potentialResidualImpacts": [
+        "Would bypass existing reuse/B2/identity/pool restrictions if silently promoted"
+      ],
+      "originalScope": "Closed contract-first HTTP engineering conventions only; no Business API/authentication/CI/runtime readiness approval",
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED if a separately identified reuse proposal is later supplied",
+      "productionInfrastructureDependencies": [
+        "GS-01",
+        "GS-04",
+        "OD-015",
+        "OD-023"
+      ],
+      "authoritativeSource": {
+        "canonicalGitSha256": "BE400ABEE17B192FF68953055B2100D19B25EBA8E76CCD63F57C187FE73EA9BB",
+        "repository": "E:\\Neshane-CRM-V3\\Backend",
+        "locator": "Status/ownership and public API restrictions",
+        "revision": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+        "gitBlob": "04fe080f453c77a80a0ed77069d15e5f07491234",
+        "path": "contracts/http/README.md"
+      },
+      "requiredSecurityControls": [
+        "Do not reuse public/synthetic echo endpoints as Business API authentication precedent",
+        "Tenant IDs/schema metadata do not authorize access",
+        "Final owning-service authorization and versioned contracts remain required"
+      ],
+      "isolationRequirements": [
+        "No production or cross-Tenant integration inferred from historical fixture scope"
+      ],
+      "area": "FE-BE/AUTH dependency context only",
+      "originalTaskIdentifier": "V3-011",
+      "recordKind": "HISTORICAL TASK REFERENCE — NOT A DISCOVERED FORWARD PRODUCT ROADMAP ITEM",
+      "validationRequirements": [
+        "Original source trace, current authority applicability and separately approved task criteria before reuse"
+      ],
+      "proposedEligibilityClassification": "OUT_OF_SCOPE",
+      "runtimeTenantIsolationDependency": "No inherited final isolation acceptance from a completed or synthetic reference stage",
+      "sourceStatus": "Historical source scope retained; later Root limited awareness governs later design status, not new implementation permission",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ]
+    },
+    {
+      "sourceTraceOnly": true,
+      "prerequisiteGates": [
+        "Independent scoped reuse/implementation authorization",
+        "Applicable contract/identity/isolation/deployment prerequisites"
+      ],
+      "classificationMeaning": "Historical baseline is not a new product work item or permission to resume/expand it",
+      "originalIdentifier": "V3-017",
+      "potentialResidualImpacts": [
+        "Would bypass existing reuse/B2/identity/pool restrictions if silently promoted"
+      ],
+      "originalScope": "Two reference services and minimal synthetic HTTP interaction; R1 acceptance pending and scoped reuse separately required",
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED if a separately identified reuse proposal is later supplied",
+      "productionInfrastructureDependencies": [
+        "GS-01",
+        "GS-04",
+        "OD-015",
+        "OD-023"
+      ],
+      "authoritativeSource": {
+        "canonicalGitSha256": "61A193ABF436E67D3015542C5817DB42478B248E5AB18CDFFF5263B8EBCEC858",
+        "repository": "E:\\Neshane-CRM-V3\\Backend",
+        "locator": "Disposition, implemented boundary, contracts",
+        "revision": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+        "gitBlob": "e531f66f13b704c2eeec5a4925832305003e4519",
+        "path": "services/reference-peer-service/V3-017-engineering-evidence.md"
+      },
+      "requiredSecurityControls": [
+        "Do not reuse public/synthetic echo endpoints as Business API authentication precedent",
+        "Tenant IDs/schema metadata do not authorize access",
+        "Final owning-service authorization and versioned contracts remain required"
+      ],
+      "isolationRequirements": [
+        "No production or cross-Tenant integration inferred from historical fixture scope"
+      ],
+      "area": "FE-BE/AUTH dependency context only",
+      "originalTaskIdentifier": "V3-017",
+      "recordKind": "HISTORICAL TASK REFERENCE — NOT A DISCOVERED FORWARD PRODUCT ROADMAP ITEM",
+      "validationRequirements": [
+        "Original source trace, current authority applicability and separately approved task criteria before reuse"
+      ],
+      "proposedEligibilityClassification": "OUT_OF_SCOPE",
+      "runtimeTenantIsolationDependency": "No inherited final isolation acceptance from a completed or synthetic reference stage",
+      "sourceStatus": "Historical source scope retained; later Root limited awareness governs later design status, not new implementation permission",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ]
+    },
+    {
+      "sourceTraceOnly": true,
+      "prerequisiteGates": [
+        "Independent scoped reuse/implementation authorization",
+        "Applicable contract/identity/isolation/deployment prerequisites"
+      ],
+      "classificationMeaning": "Historical baseline is not a new product work item or permission to resume/expand it",
+      "originalIdentifier": "V3-021",
+      "potentialResidualImpacts": [
+        "Would bypass existing reuse/B2/identity/pool restrictions if silently promoted"
+      ],
+      "originalScope": "Tenant Model/Stable Identity candidate contracts and reference design; no authenticated membership or runtime integration authority",
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED if a separately identified reuse proposal is later supplied",
+      "productionInfrastructureDependencies": [
+        "GS-01",
+        "GS-04",
+        "OD-015",
+        "OD-023"
+      ],
+      "authoritativeSource": {
+        "canonicalGitSha256": "B068A4BE9BE65FCA94340960B731C296C31B8619F77AFF901D915C381CF2BF52",
+        "repository": "E:\\Neshane-CRM-V3\\Backend",
+        "locator": "Status/scope, stable identity and separate authorities",
+        "revision": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+        "gitBlob": "5c617573c5e84074d10c03f1033614d5a53c01f7",
+        "path": "contracts/tenant/README.md"
+      },
+      "requiredSecurityControls": [
+        "Do not reuse public/synthetic echo endpoints as Business API authentication precedent",
+        "Tenant IDs/schema metadata do not authorize access",
+        "Final owning-service authorization and versioned contracts remain required"
+      ],
+      "isolationRequirements": [
+        "No production or cross-Tenant integration inferred from historical fixture scope"
+      ],
+      "area": "FE-BE/AUTH dependency context only",
+      "originalTaskIdentifier": "V3-021",
+      "recordKind": "HISTORICAL TASK REFERENCE — NOT A DISCOVERED FORWARD PRODUCT ROADMAP ITEM",
+      "validationRequirements": [
+        "Original source trace, current authority applicability and separately approved task criteria before reuse"
+      ],
+      "proposedEligibilityClassification": "OUT_OF_SCOPE",
+      "runtimeTenantIsolationDependency": "No inherited final isolation acceptance from a completed or synthetic reference stage",
+      "sourceStatus": "Historical source scope retained; later Root limited awareness governs later design status, not new implementation permission",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ]
+    },
+    {
+      "sourceTraceOnly": true,
+      "prerequisiteGates": [
+        "Independent scoped reuse/implementation authorization",
+        "Applicable contract/identity/isolation/deployment prerequisites"
+      ],
+      "classificationMeaning": "Historical baseline is not a new product work item or permission to resume/expand it",
+      "originalIdentifier": "V3-022",
+      "potentialResidualImpacts": [
+        "Would bypass existing reuse/B2/identity/pool restrictions if silently promoted"
+      ],
+      "originalScope": "Cell Registry/Tenant Routing Stage B1 deterministic contract/reference policy only; Stage B2 remains separately unauthorized",
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED if a separately identified reuse proposal is later supplied",
+      "productionInfrastructureDependencies": [
+        "GS-01",
+        "GS-04",
+        "OD-015",
+        "OD-023"
+      ],
+      "authoritativeSource": {
+        "canonicalGitSha256": "5AC269709834BBA1C74789C145039B763D8437FCA8189CEC43F79CE5ABF9EA07",
+        "repository": "E:\\Neshane-CRM-V3\\Backend",
+        "locator": "Status/scope, trust/fencing boundary and exclusions",
+        "revision": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+        "gitBlob": "cf5f3f8dae83548b8bb6d732ef20baa90123f8fd",
+        "path": "contracts/routing/README.md"
+      },
+      "requiredSecurityControls": [
+        "Do not reuse public/synthetic echo endpoints as Business API authentication precedent",
+        "Tenant IDs/schema metadata do not authorize access",
+        "Final owning-service authorization and versioned contracts remain required"
+      ],
+      "isolationRequirements": [
+        "No production or cross-Tenant integration inferred from historical fixture scope"
+      ],
+      "area": "FE-BE/AUTH dependency context only",
+      "originalTaskIdentifier": "V3-022",
+      "recordKind": "HISTORICAL TASK REFERENCE — NOT A DISCOVERED FORWARD PRODUCT ROADMAP ITEM",
+      "validationRequirements": [
+        "Original source trace, current authority applicability and separately approved task criteria before reuse"
+      ],
+      "proposedEligibilityClassification": "OUT_OF_SCOPE",
+      "runtimeTenantIsolationDependency": "No inherited final isolation acceptance from a completed or synthetic reference stage",
+      "sourceStatus": "Historical source scope retained; later Root limited awareness governs later design status, not new implementation permission",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ]
+    },
+    {
+      "sourceTraceOnly": true,
+      "prerequisiteGates": [
+        "Independent scoped reuse/implementation authorization",
+        "Applicable contract/identity/isolation/deployment prerequisites"
+      ],
+      "classificationMeaning": "Historical baseline is not a new product work item or permission to resume/expand it",
+      "originalIdentifier": "V3-023",
+      "potentialResidualImpacts": [
+        "Would bypass existing reuse/B2/identity/pool restrictions if silently promoted"
+      ],
+      "originalScope": "Historical Shared/reference evidence and limited dispositions, not inherited Dedicated Managed or FE-BE/AUTH authorization",
+      "independentDesignEligibility": "AUTHORITY_INTERPRETATION_REQUIRED if a separately identified reuse proposal is later supplied",
+      "productionInfrastructureDependencies": [
+        "GS-01",
+        "GS-04",
+        "OD-015",
+        "OD-023"
+      ],
+      "authoritativeSource": {
+        "canonicalGitSha256": "FC250CCB0C2F2D5075F7EB8EDCAB17C2604A073F59492840B4CFEFB3F837AEF2",
+        "repository": "E:\\Neshane-CRM-V3\\Backend",
+        "locator": "Dependency matrix lines 71–89, interpreted with later current Root awareness",
+        "revision": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+        "gitBlob": "ac8ae66890e1814c88a7527f818db585d668646c",
+        "path": "deployment/dedicated-managed/V3-024-R2-design-proposal.md"
+      },
+      "requiredSecurityControls": [
+        "Do not reuse public/synthetic echo endpoints as Business API authentication precedent",
+        "Tenant IDs/schema metadata do not authorize access",
+        "Final owning-service authorization and versioned contracts remain required"
+      ],
+      "isolationRequirements": [
+        "No production or cross-Tenant integration inferred from historical fixture scope"
+      ],
+      "area": "FE-BE/AUTH dependency context only",
+      "originalTaskIdentifier": "V3-023",
+      "recordKind": "HISTORICAL TASK REFERENCE — NOT A DISCOVERED FORWARD PRODUCT ROADMAP ITEM",
+      "validationRequirements": [
+        "Original source trace, current authority applicability and separately approved task criteria before reuse"
+      ],
+      "proposedEligibilityClassification": "OUT_OF_SCOPE",
+      "runtimeTenantIsolationDependency": "No inherited final isolation acceptance from a completed or synthetic reference stage",
+      "sourceStatus": "Historical source scope retained; later Root limited awareness governs later design status, not new implementation permission",
+      "iamCredentialDependencies": [
+        "OD-009",
+        "OD-010",
+        "OD-011",
+        "OD-012",
+        "OD-014"
+      ]
+    }
+  ],
+  "eligibleRoadmapItemCount": 0,
+  "recordMeaning": "13 original OPEN decisions plus 6 historical task references; NOT 19 newly discovered/created roadmap work items",
+  "knownRoadmapItemCount": 0,
+  "unprovidedRoadmapHandling": "No task IDs, order, screens, provider selection or product acceptance criteria reconstructed. External owner material may exist but was not supplied; authority must identify it.",
+  "classificationScope": "Classifications concern source-level dependency/implementation reliance or historical exclusion, not final product authorization",
+  "roadmapItems": [],
+  "task": "G-RUNTIME.05",
+  "roadmapDiscoveryStatus": "NO AUTHORITATIVE COMPLETE FORWARD PRODUCT ROADMAP OR EXPLICIT FE-BE/AUTH TASK SCOPE LOCATED IN REVIEWED SOURCES"
+}

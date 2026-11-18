@@ -1,0 +1,242 @@
+{
+  "requiredNextAction": "STOP. No G-RUNTIME.05 or remediation/implementation starts. Reassessment requires its prerequisites and a new independent authority review.",
+  "finalRuntimeAcceptance": "BLOCKED — AUTHORITY DECISION RECORDED",
+  "rootMain": "094c966de745285bd5a8d1975312eb06d930d4a8",
+  "residualClosures": 0,
+  "newCommits": 0,
+  "backendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "originalEvidenceProductCodePredecessors": "UNCHANGED",
+  "scopeAndExclusions": "EXPLICIT — FINAL RUNTIME TENANT ISOLATION ACCEPTANCE UNDER EXISTING CRITERIA; NO PRODUCTION/AUTH/IAM/FE-BE/IMPLEMENTATION AUTHORIZATION",
+  "preservedResidualAndObligationRecords": 32,
+  "decisionStatus": "AUTHORITY_DECISION_RECORDED",
+  "overlap": "79 items are NOT 79 independent security defects",
+  "successfulRunManifests": 12,
+  "authorityIdentityDateSignatureFabricated": false,
+  "allCoverageRecords": 59,
+  "feBeAuthorization": "NONE",
+  "reviewInputHashes": {
+    "acceptance-decision.json": {
+      "sha256": "626D944661907CD0D7474EFC2B1B79CF5B333BBF284A9CC19C3890F6C9A0FF95",
+      "bytes": 15301
+    },
+    "acceptance-decision.md": {
+      "sha256": "FF1063982873AEA976EFB22BD5DFAFCEB4783F061C8CA467B9EF1C143E83D641",
+      "bytes": 7009
+    },
+    "acceptance-recommendation.md": {
+      "sha256": "ABA215260671491762F2B75B6DA67B8D47A1DCD6A0638D52C02700BA5E27A19B",
+      "bytes": 6305
+    },
+    "authority-decision-brief.md": {
+      "sha256": "19B6D46B1A1984F07DF0B4678AFB42BF8A3C773E24BF16C88CA83AEA8B606C56",
+      "bytes": 9829
+    },
+    "decision-rationale-matrix.json": {
+      "sha256": "4C3EAC034CDD20D25D920D853A37CE6DFA591B59DF1CF343FCF10D3A3D4F9C1C",
+      "bytes": 202043
+    },
+    "evidence-baseline.json": {
+      "sha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+      "bytes": 639531
+    },
+    "reassessment-prerequisites.md": {
+      "sha256": "D3935B7D2182CE694D7797DB1E7B5E6C708E50DB2EBB2EB9BC08CE6F0B355E45",
+      "bytes": 5507
+    },
+    "Record-AuthorizedBlockedDecision.ps1": {
+      "sha256": "BFD4945AFED0CE2C6720299A7DB860125D09957E22A10528DEFE105D29D89351",
+      "bytes": 13068
+    },
+    "review-report.md": {
+      "sha256": "768BE07990A46F11325BE4695B7A5A80A84931FB5C1A3DAB672D1C76380CDE96",
+      "bytes": 16705
+    },
+    "source-inventory.json": {
+      "sha256": "D72283EE013EFF9895668BFD6126D45BE9BE33F970F64EECE99B2FB94ECDA22C",
+      "bytes": 138557
+    },
+    "Validate-DecisionPackage.ps1": {
+      "sha256": "91678DBE42B82C8581D81121AFA1BC52A19C304BD2870E37179230D5551B0610",
+      "bytes": 63386
+    }
+  },
+  "authorityRole": "Product Decision Owner / TAO",
+  "validLaboratoryEvidence": "PRESERVED; successful executions not invalidated; production readiness not established",
+  "historicalPreparationSources": "Original baseline, source inventory, rationale, brief and proposed reassessment prerequisites remain byte-identical; historical PENDING text is not current Gate state",
+  "coverageUnchanged": {
+    "conditions": {
+      "COVERED": 17,
+      "PARTIAL": 28,
+      "CONFLICTING": 1,
+      "NOT_APPLICABLE": 0,
+      "MISSING": 1
+    },
+    "negativeCases": {
+      "COVERED": 6,
+      "PARTIAL": 6,
+      "CONFLICTING": 0,
+      "NOT_APPLICABLE": 0,
+      "MISSING": 0
+    }
+  },
+  "rt002Condition1": "CONFLICTING — INTERPRETATION NOT RESOLVED BY BLOCKED DISPOSITION",
+  "approvalReference": {
+    "exactDecision": "BLOCKED",
+    "reviewedEvidenceBaselineSha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+    "authorityAttribution": "Product Decision Owner / TAO, existing documented project authority; no personal or legal identity asserted",
+    "reviewedBackendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+    "approvalMechanism": "Explicit attributable project-conversation instruction under existing unified authority policy; no cryptographic signature supplied or invented",
+    "gate": "G-RUNTIME",
+    "permission": "Record and validate this BLOCKED decision only. No mitigation, product/AUTH/IAM/FE-BE implementation, tests, residual closure, staging, commit, push or G-RUNTIME.05.",
+    "decisionDate": "2026-11-18",
+    "exactApprovalText": "The Product Decision Owner / TAO has explicitly approved the proposed BLOCKED disposition and authorized recording the decision.",
+    "source": "Current project conversation user instruction: Finalize G-RUNTIME.04 — Record Authorized BLOCKED Decision.",
+    "reviewedRootMain": "094c966de745285bd5a8d1975312eb06d930d4a8",
+    "issuanceTimeOfDay": null,
+    "authorityInstructionSections": [
+      "1. Decision baseline",
+      "2. Formal decision",
+      "3. Decision scope",
+      "4. Decision rationale",
+      "5. Residual treatment",
+      "6. Reassessment prerequisites",
+      "7. Update decision artifacts",
+      "8. Validation",
+      "9. Restrictions",
+      "10. Final report"
+    ]
+  },
+  "evidenceBaselineSha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+  "referenceArtifactsRehashed": 997,
+  "originalConditions": 47,
+  "productionAuthorization": "NONE",
+  "authorityPinnedEvidenceBaselineUnchanged": true,
+  "cryptographicSignatureSupplied": false,
+  "task": "G-RUNTIME.04 — Finalize authorized BLOCKED decision",
+  "authIamAuthorization": "NONE",
+  "preservedDependencyGroups": 11,
+  "validationOutcome": "PASS — AUTHORIZED DECISION RECORDING AND EVIDENCE CORRESPONDENCE CHECKS ONLY; THE GATE DECISION IS BLOCKED",
+  "newOwnerAssignments": 0,
+  "predecessors": {
+    "gRuntime01": 14,
+    "total": 37,
+    "gRuntime03": 13,
+    "all37BytesPreserved": true,
+    "gRuntime02": 10,
+    "uncommittedProvenance": "RETAINED; no predecessor commit/external seal/attestation invented"
+  },
+  "testsOrLaboratoryRuns": 0,
+  "recordedAt": "2026-11-18T08:44:15.4521471+03:30",
+  "of006Condition10": "MISSING",
+  "historicalReadmeDifferences": [
+    {
+      "explanation": "Documented post-seal closure README only; no successful-run exception",
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "stage": "W"
+    },
+    {
+      "explanation": "Documented post-seal closure README only; no successful-run exception",
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "stage": "O"
+    },
+    {
+      "explanation": "Documented post-seal closure README only; no successful-run exception",
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "stage": "DR"
+    }
+  ],
+  "finalDecision": "BLOCKED",
+  "decisionDate": "2026-11-18",
+  "reassessmentPrerequisites": {
+    "source": "reassessment-prerequisites.md — original proposal retained and incorporated by current instruction section 6",
+    "prerequisites": [
+      "Explicit resolution of the RT-002 scope conflict",
+      "Sufficient verification evidence for applicable mandatory requirements",
+      "Demonstrated integration of relevant production control paths",
+      "Documented residual treatment consistent with governing criteria",
+      "Required policy and ownership decisions",
+      "Resolution of applicable IAM and credential dependencies",
+      "A new independent authority review"
+    ],
+    "implementationAuthorization": "NONE",
+    "status": "AUTHORITY-RECORDED PREREQUISITES; NOT IMPLEMENTATION AUTHORIZATION"
+  },
+  "confirmedOriginalRawSessionGucFails": 4,
+  "newStaging": 0,
+  "additionalHistoricalManifestPackages": 25,
+  "protectedTrackedWorktreeFiles": 554,
+  "successfulRunMembersRehashed": 3616,
+  "preservedEvidenceGaps": 36,
+  "gs01Gs04Ti14": "UNRESOLVED; NO RISK ACCEPTANCE/WAIVER/DOWNGRADE/CLOSURE",
+  "pushes": 0,
+  "iamCredentialFreshnessDependencies": "UNRESOLVED; no implementation authorized",
+  "preAuthorityHistory": {
+    "snapshotManifestHash": {
+      "sha256": "DB17A390D952FC1EEFB66B859E964DB1703C3E456953FD65BAD0856CD8A86E06",
+      "bytes": 1569
+    },
+    "files": 11,
+    "originalPreparationPreserved": true,
+    "directory": "history/pre-authority/",
+    "fileHashes": {
+      "acceptance-decision.json": {
+        "bytes": 4686,
+        "sha256": "A00654FEB1E70DA8B836FA548EE0B048B17167F012D8DF703E9ED3EBE3708D63"
+      },
+      "acceptance-decision.md": {
+        "bytes": 5214,
+        "sha256": "4F51D70EE3A7260F3FF4E7E1C9E38C77D95770B0DE7FFC4CD706782C6EE590FE"
+      },
+      "acceptance-recommendation.md": {
+        "bytes": 6305,
+        "sha256": "ABA215260671491762F2B75B6DA67B8D47A1DCD6A0638D52C02700BA5E27A19B"
+      },
+      "authority-decision-brief.md": {
+        "bytes": 9829,
+        "sha256": "19B6D46B1A1984F07DF0B4678AFB42BF8A3C773E24BF16C88CA83AEA8B606C56"
+      },
+      "decision-rationale-matrix.json": {
+        "bytes": 202043,
+        "sha256": "4C3EAC034CDD20D25D920D853A37CE6DFA591B59DF1CF343FCF10D3A3D4F9C1C"
+      },
+      "evidence-baseline.json": {
+        "bytes": 639531,
+        "sha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE"
+      },
+      "reassessment-prerequisites.md": {
+        "bytes": 5507,
+        "sha256": "D3935B7D2182CE694D7797DB1E7B5E6C708E50DB2EBB2EB9BC08CE6F0B355E45"
+      },
+      "review-report.md": {
+        "bytes": 9807,
+        "sha256": "6FD0D4DFC03A0509306A1BCDAA44B6B6D96B2F860B4E7941C2C3D36DCB0EA5B1"
+      },
+      "source-inventory.json": {
+        "bytes": 138557,
+        "sha256": "D72283EE013EFF9895668BFD6126D45BE9BE33F970F64EECE99B2FB94ECDA22C"
+      },
+      "Validate-DecisionPackage.ps1": {
+        "bytes": 50998,
+        "sha256": "FD9EEE9BC4D610B07DA7D6E34FA3515B9B06F7F94738737E5D6BD7BFEE419973"
+      },
+      "validation-results.json": {
+        "bytes": 5451,
+        "sha256": "2E10310BE2BD30E32F19FCEC271D74AA9705804FA2737412F1FE069B512CF60E"
+      }
+    }
+  },
+  "preservedUnderlyingUndecidedItems": 79,
+  "gRuntime05Started": false,
+  "existingVerifier": "UNCHANGED",
+  "rawFailBlockingRelevance": "NOT AUTOMATIC INDEPENDENT BLOCKERS; applicability to accepted control path and original requirements remains to establish",
+  "mitigationImplementation": 0,
+  "offline": "PROHIBITED",
+  "underlyingDecisionsAutomaticallyResolved": 0,
+  "hashScope": "Eleven current input files plus separately verified pre-authority snapshot; this result excludes itself. Checks are not a fabricated signature.",
+  "historicalRecommendation": "BYTE-IDENTICAL NON-BINDING RECOMMENDATION; separate later explicit authority BLOCKED decision",
+  "approvalProvided": true,
+  "fiveMandatoryVerificationRequirements": "PARTIAL — INSUFFICIENT FOR AUTHORIZED FINAL ACCEPTANCE; SOURCE TRACES RETAINED",
+  "actualDecisionRecordingTimestamp": "2026-11-18T08:40:15.934523+03:30",
+  "originalNegativeCases": 12,
+  "gateStatus": "BLOCKED"
+}

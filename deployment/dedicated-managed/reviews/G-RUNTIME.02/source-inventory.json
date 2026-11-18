@@ -1,0 +1,2478 @@
+{
+  "recordedAt": "2026-11-17T21:56:23.1488919Z",
+  "preExistingVerifier": {
+    "sha256": "0C51BE7DBE21D08FD868A694E9A304A0C27536358425252A7B90FEEDAB2E9445",
+    "path": "integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1"
+  },
+  "backendBaseline": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "predecessorArtifacts": {
+    "conditions-coverage.json": {
+      "sha256": "6090246BB3CE17F4B43219ACC660AB5D247F0DAD6A48A4EA2411D3EF697031EB",
+      "bytes": 163331
+    },
+    "conditions-coverage.md": {
+      "sha256": "E99E6163F15123B907ECDAE5FC52D86EA19971EA71D61D9B438AE37040FE7D53",
+      "bytes": 130989
+    },
+    "negative-case-coverage.json": {
+      "sha256": "71956A56A799C03CB7173D6EC92FBCC96DA25B53EBD815D8775BB52E52B96C42",
+      "bytes": 46169
+    },
+    "negative-case-coverage.md": {
+      "sha256": "C16C4AB925CFDBA4114054771E8D114EC4C263F7775D7D227BFB2EBC7BABD265",
+      "bytes": 37908
+    },
+    "evidence-traceability-index.json": {
+      "sha256": "EE1AC8D32D4A09FAE54E8FAA5FA08A7AB5684BD676DF247991D28E319B57C418",
+      "bytes": 1019009
+    },
+    "source-inventory.json": {
+      "sha256": "65B2E862B1E47F69DD61D59FF4877397AA41B260945895FF37BE4043B6603823",
+      "bytes": 33450
+    },
+    "review-report.md": {
+      "sha256": "C33936CA63AC202C5E1E73D8A36AE70CEC3386DAB5C4F67E86166EC71BB7A50F",
+      "bytes": 14996
+    },
+    "gaps-and-dependencies.md": {
+      "sha256": "5DF3D026938E2BA71CDF8AE1F16F167E0CF5A78C54CB6AEE202DD78DA88C062A",
+      "bytes": 8068
+    },
+    "review-map.json": {
+      "sha256": "1398156624235D55214A2FF93D5E4421FC1DE95FE76EFDEC3D49B3F5814D72ED",
+      "bytes": 19531
+    },
+    "Review-Evidence.ps1": {
+      "sha256": "8BBA090789751B3626D95AC12E16BF1F77F4ABE7A348ADA91919CFA69C9BBC6B",
+      "bytes": 27656
+    },
+    "Validate-Coverage.ps1": {
+      "sha256": "B23A14D9E8B4FE5C984789D1AD0F18377C1ABF1C7D3C8118063E9BA9A1903164",
+      "bytes": 15258
+    },
+    "validation-results.json": {
+      "sha256": "D2236104E14514DB1523F6608EC18D0835D8B471945DD0F17C880A8ACC5C54B7",
+      "bytes": 38350
+    },
+    "validation-checks.json": {
+      "sha256": "7F8D02A0B4E5E5C5B3829E438139C41C6B9524EC385F33682F6162053CBB668B",
+      "bytes": 1962
+    },
+    "git-status-review.json": {
+      "sha256": "5C6CC7D1C25648A199B87CFC94A367561ABBDB2729B718B6439421078F9C8215",
+      "bytes": 2690
+    }
+  },
+  "predecessorDirectory": "deployment/dedicated-managed/reviews/G-RUNTIME.01",
+  "preservationScope": "Tracked worktree bytes, HEAD/branch/refs/status/diff/staged state; fourteen predecessor bytes; original evidence revalidated separately. No credentials or original artifact content is copied.",
+  "authoritativeSources": [
+    {
+      "canonicalGitSha256": "701D3E0A84C3D2A65E0B26A1918E32607B0A655E940AFD4DEE41D9DEEBD5D1B5",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "a346ac1d19b9d2f12a933790b1c77e092544160e",
+      "worktreeSha256": "7B3D93FCFA04E3F8B6DB87197BE14E7CA17E0E6E0BE1A56B36B58F1AA4AE56E7",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/adr/016-dedicated-managed-reference-architecture.md",
+      "id": "architecture/adr/016-dedicated-managed-reference-architecture.md"
+    },
+    {
+      "canonicalGitSha256": "4FBD1C9B3557CFE6AD8B5FCC4E232B23D6A8505C7E546D0B1F592F27AA47E8BC",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "3f1376180b555cfa8665a650719f216b16fd34f4",
+      "worktreeSha256": "5A9A3BC20078A547AF3C00F43BCE79227BFFEB8734320ECF8178CAD0D9B3CD8B",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/governance-synchronization.md",
+      "id": "architecture/governance-synchronization.md"
+    },
+    {
+      "canonicalGitSha256": "5F0BBD9D3501FFB66F94A09DFD3036F2FC38E2EEDF2665078A90766FEE38ACD3",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "6e4d1e09ee6805afeffd873894851944c2d12cc7",
+      "worktreeSha256": "F489F4EA8334DF8B5A29C79381FCCD2A44813E342ECE3225F858A29626CD2DEF",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/open-decisions.md",
+      "id": "architecture/open-decisions.md"
+    },
+    {
+      "canonicalGitSha256": "09737DDF927BF14C72B1C5C8D02A1C606C7703BC8F712F01C6820930551BC59B",
+      "repository": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "gitBlob": "c90dd36a9b270138915eb696475e1405ee88f789",
+      "worktreeSha256": "1274E460D103CEFE5CC071CF1578B61A48D4764F98BF635CB9D16584A8A77D70",
+      "revision": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "role": "Authoritative Root source; later current allocations govern historical embedded status text",
+      "path": "architecture/task-governance.md",
+      "id": "architecture/task-governance.md"
+    },
+    {
+      "canonicalGitSha256": "B2E49BE31B516E004B82859FBF197CD2E704F250392C34FB75BACBC58CA33C83",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "81eb12cc0362af7460564a4516d8f5ba76f5621b",
+      "worktreeSha256": "B2E49BE31B516E004B82859FBF197CD2E704F250392C34FB75BACBC58CA33C83",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-DB-001.md",
+      "id": "DB-001"
+    },
+    {
+      "canonicalGitSha256": "40E6C9706BEC00A65856919CEB9B76EE60D8C9FA372F3F17501199C69D876113",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "6269034d7c321a9afb5c0a67f659c1e9a3e6a816",
+      "worktreeSha256": "40E6C9706BEC00A65856919CEB9B76EE60D8C9FA372F3F17501199C69D876113",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-RT-002.md",
+      "id": "RT-002"
+    },
+    {
+      "canonicalGitSha256": "6A44287B0D3414008B7DA5D6D81A845764E95A8E533F9F904EDBE24B7D35F1A1",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "9e246be2879b8b24875cb569fb66d17b0c6e0973",
+      "worktreeSha256": "6A44287B0D3414008B7DA5D6D81A845764E95A8E533F9F904EDBE24B7D35F1A1",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-OA-003.md",
+      "id": "OA-003"
+    },
+    {
+      "canonicalGitSha256": "9E0BCDB1D95CD622162033275B969D62B939E92A83BB04670ABBB2A2E4C2DEB6",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "3b512c71c3ebb8aed5df6992c652b692fbb0d7cb",
+      "worktreeSha256": "9E0BCDB1D95CD622162033275B969D62B939E92A83BB04670ABBB2A2E4C2DEB6",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-CL-004.md",
+      "id": "CL-004"
+    },
+    {
+      "canonicalGitSha256": "76ECA24266FB93DBAD6E0EEA9EBCE8D8266C9DA2DC348FE40C7630C08F0094A8",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "2d4dd88d029ad1aa9acce4825d80ed1f20fdacc3",
+      "worktreeSha256": "76ECA24266FB93DBAD6E0EEA9EBCE8D8266C9DA2DC348FE40C7630C08F0094A8",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-RTR-005.md",
+      "id": "RTR-005"
+    },
+    {
+      "canonicalGitSha256": "74E28DE08462C323DA2C6CEE09C0149A7A6297CFC101236291BDFF966939DB25",
+      "repository": "E:\\Neshane-CRM-V3\\Backend",
+      "gitBlob": "db226b286032eb93e0762b5c2eca92569f66f2c6",
+      "worktreeSha256": "74E28DE08462C323DA2C6CEE09C0149A7A6297CFC101236291BDFF966939DB25",
+      "revision": "938b9e7e3a0feaed4f3c09056f70365313dabb7e",
+      "role": "Pinned detailed source obligations; embedded summaries do not replace these",
+      "path": "deployment/dedicated-managed/ADR-V3-024-R2-OF-006.md",
+      "id": "OF-006"
+    }
+  ],
+  "protectedRepositories": [
+    {
+      "head": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+      "trackedWorktreeFiles": {
+        ".agents/skills/neshane-api/SKILL.md": {
+          "sha256": "B4102CBDFB0AB717E6A529100E2E366E801216CAD878D1002499AF54EFE5E3D2",
+          "bytes": 1145
+        },
+        ".agents/skills/neshane-messaging/SKILL.md": {
+          "sha256": "39A355DDCC9D2314D4768AA4FA1C0E08ED00F33A89007646055CFA01E1787B3D",
+          "bytes": 1178
+        },
+        ".agents/skills/neshane-persistence/SKILL.md": {
+          "sha256": "5E3F7E219A07C2E6BEBEE0C4D0072131A68C48E637C7FB8714C752942880BBDF",
+          "bytes": 1306
+        },
+        ".agents/skills/neshane-plugin/SKILL.md": {
+          "sha256": "3F5C900045FD8148B154002569C6B63C791C14D90CDA13958D0E76F9136C5311",
+          "bytes": 1210
+        },
+        ".agents/skills/neshane-review/SKILL.md": {
+          "sha256": "F41570335FCA69C42AAD52ECBFF2D86CA2FE19FE3CEABDB30C1DF0977375A5E1",
+          "bytes": 1403
+        },
+        ".agents/skills/neshane-security/SKILL.md": {
+          "sha256": "C0861D28393561B7ABF458DC4C5005FA7A602B17EA328F0CFCD57C1EAD52F63D",
+          "bytes": 1237
+        },
+        ".agents/skills/neshane-service/SKILL.md": {
+          "sha256": "C519CD44690CFEE4DF9BFC0AD2D89F4F255A17AA994B029104B27F77717EB400",
+          "bytes": 1342
+        },
+        ".editorconfig": {
+          "sha256": "A842F506CFC19B0FC74227F58C33AD9C7AB9ED7D10163CD50E48C9C8ED287B41",
+          "bytes": 286
+        },
+        ".github/workflows/backend-ci.yml": {
+          "sha256": "69E67BA7D2300B478D71369ACC59ED2821CEBDF24B09ED52493593B2E0748B96",
+          "bytes": 6025
+        },
+        ".github/workflows/backend-promotion-evidence.yml": {
+          "sha256": "EB2693A686948A355AB07A286B94D0CE6F0E1617BDE5DBBC6CF13A54E6E9FCD5",
+          "bytes": 5505
+        },
+        ".gitignore": {
+          "sha256": "0E195BB5E3F17F3ED3597E50A040F5A12D3644F3A64DD6A52E5FC328DF9FEBDA",
+          "bytes": 217
+        },
+        "AGENTS.md": {
+          "sha256": "75C4ADE695F97E468E1BC06B4C63525D27B1B17A7E045308561E9CF5F0E1AF65",
+          "bytes": 6871
+        },
+        "architecture-fixtures/adapter/build.gradle": {
+          "sha256": "6E188F9E6AD96429456076BDE8057DB3F695A2C9A50BA96B7FF0585CD51B79A2",
+          "bytes": 166
+        },
+        "architecture-fixtures/adapter/src/main/java/architecture/fixture/adapter/BoundaryAdapter.java": {
+          "sha256": "0C07E6121D88DA2F9C46824D318CA431756EE8BA5E74570989A43D98355DE3E6",
+          "bytes": 442
+        },
+        "architecture-fixtures/application/build.gradle": {
+          "sha256": "84DA1642E7B2BDC02A87DC2D539F8EF21FE8967B5ED60C32DFB3C1A08E31F060",
+          "bytes": 154
+        },
+        "architecture-fixtures/application/src/main/java/architecture/fixture/application/DescribeBoundary.java": {
+          "sha256": "AB44E08D65676F2756670929847F988696E88F9AE477DE5856A1B8F3853E1F82",
+          "bytes": 253
+        },
+        "architecture-fixtures/domain/build.gradle": {
+          "sha256": "D8AE8E5B58873117B181EE6FAB16B1F2219D1D7883C8F61F45DA708D7A9C8568",
+          "bytes": 82
+        },
+        "architecture-fixtures/domain/src/main/java/architecture/fixture/domain/BoundaryDescriptor.java": {
+          "sha256": "9E473EA8075E829B720FF9B9967944C947F53AFC96B1BE6965145C3B2EEAF415",
+          "bytes": 314
+        },
+        "architecture-tests/build.gradle": {
+          "sha256": "16426A213658838C12BB601FE25EEFC2D9EA1D809090FED1CF74BEEBBA1D4E49",
+          "bytes": 807
+        },
+        "architecture-tests/gradle.lockfile": {
+          "sha256": "9BB9B124D107B786347E4A9C2512DE878276DA1105729BDF0A3B028C6AAE144B",
+          "bytes": 9114
+        },
+        "architecture-tests/README.md": {
+          "sha256": "D6DA0B8A9C7520A165B839880E27BA7EB77041B531DC0A6BADA060326BC3A2AB",
+          "bytes": 2602
+        },
+        "architecture-tests/src/test/java/ir/neshane/alpha/application/AllowedContractUse.java": {
+          "sha256": "0B89CF6C4D492AA296CEDE5BA125A640AA5FDD47246BA10CBCC35B2FDFA6722E",
+          "bytes": 239
+        },
+        "architecture-tests/src/test/java/ir/neshane/alpha/domain/AlphaUsesBetaInternal.java": {
+          "sha256": "012EF98DD2EE5E87A18C1F70D74CFAF67F560AC35792B13AC67DC7F2ADF14AEA",
+          "bytes": 369
+        },
+        "architecture-tests/src/test/java/ir/neshane/architecture/ArchitectureBoundaryTest.java": {
+          "sha256": "1CD2309BDCF252A82E1BE811B9ACD835E01E6605B2FFE8809B39DCBFECFF98D2",
+          "bytes": 4903
+        },
+        "architecture-tests/src/test/java/ir/neshane/architecture/ArchitecturePolicy.java": {
+          "sha256": "25E50EDEE88213D0ECBFAEC26F230B77ED4B67238923A5EE1FDC120F7AE27973",
+          "bytes": 4247
+        },
+        "architecture-tests/src/test/java/ir/neshane/architecture/ArchitectureScope.java": {
+          "sha256": "0A2E62FD327C81786EA09238658D678282C925A74AA8C3323A87A12BCD0D0E2A",
+          "bytes": 773
+        },
+        "architecture-tests/src/test/java/ir/neshane/beta/internal/BetaInternalType.java": {
+          "sha256": "A838D2017B466E25347FB738CAC3AD84874CE16CC87DDEFE9558A11D5344C2B4",
+          "bytes": 137
+        },
+        "architecture-tests/src/test/java/ir/neshane/contract/customer/CustomerContract.java": {
+          "sha256": "C72BBBC52F3B83DC891B9A7EC041D65E1FDFAC45EBAC87D322C7AE749D152E4F",
+          "bytes": 92
+        },
+        "architecture-tests/src/test/java/v3_015/fixture/domain/CleanDomain.java": {
+          "sha256": "B4E81CA5FC379A161ACD6C392E0EE68B83A650152C2385C4119FBC6FF79FAC9A",
+          "bytes": 129
+        },
+        "architecture-tests/src/test/java/v3_015/fixture/domain/DomainLeaksToInfrastructure.java": {
+          "sha256": "BBEC55BC99599BFDEEAA90FE910653E3862BAA618D2F8912A7FD23D4B7FF4C50",
+          "bytes": 399
+        },
+        "architecture-tests/src/test/java/v3_015/fixture/domain/FrameworkCoupledDomain.java": {
+          "sha256": "8DA8EBDD140CD1D65E8B3747E55ECB14F9E6165BB78982E236EB74C8F9DF79AD",
+          "bytes": 138
+        },
+        "architecture-tests/src/test/java/v3_015/fixture/infrastructure/FakeInfrastructure.java": {
+          "sha256": "C5B18D09FDF9377B8D8C547F09A46C57AD9606CAEE106B0E28A953FB932C612E",
+          "bytes": 142
+        },
+        "architecture-tests/V3-015-engineering-evidence.md": {
+          "sha256": "877ED638A05EA018A43032465239CDBECB262B303D14E19C1B6BB913EBEA447F",
+          "bytes": 7342
+        },
+        "architecture/governance-baseline.md": {
+          "sha256": "CBB7198BAC4D23495D0F627CF0771431FB76928BCF8A996D117713A49DE3BD37",
+          "bytes": 22770
+        },
+        "architecture/standards/backend-engineering.md": {
+          "sha256": "89E6F36F17B41E244756B2EA546540CCA31ACCC820250DD4576DD94190CBA9F8",
+          "bytes": 5640
+        },
+        "build.gradle": {
+          "sha256": "9EC23CD09417AFA11B6B82E3D85169C1E71FA029950798BF5BEAE499E7BB1D29",
+          "bytes": 1189
+        },
+        "ci/Assert-BuildEvidence.ps1": {
+          "sha256": "B2C415AFDC44BA0D6A027617F7AA9682501EA9880B853BE08EF21D8F8CE93BE7",
+          "bytes": 5383
+        },
+        "ci/Assert-SourceIgnorePolicy.ps1": {
+          "sha256": "B63C2125A7B021DC14FEF9F698AA8C1D6966862A88A983B186958EB5022696AB",
+          "bytes": 1601
+        },
+        "ci/contract-risk-inventory.json": {
+          "sha256": "1DE5E6D980E8C581F0DC7C0A2036333206A6D1A3E079276C25A9CCE20ED3BC9F",
+          "bytes": 1066
+        },
+        "ci/fixtures/valid-promotion-evidence.json": {
+          "sha256": "4753977D117428CDA962FA949F9832A2FEFB9922211307E6D4C2B98DFA6F7F86",
+          "bytes": 503
+        },
+        "ci/Invoke-CiSecurityPolicy.ps1": {
+          "sha256": "C27B2F75F17FB71AD7884BAE66DB646436AB3A01FA8AE3329031D6EDC7C4A6B7",
+          "bytes": 35337
+        },
+        "ci/README.md": {
+          "sha256": "78349AB62B3D084EB26B49F66F3B0A0E37DDAED0315539180540922E0E2F83F3",
+          "bytes": 5080
+        },
+        "ci/repository-governance-bootstrap.md": {
+          "sha256": "D352919B6B349732BDE60FDBD408F22567E9ADFD324DE1270DDC45B395C8A866",
+          "bytes": 5976
+        },
+        "ci/security-authorities.json": {
+          "sha256": "9C1E1A1420B7242FF59631E2C54EAE2B580B3C3CE0DBE245A4A4429A9F7EC2B1",
+          "bytes": 46
+        },
+        "ci/security-exceptions.json": {
+          "sha256": "AF779C1DEA4C6B472330C33E22F55B6E880C3973478E0A3639ED3E4A9FA62AC4",
+          "bytes": 45
+        },
+        "ci/security-policy.json": {
+          "sha256": "F2E2B7062AFA852BACF6945F9F21259E01280D87864B5BCF00D2BE688CF06622",
+          "bytes": 1143
+        },
+        "ci/V3-016-engineering-evidence.md": {
+          "sha256": "DE8FC777C850A103347FEC714A1B312B7FB6C2ACCE047785A3F131D6F779B6FD",
+          "bytes": 21116
+        },
+        "contract-tests/events/build.gradle": {
+          "sha256": "27EA982ED0A2832482246719F96EB5546565943912F267F41FF4834027F22CE5",
+          "bytes": 1908
+        },
+        "contract-tests/events/gradle.lockfile": {
+          "sha256": "4A7CCA718A99B8105D6E66637963895134A938A91B610032641A65652D5E291A",
+          "bytes": 5907
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/EventContractCatalog.java": {
+          "sha256": "91CDF1143C38F2147B15E4BA81854968A96E78CBC8054A215E22BB23935D3B5C",
+          "bytes": 5306
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/EventContractEntry.java": {
+          "sha256": "4EAA7D9AD272F61855D8771719BEE92EFA5982D59757CABE6822221D11D71286",
+          "bytes": 339
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/EventContractException.java": {
+          "sha256": "B4A6B0902655DB47A9AF039D014B0B200AAA59CECDE1BBF7578E40715F8A0C6B",
+          "bytes": 451
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/EventContractVerifier.java": {
+          "sha256": "D5C6316866E6902E860F2B4F9FBDE7FDE62679A138E7E361D9607A4DCD776577",
+          "bytes": 5363
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/EventSchemaCompatibilityChecker.java": {
+          "sha256": "769FCA1CB85A7283485119A9A72CF64B6A10CCF49D211E02FE27BD52DCE55813",
+          "bytes": 9918
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/JsonSupport.java": {
+          "sha256": "9DBCF732C3E3ACE235477DABE6710E66DA21FB28007B43CB877CE698A49AEB99",
+          "bytes": 5029
+        },
+        "contract-tests/events/src/main/java/ir/neshane/contract/event/SensitiveFieldPolicy.java": {
+          "sha256": "7D479BAF90AF5DB92E055CD569B53D232D6BEE0A5DD4126C0372B351BA9D28AB",
+          "bytes": 3031
+        },
+        "contract-tests/events/src/test/java/ir/neshane/contract/event/EventContractValidationTest.java": {
+          "sha256": "0ED505C174BB1EDE9714AD236A6126DAF05F321EBEC8350EE1F41728274C6C57",
+          "bytes": 2701
+        },
+        "contract-tests/events/src/test/java/ir/neshane/contract/event/EventSchemaCompatibilityTest.java": {
+          "sha256": "3F354606EEFB2FBF1E4F24603002FBC7100884EFF1FB1228829C55F9490A15F1",
+          "bytes": 3503
+        },
+        "contract-tests/events/src/test/java/ir/neshane/contract/event/GovernanceFailureTest.java": {
+          "sha256": "A2E060875E49553CDE6A4AA143854286B9F25CC0A7DFD540AA2AE64D939318D4",
+          "bytes": 5530
+        },
+        "contract-tests/events/src/test/resources/events/invalid-envelope.json": {
+          "sha256": "A5686AC7CB0B4FA38E5FF18F5232222B136CB33109C16A23F08A4F24322CDD54",
+          "bytes": 154
+        },
+        "contract-tests/events/src/test/resources/events/payload-mismatch.json": {
+          "sha256": "B20D0507EE81EBD61D1BA40CF2565A41E95454D989470999103126713B5B13C2",
+          "bytes": 535
+        },
+        "contract-tests/events/src/test/resources/events/unknown-version.json": {
+          "sha256": "CE7C7A24F994964E2919ED1756A6D4D7D3F9F5F785BA5467C01CD48709FD2F4C",
+          "bytes": 535
+        },
+        "contract-tests/events/src/test/resources/events/valid-event.json": {
+          "sha256": "AB90B2B05F5CD437DBA9772EA67A00F6550A951E8F1653A390214F30FBEA1855",
+          "bytes": 621
+        },
+        "contract-tests/events/src/test/resources/schemas/additive-candidate.schema.json": {
+          "sha256": "1E6C32501565F11A6D790E0AF7214369ABA7953A2EA8BACE90D658EB7DB4B9DE",
+          "bytes": 554
+        },
+        "contract-tests/events/src/test/resources/schemas/baseline.schema.json": {
+          "sha256": "1E867A48EBEA6827B50119F40DFC8CD1313739A6CD596068F910FD059B05CD74",
+          "bytes": 533
+        },
+        "contract-tests/events/src/test/resources/schemas/breaking-candidate.schema.json": {
+          "sha256": "377C93246C5C53F7CD01FA26AB4239FFFE2B39FE3A0FF9434092CD6B8E1B7D6A",
+          "bytes": 600
+        },
+        "contract-tests/http/build.gradle": {
+          "sha256": "7EE5AB38CBE480989A050A528A1B63D4A6CAFF8DFB87E0487F5C89532CB323C8",
+          "bytes": 1801
+        },
+        "contract-tests/http/gradle.lockfile": {
+          "sha256": "BADFBB8E19F7DE7FF601A7DA5F5AE08BE5A1FB581900C714617365F8D596BF7E",
+          "bytes": 6973
+        },
+        "contract-tests/http/src/main/java/ir/neshane/contract/http/ContractViolationException.java": {
+          "sha256": "35DADCEF699343A69D08A2B55AE45B7A88438B1C38C12349BB5B96D9841F0387",
+          "bytes": 462
+        },
+        "contract-tests/http/src/main/java/ir/neshane/contract/http/HttpContractRules.java": {
+          "sha256": "CC6C0464E1962404067AF50913E6B6DD57052BD16681DF19FBC234EC003F4F12",
+          "bytes": 8472
+        },
+        "contract-tests/http/src/main/java/ir/neshane/contract/http/HttpContractVerifier.java": {
+          "sha256": "77A8C4907D93377E3C5BA73789D7A75395B95B5E98DFB288DD5B027F023A0CA9",
+          "bytes": 2938
+        },
+        "contract-tests/http/src/main/java/ir/neshane/contract/http/OpenApiCompatibilityChecker.java": {
+          "sha256": "1F1E1D9DA03C10463CC993BEB50C06CEBAE689E67C5AA1916E8D83ED6EF61C1B",
+          "bytes": 13360
+        },
+        "contract-tests/http/src/main/java/ir/neshane/contract/http/OpenApiLoader.java": {
+          "sha256": "424BF769AF3AA4221C8FACB46B3109DA53961407E58910314A3734224B527660",
+          "bytes": 1367
+        },
+        "contract-tests/http/src/test/java/ir/neshane/contract/http/CompatibilityTest.java": {
+          "sha256": "A28AC0A64E3906204F68D62A7F584AF47A0F217F2B3D0B520A8F73B7711A2D53",
+          "bytes": 2453
+        },
+        "contract-tests/http/src/test/java/ir/neshane/contract/http/ContractValidationTest.java": {
+          "sha256": "0E53CC8E8E2C716D3DE28D0DAC5D2B851C209DA4DD64AF1E7EEEC74F787DD1DB",
+          "bytes": 767
+        },
+        "contract-tests/http/src/test/java/ir/neshane/contract/http/ConventionEnforcementTest.java": {
+          "sha256": "150278235AF9056CB112E88A8A96A5EB3DD9E1B7EDFEB071740905E167A72CBC",
+          "bytes": 1215
+        },
+        "contract-tests/http/src/test/resources/breaking-candidate.openapi.yaml": {
+          "sha256": "6F558B465B12707071B0F0C232A7251AB1BF2E02104CFFD3EE12F8BF95E2C98E",
+          "bytes": 1625
+        },
+        "contract-tests/http/src/test/resources/compatible-candidate.openapi.yaml": {
+          "sha256": "270C3AA99AAAFE39870800E452A881AFF809F82B894A97360DCE2EAAF5FAC2AC",
+          "bytes": 3362
+        },
+        "contract-tests/http/src/test/resources/invalid-conventions.openapi.yaml": {
+          "sha256": "885E308AF49C8D0114FE1FC04604364072CEF9A4EA97CC539832602800564365",
+          "bytes": 531
+        },
+        "contract-tests/http/src/test/resources/valid-baseline.openapi.yaml": {
+          "sha256": "46ACC3622A4388B6F4AA42158568FB5ED50BE16F82A2437F99303D41B57F8BED",
+          "bytes": 3837
+        },
+        "contract-tests/routing/build.gradle": {
+          "sha256": "585BB9C96A7E31433E6C1EC4F5561255986C65C29ACC5C00E2CEF80A9FE58E2A",
+          "bytes": 1647
+        },
+        "contract-tests/routing/gradle.lockfile": {
+          "sha256": "64458F1BD3084633F8A054FBA31FCC4350BA83091C3786711064411074584D24",
+          "bytes": 5908
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/AuthorityKind.java": {
+          "sha256": "1B7539C650DD2FF557D018B60A27DEDD182923C1D8C4691B09C1826D22EFA2CB",
+          "bytes": 922
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/AuthorityPolicy.java": {
+          "sha256": "D14B53EBE95E38B9EB21B4E80E1DFE0EFB78D4BCFCE8363AA63F7EB7CBDBBEE9",
+          "bytes": 3758
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/AuthorityProvenance.java": {
+          "sha256": "7C02EA8320471D4B22852159F3A3008C3371D05A0428312133009AE45009B76D",
+          "bytes": 895
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/AuthorityScope.java": {
+          "sha256": "11AAA1A8FFA038744F3170213B8A0770DD19A2E9ECCE934C89A8FFC8ED60A871",
+          "bytes": 207
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/CellAvailabilityPolicy.java": {
+          "sha256": "D0E17BD2ED862E7824178D68802BA297F54534F0608D3F0B15A01829463BB2E8",
+          "bytes": 2280
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/CellId.java": {
+          "sha256": "1E4A298DE572D9B2ED54F28AA0A731846ABB0A03A33B2250F5B9C9897181E36C",
+          "bytes": 268
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/CellRegistryPolicy.java": {
+          "sha256": "D78966CC987A912D191381DA53256F0C6CA442D05B4E1ECD59978F0AC305400F",
+          "bytes": 3439
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/DeploymentProfile.java": {
+          "sha256": "6B1F01972CFD4FC0A924C03A2CA313F0EC3E5BC44A6263B10C22813B4CD5DDED",
+          "bytes": 129
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/DestinationFencingPolicy.java": {
+          "sha256": "66665BF8A7DE0A4FEB2D39B2495CF6BC405CFEA9281595F702C03623107A1086",
+          "bytes": 5766
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/JsonSupport.java": {
+          "sha256": "9BAEA7CFBA368F12FA3A3DBD3CB0048CB80CB84E5442AAE1E3DE19A39347C472",
+          "bytes": 2297
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/RoutingContractCatalog.java": {
+          "sha256": "9AFF8D48BD5DB49D1144A79B6800E8EA65135094177B36AAC7B63579A59C0155",
+          "bytes": 4165
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/RoutingContractEntry.java": {
+          "sha256": "6594801D8A48CB4F70D20F7FD125E30BB30EAB024EEF2E352AE777381EDF5407",
+          "bytes": 302
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/RoutingContractException.java": {
+          "sha256": "A8B83FD48B47D339F552F7CA8CD6FB66F1F64F97A64811293F608F44BB148717",
+          "bytes": 438
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/RoutingContractVerifier.java": {
+          "sha256": "C4DC06F574FCFA41F364566257A1B33F431750858AB514C910ED7EF5E13C259C",
+          "bytes": 2021
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/SignedSnapshotArtifact.java": {
+          "sha256": "DE55AF13E4395B0C53303200B0886E1E6A02D8D7529B23271925D20F5DD0FC5F",
+          "bytes": 2013
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/SnapshotActivationPolicy.java": {
+          "sha256": "78CA667BDF9B3A7D51ADB4673CC93BD61F14F48B1F5FAA8FC9EAD862D259F8FC",
+          "bytes": 6529
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/SnapshotTrustVerifier.java": {
+          "sha256": "CB6FFE4412D99826A7BB55C85307F05F08D7B9985E46FDA2C00B35BF17469BC0",
+          "bytes": 1163
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/SourceRecordReference.java": {
+          "sha256": "B0973048C26A2D61063A88B681AEA28EBFFE510CE7295EEC41EDF89EF1642356",
+          "bytes": 699
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/TenantId.java": {
+          "sha256": "C9816ACBC0ED8EC11B2F01D3C5921111E108B8E5F3930600C858CF296216CA83",
+          "bytes": 338
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/TenantRoutingPolicy.java": {
+          "sha256": "11D361E882B1F28F6CEEAEE4AAAAEAC2207CA4C7D22EC5981319BF13E9296C99",
+          "bytes": 6971
+        },
+        "contract-tests/routing/src/main/java/ir/neshane/contract/routing/UnavailableSnapshotTrustVerifier.java": {
+          "sha256": "9D02372C22276AA5CE92E9017045DBE486E774D8D997295A9A920F2181F022CF",
+          "bytes": 353
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/CellRegistryPolicyTest.java": {
+          "sha256": "D186063A64DFE743CC9319B78FF845CE690861F39BA9099C017EA687344F9ACE",
+          "bytes": 6213
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ControlledTestTrustVerifier.java": {
+          "sha256": "86228A6CD0CDBF8E8E56409EB554E2431BE9A368BE6B5392E4D6C7D41CF68644",
+          "bytes": 2433
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/DedicatedManagedSyntheticBoundary.java": {
+          "sha256": "39368F5EC1FE465AB2BA81000BBC67BD5EF14C5DD75113E8FB7948DF054C8C7F",
+          "bytes": 13749
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/DedicatedManagedSyntheticFixtures.java": {
+          "sha256": "0B68022F556D01FD5C0E2C7876123B441D172B080DEFA6A98FCA349B3EC5C6EB",
+          "bytes": 10895
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/DedicatedManagedSyntheticIsolationTest.java": {
+          "sha256": "88E311B288E958A0D30081D23C6F4BBACCD2748DBD038AF6A5933BC39EE37EC1",
+          "bytes": 20167
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/DestinationFencingPolicyTest.java": {
+          "sha256": "F9304C17DDE120E04000461B5E9AB6624729EE7EAAFEB64E59C24DDC05AAAFC2",
+          "bytes": 7701
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/PolicyFixtures.java": {
+          "sha256": "F121AC959634F5D36A55E105343133ADCD83171CF0ECDB299C27317E892DDCCB",
+          "bytes": 4242
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceCellIdentityValidator.java": {
+          "sha256": "EFE59ABD76BE5FF1F963093ABF7BA76918EAD295FE8E8F1AECB1C2F7583E60AE",
+          "bytes": 4133
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceCellIdentityValidatorTest.java": {
+          "sha256": "48BC173401E689365543788D8E04DAE5CA3352E940310BA97C6EC26D37AE4EFC",
+          "bytes": 3895
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceCellPeerMain.java": {
+          "sha256": "2CEF5FF9165483646D5776A651EC96CA43999377FC13EA531D0600051615539A",
+          "bytes": 3535
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceCellPeerMainTest.java": {
+          "sha256": "B1E24C69212B530E1506EC5204111FF18489C4D4A7C6446FEAA4A56014931D8F",
+          "bytes": 4805
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceGatewayFixtures.java": {
+          "sha256": "7C58448C3EE9D8A9743E301235DB18012F9A2A28C586303B0543426C111C5000",
+          "bytes": 4093
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceGlobalDirectoryLoader.java": {
+          "sha256": "4F28C9FD633B15A165F20018D4D73744C8AC61D028120352AEE790BD9E8CF01B",
+          "bytes": 3642
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceGlobalDirectoryLoaderTest.java": {
+          "sha256": "62135026F4F99133BD8EADB5A87767F98C133D6C761831784824906E195A8DA8",
+          "bytes": 2467
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingEnforcementHarness.java": {
+          "sha256": "48F4190DD44D10582397BB230E2AFBA5C180868836D57199C66910145895D820",
+          "bytes": 5685
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingEnforcementHarnessTest.java": {
+          "sha256": "B5D5D4EE4A0AC0B2731488ACB3C0F18DCA356F509F01A93B2353395F6D1EB12E",
+          "bytes": 34922
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingFailClosedForwardingTest.java": {
+          "sha256": "4B7A80CEF08C6294B395B533D831D2E9CE21506B263E4A61C6A65AF5971494DA",
+          "bytes": 9977
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingForwardingGate.java": {
+          "sha256": "86B22E6EB1C970EF66740FB8B37A0CC294621BEC4ADEB9D9FAB2A267A6927EC7",
+          "bytes": 1379
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingGatewayMain.java": {
+          "sha256": "25F5E7CBD00F2A03D5A3EDE50ED41AB9A8FE6F04AF29BD92AE98983C91ECCF64",
+          "bytes": 8868
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/ReferenceRoutingGatewayMainTest.java": {
+          "sha256": "0BF1C2D221CE11CFAE1CC2596708CD6FCCD9F187E105FD25ACF736D896097B7E",
+          "bytes": 9219
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/RoutingContractValidationTest.java": {
+          "sha256": "7FE5C8110591F83CEA7622D501949D5C622B62FC21CE396E4E45D98AE2B080EF",
+          "bytes": 2640
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/SharedCellRegistryFixtureTest.java": {
+          "sha256": "1A78B1297C15C1FA2E1AB056C2F0EEC035C2508974518B4B6279D86FD8283C48",
+          "bytes": 5342
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/SnapshotActivationPolicyTest.java": {
+          "sha256": "34CC6B70C72503F84126BA4C0A7A83290DDED6755644E053C510A28FDD506488",
+          "bytes": 10552
+        },
+        "contract-tests/routing/src/test/java/ir/neshane/contract/routing/TenantRoutingPolicyTest.java": {
+          "sha256": "34ACD3463FF358D5FD241957C5B6560BF2EAECF6E6FD39F6F5ACCC98BD043734",
+          "bytes": 21380
+        },
+        "contract-tests/tenant/build.gradle": {
+          "sha256": "406DC21C693C7E3EB9CF8FD13F5238F1F091452296EE3E68165731B3347A6685",
+          "bytes": 1040
+        },
+        "contract-tests/tenant/gradle.lockfile": {
+          "sha256": "B579549BF05A6E4BC7F4F425664897692CFB1A84FB4CE9C8F6E94E4F83B065F6",
+          "bytes": 5907
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/AuthorityKind.java": {
+          "sha256": "3786251BB9DAB9EA9ED904DA1E3C0D840FE3279E0F388447E49D51F69F2ED416",
+          "bytes": 448
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/AuthorityPolicy.java": {
+          "sha256": "4979333DB6621698348148FD5E794B02F6D2BD2AB6392D965364FF1693832A9F",
+          "bytes": 2777
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/AuthorityProvenance.java": {
+          "sha256": "0317E6FC68BF45E02E6D3CAD0C9AB5E1A3B9D494329FB82034E2BD15078D2491",
+          "bytes": 793
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/AuthorityScope.java": {
+          "sha256": "1BA7D64C1E82FDC62D8C5A199887BCC7FDE7584E7D0A57055B65A7EFE74FDDC5",
+          "bytes": 104
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/DeploymentProfile.java": {
+          "sha256": "6DD0196E55A28FA006476A8EAF5B9F137E6AB4F343518708BA3B1CDB6510DDF0",
+          "bytes": 128
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/JsonSupport.java": {
+          "sha256": "70D850032934B3BBA96CECA4B90AD58D863EED2AE68B041A4FEBE802655F4763",
+          "bytes": 2549
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/SuspensionExceptionEvidence.java": {
+          "sha256": "C9A97C23802F2B7FE26813B2DAECD33D85EE5C0553D48C421D975F7CD968834B",
+          "bytes": 532
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantContractCatalog.java": {
+          "sha256": "FC15F44CEAA56040896A966DFDE38E991091462D010DAE6631C07174FAD07232",
+          "bytes": 4608
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantContractEntry.java": {
+          "sha256": "9204BDC1137A039D2EC54623BE32CB762DD161882333CFAE62154BEB9DA8F836",
+          "bytes": 300
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantContractException.java": {
+          "sha256": "0AD62D838AC8EC68158FBDEF80774E578A887C3199EE497F27D107B45B06EF63",
+          "bytes": 420
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantContractVerifier.java": {
+          "sha256": "9F2AC99D614958C57673F7BA7E7FB9B6052BE371B3AE45404EB40BDC9BC2F9D8",
+          "bytes": 2080
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantId.java": {
+          "sha256": "2BD63FBBF58AE6CFB0EE5E87F8434CA3F007CBA08A793612B31E8AE09E79812B",
+          "bytes": 523
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantLifecyclePolicy.java": {
+          "sha256": "AE4604E54CD23E90ABD862EE6FFA6BD854FF9AA26FE8DC25C1972FE4F076FE99",
+          "bytes": 6480
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantPlacementPolicy.java": {
+          "sha256": "CCBCDA1EDF5454C7EFEF32C523171C82087CA615800B9189ECD94DFB30776910",
+          "bytes": 10395
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantRegistryPolicy.java": {
+          "sha256": "7E1C26699E64D63EFC0C97371997CC6C83F1AAF3D7F667D844FBCA2FAD67BF8F",
+          "bytes": 1923
+        },
+        "contract-tests/tenant/src/main/java/ir/neshane/contract/tenant/TenantSuspensionPolicy.java": {
+          "sha256": "33C71207F2F2E914D084178CB3999975A15AF36AAB6821E1018F92CC0831C539",
+          "bytes": 1058
+        },
+        "contract-tests/tenant/src/test/java/ir/neshane/contract/tenant/PolicyFixtures.java": {
+          "sha256": "91C4A2C723F10A81AD6D2C76B5BD0811028285645CC92D2D124ED8D4ABDDDFDA",
+          "bytes": 3779
+        },
+        "contract-tests/tenant/src/test/java/ir/neshane/contract/tenant/TenantContractValidationTest.java": {
+          "sha256": "88686727C0E08DA3889A2585D302369DFB020D3EAB2B5D0A7C20C3B56A308D91",
+          "bytes": 5006
+        },
+        "contract-tests/tenant/src/test/java/ir/neshane/contract/tenant/TenantLifecyclePolicyTest.java": {
+          "sha256": "B4F03D1EC1DB708F84FCF1C0F2143C9813B53CB8911C6E66B677F8C80514DC20",
+          "bytes": 14137
+        },
+        "contract-tests/tenant/src/test/java/ir/neshane/contract/tenant/TenantPlacementPolicyTest.java": {
+          "sha256": "CBBBCC2E7396E8FBD4EEE947B2FBED6484287AEA8940094A09A381FE50A0266B",
+          "bytes": 12102
+        },
+        "contract-tests/tenant/src/test/java/ir/neshane/contract/tenant/TenantRegistryPolicyTest.java": {
+          "sha256": "2D82FD120F2AD70D1EDBC9895B617B14453D46AC36EDF48E95F06707E48253F8",
+          "bytes": 2790
+        },
+        "contract-tests/tenant/src/test/java/ir/neshane/contract/tenant/TenantSuspensionPolicyTest.java": {
+          "sha256": "FEC3EDC2732C3DCEB200EE617177B8E6B2744104596F9A20C73AF2CBF1C8CDF3",
+          "bytes": 3529
+        },
+        "contracts/events/baselines/v3-012/reference-event-v1.schema.json": {
+          "sha256": "1866BD7ED4408CCC0584ED7E06626C5B024FA325043AD7ED625657115C1F089E",
+          "bytes": 623
+        },
+        "contracts/events/envelope/v1/schema.json": {
+          "sha256": "0CF368EFB956E5069712BAF2EFEEA52ECECE4C4F306485D8A6EE02173F95363C",
+          "bytes": 1679
+        },
+        "contracts/events/manifest.json": {
+          "sha256": "6FB87EAE410297E1703698807CAF8632E8BDA8E588AFC5593F04A0B3F1D12282",
+          "bytes": 404
+        },
+        "contracts/events/manifest.schema.json": {
+          "sha256": "B7278B4CF65D1FCC1FBFCABDC818A07E1B5A724D629768DA39A61BEB530F7CF8",
+          "bytes": 1552
+        },
+        "contracts/events/README.md": {
+          "sha256": "FB054A596EFE67986B76051AEE8370F08F04DB40F586A06AB87970A7ABE027DF",
+          "bytes": 5674
+        },
+        "contracts/events/schemas/reference-event/v1/schema.json": {
+          "sha256": "1866BD7ED4408CCC0584ED7E06626C5B024FA325043AD7ED625657115C1F089E",
+          "bytes": 623
+        },
+        "contracts/events/V3-012-engineering-evidence.md": {
+          "sha256": "49F9E384861F542A73D29B45DA11970E4CD380775A082659FA70D7DCE9C24856",
+          "bytes": 6604
+        },
+        "contracts/http/baselines/v3-011/common-v1.openapi.yaml": {
+          "sha256": "9D80EC88FCB9A402CC44E17318D7ED62947F79971B7B098BDB26C7E3F1945895",
+          "bytes": 3773
+        },
+        "contracts/http/common/v1/openapi.yaml": {
+          "sha256": "9D80EC88FCB9A402CC44E17318D7ED62947F79971B7B098BDB26C7E3F1945895",
+          "bytes": 3773
+        },
+        "contracts/http/README.md": {
+          "sha256": "BE400ABEE17B192FF68953055B2100D19B25EBA8E76CCD63F57C187FE73EA9BB",
+          "bytes": 6818
+        },
+        "contracts/http/reference-peer-service/v1/openapi.yaml": {
+          "sha256": "67D887E1B4629790B6FE8520BF778C911C81C2C5C7BCA763D9ADEEA21A411ED6",
+          "bytes": 3104
+        },
+        "contracts/http/reference-service/v1/openapi.yaml": {
+          "sha256": "44481F4E85D473C5918CB29B5A3718CC92971A2274370AFB7F4970F6FC950A89",
+          "bytes": 3422
+        },
+        "contracts/http/V3-011-engineering-evidence.md": {
+          "sha256": "CD0B82569BD04ADFBD6ECFB20BF66F7BE27A40648BCA61B5B1C22A04EBCB4ADA",
+          "bytes": 4151
+        },
+        "contracts/routing/manifest.json": {
+          "sha256": "4E7816A62D43800437A7EF58FB6B18100D8FEDFEF61022E510E9B76A6559A902",
+          "bytes": 1626
+        },
+        "contracts/routing/manifest.schema.json": {
+          "sha256": "0B701041C1967A1036C5133ECA5E9646348C334E928C8B3CF42838472728DF6B",
+          "bytes": 1138
+        },
+        "contracts/routing/README.md": {
+          "sha256": "5D3000AD8627C33B321D29EC8AD5176160E4CD3A351EDAA049B5487DB7D5F7BF",
+          "bytes": 3438
+        },
+        "contracts/routing/v1/cell-availability.schema.json": {
+          "sha256": "B5440EE3B31032553015A0C3429EE6E1BC41BDF44D7D435B57F7700C3A381190",
+          "bytes": 1185
+        },
+        "contracts/routing/v1/cell-registry.schema.json": {
+          "sha256": "D197628B5074738ADF48F3A6DCD9CC51EDFEC77B637C16B53DA62C20C2D424FC",
+          "bytes": 1127
+        },
+        "contracts/routing/v1/destination-fencing-evidence.schema.json": {
+          "sha256": "96D55624FA2DB25538688D5A062546372563EF1AA20ABEF7AC0604631076119A",
+          "bytes": 804
+        },
+        "contracts/routing/v1/local-routing-activation.schema.json": {
+          "sha256": "C84C82E98B1C51BCA2F6A05AE5B83CBD8C1947B79F32B2169A187D0359D51B24",
+          "bytes": 1191
+        },
+        "contracts/routing/v1/route-resolution.schema.json": {
+          "sha256": "E3E5521C373AAD8C5A9FC03ACCBD71072F66FF3326ABB64A5A7A15227D36BC54",
+          "bytes": 801
+        },
+        "contracts/routing/v1/routing-snapshot-payload.schema.json": {
+          "sha256": "13D4EBF4294DB6E1289091C3E104DFAD3BB83090FFC54F020F9051D45F2F230F",
+          "bytes": 2096
+        },
+        "contracts/routing/v1/signed-routing-snapshot.schema.json": {
+          "sha256": "1EFAD88F674F6023AE2B192071CD05867A2BEA6533F27A2C7ED9A0E6A098C366",
+          "bytes": 749
+        },
+        "contracts/routing/V3-022-engineering-evidence.md": {
+          "sha256": "C3EBC8D27B0237132A466A25DD817503FB6B24BA417AD01FAD6AC1A98B64C749",
+          "bytes": 9758
+        },
+        "contracts/routing/V3-022-R2-acceptance.md": {
+          "sha256": "4AC11CD17FF9C7FA07192BFD8529CE76682A25640F8F099C4CC1AB5F9007C7FD",
+          "bytes": 4747
+        },
+        "contracts/tenant/manifest.json": {
+          "sha256": "49EA553E744B5B37484A88379B04AAC79F8EEA328D2CC1764BAB2A300FD7165E",
+          "bytes": 1108
+        },
+        "contracts/tenant/manifest.schema.json": {
+          "sha256": "E44A1E4502A0D7A8AEDBD943D4A7136CEEB9D4B122A7711D173BA2F9E1D716CB",
+          "bytes": 1446
+        },
+        "contracts/tenant/README.md": {
+          "sha256": "B068A4BE9BE65FCA94340960B731C296C31B8619F77AFF901D915C381CF2BF52",
+          "bytes": 5227
+        },
+        "contracts/tenant/v1/authority-metadata.schema.json": {
+          "sha256": "68557141122974E0A88F2A68660E9266D054A2C1BB76595A84E42DFD2426EB22",
+          "bytes": 6025
+        },
+        "contracts/tenant/v1/tenant-lifecycle.schema.json": {
+          "sha256": "6D3967EB9E74E7216679BAFFAA1C255F96C8058A1435BEA8A3C7A7D2AF3D79AA",
+          "bytes": 4276
+        },
+        "contracts/tenant/v1/tenant-placement.schema.json": {
+          "sha256": "1D2917CD15C9A4857DA8A5DDF76CB544C5F41BE4910B74D22787E6BBDAEA69CD",
+          "bytes": 5962
+        },
+        "contracts/tenant/v1/tenant-registry.schema.json": {
+          "sha256": "2098264DF65292BA6C624AC4D9FD5D31AE4E73AA1A2050009FDEE0EFAEF074E3",
+          "bytes": 3764
+        },
+        "contracts/tenant/V3-021-engineering-evidence.md": {
+          "sha256": "0E3CA8F28D769EF3A506602E181F2CE3848DFFE3C7E2DDA942AC63578E1B01AC",
+          "bytes": 15916
+        },
+        "contracts/tenant/V3-021-R2-acceptance.md": {
+          "sha256": "521381DD8CE0826C5C4AB4A9BB0CA30A8F53C5680497E9D51A834E480C021F8B",
+          "bytes": 4243
+        },
+        "CONTRIBUTING.md": {
+          "sha256": "083C52ED5570FC23FC1013F8442481BCAEC648D7B37B7EBCBF385CD01CA192AB",
+          "bytes": 3078
+        },
+        "deployment/dedicated-managed/ADR-V3-024-R2-CL-004.md": {
+          "sha256": "9E0BCDB1D95CD622162033275B969D62B939E92A83BB04670ABBB2A2E4C2DEB6",
+          "bytes": 18299
+        },
+        "deployment/dedicated-managed/ADR-V3-024-R2-DB-001.md": {
+          "sha256": "B2E49BE31B516E004B82859FBF197CD2E704F250392C34FB75BACBC58CA33C83",
+          "bytes": 9516
+        },
+        "deployment/dedicated-managed/ADR-V3-024-R2-OA-003.md": {
+          "sha256": "6A44287B0D3414008B7DA5D6D81A845764E95A8E533F9F904EDBE24B7D35F1A1",
+          "bytes": 20383
+        },
+        "deployment/dedicated-managed/ADR-V3-024-R2-OF-006.md": {
+          "sha256": "74E28DE08462C323DA2C6CEE09C0149A7A6297CFC101236291BDFF966939DB25",
+          "bytes": 13792
+        },
+        "deployment/dedicated-managed/ADR-V3-024-R2-RT-002.md": {
+          "sha256": "40E6C9706BEC00A65856919CEB9B76EE60D8C9FA372F3F17501199C69D876113",
+          "bytes": 9498
+        },
+        "deployment/dedicated-managed/ADR-V3-024-R2-RTR-005.md": {
+          "sha256": "76ECA24266FB93DBAD6E0EEA9EBCE8D8266C9DA2DC348FE40C7630C08F0094A8",
+          "bytes": 11999
+        },
+        "deployment/dedicated-managed/V3-024-R2-architecture-decision-summary.md": {
+          "sha256": "12FB1E07210EA2DE79BD98290CF1E9C4AB4B47907D282926A47559BBC034AA82",
+          "bytes": 10531
+        },
+        "deployment/dedicated-managed/V3-024-R2-consolidated-proposed-disposition.md": {
+          "sha256": "9EF5A9EC3E4DFF08496D37D80260483946380FA1A1241E7362E23C49AC8983E2",
+          "bytes": 31643
+        },
+        "deployment/dedicated-managed/V3-024-R2-design-proposal.md": {
+          "sha256": "FC250CCB0C2F2D5075F7EB8EDCAB17C2604A073F59492840B4CFEFB3F837AEF2",
+          "bytes": 50897
+        },
+        "deployment/dedicated-managed/V3-024-R2-design-re-review-report.md": {
+          "sha256": "9C1814D7EFF9E8E3E0E75EF9B6C36C7D52E5798922332712E94810AD071AED4C",
+          "bytes": 23586
+        },
+        "deployment/dedicated-managed/V3-024-R2-formal-disposition-request.md": {
+          "sha256": "533954C8A00786C602D97C9D34BF28597B5E5DF7E0FC7A60739DD76FE3AEB56E",
+          "bytes": 21802
+        },
+        "deployment/dedicated-managed/V3-024-R2-formal-review-submission-package.md": {
+          "sha256": "5EE8128AB3B530A69F48633B4F42749BD93EA93CD627ECEE71A08B9D8FE53A13",
+          "bytes": 28424
+        },
+        "deployment/dedicated-managed/V3-024-R2-independent-review-handoff.md": {
+          "sha256": "23A7C4C92FC3134BF60E88D85D5F74CB25B5B99EFC45176789CB1841866EE01A",
+          "bytes": 10753
+        },
+        "deployment/shared/ADR-V3-023-B1-F03-001.md": {
+          "sha256": "EBB74B6A9FBF06BCAA11F7460CC6A85EDB66DD8D54B44937CDDA148E5984CE45",
+          "bytes": 2852
+        },
+        "deployment/shared/ADR-V3-023-B1-F05-001.md": {
+          "sha256": "7978FD6B90E367C9F2C1C549F73E92D359C025E14185C8153D604E4FFABA8962",
+          "bytes": 3042
+        },
+        "deployment/shared/compose-routing-reference.yaml": {
+          "sha256": "0DF10E0141FFCF264D3D220C1D40F03CD963F87C80C616D4FC804824E8EDEECA",
+          "bytes": 2067
+        },
+        "deployment/shared/compose.yaml": {
+          "sha256": "F0FE8630BA3BAB98AD2D75805E30494D2E494F8E6D8C5A082A37F07DE4406E21",
+          "bytes": 1125
+        },
+        "deployment/shared/fixtures/v1/cell-a.json": {
+          "sha256": "A9680B72ADF62712D7E30138F9B95FAA15818B5310D2AA236F8FC92576C3F2C9",
+          "bytes": 458
+        },
+        "deployment/shared/fixtures/v1/cell-b.json": {
+          "sha256": "2F1A802325BE0E5835C6802DAAE135076AA6FCEBDF49A6FBE4236E575A6D41FE",
+          "bytes": 458
+        },
+        "deployment/shared/fixtures/v1/global-directory.json": {
+          "sha256": "C4D87D256CBD0F9BD1B144A53B83C98888F45A797C9EB48FE124C69A709CBB45",
+          "bytes": 498
+        },
+        "deployment/shared/reference-runtime.Dockerfile": {
+          "sha256": "689BE765F15E8CA77FB19A05751E7FD51788B6791783F917AAEC4A364D0318AE",
+          "bytes": 457
+        },
+        "deployment/shared/V3-023-B1-docker-verification.md": {
+          "sha256": "450839844F4DEFA7B7A4294A135450F8287288E863D12DA64DC01C7F10E6BEA9",
+          "bytes": 3914
+        },
+        "deployment/shared/V3-023-B1-F01-F02-trust-boundary-assessment.md": {
+          "sha256": "CB735C3B75D73CDD7A1A6A25F9709BCEAB3038BABD094A71448889DD009FA06A",
+          "bytes": 8375
+        },
+        "deployment/shared/V3-023-B1-F04-security-evidence-assessment.md": {
+          "sha256": "AAEC07610FA33AC7A5A2F6AE5E1A82DA9A97B3D00BA93AE4B73E6868175C06FD",
+          "bytes": 8349
+        },
+        "deployment/shared/V3-023-B1-F05-decision-request.md": {
+          "sha256": "BFDC1C003D0457BE494FF3704D44484CCF4EA1F3E7916AE8DB0940FFD85BD4FE",
+          "bytes": 4349
+        },
+        "deployment/shared/V3-023-B1-preliminary-review.md": {
+          "sha256": "C46B832FFA100AFD02AD7AC0A174AD1680636EDCDBBDB858E4DEEBBDA31C2A8B",
+          "bytes": 11211
+        },
+        "deployment/shared/V3-023-B1-review-handoff.md": {
+          "sha256": "6E48B311603E726369219C831731CDA32F7164E6613CF965B5BAFAA52FF2DAB7",
+          "bytes": 6738
+        },
+        "deployment/shared/V3-023-R2-acceptance.md": {
+          "sha256": "938A87634FDF7D9D8161D00F3CD1F49E4633C3FD78F6C07782D7A5FEEFA31958",
+          "bytes": 2315
+        },
+        "docs/service-template.md": {
+          "sha256": "8358366ED8DAB519FB394BE31A4ECAB8675CBB61AEAB8C7D7FB61799C62E24BF",
+          "bytes": 4027
+        },
+        "gradle.properties": {
+          "sha256": "ABE8A6C92962920D7AC3BB1A6C0B95907FDD8901E1C64A76644A28C24F4B7307",
+          "bytes": 93
+        },
+        "gradle/architecture-boundaries.gradle": {
+          "sha256": "E888A8D0D443D60FCB14E247BB7026F5916EA68AD6ACFBCC2804EA81A50E94AD",
+          "bytes": 9870
+        },
+        "gradle/ci-security.gradle": {
+          "sha256": "9D2BA4CE697593E66CE7752D373FFE6C88603A57CE5FC8388B325CD8589B374C",
+          "bytes": 4989
+        },
+        "gradle/java-conventions.gradle": {
+          "sha256": "C04F7C6714462C259C50EC103D325CB59CF9FF7A7D22C3C13C631F214A8D1F49",
+          "bytes": 615
+        },
+        "gradle/libs.versions.toml": {
+          "sha256": "CF01ECB2715BE5A1856DBEA152A199226C604FE82C85CD69BF174DB30381C2CC",
+          "bytes": 1590
+        },
+        "gradle/quality-conventions.gradle": {
+          "sha256": "897E216303044CB278671FF97DDB5C758E841644D28346BE2BEDAC9B42D09665",
+          "bytes": 1243
+        },
+        "gradle/verification-metadata.xml": {
+          "sha256": "44ADA8993E4E5E115B0F4D2BB35F0B0BAC08D3027CE7467146F481512A8EEC6C",
+          "bytes": 168011
+        },
+        "gradle/wrapper/gradle-wrapper.jar": {
+          "sha256": "3B8A25775A69158B5AD2B1D17A80A88DC7B40A352A73EB27D06C612A7CE68E98",
+          "bytes": 48749
+        },
+        "gradle/wrapper/gradle-wrapper.properties": {
+          "sha256": "62779C1EDCA4389B50577428C5CAB724A2DDD3EA4CAC0685CE48BAB709CCE6C6",
+          "bytes": 368
+        },
+        "gradlew": {
+          "sha256": "A5A5C199BA02189AE8C46A334223371A20599D9C298EF65E7540EDE4A3F72D59",
+          "bytes": 8656
+        },
+        "gradlew.bat": {
+          "sha256": "F17917F8DBE61182B149273EE78090FEC1197442C3F38276AF907BFA5190DB16",
+          "bytes": 4888
+        },
+        "integration-tests/v3-017/Invoke-V3017Smoke.ps1": {
+          "sha256": "240F93DF019AEAC3563804776031F5A42D0A9C33C3E6894661585E931B92355F",
+          "bytes": 6078
+        },
+        "integration-tests/v3-024-cross-control-integration/fixtures/identity-authority.sql": {
+          "sha256": "E274B6815BA7FC99526EE11FFB0AC201EA9119927CDEBBEC5E847DBFE811A06B",
+          "bytes": 830
+        },
+        "integration-tests/v3-024-cross-control-integration/fixtures/operations-authority.sql": {
+          "sha256": "B87251B298D257700DB610AD4B04FA4D20CED4E34B24781E25AE76956C578A9B",
+          "bytes": 795
+        },
+        "integration-tests/v3-024-cross-control-integration/fixtures/placement-authority.sql": {
+          "sha256": "7E94EF9B9183D759ED669E4091DF52B4BF130AB96C1FFB9659000FEFC7B70F73",
+          "bytes": 817
+        },
+        "integration-tests/v3-024-cross-control-integration/fixtures/recovery-authority.sql": {
+          "sha256": "8F73DB03B94FDC7BFE1FDA3479AC71F9BB7B10E586C9FD10095607FFE90A5C31",
+          "bytes": 1202
+        },
+        "integration-tests/v3-024-cross-control-integration/fixtures/recovery-gate.sql": {
+          "sha256": "4F3844D9A499314A5C352417FFF799D2BD7821277F447E3EE9A4A29A78BB5F82",
+          "bytes": 1811
+        },
+        "integration-tests/v3-024-cross-control-integration/fixtures/workload.sql": {
+          "sha256": "EE3382AE45B9100E0D722D5B5448757206FECFA4EC472A1CF5657212FA0FF5F5",
+          "bytes": 1499
+        },
+        "integration-tests/v3-024-cross-control-integration/Invoke-CrossControlIntegrationProbe.ps1": {
+          "sha256": "A7022031A84649D0324A531D9F370E64F4F1CD313946592CF05C04D11EBF2C2B",
+          "bytes": 51451
+        },
+        "integration-tests/v3-024-cross-control-integration/README.md": {
+          "sha256": "514D856E45E5C45C9BFD36B792A3C39E2681D7DF1CAB4984D835EFD70E6D7CA4",
+          "bytes": 46239
+        },
+        "integration-tests/v3-024-cross-control-integration/scenarios.json": {
+          "sha256": "FE00683665213BA09630604677787F7CE88D95F78AD57D91ECC08E6E69363B23",
+          "bytes": 10301
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/BackupRestore.java": {
+          "sha256": "1892776E8DBCFA80D9884AEE8629FD9D841976D66A2D277DB7B0A37D7BE3DC6D",
+          "bytes": 8332
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/CrossControlIntegrationProbe.java": {
+          "sha256": "90D9E76901500A2E229FC34D249413621244CD258F00E8964AD0A56444714E3D",
+          "bytes": 84970
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabIdentityAuthority.java": {
+          "sha256": "E255E784F88B978ECBE7C9079B8C9677A4ED9487783707D15438C67069A6260A",
+          "bytes": 4669
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabIntegrationRouter.java": {
+          "sha256": "F70650909A82ADDFF7090A5CD2CAEEAE89B69486ABB2EE0C57FE7715FE596FC5",
+          "bytes": 4607
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabIntegrationTrust.java": {
+          "sha256": "3FA915AE8AC4F3EECD55252341B4C3F7A8C7F3C6562D3763C760F12A98AD38D0",
+          "bytes": 44360
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabOperationsAuthority.java": {
+          "sha256": "D31E18F3BD58148540249A337891DFCF0A7612067CB5B77F27E7D082B2ABC582",
+          "bytes": 6114
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabOwningWorkload.java": {
+          "sha256": "56BB779FD17BD3AE88C8E9F16953F0F667DC6933A6EF98BF2DCAAE898CE3FCAF",
+          "bytes": 15226
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabPlacementAuthority.java": {
+          "sha256": "D349A00CC2248828D8E275151380B4B107FFA618BB4768CF0FB06A76997451C3",
+          "bytes": 4715
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/LabRecoveryAuthority.java": {
+          "sha256": "890FB4E9C78DF4877C0EB8758EB27542A99045E3461F1D676B93BBAA8F60397A",
+          "bytes": 13053
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/OwnerOperationStore.java": {
+          "sha256": "B5B54988B91B40260A7D813110FE029C5CE6E839F99DBD5D5171D14296DBD00E",
+          "bytes": 9228
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/ReconciliationPolicy.java": {
+          "sha256": "12E8C02C1360F100D6562A9E7064BF4C7BAD96FEC95701BF06BC1ACDD175858A",
+          "bytes": 4523
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/RecoveryCoordinator.java": {
+          "sha256": "CE86CE9626AC391B00F1CF554108C2BC99F6A5D1830C8A51D3A0F0EE55E8ACED",
+          "bytes": 12981
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/ScenarioBarriers.java": {
+          "sha256": "3F2249B376769A9F68D4731C74420F7CA6B6606CDA49EF0158F2BAA41C949A4D",
+          "bytes": 2678
+        },
+        "integration-tests/v3-024-cross-control-integration/src/test/java/ir/neshane/isolationprobe/integration/StateEffectEvidence.java": {
+          "sha256": "154443AD8CC6D4BA9BCA9E0D5E821FFE15ABDDC22531185DD0EEFC88A0B9F501",
+          "bytes": 8776
+        },
+        "integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1": {
+          "sha256": "0C51BE7DBE21D08FD868A694E9A304A0C27536358425252A7B90FEEDAB2E9445",
+          "bytes": 135665
+        },
+        "integration-tests/v3-024-db-isolation/Invoke-DbIsolationProbe.ps1": {
+          "sha256": "80A0C82225D07719191BD0560B22AF23ADD973DDAE9AB90267FE19A6B7C6BF82",
+          "bytes": 50823
+        },
+        "integration-tests/v3-024-db-isolation/README.md": {
+          "sha256": "F78F1F98CFF331E42E79ACEB995755558D024E8314C58B53BA5B9D3EBE949292",
+          "bytes": 68858
+        },
+        "integration-tests/v3-024-db-isolation/src/test/java/ir/neshane/isolationprobe/PostgresTenantIsolationTest.java": {
+          "sha256": "AF5DDACEDCEBD4A300642EBE63E5D475E2C2300D8AD254D7497B443DEE1026D5",
+          "bytes": 127414
+        },
+        "integration-tests/v3-024-db-isolation/src/test/java/ir/neshane/isolationprobe/ProbeDatabase.java": {
+          "sha256": "386638DCA98BA34649C62FB960C76008E2716DB25BA60D869E2B9E9DAB465F65",
+          "bytes": 29292
+        },
+        "integration-tests/v3-024-db-isolation/src/test/java/ir/neshane/isolationprobe/TenantUnitOfWork.java": {
+          "sha256": "9C87E3D9ED09CF27DF7E40D04751CD3B46AC00C39FC5D45F03B6A7372C4A24C7",
+          "bytes": 22628
+        },
+        "integration-tests/v3-024-disaster-recovery/fixtures/authority.sql": {
+          "sha256": "EDE07A897BDC897AA32A0662CCF0C8CD7142B0ADD8C018C387D0AE897D777990",
+          "bytes": 1251
+        },
+        "integration-tests/v3-024-disaster-recovery/fixtures/recovery.sql": {
+          "sha256": "95776FF6FC972B9286922B8E75331BCF0B242838FC2F2FE142D43DF3B26B3278",
+          "bytes": 1170
+        },
+        "integration-tests/v3-024-disaster-recovery/fixtures/workload.sql": {
+          "sha256": "B81A9124BFC2562EA68A399CE418D879B1A8A421C31C6DD967A239695CB83D91",
+          "bytes": 1319
+        },
+        "integration-tests/v3-024-disaster-recovery/Invoke-DisasterRecoveryProbe.ps1": {
+          "sha256": "EAE89CF195C16712210F0E6FBE8020EED46EB0038594A89A25FC33381213E3B0",
+          "bytes": 28957
+        },
+        "integration-tests/v3-024-disaster-recovery/README.md": {
+          "sha256": "76DAD0F8FDDBDC650E26B999DAFBE4428ED87189A4F79C4C8A5EDC72B42AECB0",
+          "bytes": 21239
+        },
+        "integration-tests/v3-024-disaster-recovery/scenarios.json": {
+          "sha256": "B7CE4790579022804E712D6F972078745F903117947E3A9437AC76CF4399F9BD",
+          "bytes": 3864
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/BackupRestore.java": {
+          "sha256": "692105E4F34901DB0ABE1141E42F37517CBAB47A0A778C28F9743C3329FAEB3A",
+          "bytes": 8063
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/DisasterRecoveryProbe.java": {
+          "sha256": "7C4E8FB7A412E8EC6C63FBABE30339DA0A0F049EF1E0BC7782CFE3AA3DD02319",
+          "bytes": 33322
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/LabRecoveryAuthority.java": {
+          "sha256": "BEF79B2D082C59CA973982EE04E7295479CA463BB5B54066DD4575FA9834AAF4",
+          "bytes": 10688
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/LabRecoveryTrust.java": {
+          "sha256": "6ECDFEC36DB21E598FD72211F845A9861284A228353CA80BF2C1FA325B8710FF",
+          "bytes": 16423
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/LabRecoveryWorkload.java": {
+          "sha256": "5FCE2907F685EC8FE9A6AA3DF2FEC4BC4C5423540A6BE6FFE42AE4346897F73B",
+          "bytes": 13810
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/ReconciliationPolicy.java": {
+          "sha256": "E47AFDFE3307DF1D674407138E1322F644B0A179A8009DEE7A36340DAE8FD661",
+          "bytes": 3400
+        },
+        "integration-tests/v3-024-disaster-recovery/src/test/java/ir/neshane/isolationprobe/recovery/RecoveryCoordinator.java": {
+          "sha256": "E9496F5BECE8B1285267FDA8011BB814380D1374275FE3D69570175EBFB1D434",
+          "bytes": 4163
+        },
+        "integration-tests/v3-024-disaster-recovery/Verify-DisasterRecoveryEvidence.ps1": {
+          "sha256": "B15C4BA2847676F033F8E6166C2DFAB748668AD89D71E6BCDEFCB2CE8CBD0848",
+          "bytes": 11508
+        },
+        "integration-tests/v3-024-operations-safety/fixtures/operations-state.sql": {
+          "sha256": "17F6DA7BCB89D91D323779C5001E497176EC3168FF0EE49C19CA0CE37A58AA6D",
+          "bytes": 3654
+        },
+        "integration-tests/v3-024-operations-safety/Invoke-OperationsSafetyProbe.ps1": {
+          "sha256": "ADB37E72D0D1C85981DEC6C72B95264CC17CE961B58FC69AE7578650EE1C8AC3",
+          "bytes": 25808
+        },
+        "integration-tests/v3-024-operations-safety/README.md": {
+          "sha256": "DD70892AA5A6E43AA8192747112539687E9FB0E184F7F39540EA6B817CB2E93C",
+          "bytes": 16440
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/DurableOperationStore.java": {
+          "sha256": "11F6799B0D4874A2BABEDCD86F3FC848A28E955F30D14F5015DE1B0B74C88EAA",
+          "bytes": 13486
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/LabOperationExecutor.java": {
+          "sha256": "53B9B7B9BA4C6C2648471E7170124DA390873DB29BF53C95E2C5CFB0FEEB3851",
+          "bytes": 7431
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/LabOperationsAgent.java": {
+          "sha256": "628A3A6F5AEED5A5AC92E38DBC3C70FF6DF5EC4E4F6FAF2B3BB2FFB95CF73EB9",
+          "bytes": 2979
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/LabOperationsAuthority.java": {
+          "sha256": "CA8C2A4083907037E4BF958DEA647B828D96EBFDDA95B7CA0DF6DCAA3ED70787",
+          "bytes": 4233
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/LabOperationsController.java": {
+          "sha256": "B9C5F329C53728C6073A0D4856C53FFE340C9E7684EC5C2D8B98DF660A3A73D8",
+          "bytes": 2184
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/LabOperationsTrust.java": {
+          "sha256": "51C38C8385029193828D03FD28810AEE31EDB5EC054A72724E3B7B8F5D5A29DF",
+          "bytes": 16574
+        },
+        "integration-tests/v3-024-operations-safety/src/test/java/ir/neshane/isolationprobe/operations/OperationsSafetyProbe.java": {
+          "sha256": "C425F3D071F63B54F23DC4161574481171AE8FA0208C373FF21766A88946E53E",
+          "bytes": 36902
+        },
+        "integration-tests/v3-024-runtime-routing/Invoke-RuntimeRoutingProbe.ps1": {
+          "sha256": "E8A98A46198DD6C6D88ACCC4054CE0CB09EDB6F4EB28E00C9CFE0803ACF8E326",
+          "bytes": 18928
+        },
+        "integration-tests/v3-024-runtime-routing/README.md": {
+          "sha256": "3D48AD835ED28268C4DF43EDD3C42D5A61D0F45027A7B4E58788B0A7D5F9DA9C",
+          "bytes": 16839
+        },
+        "integration-tests/v3-024-runtime-routing/src/test/java/ir/neshane/contract/routing/LabRoutingAuthority.java": {
+          "sha256": "A0F410226F4F23A0FC796F2EA64BCD25805D5475A234E1811D2938F76386EEDE",
+          "bytes": 4313
+        },
+        "integration-tests/v3-024-runtime-routing/src/test/java/ir/neshane/contract/routing/LabRoutingCell.java": {
+          "sha256": "E2064282DE36A8ACD9084F5F293092D25EC21C6A65FD0F16D2977647C0F6BE72",
+          "bytes": 8938
+        },
+        "integration-tests/v3-024-runtime-routing/src/test/java/ir/neshane/contract/routing/LabRoutingRouter.java": {
+          "sha256": "20735272DC1533F9E99B3105BF95ACBD615035C5AAFE2B675CA93F9667413EED",
+          "bytes": 4489
+        },
+        "integration-tests/v3-024-runtime-routing/src/test/java/ir/neshane/contract/routing/LabRoutingTrust.java": {
+          "sha256": "7A0515291B93232B0FB3DD5F2D713967CC390BEE2F405D3E716CF4D00F2182EC",
+          "bytes": 18344
+        },
+        "integration-tests/v3-024-runtime-routing/src/test/java/ir/neshane/contract/routing/RuntimeRoutingProbe.java": {
+          "sha256": "8A74D24E5D19F87E2A3E26AC19BA1B563909ED35667A39AA9902FF7268DA7A28",
+          "bytes": 28430
+        },
+        "integration-tests/v3-024-workload-identity/Invoke-WorkloadIdentityProbe.ps1": {
+          "sha256": "D3D7845E3364FA18CCF975410B1EAFE537D1496D7ACB7622EA8F5B0ABD26ABC1",
+          "bytes": 21995
+        },
+        "integration-tests/v3-024-workload-identity/README.md": {
+          "sha256": "9B94F4870FCFC176BF9662624E8F37FB6CB48C36008180EABBDAC46E0B7E2D59",
+          "bytes": 12070
+        },
+        "integration-tests/v3-024-workload-identity/src/test/java/ir/neshane/isolationprobe/workload/CredentialLifecycle.java": {
+          "sha256": "5327D6D989C02BE2D80A881045782C3E1450C9FB7433758D40C2D689C3E4A9DA",
+          "bytes": 5075
+        },
+        "integration-tests/v3-024-workload-identity/src/test/java/ir/neshane/isolationprobe/workload/LabPki.java": {
+          "sha256": "7F9308C26DA31356D990FA146533D59707C72137DD4A3026A2705546F8D2A59F",
+          "bytes": 17370
+        },
+        "integration-tests/v3-024-workload-identity/src/test/java/ir/neshane/isolationprobe/workload/LabTlsWorkload.java": {
+          "sha256": "FB22F4A9D46270A59A4FDEBBE6FE99170772B1D372D1F0EFEB7C7BE7C8370928",
+          "bytes": 19056
+        },
+        "integration-tests/v3-024-workload-identity/src/test/java/ir/neshane/isolationprobe/workload/LabTrustAuthority.java": {
+          "sha256": "520FA81434CCD96C78E99BDE71856E835384B322A591E7E80AD7BCC71B7DC02E",
+          "bytes": 6121
+        },
+        "integration-tests/v3-024-workload-identity/src/test/java/ir/neshane/isolationprobe/workload/WorkloadIdentityProbe.java": {
+          "sha256": "8749BFC03E79ABD40B1FE56461847652BE04BBC0165B6263B63A0A3372D5E36C",
+          "bytes": 26913
+        },
+        "platform-libraries/observability/build.gradle": {
+          "sha256": "BEDD21E6E1C77AB4951877346D48F948A492FB0C325EA210AA3DD152EF602F92",
+          "bytes": 1345
+        },
+        "platform-libraries/observability/gradle.lockfile": {
+          "sha256": "BC12B54B76BB0A433EAED02D226D94E7044F4B7253C5F3800E35698804E678E0",
+          "bytes": 13611
+        },
+        "platform-libraries/observability/README.md": {
+          "sha256": "DD72CF40D6C71D30293485690BF48C44B5CC37DFBE0C28DF7E034C870AD9535B",
+          "bytes": 3246
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/ApprovedTelemetryAttributes.java": {
+          "sha256": "EC9F8259B2A29CF47D9632B70AB1F1EE7708DA9A33BAAB35D0371BDF16805CFE",
+          "bytes": 1020
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/CorrelationMetadata.java": {
+          "sha256": "E4B9CE6AFCB2E7265A1180FD538E9B68A0106844EF46E40BFF74A3487A511834",
+          "bytes": 1045
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/FailureTolerantSpanExporter.java": {
+          "sha256": "1E44665B710E1D8F2361617AF7C5C815D6AC668B9E7650E6471AC23B2735CFAB",
+          "bytes": 1248
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/MetricAttributePolicy.java": {
+          "sha256": "ADFAA382359AF2297F87135E11C2DEDD53EEC0A424FA7B8DB88095A9DD97C4A1",
+          "bytes": 2489
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/ObservabilityContext.java": {
+          "sha256": "5FE1189C781D2FADAC90E5AA1B75CFB1B52A9853482C4972878098DBA8539876",
+          "bytes": 625
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/ObservabilityContextPropagator.java": {
+          "sha256": "738798C85242A2493016294E78B50AC803F7BAA32CF3EA3E2E85EDE03EE4C26A",
+          "bytes": 2026
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/ObservabilityRuntime.java": {
+          "sha256": "0907867402939F8AB58933E357FD4091ED0141ECF92CB243CCC722B322B4EDCB",
+          "bytes": 658
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/ObservabilityRuntimeFactory.java": {
+          "sha256": "D63375D6DBDA7160E085FC4B5569B382AFA119BBAF771E3A5ECFA05AED44B742",
+          "bytes": 3867
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/ObservabilitySettings.java": {
+          "sha256": "BF80B5F1FD24E5A9A57BA9D5B4C64AAB3A19FEF38DCCF2B979EC153FD35A6890",
+          "bytes": 3170
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/SafeJsonLogEncoder.java": {
+          "sha256": "8A3A8583E5DDCB581C56D8B3CE4763E51F42C7C6EBBD93CC4F0D7B5615527893",
+          "bytes": 3136
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/StandardTelemetryMetrics.java": {
+          "sha256": "713A212AD4562397337533DB644D8CBA807D87A44982938F76D761FE9F33309A",
+          "bytes": 2381
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/TelemetrySanitizer.java": {
+          "sha256": "EAB9EF9FB19678257CC3D9917829B5C97B7DC2B887FE13F0C6A7C7E8AFB89900",
+          "bytes": 4038
+        },
+        "platform-libraries/observability/src/main/java/ir/neshane/platform/observability/TelemetryScope.java": {
+          "sha256": "1AABBC5F2D69753A6732280093408CBD76FB7D8D2AF5117468B3A20472A13375",
+          "bytes": 1972
+        },
+        "platform-libraries/observability/src/syntheticIntegrationTest/java/ir/neshane/platform/observability/ObservabilityContextPropagatorSyntheticIntegrationTest.java": {
+          "sha256": "9CC37C04BC4F4222DBCFE826E1A9F464E8A2AFDD925AD8D06F393C4E0C1198CA",
+          "bytes": 4697
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/BatchSpanProcessorFailureIsolationTest.java": {
+          "sha256": "C877A3211BC2FAF1979DD741EE240D504A82F8D69E9E35661A863B5A714FDD57",
+          "bytes": 1864
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/CorrelationMetadataTest.java": {
+          "sha256": "70EA6F6EE665AC5E2B3A204468EE01C592741E66FF6D047A7D2D220834AC5F18",
+          "bytes": 673
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/FailureTolerantSpanExporterTest.java": {
+          "sha256": "4561F2B11EEEC718DE41450EF2CDDCC1F43F8DB3D2B6DADE454DAD8DDCA087CC",
+          "bytes": 1346
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/MetricAttributePolicyTest.java": {
+          "sha256": "2C5C3C133B973D952DDEDE35CC8E69BEF40BFC579775B3A8DADEE667D2648339",
+          "bytes": 3611
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/ObservabilityRuntimeFactoryTest.java": {
+          "sha256": "5203A9753B08F556E27024977F71E00992F8B0332AB35305692FE1B3F682C611",
+          "bytes": 3738
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/SafeJsonLogEncoderTest.java": {
+          "sha256": "8B179DF84B52DC137E43B0E1E08552536CDFD431C86556BC636950DBB9384A51",
+          "bytes": 2053
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/StandardTelemetryMetricsTest.java": {
+          "sha256": "616A046BF70420065C7C59B73BD186AC2FDCFC38BE28FEED00012FF6432AEC2A",
+          "bytes": 2315
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/TelemetrySanitizerTest.java": {
+          "sha256": "8E753B14A9331C6DAACEB98A28241C2EB8ED03400221DD0278583DD06FB66DA1",
+          "bytes": 1429
+        },
+        "platform-libraries/observability/src/test/java/ir/neshane/platform/observability/TelemetryScopeTest.java": {
+          "sha256": "4BCAEE38CB111F048FAA16288B5F80D8735712EA22519FB20F195AD9694DA5D9",
+          "bytes": 1751
+        },
+        "platform-libraries/observability/V3-013-engineering-evidence.md": {
+          "sha256": "32C95FCC1D83AB30A26D1B93534330F2B9DB41CEB4439F9A9B4A62D58DFF25A8",
+          "bytes": 3295
+        },
+        "README.md": {
+          "sha256": "49B26EFA3AF25E83C8902B0D743EB5EAF25A24439AE509CD587C72D6B07CE9E1",
+          "bytes": 1897
+        },
+        "services/reference-peer-service/.dockerignore": {
+          "sha256": "83E4AE7014657D1C344506A9C94C2BBAE0101DEAD5F763B16D4FC543C5190AF7",
+          "bytes": 73
+        },
+        "services/reference-peer-service/build.gradle": {
+          "sha256": "BA3BFAA6FBF2B5B54EE88588B4C66A3AC087C2DEB097DA8C909340734FC5E1CD",
+          "bytes": 633
+        },
+        "services/reference-peer-service/Dockerfile": {
+          "sha256": "A748D0CCD17C7687BA785BE846BBB2FD0313D0FA12BF4A9A547FD7D2A64324B4",
+          "bytes": 313
+        },
+        "services/reference-peer-service/gradle.lockfile": {
+          "sha256": "BD0F96BD096B2ADE761822AE5791C053CD6847AC6EE6767995A9C0AEA544661A",
+          "bytes": 14546
+        },
+        "services/reference-peer-service/README.md": {
+          "sha256": "F99F86F416AF6E3AD5CA182DB6E39A671092A70B578F118E0EFBB5BCD6962075",
+          "bytes": 1127
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/adapter/in/web/observability/PeerHttpObservabilityFilter.java": {
+          "sha256": "BFC37AF053426F71C614AF0E9324AC2DF4B0A63555D5AEA0CB228771AFA9D84B",
+          "bytes": 4370
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/adapter/in/web/PeerErrorHandler.java": {
+          "sha256": "AF641892F7A666956707CE29A47FF5AFD2A3C5C5C07F78FF5D110FE56C41AC45",
+          "bytes": 1610
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/adapter/in/web/ReferenceEchoController.java": {
+          "sha256": "A45A76B7AE7164AA47511E8EBC45277E323A29A71653FD1ECF4F234FA633302C",
+          "bytes": 1404
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/application/ReferenceEchoUseCase.java": {
+          "sha256": "8268018816A6950412483E5BC3DCAFD2E087F6915349A6A9EB8B5FC88DE8B765",
+          "bytes": 624
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/configuration/PeerApplicationConfiguration.java": {
+          "sha256": "82658B101B0B788D4F2AB18799A2D9E72298EA55AA83C75C9510FDB51672F91E",
+          "bytes": 612
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/configuration/PeerObservabilityConfiguration.java": {
+          "sha256": "3910111726FA87996B1A14009C998C4C6202FDC3D51A2871F66DC24257BF1F23",
+          "bytes": 2254
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/configuration/PeerObservabilityProperties.java": {
+          "sha256": "A24DE22C137A7422EFA61C93F2AEFE0D3ED7D8FEDFE30FC71AAF11CF8FAD6B73",
+          "bytes": 3040
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/configuration/PeerServiceProperties.java": {
+          "sha256": "E201C62535C53D55611C4E618C291ADC3F65B1A832D0B5088E2E7ECCCD12AEEC",
+          "bytes": 365
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/configuration/PeerStartupValidator.java": {
+          "sha256": "CEA223CF85C21D515EE907F08091C3266822B4E3D117E3AB7907A44C4117598E",
+          "bytes": 1133
+        },
+        "services/reference-peer-service/src/main/java/ir/neshane/referencepeer/ReferencePeerServiceApplication.java": {
+          "sha256": "3D61FEB57F158451859C09DCD003A093B435E133DF53F4F8BCBC6767C4A005AA",
+          "bytes": 465
+        },
+        "services/reference-peer-service/src/main/resources/application.yml": {
+          "sha256": "BC1F2EB2308389DB13BDFF2DBB003F7B682BC496A91088E8AEA61FB98C4B3DED",
+          "bytes": 1248
+        },
+        "services/reference-peer-service/src/main/resources/logback-spring.xml": {
+          "sha256": "EC00BA3678E2C402A9B3CB44DEADE1D77D517FA2B3724D26B9F800A62B8572BB",
+          "bytes": 562
+        },
+        "services/reference-peer-service/src/test/java/ir/neshane/referencepeer/ReferencePeerServiceHttpTest.java": {
+          "sha256": "0CDCA02D1A204F6B12477989A152330BA64AC47C9D83346CE4AE51B17403F846",
+          "bytes": 3095
+        },
+        "services/reference-peer-service/V3-017-engineering-evidence.md": {
+          "sha256": "61A193ABF436E67D3015542C5817DB42478B248E5AB18CDFFF5263B8EBCEC858",
+          "bytes": 8643
+        },
+        "services/reference-service/.dockerignore": {
+          "sha256": "A63E1394012F39AEFF9F18339E1874FB797DEF3BCE8F008BF52F3A18F97A029B",
+          "bytes": 68
+        },
+        "services/reference-service/build.gradle": {
+          "sha256": "67C22F17B11367E87CAF04E36EE00DB131560E22B1197FAD7DACDDE14A167D1F",
+          "bytes": 628
+        },
+        "services/reference-service/CONFIGURATION.md": {
+          "sha256": "E614E8974BE81702E05E42A56154DB3CD4B43B6ED3E439EE352A415BABEB7CC8",
+          "bytes": 4270
+        },
+        "services/reference-service/Dockerfile": {
+          "sha256": "3E4D86FE850E8DBB632290F3E53FD259E17E665911F5514ACCBB2A59E5475410",
+          "bytes": 308
+        },
+        "services/reference-service/gradle.lockfile": {
+          "sha256": "F4761B1F1E9BD5C322504F5882E5D536A01D9DEDC0E72B1138FE671EC20FBD4F",
+          "bytes": 14541
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/in/web/error/CorrelationIdResolver.java": {
+          "sha256": "E06621DF7EC13B29911A0473CF0D4DA9CEA7F193F0094BCFD4A43AF36B0FC8CA",
+          "bytes": 1052
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/in/web/error/ReferenceErrorHandler.java": {
+          "sha256": "8C0A8CAC4719934612EEA1E471795240DAE48A283B8656827ACFC6D68E0688F4",
+          "bytes": 3469
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/in/web/observability/ReferenceHttpObservabilityFilter.java": {
+          "sha256": "105DDA3254CE0E42733E5F8F4BB36C331D500788626D0C30A3CCB91139FD7B87",
+          "bytes": 5821
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/in/web/ReferenceDiagnosticController.java": {
+          "sha256": "06B49330D6885442D08322FF8D138F01E32861FBDD61C8BDE2CD67C65D3109E4",
+          "bytes": 770
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/in/web/ReferenceDiagnosticException.java": {
+          "sha256": "FD84E716BFA8C69F03639C2348E8B222D6F9A8433C1E6270F8924E7F2A3BF15A",
+          "bytes": 275
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/in/web/ReferenceRelayController.java": {
+          "sha256": "5340C1F7397EAF53375FABEEF087F36AA4B3F15EBBF542CDADDC958FE54982F5",
+          "bytes": 1408
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/outbound/http/HttpReferencePeerAdapter.java": {
+          "sha256": "540EE66CA32A438D0CDBFA79A4CB9FE46A19886898FE8FB715545C0B497E0BD9",
+          "bytes": 5640
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/adapter/outbound/http/ReferencePeerUnavailableException.java": {
+          "sha256": "F64078D8A4B90E96694288FD8BF5C44F6113AC9C26709207BC0B6358A4CA4096",
+          "bytes": 289
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/application/port/out/ReferencePeerPort.java": {
+          "sha256": "C418B97EA0083F9624CC28FD85F35F523DE8BD25D796E066205E7160541063E6",
+          "bytes": 226
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/application/RelayReferenceUseCase.java": {
+          "sha256": "DDC60CAB937945C528A6655B581033384B2EF194C6C81DECCE73C949D3C93170",
+          "bytes": 416
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ExternalSecretContract.java": {
+          "sha256": "FA5D81B4013748F8D28F3E67A6E1EF82754DDA5529B9E4C3E91CB5F70F3534E0",
+          "bytes": 3216
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceConfigurationException.java": {
+          "sha256": "FF00F2FD172E7674FA9796CE0C621EB39751E28D505B4F1B8AB8B7FE1D18E0DB",
+          "bytes": 325
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceObservabilityConfiguration.java": {
+          "sha256": "F943527A2E56F9548E5B2002853C0F7A7146F178612169DBCEF5F26BD72A2382",
+          "bytes": 2845
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceObservabilityProperties.java": {
+          "sha256": "E62F8A2D068AB9D306D6C5556F598F6A90C1CFEE33C28B984E207B4298FBADF1",
+          "bytes": 3667
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferencePeerClientConfiguration.java": {
+          "sha256": "0CDC0E44C0F4915A24CAFF8395D9EAB52028A756726ABEB7DA210AEB65249535",
+          "bytes": 1384
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferencePeerClientProperties.java": {
+          "sha256": "1744015AB454BA83E354A85F94A3CB6C95BEA825B8F208FD62C6DDBB4753B8E2",
+          "bytes": 1242
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceSecurityConfiguration.java": {
+          "sha256": "E706BB65103B3599402DA98F2C76D600967DD0CA90B420F51BD9A25D1A5EEB51",
+          "bytes": 893
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceSecurityProperties.java": {
+          "sha256": "BFFE4A40E55994F425BDD38278EC72D08EDB77CE674C43E2B01E68B97A06E209",
+          "bytes": 606
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceServiceProperties.java": {
+          "sha256": "EE0ED955A43175063E3DF3D5603819EA7138BC9E383AED78D470121C8C808F7F",
+          "bytes": 632
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/ReferenceStartupValidator.java": {
+          "sha256": "9E8FE015518B6B6249CB9C512E644B1A7E69E78CF9C06C219C8A95B7BE7BB23F",
+          "bytes": 2596
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/SecretMaterialSource.java": {
+          "sha256": "1F2EA81FEDD35306B703254B2AA5458BBD4815C4E2A9E5F4D72848D91CA6B37C",
+          "bytes": 274
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/configuration/SystemSecretMaterialSource.java": {
+          "sha256": "1FBF997970AF929DCF6A650234A13D458FFCA3A22C5933FB27C4CECFD55B553D",
+          "bytes": 2443
+        },
+        "services/reference-service/src/main/java/ir/neshane/reference/ReferenceServiceApplication.java": {
+          "sha256": "B83A1D5393881F8E350E156FE623C5DD84A150537FCD9AD461F5E6FC77E91FB0",
+          "bytes": 453
+        },
+        "services/reference-service/src/main/resources/application-production.yml": {
+          "sha256": "911B67B7591221B81AEF364E9683AB56B679886A430CE4A02DAD2F02EE175BF7",
+          "bytes": 152
+        },
+        "services/reference-service/src/main/resources/application.yml": {
+          "sha256": "CD1BF755F7B3C02C1395131A947956F1021BCF9DC36EEFE705CCAC3386F801B5",
+          "bytes": 1505
+        },
+        "services/reference-service/src/main/resources/logback-spring.xml": {
+          "sha256": "9C5BEF7DB00E36C3D40044B4709FFF5B6AEBD90B9E333974DA7AD076F1B8F156",
+          "bytes": 557
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/adapter/in/web/observability/ReferenceHttpObservabilityFilterTest.java": {
+          "sha256": "D95C9E2D767FCDFD990D279E40377BCAF7CBE026A41708D98085C38C6AC6BDBC",
+          "bytes": 6947
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/adapter/outbound/http/HttpReferencePeerAdapterTest.java": {
+          "sha256": "5B492A9EB87D673DF9ABDA6051BC2984A8BD10853818A95B6CBFD87BB73CB228",
+          "bytes": 8647
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/configuration/ReferenceConfigurationContractTest.java": {
+          "sha256": "8CFA61AA754214979B328B2D2F79D507DBB2B9EF556886FF588CC8DD3BEEEF9C",
+          "bytes": 14164
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/ReferenceServiceApplicationTest.java": {
+          "sha256": "8DFC4E3FBBCAD47AFADB6C9A67AE1A1F3EF92C4E043DD7A58BD2D8CF1C9C3A51",
+          "bytes": 280
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/ReferenceServiceCollectorFailureTest.java": {
+          "sha256": "000066378D0C5AA0DD1E97EA1ED0F5AEBB0D4A55EB37ECC02050613B0D40F610",
+          "bytes": 1659
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/ReferenceServiceConfigurationTest.java": {
+          "sha256": "4F292D76998034146E7C63E5372628CD09D0F933F704A48A432AF8F7B677EB16",
+          "bytes": 2485
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/ReferenceServiceHttpTest.java": {
+          "sha256": "E238EFEED049E61C2057433AF5773E616181BB749506DF22CD9AAB2526095E90",
+          "bytes": 4851
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/ReferenceServiceProductionDiagnosticsTest.java": {
+          "sha256": "906848A95131EA98B24EF5A08707207DF215DE509943DFE41C1942AC64424705",
+          "bytes": 3379
+        },
+        "services/reference-service/src/test/java/ir/neshane/reference/ReferenceServiceStartupFailureTest.java": {
+          "sha256": "1D4375947566CF6FAB702CB5D84CBFA586D4CB27126C06EA2A6DB134F2937F93",
+          "bytes": 1856
+        },
+        "services/reference-service/V3-013-real-observability-integration-evidence.md": {
+          "sha256": "64AEFEB3E90C08D69FD686165B527C9BBEC52565DE4AD9AE9A2A77AD6EAAC04E",
+          "bytes": 6593
+        },
+        "services/reference-service/V3-014-engineering-evidence.md": {
+          "sha256": "A43B6D40D54641FED1CBA01E3D449B5EB9178C67F1C57CAE17D6593DE7CD113F",
+          "bytes": 5385
+        },
+        "settings-gradle.lockfile": {
+          "sha256": "E58BB2ED80DB9F829601A658D7C33B9802EB7D2191C31E79C28E01F14C225926",
+          "bytes": 198
+        },
+        "settings.gradle": {
+          "sha256": "80FFB28C3A91D879ECF248B828F9A9F0110C3BA91998B6235CFCEDB9BAC04A8D",
+          "bytes": 687
+        }
+      },
+      "statusExcludingOwnReview": "M integration-tests/v3-024-cross-control-integration/Verify-CrossControlIntegrationEvidence.ps1\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/Review-Evidence.ps1\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/Validate-Coverage.ps1\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/conditions-coverage.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/conditions-coverage.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/evidence-traceability-index.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/gaps-and-dependencies.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/git-status-review.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/negative-case-coverage.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/negative-case-coverage.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/review-map.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/review-report.md\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/source-inventory.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/validation-checks.json\n?? deployment/dedicated-managed/reviews/G-RUNTIME.01/validation-results.json",
+      "stagedDiffSha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "refs": "refs/heads/codex/v3-016-hosted-verification\tc7dbb2b5a95ac829de7420c79843c6b50e5a303f\nrefs/heads/codex/v3-017-reference-services\t462154ff3e8f222925b04fd461f58235446fb900\nrefs/heads/codex/v3-022-cell-registry-routing\t50073f8101f8784afbdba8f3012091dfef423c51\nrefs/heads/codex/v3-023-shared-cell-reference\tc18a3308ea57859e9faa985ea525acaa0c61e5cb\nrefs/heads/codex/v3-024-dedicated-managed-design\t3d60d399123906fe53ff8577d32fa610f0c348ae\nrefs/heads/main\t43111c62668037a1b04b33bddae5de841680b2a8\nrefs/remotes/origin/codex/v3-016-hosted-verification\ta7bf575fff3ad09f3fa632725c3de69cf67f833c\nrefs/remotes/origin/codex/v3-017-reference-services\t462154ff3e8f222925b04fd461f58235446fb900\nrefs/remotes/origin/codex/v3-022-cell-registry-routing\t50073f8101f8784afbdba8f3012091dfef423c51\nrefs/remotes/origin/codex/v3-023-shared-cell-reference\tc18a3308ea57859e9faa985ea525acaa0c61e5cb\nrefs/remotes/origin/codex/v3-024-dedicated-managed-design\t938b9e7e3a0feaed4f3c09056f70365313dabb7e\nrefs/remotes/origin/main\ta317367d3702e0c144a3c4d6266b948bbcc4ec49",
+      "path": "E:\\Neshane-CRM-V3\\Backend",
+      "branch": "codex/v3-024-dedicated-managed-design",
+      "diffSha256": "84FA1836879EE9AC8DF677A7FB01BAF12E8F5A96C37D20D9E774D1992E8A2B44"
+    },
+    {
+      "head": "c3926e6a8c9847281d49987abdbafbbced562dbb",
+      "trackedWorktreeFiles": {
+        ".agents/skills/neshane-api/SKILL.md": {
+          "sha256": "0194D5F66FEFA2D68EB213712236D9CAA09D74692BF24603C67E2462B5563011",
+          "bytes": 1167
+        },
+        ".agents/skills/neshane-messaging/SKILL.md": {
+          "sha256": "6E0BF955784397F6F74DB477414CF820F9B2AD1BD6E5068B92174A1133185A55",
+          "bytes": 1243
+        },
+        ".agents/skills/neshane-persistence/SKILL.md": {
+          "sha256": "748EE6EB63AE4FB52E56DBECB953687C5D32494DECB99924CF91C1D898824B52",
+          "bytes": 1262
+        },
+        ".agents/skills/neshane-plugin/SKILL.md": {
+          "sha256": "A638FCE33BB70751529D750EFE1717522E03A5887619F78FD315415FF22402BE",
+          "bytes": 1247
+        },
+        ".agents/skills/neshane-review/SKILL.md": {
+          "sha256": "D0E1EC76487C9A5C4F43F134F8D32806DC30B875D3094F3588E5DF22D50AC036",
+          "bytes": 1463
+        },
+        ".agents/skills/neshane-security/SKILL.md": {
+          "sha256": "F88AF8217D6AA0DB078ECBD3811C110A8A0A5CEF445DDC4BB1BCC3AEED298B1E",
+          "bytes": 1268
+        },
+        ".agents/skills/neshane-service/SKILL.md": {
+          "sha256": "8E05198F058F525362D0CB249B485E97FD73D15BAC5D9712D78180CA5B3AEEE2",
+          "bytes": 1359
+        },
+        ".gitignore": {
+          "sha256": "34002CE1074608F8E6A7DBEFBCEE2712C7FEA37AB2FC58F547A3C46F44ED63E5",
+          "bytes": 68
+        },
+        "AGENTS.md": {
+          "sha256": "E9899E5CCB8CAD938A544AC44FD5270B09B98B917A441533D495BB565D3A60DA",
+          "bytes": 6148
+        },
+        "architecture/adr/001-backend-architecture.md": {
+          "sha256": "2A50B4CF5F54EB785D5D14ADAEBFFDB1A9A2A000F59953074DDABD20590691F3",
+          "bytes": 1675
+        },
+        "architecture/adr/002-service-ownership.md": {
+          "sha256": "E4844F2B280B44E2F50225E0017D1C6B48C1097FED00B3D2C7C372E24F6AB123",
+          "bytes": 1568
+        },
+        "architecture/adr/003-cell-based-hybrid-tenancy.md": {
+          "sha256": "626CDE56EC9823B0F66C427A304AE86BC785E01E10730A1E75B30938C438108A",
+          "bytes": 1580
+        },
+        "architecture/adr/004-sovereign-authority.md": {
+          "sha256": "006F86844CCD3342AF9E09B972988D2A69E136F2990F97103EB8196DCFB01448",
+          "bytes": 1639
+        },
+        "architecture/adr/005-domain-owned-authorization.md": {
+          "sha256": "0CE22471ED41A0A6DF09A9A7811A29095E57E4B20DF40E904D2F3F18C5BF85D2",
+          "bytes": 1692
+        },
+        "architecture/adr/006-plugin-extension-model.md": {
+          "sha256": "3FB6A8DD919CFD7987A79C2D59EBC086C3D9DC1F49CEC7FC2E39AAD0FEF57F1F",
+          "bytes": 1654
+        },
+        "architecture/adr/007-data-messaging-baseline.md": {
+          "sha256": "88F66CFDC92CF91E272DF79C1EB8C2EB56954F9B3108DA3471563FC5C1807778",
+          "bytes": 1704
+        },
+        "architecture/adr/008-contract-compatibility.md": {
+          "sha256": "8C781052BCC5D9F71C87D257D2B2D39779A89F51315E905FF5BD1F8D1BB55DB5",
+          "bytes": 1517
+        },
+        "architecture/adr/009-frontend-architecture.md": {
+          "sha256": "75987580D0C894FAF65D533F84E7140826B798223503DA41C91265120B514BFA",
+          "bytes": 1551
+        },
+        "architecture/adr/010-operational-profiles.md": {
+          "sha256": "20DD1FBB598088283ACFFDD5212C4F0FC02EDD508031B813BB8036A2FC71C672",
+          "bytes": 1566
+        },
+        "architecture/adr/011-logical-boundaries-co-deployment.md": {
+          "sha256": "635385DB733833823EB01FCBE0154F7EB8F43D9C14AE38BB30EF869AE130091E",
+          "bytes": 1516
+        },
+        "architecture/adr/012-evidence-based-readiness.md": {
+          "sha256": "7836F33C262E4295A57E274344E38375CB15DFE1168EBE7A59F970425551475C",
+          "bytes": 1478
+        },
+        "architecture/adr/013-backend-foundation-toolchain.md": {
+          "sha256": "15F5C2F77551FC1C69CD495424AAD552A491CF5BEA4CF44325D5DECBE31141D7",
+          "bytes": 7055
+        },
+        "architecture/adr/014-api-event-versioning.md": {
+          "sha256": "EA80569AA622EB0DE30E7215FA5EB69650908418B64C8B8B6322F5B989C4E65A",
+          "bytes": 9016
+        },
+        "architecture/adr/015-contract-testing-strategy.md": {
+          "sha256": "9C10780124DB493D6AFE970673DE17DF1AD3A40CECA5A7188B207333DB970A9A",
+          "bytes": 15474
+        },
+        "architecture/adr/README.md": {
+          "sha256": "093FAC4C71C06288E432F4F88C360EF2BC6D542ADD0AA7AD8BA4126FF64008A9",
+          "bytes": 6880
+        },
+        "architecture/baseline-v3.md": {
+          "sha256": "B292F334FC7B6F6F636A9382455CBE87EF91D3EFF442E81FF201EE8C2B1A8576",
+          "bytes": 24592
+        },
+        "architecture/contract-change-protocol.md": {
+          "sha256": "4DEFD15FF6A098714562DC1A52ECEA0A4477565FBD01A3EC0EF03027CD51E553",
+          "bytes": 9596
+        },
+        "architecture/control-plane/ownership-matrix.md": {
+          "sha256": "6CD3E4DE6CC59B1587669092DC027CD8FF6C7D95CB5818DF361ED8F7CB1F8B34",
+          "bytes": 41889
+        },
+        "architecture/decision-register.md": {
+          "sha256": "6789FFC66168E246598304ABB8582390AA4692FD859A62821934102C180739DB",
+          "bytes": 10911
+        },
+        "architecture/governance-synchronization.md": {
+          "sha256": "4FCC7471B20859D54F5B0C7D0D7E87797A74215EDBC7FFF950CC129417A2B8A5",
+          "bytes": 8157
+        },
+        "architecture/legacy-v2-reference.md": {
+          "sha256": "9C6FF706CAF688482D9C9D6DE8AC488096BB6941A594D0F1FA63BC8DC8E63B53",
+          "bytes": 4419
+        },
+        "architecture/nfr.md": {
+          "sha256": "885D07B704A876A287237F098D9DAC7A8DE02F71A6576305F3EA7C892D0F0130",
+          "bytes": 34583
+        },
+        "architecture/open-decisions.md": {
+          "sha256": "B256078F7611D1F51B3B84D5A9A392E64D722708A68B2E44A1B6F044F67303F1",
+          "bytes": 9424
+        },
+        "architecture/reviews/OD-020-final-approval-readiness.md": {
+          "sha256": "7A5D0BBF033A56E8B8591D9A80C5C2328D6AD0C0B137343D5D2E84CC072AACE7",
+          "bytes": 12467
+        },
+        "architecture/reviews/OD-020-quality-approval.md": {
+          "sha256": "DB150584FA88C4342C307290C36A50A45B7309B9BA0C6D8CA2F4C58BA449682A",
+          "bytes": 6096
+        },
+        "architecture/reviews/R0-checklist.md": {
+          "sha256": "D6E638328994BD930E5805429A84CF4A71063ABAB26F12EC2F7F7CA2D4BE9DDE",
+          "bytes": 11336
+        },
+        "architecture/reviews/V3-003-analytical-closure-contract-proposal.md": {
+          "sha256": "5DC92F9A13F39D496EA068880416A6F73F785F1EBDBA159B139AF92EF4656175",
+          "bytes": 25937
+        },
+        "architecture/reviews/V3-003-analytical-closure-cpo-decision-package.md": {
+          "sha256": "8F48A6C08674625A456BE0991750F098CC2077B24ABBCC1B911F559137EC87D4",
+          "bytes": 24708
+        },
+        "architecture/reviews/V3-003-analytical-closure-evidence-matrix.md": {
+          "sha256": "B14AC5AF7E9FFBB322E252FF3CAA5287DB828181C8A55F5CC12E21ED7C1AEED2",
+          "bytes": 40649
+        },
+        "architecture/reviews/V3-003-consolidated-security-design-review-manifest.md": {
+          "sha256": "9592B9E9190D2182132D5EEBEFBD9FDCB7C802F7F8A8E305B8209DB699B90C3E",
+          "bytes": 37594
+        },
+        "architecture/reviews/V3-003-contract-messaging-specialist-review-request.md": {
+          "sha256": "C3E5943BC2063D4C7067CA41BED4FCB8F031525FFBED14C0A1E2251DB86BF48A",
+          "bytes": 35230
+        },
+        "architecture/reviews/V3-003-cpo-analytical-closure-decision-declaration.md": {
+          "sha256": "19D7EF2372F3BCEA19C815300866398FAB0A2C67BB7C6ADEA52B8142BF9AC9E7",
+          "bytes": 16055
+        },
+        "architecture/reviews/V3-003-customer-audit-technical-contract-draft.md": {
+          "sha256": "56E71F3EE0537BFC70D0E3F02602175D0E0EB87510FBB7AB43125F37C4010412",
+          "bytes": 75480
+        },
+        "architecture/reviews/V3-003-decision-record.md": {
+          "sha256": "7E5CE45C547FDA56D44F9DF4DA0E3035741BA20699B4A9500FD6CC0DFB38CDEF",
+          "bytes": 165165
+        },
+        "architecture/reviews/V3-003-identity-platform-security-authority-appointment-proposal.md": {
+          "sha256": "6B167904BFDA60B0D884C949DBCCD38BB7B700DBD011B549BF2BE02756959938",
+          "bytes": 29652
+        },
+        "architecture/reviews/V3-003-identity-platform-security-review-request.md": {
+          "sha256": "99F64D857EE22B3090BF9AD07FC270C903DAB0C620190FBA7AC3590C8631CC1E",
+          "bytes": 39100
+        },
+        "architecture/reviews/V3-003-operational-policy-governance-review-request.md": {
+          "sha256": "BCD183E54E82C661ABFF7D8D3D48B36DB16A48375BBEA18DEFF3EE3E5C607FF1",
+          "bytes": 36377
+        },
+        "architecture/reviews/V3-003-SEC-01-bounded-security-design-decision-sheet.md": {
+          "sha256": "0394A08682ED911F5C61839CA371E0852072E5621F9B33FFB0E322FEC738CA7B",
+          "bytes": 33804
+        },
+        "architecture/reviews/V3-003-SEC-02-bounded-security-design-decision-sheet.md": {
+          "sha256": "F0B6D9816324CD6F2C0A1BDE239A772A677ABA41CB05645379F880D65F7FA645",
+          "bytes": 38978
+        },
+        "architecture/reviews/V3-003-SEC-03-bounded-security-design-decision-sheet.md": {
+          "sha256": "69C1A5DE357438CEBD2BFD55DA0B110FD476C92CA05D21ADF0DAE3FF2961C655",
+          "bytes": 30545
+        },
+        "architecture/reviews/V3-003-SEC-04-bounded-security-design-decision-sheet.md": {
+          "sha256": "2D03D1CDA36C3E9F379824ED46B2C6AFFB362B504F098A95F137DB2E1349F6E6",
+          "bytes": 34506
+        },
+        "architecture/reviews/V3-003-SEC-05-bounded-security-design-decision-sheet.md": {
+          "sha256": "A7BF6191F252D20A334D9A315E77FEDBFF6BEC689382EDBB528E952DCF809A82",
+          "bytes": 36915
+        },
+        "architecture/reviews/V3-003-security-architecture-review-request.md": {
+          "sha256": "8AA08A3B8840D5E97880C1D67EDE893D16F223200CF11EA0E3B823134348B0CF",
+          "bytes": 39401
+        },
+        "architecture/reviews/V3-003-security-review-input-manifest.md": {
+          "sha256": "A73FC9346361FCD95CA6F4914CFF53BE7201DCFC35DF9A71334D14D442D3EF22",
+          "bytes": 15867
+        },
+        "architecture/reviews/V3-003-sovereign-security-review-request.md": {
+          "sha256": "9293D4647E588820AB0A8B2F79A8F4FEDAD6358EF2FE28D7D6D9998C8CD66C7E",
+          "bytes": 38073
+        },
+        "architecture/reviews/V3-003-specialist-review-tracking-register.md": {
+          "sha256": "C3A4B6C04BC31589D7D6E485C747E31F865805AADCA8D8708064450D436C296E",
+          "bytes": 35406
+        },
+        "architecture/reviews/V3-003-tenant-security-review-request.md": {
+          "sha256": "B2364C4D4469209E48E28E8A3F59D3F794337C194A79B18B4A7BECE7976A0701",
+          "bytes": 33924
+        },
+        "architecture/standards/api-design.md": {
+          "sha256": "30FEF274EDD35C5942C0839781A6DD26BA870BBEA5D120F47D5C3CDC1740EAC8",
+          "bytes": 2207
+        },
+        "architecture/standards/configuration.md": {
+          "sha256": "786B7C6565A1F81756FCCF70519621C7BE77BDDD2B4590A64C0571B1A5B63F91",
+          "bytes": 1174
+        },
+        "architecture/standards/error-handling.md": {
+          "sha256": "E1BBE1170F2D39B6A62BE9EBF3222F912B95A68C88FF0DC7606BACAA65508B71",
+          "bytes": 1241
+        },
+        "architecture/standards/java-coding.md": {
+          "sha256": "8ACD221B472726FB26ABB40D287E17181B09CAE6D5F61C429CB62C03EFF8F018",
+          "bytes": 1568
+        },
+        "architecture/standards/messaging.md": {
+          "sha256": "25D555CF5333A887B33C914C2B44BAD0245B2317EFC827F8C28CE77BF47553B5",
+          "bytes": 2171
+        },
+        "architecture/standards/persistence.md": {
+          "sha256": "7325308DE318B30400FB530690B2A11F90BBB166970EAE2A0D74B94D399AE479",
+          "bytes": 1662
+        },
+        "architecture/standards/repository-structure.md": {
+          "sha256": "B8273ABCF02D8276AED7911E4140E4122D2A3517D1B2245C36839959097EC7FA",
+          "bytes": 2149
+        },
+        "architecture/standards/security.md": {
+          "sha256": "41CA85AC28BBBC05EBD7B6B2801D8AAD20B4808042E23F95D563832B49930B06",
+          "bytes": 1592
+        },
+        "architecture/standards/service-architecture.md": {
+          "sha256": "A4876A6619F56DFE3E0D00FD38535B831FBE165EA8A374C4AAA4A026A0B7CA40",
+          "bytes": 1512
+        },
+        "architecture/standards/testing.md": {
+          "sha256": "EB6E34EB1AA951ED55FCB5836661DCB1E7D3D932130EB6C07A8E6F845158F5CA",
+          "bytes": 1697
+        },
+        "architecture/task-governance.md": {
+          "sha256": "28194BDFDCD020C5F22AB86BB3CEBA769F6E82579B5D7C39EE1819895A64A5BC",
+          "bytes": 16869
+        },
+        "architecture/threat-assumptions.md": {
+          "sha256": "BA618BF0853705D20F304B093093F4BF6F0B540D3CD45F95B55843E93FE87332",
+          "bytes": 25647
+        },
+        "deployment/support-matrix.md": {
+          "sha256": "3405BFD59460CD3CCCA82A9979039839D03297E77C933AED1BEFA6CA6375C1AB",
+          "bytes": 36404
+        },
+        "Local-Infra/.env.example": {
+          "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+          "bytes": 0
+        },
+        "Local-Infra/.gitignore": {
+          "sha256": "E9CBB0224C4A3D23A6019BA557E0CD568C1AD5E1582FF1E335FB7D99B7A1055D",
+          "bytes": 4
+        },
+        "Local-Infra/compose.yaml": {
+          "sha256": "453B31B7C7EA3E1D55D052DFAAE24675F3710CEDAD468BC176FF1605FF6D770A",
+          "bytes": 4914
+        },
+        "Local-Infra/observability/grafana-datasources.yaml": {
+          "sha256": "24DDF33FFA6AB7F19F3875C5F60C27F7C612A3279FB1E1E2C46F06997BC7F012",
+          "bytes": 328
+        },
+        "Local-Infra/observability/otel-collector.yaml": {
+          "sha256": "B1100FD05E20DE23A19337A77B39E32A027DEF2E8A6ADF71C12DC5243EE2D712",
+          "bytes": 771
+        },
+        "Local-Infra/observability/prometheus.yml": {
+          "sha256": "0C23EE331985507635A0B196A3D9528E779A7AAA2DA76CC8058A14B8516225B6",
+          "bytes": 252
+        },
+        "Local-Infra/observability/tempo.yaml": {
+          "sha256": "129FE2E933AB763D8DE9424021461A0B82480B24357A79C1C45E4BB2D22AFA5B",
+          "bytes": 419
+        },
+        "Local-Infra/README.md": {
+          "sha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+          "bytes": 0
+        },
+        "migration/v2-historical-evidence.md": {
+          "sha256": "FCC234C34F551FBE4CFB0B63B05C1403101DB4C3B384CA016BB3A1F0C331DDF9",
+          "bytes": 41907
+        },
+        "migration/v2-inventory.md": {
+          "sha256": "EA615378BDA92B4C307819FAA6E3D48C594D8EEF509EA5D2197328B6CF7922BF",
+          "bytes": 87431
+        },
+        "migration/v2-owner-review.md": {
+          "sha256": "053AAC488AA18C46BDF64418FDFC9F7AB8604C526F824586E432D3701CCC5566",
+          "bytes": 227859
+        }
+      },
+      "statusExcludingOwnReview": "A  Local-Infra/.env.example\nAM Local-Infra/.gitignore\nA  Local-Infra/README.md\nAM Local-Infra/compose.yaml\nAM Local-Infra/observability/grafana-datasources.yaml\nAM Local-Infra/observability/otel-collector.yaml\nAM Local-Infra/observability/prometheus.yml\nAM Local-Infra/observability/tempo.yaml\n?? Local-Infra/seaweedfs-downloaded.txt\n?? Local-Infra/seaweedfs-test.txt",
+      "stagedDiffSha256": "D38E1A7F0123A4F53DDBFEA9F413D541CE7AF0F4A0CF2E20C586C2A97C99D1D9",
+      "refs": "refs/codex/turn-diffs/checkpoints/25490ab5e743a8fc07a4fbb627160e55/da789505836ade95f112299e8cf9a521/1794490945124/8629ad08-1bd1-41d5-a683-677300eb7fa6\t25e801c04fe3b8b9c79b71dd82097f5386403f53\nrefs/codex/turn-diffs/checkpoints/add609fce81002597fd35d2989632c0c/7ed2bf70dda1810ecc7cf25e53db7f30/1794501238948/e228632a-697e-4a1c-9884-5f363eb20130\t25e801c04fe3b8b9c79b71dd82097f5386403f53\nrefs/heads/codex/v3-024-r2-root-registration\t094c966de745285bd5a8d1975312eb06d930d4a8\nrefs/heads/codex/v3-024-root-preservation\tc3926e6a8c9847281d49987abdbafbbced562dbb\nrefs/heads/main\t094c966de745285bd5a8d1975312eb06d930d4a8\nrefs/remotes/origin/main\tc3926e6a8c9847281d49987abdbafbbced562dbb",
+      "path": "E:\\Neshane-CRM-V3",
+      "branch": "codex/v3-024-root-preservation",
+      "diffSha256": "1A7F871FB59243E6F178CF3977769ECCA7373EC0A24D8BD459F2F23CAEED1213"
+    },
+    {
+      "head": "094c966de745285bd5a8d1975312eb06d930d4a8",
+      "trackedWorktreeFiles": {
+        ".agents/skills/neshane-api/SKILL.md": {
+          "sha256": "9DDA634DF6D82D81EE93CD9084B303244BBD3E3D4A0E1BEBA82FB937750E241F",
+          "bytes": 1180
+        },
+        ".agents/skills/neshane-messaging/SKILL.md": {
+          "sha256": "5CE42997805D6045A0F58EC52B11EC2C1B60FE4A44A1383D78929BEC5270E2CD",
+          "bytes": 1256
+        },
+        ".agents/skills/neshane-persistence/SKILL.md": {
+          "sha256": "B753F24639AF18B1C09832540BAD8062421B48546008B6BD2F1C5A3115C4CEF4",
+          "bytes": 1275
+        },
+        ".agents/skills/neshane-plugin/SKILL.md": {
+          "sha256": "31D2152F61987ED44322C93FC88DD189FEFCCA770C57A2461E4E4484B5F9C710",
+          "bytes": 1260
+        },
+        ".agents/skills/neshane-review/SKILL.md": {
+          "sha256": "B26F6546D18D09EEFC56F381B4EA9D0B2BC27EB926232B0BD77578E3389D0389",
+          "bytes": 1476
+        },
+        ".agents/skills/neshane-security/SKILL.md": {
+          "sha256": "D78C7271BB05E789B01EED35F8D33842A96595F5E9B8B1EBF4AED31F94B716F9",
+          "bytes": 1281
+        },
+        ".agents/skills/neshane-service/SKILL.md": {
+          "sha256": "D020F4F1E9911911A27D7581FB3C50BF724150F7DEFD1A367095B0C8FFAE97CA",
+          "bytes": 1377
+        },
+        ".gitignore": {
+          "sha256": "9F9887BCEA7D59406EB1109D0DAA28EC5701EF5253EF51E3ECB2863316CDAB35",
+          "bytes": 75
+        },
+        "AGENTS.md": {
+          "sha256": "14C2FF2EEAFA342E6E58613489081C362E0E1C157CC5EF8DA8B5E11CF0D99FB0",
+          "bytes": 7073
+        },
+        "architecture/adr/001-backend-architecture.md": {
+          "sha256": "3D9CE02F5FF66B72B4FCE8272D989AABE6B697236FE0C5198F1B4C0153322F7E",
+          "bytes": 1709
+        },
+        "architecture/adr/002-service-ownership.md": {
+          "sha256": "AF00F38C014438CB69CE47196BB8332BA926BB051303449FEEF9B6069631A457",
+          "bytes": 1602
+        },
+        "architecture/adr/003-cell-based-hybrid-tenancy.md": {
+          "sha256": "16581D42F325C21A5FA087D344A86B2446119D6977B04243B4AECE13597AB193",
+          "bytes": 1614
+        },
+        "architecture/adr/004-sovereign-authority.md": {
+          "sha256": "26F7FFEBAABB91E86CD9196D4FB6E1A1BB86E1463989FB3C17FFF9F575A5111D",
+          "bytes": 1673
+        },
+        "architecture/adr/005-domain-owned-authorization.md": {
+          "sha256": "7BEB13EB0DE7CC4896E16E4BD6A2C6E457B786CD50ECD147B70208121F6CE7EA",
+          "bytes": 1726
+        },
+        "architecture/adr/006-plugin-extension-model.md": {
+          "sha256": "B945331B2BAB069999FFACBC521678E8B2CAD603ABAF48567BAA4005FBFC373E",
+          "bytes": 1688
+        },
+        "architecture/adr/007-data-messaging-baseline.md": {
+          "sha256": "EF91A8274DB0ADDADB67063845CFFC22149B921149F3CFD0950B30BB7567DFCD",
+          "bytes": 1738
+        },
+        "architecture/adr/008-contract-compatibility.md": {
+          "sha256": "801AD1DB4D460535B850F3D408057884862CFB165D5F615FA30689DD4D68F9D5",
+          "bytes": 1551
+        },
+        "architecture/adr/009-frontend-architecture.md": {
+          "sha256": "7CC4BF4391F4653660E502448DACB52A1E37C8209FA2190FD02CF984ECBA308C",
+          "bytes": 1585
+        },
+        "architecture/adr/010-operational-profiles.md": {
+          "sha256": "5DAC06A6D0C889559566EF6EED2756F2FB616FFA7E96BDB2659BD95AEAC1F9EC",
+          "bytes": 1600
+        },
+        "architecture/adr/011-logical-boundaries-co-deployment.md": {
+          "sha256": "2DCABB2C1754BDB5703BD73563265DB43DE5523F48F46E4B5594A418BF5401B2",
+          "bytes": 1550
+        },
+        "architecture/adr/012-evidence-based-readiness.md": {
+          "sha256": "C6C8981C8D46567971E72220513AA02FDA4DAE6AD25CB1E96993B7C9CE3B383A",
+          "bytes": 1512
+        },
+        "architecture/adr/013-backend-foundation-toolchain.md": {
+          "sha256": "6F133875500C9867EBC0F23D1E35BBD37F3AF5FA55EF784D3FBB281D7D86E03C",
+          "bytes": 7141
+        },
+        "architecture/adr/014-api-event-versioning.md": {
+          "sha256": "8EF64EE6567A79A5016EF7AB8F9EFFCD4C5187B8760F45589450881336713EA9",
+          "bytes": 9122
+        },
+        "architecture/adr/015-contract-testing-strategy.md": {
+          "sha256": "90E5D4B046F0A70D6C44FC25AA5C5EC6DFE20C0FEA7C2878C2C56F82217863D3",
+          "bytes": 15750
+        },
+        "architecture/adr/016-dedicated-managed-reference-architecture.md": {
+          "sha256": "7B3D93FCFA04E3F8B6DB87197BE14E7CA17E0E6E0BE1A56B36B58F1AA4AE56E7",
+          "bytes": 55157
+        },
+        "architecture/adr/README.md": {
+          "sha256": "47CBCFAB9B5C1CACC85FDAEE3E3B9D98FF461CD548FD5314BA1C5D7FFC7A0806",
+          "bytes": 10596
+        },
+        "architecture/baseline-v3.md": {
+          "sha256": "E47B92BD1F0462E009EB9A3DDABB9478FB3E862E55E755CFBAE92A345F90C3D9",
+          "bytes": 33267
+        },
+        "architecture/contract-change-protocol.md": {
+          "sha256": "E038E0766BAFE3D0FF8C240CB5CF2FDF3C330CDF7E4FCD3D1CDBE086292B110C",
+          "bytes": 9695
+        },
+        "architecture/control-plane/ownership-matrix.md": {
+          "sha256": "2B792C5EC508A813157E6A4F47E045FC9BD64C53E43772F75B2971A5DB9F7C04",
+          "bytes": 42274
+        },
+        "architecture/decision-register.md": {
+          "sha256": "60B2FCBE1C2C835076098C548E431FD8336B5BBDE52E1945B17723AAF5BC1E53",
+          "bytes": 27274
+        },
+        "architecture/governance-synchronization.md": {
+          "sha256": "5A9A3BC20078A547AF3C00F43BCE79227BFFEB8734320ECF8178CAD0D9B3CD8B",
+          "bytes": 62998
+        },
+        "architecture/legacy-v2-reference.md": {
+          "sha256": "B82E85B462C1423387A81FA9E90747CF3D51BAC2C9C313FD716E5B45B7879B9B",
+          "bytes": 4477
+        },
+        "architecture/nfr.md": {
+          "sha256": "7BE381276D6001C35D9952CAB16BE1C7AA3DF2ED3FB41AD06CE15599E8536A54",
+          "bytes": 34783
+        },
+        "architecture/open-decisions.md": {
+          "sha256": "F489F4EA8334DF8B5A29C79381FCCD2A44813E342ECE3225F858A29626CD2DEF",
+          "bytes": 12265
+        },
+        "architecture/reviews/OD-020-final-approval-readiness.md": {
+          "sha256": "F72E330F5CB81D2EA3C32BB131570A9738BE4B98B94071FEED947A0C6B38D91D",
+          "bytes": 12657
+        },
+        "architecture/reviews/OD-020-quality-approval.md": {
+          "sha256": "4D914BEF05E432D41D4AD3C8017D2C303622E07943C38F8E2C333F2A0EDF44F8",
+          "bytes": 6178
+        },
+        "architecture/reviews/R0-checklist.md": {
+          "sha256": "06897BB19AEAB69F177207E54527FF6F392E9788194BD61BA5EFC53D538DE5D4",
+          "bytes": 11427
+        },
+        "architecture/reviews/V3-003-analytical-closure-contract-proposal.md": {
+          "sha256": "8C777CA72E2C2A9E69C373723E4DA0C2DC16B0B4E4BFA9E70631D7D256679CC4",
+          "bytes": 26254
+        },
+        "architecture/reviews/V3-003-analytical-closure-cpo-decision-package.md": {
+          "sha256": "E5F995A4ACD7305102C7F58FCDABED01147C21FB653E60B82BC4CFD7D47203F8",
+          "bytes": 25051
+        },
+        "architecture/reviews/V3-003-analytical-closure-evidence-matrix.md": {
+          "sha256": "56EEE143356ADD7ECAE3540466BE3445DF0A86C4279D75CC2BE9E5877350009E",
+          "bytes": 41062
+        },
+        "architecture/reviews/V3-003-consolidated-security-design-review-manifest.md": {
+          "sha256": "FC4E6696262EDB1598C4EFF03962B7BD989629F86BA8D380DCA91DBBF0888C6E",
+          "bytes": 38035
+        },
+        "architecture/reviews/V3-003-contract-messaging-specialist-review-request.md": {
+          "sha256": "2A1E94F9898366ADB6859B63FB124514F78CC375FAE20C85CA52F9CFCA50B24F",
+          "bytes": 35672
+        },
+        "architecture/reviews/V3-003-cpo-analytical-closure-decision-declaration.md": {
+          "sha256": "DD880322C71E012583B4286016659DE82B57A3CFDF51EC4705A01263C802FEC7",
+          "bytes": 16325
+        },
+        "architecture/reviews/V3-003-customer-audit-technical-contract-draft.md": {
+          "sha256": "57507BD3AF1A6F39FDFC18127E983C2727B8FC3804C536C09D5AAC794C0DFB51",
+          "bytes": 76100
+        },
+        "architecture/reviews/V3-003-decision-record.md": {
+          "sha256": "C10CC39DAE995D2026D75AECFEA04E93E147E381F306FB274C63A82E8D7A3594",
+          "bytes": 167286
+        },
+        "architecture/reviews/V3-003-identity-platform-security-authority-appointment-proposal.md": {
+          "sha256": "9B8C6A919C1406636F6031AA6FD1BFCAF5784466A5CF85B744E4DEA54C59424C",
+          "bytes": 30892
+        },
+        "architecture/reviews/V3-003-identity-platform-security-review-request.md": {
+          "sha256": "2EE7CC07AAD09AE8501C076A86181B7F283367DEC1DE489F1B364DBBE41EF8B8",
+          "bytes": 39643
+        },
+        "architecture/reviews/V3-003-operational-policy-governance-review-request.md": {
+          "sha256": "7E4C37E79509E2BDDD028688CEAB542EB14BC7D09837333636ED699BEC0EA2C0",
+          "bytes": 36794
+        },
+        "architecture/reviews/V3-003-SEC-01-bounded-security-design-decision-sheet.md": {
+          "sha256": "3697E8E112338E73FEDC73958CA8B5ED9C9E960146D7AA2A4089B4C0B69C6E0F",
+          "bytes": 34229
+        },
+        "architecture/reviews/V3-003-SEC-02-bounded-security-design-decision-sheet.md": {
+          "sha256": "C8166105C9867B2D3582F6FDA8E95B301CE580D57BF0246A2DF436F85CB2A1D5",
+          "bytes": 39468
+        },
+        "architecture/reviews/V3-003-SEC-03-bounded-security-design-decision-sheet.md": {
+          "sha256": "995E2D6A55637F3437F642949E555E74590538C23A60776F2EE9819DA2696DCF",
+          "bytes": 30903
+        },
+        "architecture/reviews/V3-003-SEC-04-bounded-security-design-decision-sheet.md": {
+          "sha256": "BDAE9A5A668A6689FBAEB52136A9197A4F4CB1D326FC73F8456A90D2B83E4310",
+          "bytes": 34918
+        },
+        "architecture/reviews/V3-003-SEC-05-bounded-security-design-decision-sheet.md": {
+          "sha256": "FD208EFC8EDE8AB1974A61987AFDD08552AA579C8453570886B28E494616ED1E",
+          "bytes": 37308
+        },
+        "architecture/reviews/V3-003-security-architecture-review-request.md": {
+          "sha256": "8E2B04680CCAA95D540222174389145E38411A6B4D92938C511C6E7B72019C83",
+          "bytes": 39876
+        },
+        "architecture/reviews/V3-003-security-review-input-manifest.md": {
+          "sha256": "1278C163A4AB64424A8229C27369F4FFB165B4E11EFAEE2F5F35C21A2057767A",
+          "bytes": 16030
+        },
+        "architecture/reviews/V3-003-sovereign-security-review-request.md": {
+          "sha256": "ABC1264895C98F9D9773B76CA22364561D622227CDAA42B784AAF9C26A12D895",
+          "bytes": 38483
+        },
+        "architecture/reviews/V3-003-specialist-review-tracking-register.md": {
+          "sha256": "E60242F96A3804DD70C2CF98251876C75C319EA98235849122FA51CC399D7AFE",
+          "bytes": 36572
+        },
+        "architecture/reviews/V3-003-tenant-security-review-request.md": {
+          "sha256": "456D9E48E9E849941120CD8EACDDB2C0B9935F7D8E6A9721B4E16A36E72A4437",
+          "bytes": 34266
+        },
+        "architecture/standards/api-design.md": {
+          "sha256": "3ECC1C76E922132CB16FD3C0EFD06219C2411BE1F5900165A9C8EF7CBB098891",
+          "bytes": 2232
+        },
+        "architecture/standards/configuration.md": {
+          "sha256": "3DDE2807F9A285F0C0533BCA13CC60E4B8826F7FFE3AB9F8BC2EE6348E37B11F",
+          "bytes": 1194
+        },
+        "architecture/standards/error-handling.md": {
+          "sha256": "8EC69D82BD5617B77F5A77DC364E9ECF32CC4568DBC77061FAA4156976EC6A6A",
+          "bytes": 1261
+        },
+        "architecture/standards/java-coding.md": {
+          "sha256": "D83ED7F9EC0BE2E58F5BFE3A96EC58E6E58A50FC0E700B527FFAEF4410AF4C6E",
+          "bytes": 1592
+        },
+        "architecture/standards/messaging.md": {
+          "sha256": "1DEAEB0501ADDCFCF2D30F0D02BEA0A3980D48A67F0208A8D4A6E87F0215E231",
+          "bytes": 2196
+        },
+        "architecture/standards/persistence.md": {
+          "sha256": "E10D3795E9221ED93A8BF2442D9258E469DB442780D41C14770EC84DDEA151E1",
+          "bytes": 1690
+        },
+        "architecture/standards/repository-structure.md": {
+          "sha256": "E67C930204C4DA5F4A4A38AD0D19983D04B785C8766C2026EE5860D33C00A45F",
+          "bytes": 2202
+        },
+        "architecture/standards/security.md": {
+          "sha256": "FDF6884619112416ED7B38CC76427063ADAE7844B195B9E7F18B99236D2EEE5B",
+          "bytes": 1618
+        },
+        "architecture/standards/service-architecture.md": {
+          "sha256": "D3732E68282DA29FE364E62F8F02C81A4F85EE92E962939B6EA16E700BAFBBB8",
+          "bytes": 1535
+        },
+        "architecture/standards/testing.md": {
+          "sha256": "790B80276F3D91A9DB5078B34F6D1EA9A569EC02906629C5BCD5C7F2096CAA5E",
+          "bytes": 1720
+        },
+        "architecture/task-governance.md": {
+          "sha256": "1274E460D103CEFE5CC071CF1578B61A48D4764F98BF635CB9D16584A8A77D70",
+          "bytes": 21632
+        },
+        "architecture/threat-assumptions.md": {
+          "sha256": "A6021D899B979334DB5CDF9E3CB5295E9ADD842FC45E4E5FF034CBC40FC5E983",
+          "bytes": 25888
+        },
+        "deployment/support-matrix.md": {
+          "sha256": "95BB291D73341460C8E3CA55473008F514E1575AC8D6C304FC4076BD1A651F31",
+          "bytes": 36790
+        },
+        "migration/v2-historical-evidence.md": {
+          "sha256": "0C967ED3219AF223B7A82472D111E1BF9A75EE663540D3B2FC902C42585E502F",
+          "bytes": 42137
+        },
+        "migration/v2-inventory.md": {
+          "sha256": "0A098EFAFAEB50E8839B3CADA6B3BDA7DA75ECC111040761D334B17291EB8DCA",
+          "bytes": 87915
+        },
+        "migration/v2-owner-review.md": {
+          "sha256": "ED1863B518622AA60A7C8F59B3A96AABA51321ED22D99D538BC40494211EA001",
+          "bytes": 229969
+        }
+      },
+      "statusExcludingOwnReview": "",
+      "stagedDiffSha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "refs": "refs/codex/turn-diffs/checkpoints/25490ab5e743a8fc07a4fbb627160e55/da789505836ade95f112299e8cf9a521/1794490945124/8629ad08-1bd1-41d5-a683-677300eb7fa6\t25e801c04fe3b8b9c79b71dd82097f5386403f53\nrefs/codex/turn-diffs/checkpoints/add609fce81002597fd35d2989632c0c/7ed2bf70dda1810ecc7cf25e53db7f30/1794501238948/e228632a-697e-4a1c-9884-5f363eb20130\t25e801c04fe3b8b9c79b71dd82097f5386403f53\nrefs/heads/codex/v3-024-r2-root-registration\t094c966de745285bd5a8d1975312eb06d930d4a8\nrefs/heads/codex/v3-024-root-preservation\tc3926e6a8c9847281d49987abdbafbbced562dbb\nrefs/heads/main\t094c966de745285bd5a8d1975312eb06d930d4a8\nrefs/remotes/origin/main\tc3926e6a8c9847281d49987abdbafbbced562dbb",
+      "path": "E:\\Neshane-CRM-V3-V3-024-main-adoption",
+      "branch": "main",
+      "diffSha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "head": "faa563f8f5c3bda25c3e5f40c7a8688c1bc245e7",
+      "trackedWorktreeFiles": {
+        ".agents/skills/neshane-frontend-review/SKILL.md": {
+          "sha256": "45B148974EA02B51B2FB46E0BCB7844FBAD65784DE7EDC4D08736017969DD85F",
+          "bytes": 1279
+        },
+        ".agents/skills/neshane-frontend/SKILL.md": {
+          "sha256": "0F614CD8F945323916E29CAB167C63E52224C8BAEF83F12207029CCB4EB0FEFF",
+          "bytes": 1340
+        },
+        ".agents/skills/neshane-ui/SKILL.md": {
+          "sha256": "2F5F0C4E969070D2A03CD1E3ABF60DC736EF575B60F9F51C2372D8417FDF2713",
+          "bytes": 1330
+        },
+        ".gitignore": {
+          "sha256": "C9430706F1CD4190EF496EC40D111C0390325941B313ADBE7B5A030F7E8FF188",
+          "bytes": 93
+        },
+        "AGENTS.md": {
+          "sha256": "EF3947F9164DD929DB2F218558A5BD887822DA44EC431EFD4328849104424DF2",
+          "bytes": 4040
+        },
+        "architecture/governance-baseline.md": {
+          "sha256": "0B72233D9D2200E689C74F78869D3C7557D3B682025A437305BED3652D65C652",
+          "bytes": 1689
+        },
+        "architecture/standards/api-integration.md": {
+          "sha256": "E04A328F768BD313C2F4ACC9A496C752A1AA4A02D42AF3EE6C30D40AF3069511",
+          "bytes": 1356
+        },
+        "architecture/standards/component-design.md": {
+          "sha256": "883A0DC1ED764443AE654829A5E3A6EAB9C77F5AD2D270407F4B2584880AF06C",
+          "bytes": 1370
+        },
+        "architecture/standards/frontend-architecture.md": {
+          "sha256": "5F9084D061921E1381B3A6066FBD534FD3602CF40FEAB2ABD4A0756732ACDBEF",
+          "bytes": 1425
+        },
+        "architecture/standards/security.md": {
+          "sha256": "2F5127667518DBE5D887C0C32EDAA10ADBCC4E934689FFB3B534400FBAB1D1A9",
+          "bytes": 1401
+        },
+        "architecture/standards/state-management.md": {
+          "sha256": "201C9C6960B38BDDF43CF0E1C055648B49D545D713119B2A98B0A0BD4B8652B1",
+          "bytes": 1004
+        },
+        "architecture/standards/styling.md": {
+          "sha256": "CA4BED342C19041FB2981510B2BE17D5ECEA383B4AA7DB4AC54477C85890B947",
+          "bytes": 1146
+        },
+        "architecture/standards/testing.md": {
+          "sha256": "905FE31D660719C99D858C3F345F21AEBD366914D9F79012D890E3C0D0FBEA28",
+          "bytes": 1338
+        },
+        "README.md": {
+          "sha256": "D8228318D4C48023570755B8B7CF4A34110CD148537A66BCC51F18EFA56D1D47",
+          "bytes": 29
+        }
+      },
+      "statusExcludingOwnReview": "",
+      "stagedDiffSha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855",
+      "refs": "refs/heads/main\tfaa563f8f5c3bda25c3e5f40c7a8688c1bc245e7\nrefs/remotes/origin/main\tf3d138fb479d3cbf7c3a2d4ea2e896e09f19888d",
+      "path": "E:\\Neshane-CRM-V3\\Frontend",
+      "branch": "main",
+      "diffSha256": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    }
+  ],
+  "authoritativeMain": "094c966de745285bd5a8d1975312eb06d930d4a8",
+  "clockNote": "Observed local machine clock, not an authority issuance/acceptance timestamp",
+  "predecessorCoverage": {
+    "conditions": {
+      "CONFLICTING": 1,
+      "PARTIAL": 28,
+      "MISSING": 1,
+      "COVERED": 17,
+      "NOT_APPLICABLE": 0
+    },
+    "negativeCases": {
+      "CONFLICTING": 0,
+      "PARTIAL": 6,
+      "MISSING": 0,
+      "COVERED": 6,
+      "NOT_APPLICABLE": 0
+    }
+  },
+  "predecessorProvenance": "Fourteen original local uncommitted artifacts, hashed at review initialization; no prior predecessor commit or independently supplied external seal is invented",
+  "familyReadmes": {
+    "integration-tests/v3-024-db-isolation/README.md": {
+      "sha256": "F78F1F98CFF331E42E79ACEB995755558D024E8314C58B53BA5B9D3EBE949292",
+      "bytes": 68858
+    },
+    "integration-tests/v3-024-runtime-routing/README.md": {
+      "sha256": "3D48AD835ED28268C4DF43EDD3C42D5A61D0F45027A7B4E58788B0A7D5F9DA9C",
+      "bytes": 16839
+    },
+    "integration-tests/v3-024-workload-identity/README.md": {
+      "sha256": "9B94F4870FCFC176BF9662624E8F37FB6CB48C36008180EABBDAC46E0B7E2D59",
+      "bytes": 12070
+    },
+    "integration-tests/v3-024-operations-safety/README.md": {
+      "sha256": "DD70892AA5A6E43AA8192747112539687E9FB0E184F7F39540EA6B817CB2E93C",
+      "bytes": 16440
+    },
+    "integration-tests/v3-024-disaster-recovery/README.md": {
+      "sha256": "76DAD0F8FDDBDC650E26B999DAFBE4428ED87189A4F79C4C8A5EDC72B42AECB0",
+      "bytes": 21239
+    },
+    "integration-tests/v3-024-cross-control-integration/README.md": {
+      "sha256": "514D856E45E5C45C9BFD36B792A3C39E2681D7DF1CAB4984D835EFD70E6D7CA4",
+      "bytes": 46239
+    }
+  },
+  "task": "G-RUNTIME.02"
+}

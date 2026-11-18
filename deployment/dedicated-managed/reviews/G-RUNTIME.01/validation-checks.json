@@ -1,0 +1,58 @@
+{
+  "verifierCorrection": "SEALED ONE-LINE FILENAME-LIST DIFFERENCE; OTHER LINES IDENTICAL",
+  "task": "G-RUNTIME.01",
+  "additionalReferencedManifestPackages": 25,
+  "originalWordingAndSourceLines": "VERIFIED AGAINST PINNED ORIGINAL GIT BLOBS",
+  "inheritedClassification": "41/1/5 PRESERVED",
+  "originalNegativeCasesExactlyOnce": 12,
+  "referencedArtifactCount": 997,
+  "coverageCounts": {
+    "negativeCases": {
+      "COVERED": 6,
+      "PARTIAL": 6,
+      "MISSING": 0,
+      "CONFLICTING": 0,
+      "NOT_APPLICABLE": 0
+    },
+    "conditions": {
+      "COVERED": 17,
+      "PARTIAL": 28,
+      "MISSING": 1,
+      "CONFLICTING": 1,
+      "NOT_APPLICABLE": 0
+    }
+  },
+  "recordedAt": "2026-11-17T21:44:33.2244472Z",
+  "newCommits": 0,
+  "productCodeChanges": false,
+  "documentedPhaseReadmeExceptions": [
+    {
+      "status": "DOCUMENTED POST-EXECUTION SOURCE README; not a run-artifact exception",
+      "stage": "W",
+      "path": "integration-tests/v3-024-workload-identity/README.md"
+    },
+    {
+      "status": "DOCUMENTED POST-EXECUTION SOURCE README; not a run-artifact exception",
+      "stage": "O",
+      "path": "integration-tests/v3-024-operations-safety/README.md"
+    },
+    {
+      "status": "DOCUMENTED POST-EXECUTION SOURCE README; not a run-artifact exception",
+      "stage": "DR",
+      "path": "integration-tests/v3-024-disaster-recovery/README.md"
+    }
+  ],
+  "unresolvedOriginalArtifactPaths": [],
+  "successfulRunManifestsVerified": 12,
+  "status": "PASS — documentation/reference validation only",
+  "testsOrLaboratoryRerun": false,
+  "dependencyDownloads": 0,
+  "successfulRunMembersRehashed": 3616,
+  "riskClosures": 0,
+  "notApplicableRows": 0,
+  "newStaging": false,
+  "sourceAndRepositoryPreservation": "PASS",
+  "originalConditionsExactlyOnce": 47,
+  "gRuntime02Started": false,
+  "finalRuntimeAcceptance": "PENDING — EXCLUSIVELY INDEPENDENT TAO/AUTHORITY"
+}

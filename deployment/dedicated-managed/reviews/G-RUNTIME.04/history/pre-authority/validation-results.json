@@ -1,0 +1,150 @@
+{
+  "rationaleFindings": 14,
+  "recordedAt": "2026-11-18T05:02:33.3768523Z",
+  "originalNegativeCases": 12,
+  "task": "G-RUNTIME.04",
+  "approvalProvided": false,
+  "offline": "PROHIBITED",
+  "mitigationImplementation": 0,
+  "decisionStatus": "AWAITING_AUTHORITY_DECISION",
+  "rawFailBlockingRelevance": "CONDITIONAL ON ACTUAL ACCEPTANCE PATH/REQUIREMENT; NOT A STANDALONE AUTOMATIC BLOCKER",
+  "productionAuthorization": "NONE",
+  "confirmedOriginalRawSessionGucFails": 4,
+  "of006Condition10": "MISSING",
+  "newCommits": 0,
+  "testsOrLaboratoryRuns": 0,
+  "findingThemes": [
+    "SCOPE",
+    "OFFLINE",
+    "HOST",
+    "SUPPLY",
+    "POOL_CONTEXT",
+    "IDENTITY_CREDENTIAL",
+    "ROUTING",
+    "FRESHNESS",
+    "RECOVERY_OPERATIONS",
+    "EVIDENCE_SUFFICIENCY",
+    "PROVENANCE"
+  ],
+  "existingAuthorityRole": "RECOGNIZED FROM CURRENT PINNED UNIFIED POLICY; no new appointment paperwork demanded solely for that role",
+  "gateStatus": "PENDING",
+  "validationOutcome": "PASS — DOCUMENTATION/EXISTING-EVIDENCE CORRESPONDENCE ONLY; NOT A GATE DECISION",
+  "gRuntime05Started": false,
+  "requiredNextAction": "STOP and await explicit designated independent TAO/authority PASS or BLOCKED, exact scope/baseline/rationale/approval reference and authorization to record.",
+  "newOwnerAssignments": 0,
+  "coverageUnchanged": {
+    "conditions": {
+      "PARTIAL": 28,
+      "CONFLICTING": 1,
+      "NOT_APPLICABLE": 0,
+      "MISSING": 1,
+      "COVERED": 17
+    },
+    "negativeCases": {
+      "PARTIAL": 6,
+      "CONFLICTING": 0,
+      "NOT_APPLICABLE": 0,
+      "MISSING": 0,
+      "COVERED": 6
+    }
+  },
+  "successfulRunMembersRehashed": 3616,
+  "independentDefectCount": "NOT ASSERTED; records overlap",
+  "feBeAuthorization": "NONE",
+  "dependencyGroups": 11,
+  "finalDecision": null,
+  "originalConditions": 47,
+  "historicalReadmeDifferences": [
+    {
+      "path": "integration-tests/v3-024-workload-identity/README.md",
+      "stage": "W",
+      "explanation": "Documented post-seal closure README only; no successful-run exception"
+    },
+    {
+      "path": "integration-tests/v3-024-operations-safety/README.md",
+      "stage": "O",
+      "explanation": "Documented post-seal closure README only; no successful-run exception"
+    },
+    {
+      "path": "integration-tests/v3-024-disaster-recovery/README.md",
+      "stage": "DR",
+      "explanation": "Documented post-seal closure README only; no successful-run exception"
+    }
+  ],
+  "pushes": 0,
+  "rt002Condition1": "CONFLICTING — AUTHORITY INTERPRETATION UNRESOLVED",
+  "residualClosures": 0,
+  "backendHead": "3d60d399123906fe53ff8577d32fa610f0c348ae",
+  "successfulRunManifests": 12,
+  "protectedTrackedWorktreeFiles": 554,
+  "predecessors": {
+    "gRuntime02": 10,
+    "total": 37,
+    "gRuntime01": 14,
+    "gRuntime03": 13,
+    "uncommittedProvenance": "RETAINED; no predecessor commit/external seal/independent attestation invented",
+    "all37BytesPreserved": true
+  },
+  "unsigned": true,
+  "existingVerifier": "UNCHANGED",
+  "allIncompleteOrConflictingRecords": 36,
+  "allCoverageRecords": 59,
+  "undecidedAuthorityItems": 79,
+  "recommendation": {
+    "bindingEffect": "NONE",
+    "classification": "NON-BINDING RECOMMENDATION",
+    "suggestedDisposition": "BLOCKED"
+  },
+  "hashScope": "Ten authored preparation inputs; this result excludes itself. Hash correspondence is not an independent authority signature.",
+  "newStaging": 0,
+  "gs01Gs04Ti14": "UNRESOLVED; NO CLOSURE/WAIVER/DOWNGRADE",
+  "originalEvidenceProductCodePredecessors": "UNCHANGED",
+  "authAuthorization": "NONE",
+  "reviewInputHashes": {
+    "acceptance-decision.json": {
+      "sha256": "A00654FEB1E70DA8B836FA548EE0B048B17167F012D8DF703E9ED3EBE3708D63",
+      "bytes": 4686
+    },
+    "acceptance-decision.md": {
+      "sha256": "4F51D70EE3A7260F3FF4E7E1C9E38C77D95770B0DE7FFC4CD706782C6EE590FE",
+      "bytes": 5214
+    },
+    "acceptance-recommendation.md": {
+      "sha256": "ABA215260671491762F2B75B6DA67B8D47A1DCD6A0638D52C02700BA5E27A19B",
+      "bytes": 6305
+    },
+    "authority-decision-brief.md": {
+      "sha256": "19B6D46B1A1984F07DF0B4678AFB42BF8A3C773E24BF16C88CA83AEA8B606C56",
+      "bytes": 9829
+    },
+    "decision-rationale-matrix.json": {
+      "sha256": "4C3EAC034CDD20D25D920D853A37CE6DFA591B59DF1CF343FCF10D3A3D4F9C1C",
+      "bytes": 202043
+    },
+    "evidence-baseline.json": {
+      "sha256": "0D739D35E710ECB3C98F4AF0095F0AA9E8B48CC06F573E7DFDAE2714C90D5DEE",
+      "bytes": 639531
+    },
+    "reassessment-prerequisites.md": {
+      "sha256": "D3935B7D2182CE694D7797DB1E7B5E6C708E50DB2EBB2EB9BC08CE6F0B355E45",
+      "bytes": 5507
+    },
+    "review-report.md": {
+      "sha256": "6FD0D4DFC03A0509306A1BCDAA44B6B6D96B2F860B4E7941C2C3D36DCB0EA5B1",
+      "bytes": 9807
+    },
+    "source-inventory.json": {
+      "sha256": "D72283EE013EFF9895668BFD6126D45BE9BE33F970F64EECE99B2FB94ECDA22C",
+      "bytes": 138557
+    },
+    "Validate-DecisionPackage.ps1": {
+      "sha256": "FD9EEE9BC4D610B07DA7D6E34FA3515B9B06F7F94738737E5D6BD7BFEE419973",
+      "bytes": 50998
+    }
+  },
+  "referenceArtifactsRehashed": 997,
+  "additionalHistoricalManifestPackages": 25,
+  "authorityIdentityDateSignatureFabricated": false,
+  "residualOrObligationRecords": 32,
+  "finalRuntimeAcceptance": "PENDING — AWAITING_AUTHORITY_DECISION"
+}
