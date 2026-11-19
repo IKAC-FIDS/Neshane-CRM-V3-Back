@@ -49,6 +49,7 @@ public final class CustomerDomainSpecification {
         ContactInfoSpecification.run();
         ContactTypeCatalogSpecification.run();
         LocalizationSpecification.run();
+        IdentityInfoSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

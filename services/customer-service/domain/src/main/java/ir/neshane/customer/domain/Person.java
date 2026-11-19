@@ -11,9 +11,10 @@ public final class Person implements Customer {
     private final String familyName;
     private final Optional<String> englishName;
     private final ContactInfo contactInfo;
+    private final IdentityInfo identityInfo;
 
     private Person(CustomerId id, TenantId tenantId, String givenName,
-                   String familyName, String englishName, ContactInfo contactInfo) {
+                   String familyName, String englishName, ContactInfo contactInfo, IdentityInfo identityInfo) {
         this.id = Objects.requireNonNull(id, "CUSTOMER_ID_REQUIRED");
         this.tenantId = Objects.requireNonNull(tenantId, "TENANT_ID_REQUIRED");
         this.givenName = CustomerNames.required(givenName, "GIVEN_NAME", 100);
@@ -21,17 +22,27 @@ public final class Person implements Customer {
         this.englishName = CustomerNames.optionalEnglishName(englishName);
         this.contactInfo = ContactInfo.forOwner(
             ContactOwner.customer(this.tenantId, ContactOwner.Kind.PERSON, this.id), contactInfo);
+        this.identityInfo = IdentityInfo.forOwner(
+            new IdentityOwner(this.tenantId, this.id, IdentityOwner.Kind.PERSON), identityInfo);
     }
 
     public static Person createCandidate(CustomerId id, TenantId tenantId, String givenName,
                                          String familyName, String englishName) {
-        return new Person(id, tenantId, givenName, familyName, englishName, null);
+        return new Person(id, tenantId, givenName, familyName, englishName, null, null);
     }
 
     public static Person createCandidate(CustomerId id, TenantId tenantId, String givenName,
                                          String familyName, String englishName, ContactInfo contactInfo) {
         return new Person(id, tenantId, givenName, familyName, englishName,
-            Objects.requireNonNull(contactInfo, "CONTACT_INFO_REQUIRED"));
+            Objects.requireNonNull(contactInfo, "CONTACT_INFO_REQUIRED"), null);
+    }
+
+    public static Person createCandidate(CustomerId id, TenantId tenantId, String givenName,
+                                         String familyName, String englishName, ContactInfo contactInfo,
+                                         IdentityInfo identityInfo) {
+        return new Person(id, tenantId, givenName, familyName, englishName,
+            Objects.requireNonNull(contactInfo, "CONTACT_INFO_REQUIRED"),
+            Objects.requireNonNull(identityInfo, "IDENTITY_INFO_REQUIRED"));
     }
 
     @Override
@@ -49,6 +60,9 @@ public final class Person implements Customer {
 
     @Override
     public ContactInfo contactInfo() { return contactInfo; }
+
+    @Override
+    public IdentityInfo identityInfo() { return identityInfo; }
 
     @Override
     public CustomerStatus status() { return CustomerStatus.ACTIVE; }

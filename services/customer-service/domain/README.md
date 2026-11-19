@@ -101,3 +101,24 @@ canonical dates, time zones, calendars or formatting. Real formatting and
 multilingual business-fact storage/mapping require separate contracts.
 CM1-CNT-06/09 partial synthetic coverage; CM1-CNT-10 not claimed tested.
 No runtime, Spring, API, IAM, persistence, events or shared module introduced.
+
+## Increment 02D — identity information candidate
+
+Owner confirmed system-controlled identifier catalog and independent IdentityInfo
+on 2026-11-19. Core basis 4f1de2928e61423797c4ac16c4cd8e5705ed9712; Backend
+basis 3cc2f47a25d331ba5488cef0a873dd665b521971. Trace CM1-PD-007/019/083/085/105.
+Person and Company own independent immutable optional collections. Stable
+caller-supplied IDs, raw string values (leading zeros retained), optional
+issuer/country and date-only facts, ACTIVE/INACTIVE representation. Original
+creation factories remain compatible. IdentifierTypeCatalog is system-supplied
+snapshot metadata with six vocabulary entries and per-tenant hide/unhide.
+Candidate append checks owner, selectable type, owner kind, explicitly
+configured country list and expiry applicability. Empty country list means
+no configured restriction in this synthetic candidate, not legal universality.
+No type-specific country/issuer/expiry defaults or automatic verification.
+No identifier format validation, legal jurisdiction authority, namespace,
+verified-value uniqueness, matching, masking/authorization enforcement,
+history store or durable Audit established. No update or revoke operation.
+Profile references are opaque; no arbitrary code. Raw identifier values are
+not included in diagnostic toString. Actual PII remains prohibited.
+No schema, API, Spring, IAM, trust, persistence, or event publication.
