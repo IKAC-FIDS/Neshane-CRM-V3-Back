@@ -188,3 +188,13 @@ dependency response checks are structural only. ALL_CLEARED_CANDIDATE
 does not unblock archive; evidence authenticity, expiry, registry
 authority, applicable deployed capabilities, concurrent changes and
 durable Audit remain unresolved. No external service calls.
+
+## Increment 03E — integrated isolated lifecycle specifications
+
+Core basis 8f37266; Backend basis 6b3ccd5. Cross-component tests cover both
+Person and Company, populated contact and identity snapshots, validated
+reason selection, draft history and event metadata, archive assessment,
+tenant isolation and unchanged verification. Even fully cleared synthetic
+evidence cannot unlock archive. No production code changes or gate changes.
+These tests do not establish actual status mutation, persistence, trusted
+authorization, durable Audit or event publication.
