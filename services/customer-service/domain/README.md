@@ -586,3 +586,13 @@ reason and metadata. Rejects repeated IDs, stale versions, changed prior facts
 and time discontinuity. Independent lifecycle/verification operations remain
 in their own histories; the current snapshot is the last factual change.
 No persistence, authenticated actor proof or external Audit delivery.
+
+## Increment 09G — customer change event drafts
+
+Core basis 2df1f49; Backend basis 6d5fc33. Immutable prospective events from
+registration and factual update history; one base event plus applicable
+critical-field and exceptional indicators. Scoped deterministic SHA-256 IDs
+use length-framed owner, version, history ID and event type. Includes opaque
+actor/correlation IDs, versions, field codes and verification transitions;
+excludes facts, reasons and evidence. No-op/blocked updates issue no entry.
+No committed state, broker, outbox, deduplication store or Audit delivery.

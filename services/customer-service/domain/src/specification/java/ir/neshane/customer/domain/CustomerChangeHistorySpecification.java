@@ -79,8 +79,8 @@ final class CustomerChangeHistorySpecification {
         try { r.fields().clear(); throw new AssertionError("mutable fields"); } catch (UnsupportedOperationException ex) { checks++; }
         System.out.println("PASS: "+checks+" isolated customer change history assertions");
     }
-    private static LifecycleHistory.Context meta(String id,long time) { return new LifecycleHistory.Context(id,"editor",Instant.ofEpochSecond(time),"correlation"); }
-    private static CustomerRegistration.Candidate registration(Customer c,boolean exceptional) {
+    static LifecycleHistory.Context meta(String id,long time) { return new LifecycleHistory.Context(id,"editor",Instant.ofEpochSecond(time),"correlation"); }
+    static CustomerRegistration.Candidate registration(Customer c,boolean exceptional) {
         var policy = DocumentRequirementPolicy.initial(DocumentTypeCatalog.empty(TENANT,1000),"p1");
         var req = DuplicateDetection.Request.of(c,DuplicateDetection.Operation.CREATE,"request");
         var coverage = DuplicateDetection.Coverage.COMPLETE_CANDIDATE;
@@ -90,7 +90,7 @@ final class CustomerChangeHistorySpecification {
             ContactTypeCatalog.empty(),IdentifierTypeCatalog.empty(),Map.of(),Map.of(),req,coverage,evidence,"e1",review,exceptional ? "exception reason" : null,
             policy,policy.forOperation(c,DocumentRequirementPolicy.Operation.REGISTRATION,"request"),List.of(),LocalDate.of(2026,11,19),DocumentValidity.ExpiryBoundary.UNRESOLVED,DocumentCompleteness.CountingConvention.ANY_CURRENT_PROVIDED).proposed().orElseThrow();
     }
-    private static CustomerUpdateVerification.Candidate update(CustomerUpdatePolicy.Current c,VerificationHistory h,Customer proposed,String revision,boolean material,boolean exceptional,String reason,LifecycleHistory.Context ctx) {
+    static CustomerUpdateVerification.Candidate update(CustomerUpdatePolicy.Current c,VerificationHistory h,Customer proposed,String revision,boolean material,boolean exceptional,String reason,LifecycleHistory.Context ctx) {
         return CustomerUpdateVerification.assess(c,c.version(),proposed,new CustomerUpdatePolicy.Context(TENANT,"request",CustomerUpdatePolicy.Authority.UPDATE,c.status(),c.identity().verificationStatus()),
             ContactTypeCatalog.empty(),IdentifierTypeCatalog.empty(),Map.of(),Map.of(),DuplicateDetection.Request.of(proposed,DuplicateDetection.Operation.UPDATE,"request"),DuplicateDetection.Coverage.COMPLETE_CANDIDATE,List.of(),h,c.identity().value(),revision,
             exceptional ? CriticalFieldChangeAssessment.ExceptionScope.EXCEPTIONAL : CriticalFieldChangeAssessment.ExceptionScope.ORDINARY,reason,material ? IdentityRevisionAssessment.Impact.MATERIAL : IdentityRevisionAssessment.Impact.NOT_MATERIAL,IdentityRevisionAssessment.IdentifierCorrection.NO_VERIFIED_IDENTIFIER_CORRECTION,ctx).proposed().orElseThrow();
