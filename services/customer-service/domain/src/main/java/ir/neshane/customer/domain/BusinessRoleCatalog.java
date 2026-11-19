@@ -80,4 +80,66 @@ public final class BusinessRoleCatalog {
         if (!def.scope().appliesTo(kind)) throw new IllegalArgumentException("ROLE_APPLICABILITY_MISMATCH");
         return def;
     }
+
+    /** Synthetic governance inputs, never authenticated actor or authoritative evidence. */
+    public enum Authority { SYSTEM_GOVERNANCE, TENANT_MANAGER, RELATIONSHIP_OPERATOR }
+    public enum Coverage { COMPLETE_CANDIDATE, UNKNOWN }
+    public enum Impact { COMPATIBLE_CANDIDATE, INCOMPATIBLE_CANDIDATE, BLOCKED }
+
+    private static void requireGovernance(Authority authority, Optional<TenantId> owner, Optional<TenantId> actorTenant) {
+        Objects.requireNonNull(actorTenant, "ROLE_ACTOR_SCOPE_REQUIRED");
+        if (owner.isEmpty() ? authority != Authority.SYSTEM_GOVERNANCE || actorTenant.isPresent()
+                : authority != Authority.TENANT_MANAGER || !owner.equals(actorTenant))
+            throw new IllegalArgumentException("ROLE_MANAGEMENT_AUTHORITY_REQUIRED");
+    }
+
+    /** Candidate release only; collision response reveals no tenant or private role details. */
+    public BusinessRoleCatalog publishSystemCandidate(Authority authority, BusinessRoleDefinition def,
+            Coverage coverage, String reason, String releaseReference) {
+        requireGovernance(authority, Optional.empty(), Optional.empty());
+        if (def.tenantId().isPresent()) throw new IllegalArgumentException("ROLE_SYSTEM_REQUIRED");
+        IdentityIdentifier.required(reason, "ROLE_PUBLICATION_REASON_REQUIRED");
+        IdentityIdentifier.required(releaseReference, "ROLE_RELEASE_REFERENCE_REQUIRED");
+        if (coverage != Coverage.COMPLETE_CANDIDATE) throw new IllegalArgumentException("ROLE_PUBLICATION_EVIDENCE_MISSING");
+        if (def.status() != BusinessRoleDefinition.Status.ACTIVE) throw new IllegalArgumentException("ROLE_INITIAL_STATUS_INVALID");
+        if (definitions.containsKey(ref(def))) throw new IllegalArgumentException("ROLE_ID_DUPLICATE");
+        if (definitions.values().stream().anyMatch(old -> old.code().equals(def.code())))
+            throw new IllegalArgumentException("ROLE_PUBLICATION_CODE_CONFLICT");
+        return replace(def);
+    }
+
+    public BusinessRoleCatalog reviseSystemCandidate(Authority authority, BusinessRoleDefinition def) {
+        requireGovernance(authority, Optional.empty(), Optional.empty());
+        if (def.tenantId().isPresent()) throw new IllegalArgumentException("ROLE_SYSTEM_REQUIRED");
+        var old = definitions.get(ref(def));
+        if (old == null) throw new IllegalArgumentException("ROLE_UNKNOWN");
+        if (!old.code().equals(def.code())) throw new IllegalArgumentException("ROLE_CODE_IMMUTABLE");
+        if (old.scope() != def.scope()) throw new IllegalArgumentException("ROLE_SCOPE_CHANGE_REQUIRES_ASSESSMENT");
+        return replace(def);
+    }
+
+    /** No identifiers/counts disclosed. Coverage is supplied evidence, not verified completeness. */
+    public Impact assessScopeCandidate(Authority authority, Optional<TenantId> actorTenant, Ref ref,
+            BusinessRoleDefinition.Scope proposed, Coverage coverage, java.util.List<Relationship> relationships) {
+        requireGovernance(authority, ref.tenantId(), actorTenant);
+        var old = definitions.get(ref);
+        if (old == null) throw new IllegalArgumentException("ROLE_UNKNOWN");
+        Objects.requireNonNull(proposed, "ROLE_SCOPE_REQUIRED");
+        if (coverage != Coverage.COMPLETE_CANDIDATE) return Impact.BLOCKED;
+        var supplied = java.util.List.copyOf(relationships);
+        if (ref.tenantId().isPresent() && supplied.stream().anyMatch(r -> !r.tenantId().equals(ref.tenantId().orElseThrow())))
+            throw new IllegalArgumentException("ROLE_SCOPE_EVIDENCE_MISMATCH");
+        return supplied.stream().anyMatch(r -> r.roleCode().equals(old.code()) && !proposed.appliesTo(r.target().kind()))
+            ? Impact.INCOMPATIBLE_CANDIDATE : Impact.COMPATIBLE_CANDIDATE;
+    }
+
+    public BusinessRoleCatalog changeScopeCandidate(Authority authority, Optional<TenantId> actorTenant, Ref ref,
+            BusinessRoleDefinition.Scope proposed, Coverage coverage, java.util.List<Relationship> relationships, String reason) {
+        var impact = assessScopeCandidate(authority, actorTenant, ref, proposed, coverage, relationships);
+        if (impact == Impact.BLOCKED) throw new IllegalArgumentException("ROLE_SCOPE_EVIDENCE_MISSING");
+        if (impact == Impact.INCOMPATIBLE_CANDIDATE) IdentityIdentifier.required(reason, "ROLE_SCOPE_REASON_REQUIRED");
+        var old = definitions.get(ref);
+        return replace(new BusinessRoleDefinition(old.id(), old.tenantId(), old.code(), old.title(),
+            old.description(), proposed, old.status()));
+    }
 }

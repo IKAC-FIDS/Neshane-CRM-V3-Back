@@ -281,3 +281,13 @@ Custom status and display revisions preserve existing relationships.
 Scope changes fail closed pending impact assessment. System governance,
 publication collision gate, assignment integration, durable Audit,
 authorization and concurrency are not implemented here.
+
+## Increment 05C — isolated role governance
+
+Core basis 2df1f49; Backend basis ac3fc2a. Synthetic governance
+categories, system revision/publication candidates, namespace collision
+gate, scope impact candidate and mandatory incompatible-change reason.
+Unknown evidence blocks candidate changes; no private collision details.
+Existing role identities, relationships and tenant hide settings preserved.
+Logical Audit obligations only; no trusted coverage/authority, actual
+publication, durable Audit, persistence or concurrency guarantees.
