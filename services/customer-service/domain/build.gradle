@@ -1,0 +1,20 @@
+description = 'V3-FR-F-000 isolated Customer domain rules candidate.'
+
+sourceSets {
+    specification {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
+}
+
+tasks.register('verifyCustomerDomainRules', JavaExec) {
+    group = 'verification'
+    description = 'Runs dependency-free synthetic domain unit specifications.'
+    dependsOn tasks.named('specificationClasses')
+    classpath = sourceSets.specification.runtimeClasspath
+    mainClass = 'ir.neshane.customer.domain.CustomerDomainSpecification'
+}
+
+tasks.named('check') {
+    dependsOn tasks.named('verifyCustomerDomainRules')
+}

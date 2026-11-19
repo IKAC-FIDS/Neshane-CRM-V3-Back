@@ -1,0 +1,12 @@
+package ir.neshane.customer.domain;
+
+import java.util.Optional;
+
+/** Independent Company and Person types; Branch is not a Customer. */
+public sealed interface Customer permits Person, Company {
+    CustomerId id();
+    TenantId tenantId();
+    Optional<String> englishName();
+    CustomerStatus status();
+    VerificationStatus verificationStatus();
+}
