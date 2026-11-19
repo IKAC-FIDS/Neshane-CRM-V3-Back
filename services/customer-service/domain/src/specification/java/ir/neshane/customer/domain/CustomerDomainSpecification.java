@@ -51,6 +51,7 @@ public final class CustomerDomainSpecification {
         LocalizationSpecification.run();
         IdentityInfoSpecification.run();
         ContactValidationSpecification.run();
+        CustomerLifecycleSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

@@ -141,3 +141,14 @@ profiles. Structural candidate append is not a validated or authorized write.
 PASS means only the supplied bounded checks passed, not verification or
 legal authenticity. Profile registry/provenance, Unicode policy, legal
 algorithms, normalization, IAM, API, persistence and events remain open.
+
+## Increment 03A — customer lifecycle transition assessment
+
+Core basis 476d110; Backend basis b0afa5a. Existing product decisions
+CM1-PD-008..012, 054, 086..095 remain authoritative. The pure assessment
+checks all state/operation combinations and nonblank mandatory reasons;
+deactivation is an eligible candidate, not an executed mutation.
+Reactivate, archive and restore remain blocked by unresolved contracts.
+No dependency or authorization clearance is inferred. Customer snapshots,
+verification and associated entities remain unchanged. No physical delete,
+direct archived-to-active transition, durable Audit or event publication.
