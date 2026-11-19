@@ -566,3 +566,13 @@ issuer/dates/status and ordinary English name/contact changes. Explicit
 exception scope and nonblank reasons for critical/exceptional changes;
 unresolved exception scope blocks actual edits. No values or reasons in
 assessment output. No verification transition, durable approval or Audit.
+
+## Increment 09E — customer update and verification impact
+
+Core basis 2df1f49; Backend basis e6cee14. Composes update eligibility,
+critical change reason, independent record and identity version checks,
+explicit evidence impact and immutable verification history. Unresolved
+duplicate warnings block; material verified changes require reverification.
+Verified identifier correction preserves independent-verifier exclusions.
+No-op preserves versions and history. Evidence impact is supplied explicitly;
+no direct verification approval, durable mutation, IAM or Audit delivery.
