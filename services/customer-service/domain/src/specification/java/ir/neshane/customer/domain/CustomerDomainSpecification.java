@@ -89,6 +89,7 @@ public final class CustomerDomainSpecification {
         DocumentValiditySpecification.run();
         DocumentCompletenessSpecification.run();
         DocumentVerificationSpecification.run();
+        DocumentHistorySpecification.run();
     }
 
     private static void check(boolean condition, String description) {

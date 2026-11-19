@@ -511,3 +511,13 @@ provenance; replacement alone warrants review, not automatic revocation.
 Established essential loss can propose reverification through separate
 revocation authority and a history candidate. No automatic verification,
 trusted authorization, durable freshness or Audit persistence.
+
+## Increment 08H — document history and domain event drafts
+
+Core basis 2df1f49; Backend basis 5ce9bbc. Immutable operation journal
+re-evaluates upload, replacement and invalidation candidates; preserves
+version snapshots, actor, effective/recorded times, correlation and reasons.
+Duplicate history IDs, stale versions, scope and context inconsistencies
+are rejected. Minimal event drafts omit file metadata, actor and reasons.
+Computed expiry does not create an operation or event. No event publication,
+durable Audit, idempotency store or production authorization.
