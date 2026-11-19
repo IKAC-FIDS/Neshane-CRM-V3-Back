@@ -8,8 +8,15 @@ import java.util.Set;
 public record LifecycleReasonDefinition(String reasonId, Optional<TenantId> tenantId,
         String code, LocalizedText title, LocalizedText description,
         Set<CustomerLifecycle.Transition> applicableTransitions,
-        boolean requireComment, Status status, int displayOrder) {
+        boolean requireComment, Status status, int displayOrder, Scope scope) {
     public enum Status { ACTIVE, INACTIVE }
+    public enum Scope { CUSTOMER, BRANCH, BOTH }
+
+    public LifecycleReasonDefinition(String reasonId, Optional<TenantId> tenantId, String code,
+            LocalizedText title, LocalizedText description, Set<CustomerLifecycle.Transition> transitions,
+            boolean requireComment, Status status, int displayOrder) {
+        this(reasonId, tenantId, code, title, description, transitions, requireComment, status, displayOrder, Scope.CUSTOMER);
+    }
 
     public LifecycleReasonDefinition {
         IdentityIdentifier.required(reasonId, "LIFECYCLE_REASON_ID_REQUIRED");
@@ -23,5 +30,12 @@ public record LifecycleReasonDefinition(String reasonId, Optional<TenantId> tena
         applicableTransitions = Set.copyOf(applicableTransitions);
         if (applicableTransitions.isEmpty()) throw new IllegalArgumentException("LIFECYCLE_REASON_TRANSITIONS_REQUIRED");
         Objects.requireNonNull(status, "LIFECYCLE_REASON_STATUS_REQUIRED");
+        Objects.requireNonNull(scope, "LIFECYCLE_REASON_APPLICABILITY_REQUIRED");
+        if (scope == Scope.BRANCH && applicableTransitions.stream().anyMatch(t ->
+                t == CustomerLifecycle.Transition.ARCHIVE || t == CustomerLifecycle.Transition.RESTORE))
+            throw new IllegalArgumentException("LIFECYCLE_REASON_BRANCH_TRANSITION_INVALID");
+        if (scope == Scope.BOTH && applicableTransitions.stream().noneMatch(t ->
+                t == CustomerLifecycle.Transition.DEACTIVATE || t == CustomerLifecycle.Transition.REACTIVATE))
+            throw new IllegalArgumentException("LIFECYCLE_REASON_BRANCH_TRANSITION_INVALID");
     }
 }

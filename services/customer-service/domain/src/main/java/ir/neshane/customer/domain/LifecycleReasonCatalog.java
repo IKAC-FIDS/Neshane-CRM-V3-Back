@@ -81,17 +81,30 @@ public final class LifecycleReasonCatalog {
         Objects.requireNonNull(tenant);
         var base = CustomerLifecycle.assess(current, transition, reasonId);
         if (base.proposed().isEmpty() || reasonId == null) return new Assessment(base, Optional.empty());
+        try {
+            return new Assessment(base, Optional.of(select(tenant, LifecycleReasonDefinition.Scope.CUSTOMER,
+                transition, system, reasonId, comment)));
+        } catch (IllegalArgumentException ex) {
+            return reject(base, ex.getMessage());
+        }
+    }
+
+    Selection select(TenantId tenant, LifecycleReasonDefinition.Scope target, CustomerLifecycle.Transition transition,
+                     boolean system, String reasonId, String comment) {
+        Objects.requireNonNull(tenant);
         Key key = new Key(system ? Optional.empty() : Optional.of(tenant), reasonId);
         var def = definitions.get(key);
-        if (def == null) return reject(base, "LIFECYCLE_REASON_UNKNOWN");
+        if (def == null) throw new IllegalArgumentException("LIFECYCLE_REASON_UNKNOWN");
         if (def.status() != LifecycleReasonDefinition.Status.ACTIVE || hidden.contains(new Hidden(tenant, key)))
-            return reject(base, "LIFECYCLE_REASON_NOT_SELECTABLE");
+            throw new IllegalArgumentException("LIFECYCLE_REASON_NOT_SELECTABLE");
+        if (def.scope() != LifecycleReasonDefinition.Scope.BOTH && def.scope() != target)
+            throw new IllegalArgumentException("LIFECYCLE_REASON_APPLICABILITY_MISMATCH");
         if (!def.applicableTransitions().contains(transition))
-            return reject(base, "LIFECYCLE_REASON_TRANSITION_MISMATCH");
+            throw new IllegalArgumentException("LIFECYCLE_REASON_TRANSITION_MISMATCH");
         if (def.requireComment() && (comment == null || comment.codePoints().allMatch(cp ->
                 Character.isWhitespace(cp) || Character.isSpaceChar(cp))))
-            return reject(base, "LIFECYCLE_REASON_COMMENT_REQUIRED");
-        return new Assessment(base, Optional.of(new Selection(def.reasonId(), def.tenantId(), def.code(), def.title())));
+            throw new IllegalArgumentException("LIFECYCLE_REASON_COMMENT_REQUIRED");
+        return new Selection(def.reasonId(), def.tenantId(), def.code(), def.title());
     }
 
     private static Assessment reject(CustomerLifecycle.Assessment base, String code) {

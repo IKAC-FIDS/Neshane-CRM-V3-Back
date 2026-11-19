@@ -14,7 +14,7 @@ final class LifecycleReasonSpecification {
 
     static void run() {
         var catalog = LifecycleReasonCatalog.initial();
-        expect(SystemLifecycleReasonVocabulary.values().length == 8);
+        expect(SystemLifecycleReasonVocabulary.values().length == 11);
         for (var reason : SystemLifecycleReasonVocabulary.values()) {
             expect(reason.definition().title().exact("fa").isPresent());
             expect(reason.definition().title().exact("en").isPresent());

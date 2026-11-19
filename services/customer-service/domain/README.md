@@ -227,3 +227,16 @@ attachment checks kind, tenant and branch ID, retains all branch facts.
 Existing ContactTypeCatalog, group/primary and ValidationEngine rules
 are reused. Structural attachment does not imply validation, authority
 or a durable write; runtime and global branch identity remain open.
+
+## Increment 04D — branch lifecycle
+
+Core basis 62f8c0e; Backend basis 7bcd69e. State-only effective status
+requires ACTIVE branch and Company, independent of action authorization.
+Separate branch transition assessment; no mutation. Archived parent
+blocks transitions; inactive parent blocks reactivation. Shared reason
+catalog adds CUSTOMER/BRANCH/BOTH scope and three branch-specific reasons;
+previous custom constructors default to CUSTOMER. Mandatory deactivation
+reason, optional reactivation reason and selected comment enforcement.
+Synthetic status assessment covers inactive snapshots without introducing
+rehydration or trusted state. No automatic changes, transfer, Audit,
+persistence, API or runtime.
