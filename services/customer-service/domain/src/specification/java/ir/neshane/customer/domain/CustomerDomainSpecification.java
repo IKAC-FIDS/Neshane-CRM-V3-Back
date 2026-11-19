@@ -66,6 +66,7 @@ public final class CustomerDomainSpecification {
         BusinessRoleCatalogSpecification.run();
         RoleGovernanceSpecification.run();
         RelationshipAssignmentSpecification.run();
+        RelationshipLifecycleSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

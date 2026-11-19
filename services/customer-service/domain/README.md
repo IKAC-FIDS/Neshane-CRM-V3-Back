@@ -300,3 +300,12 @@ intervals, half-open overlap, independent exception authority and fresh reason.
 Opaque warning binds candidate and conflict snapshot; recheck rejects changes.
 Existing IDs block new creation; no durable idempotency, update/version
 protocol, authenticated authority, trusted evidence, Audit or actual write.
+
+## Increment 05E — relationship lifecycle assessment
+
+Core basis 2df1f49; Backend basis 82c74af. Independent stored status
+and date-only effective status (scheduled/effective/expired/unavailable/ended).
+Scoped endpoint validation, synthetic inactive/ended facts, half-open expiry
+without mutation. Manual END candidate requires scoped authority, matching
+version and reason; no reopen path, no interval rewrite or durable Audit.
+Exact business-day reference and effective END-date semantics remain open.
