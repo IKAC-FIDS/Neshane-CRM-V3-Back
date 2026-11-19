@@ -665,3 +665,13 @@ Length-framed SHA-256 IDs are deterministic and scoped by tenant/company/branch,
 version, history ID and event type. No raw contact values, no events from
 blocked or unchanged assessments; lifecycle event drafts remain separate.
 No broker, outbox, publication or durable event contract is introduced.
+
+## Increment 10G — integrated branch record specification
+
+Core basis 2df1f49; Backend basis 0db32cf. End-to-end isolated candidate
+registration, factual edit, type/contact assignment and contact deactivation
+exercise version continuity, collection ownership, authority, stale versions,
+duplicate code, profile failure, no-op and retained contact history. History
+and deterministic event drafts are checked together; parent and sibling
+remain unchanged. Test and documentation only; no runtime or persistence
+acceptance is claimed.
