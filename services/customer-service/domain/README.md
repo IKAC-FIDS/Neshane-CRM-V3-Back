@@ -655,3 +655,13 @@ without raw contact or branch values. Append checks version and fact continuity,
 unique history ID and nondecreasing time; original history remains immutable.
 Lifecycle-only corrections remain separate. No persistent history, event
 publication, authenticated actor or proof of a completed write.
+
+## Increment 10F — branch change domain event drafts
+
+Core basis 2df1f49; Backend basis 1e077a0. BranchRegistered and BranchUpdated
+drafts are derived exclusively from immutable factual history entries, with
+owner, prior/new record version, changed field names and history context.
+Length-framed SHA-256 IDs are deterministic and scoped by tenant/company/branch,
+version, history ID and event type. No raw contact values, no events from
+blocked or unchanged assessments; lifecycle event drafts remain separate.
+No broker, outbox, publication or durable event contract is introduced.

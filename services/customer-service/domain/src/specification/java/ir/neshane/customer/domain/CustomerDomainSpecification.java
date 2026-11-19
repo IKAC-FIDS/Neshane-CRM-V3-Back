@@ -104,6 +104,7 @@ public final class CustomerDomainSpecification {
         BranchUpdatePolicySpecification.run();
         BranchTypeContactUpdateSpecification.run();
         BranchChangeHistorySpecification.run();
+        BranchChangeEventDraftSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
