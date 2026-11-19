@@ -94,6 +94,7 @@ public final class CustomerDomainSpecification {
         CustomerRecordVersionSpecification.run();
         CustomerRegistrationSpecification.run();
         CustomerUpdatePolicySpecification.run();
+        CriticalFieldChangeSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

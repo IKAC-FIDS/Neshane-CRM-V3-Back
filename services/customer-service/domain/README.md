@@ -557,3 +557,12 @@ detects no-op and validates changed contact/identifier facts. Preserves
 historical fact IDs, blocks definite duplicate conflicts and retains warnings.
 Critical reason, evidence impact, warning resolution and final update
 approval remain separate. No Branch/Relationship writes or durable mutation.
+
+## Increment 09D — critical field change assessment
+
+Core basis 2df1f49; Backend basis 0c2704a. Actual owner-scoped differences
+classify official names, identifier addition/removal/type/value/country/
+issuer/dates/status and ordinary English name/contact changes. Explicit
+exception scope and nonblank reasons for critical/exceptional changes;
+unresolved exception scope blocks actual edits. No values or reasons in
+assessment output. No verification transition, durable approval or Audit.

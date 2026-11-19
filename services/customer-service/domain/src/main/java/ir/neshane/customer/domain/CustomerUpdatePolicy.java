@@ -1,6 +1,5 @@
 package ir.neshane.customer.domain;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -71,12 +70,7 @@ public final class CustomerUpdatePolicy {
             Optional.of(new Candidate(proposed,current.status(),current.identity().verificationStatus(),version.proposed().orElseThrow(),duplicate)),true);
     }
     static boolean changed(Customer original,Customer proposed) {
-        boolean names = switch (original) {
-            case Person p -> !p.givenName().equals(((Person) proposed).givenName()) || !p.familyName().equals(((Person) proposed).familyName());
-            case Company c -> !c.companyName().equals(((Company) proposed).companyName());
-        };
-        return names || !original.englishName().equals(proposed.englishName()) || !original.contactInfo().equals(proposed.contactInfo())
-            || !new HashSet<>(original.identityInfo().identifiers()).equals(new HashSet<>(proposed.identityInfo().identifiers()));
+        return !CriticalFieldChangeAssessment.differences(original,proposed).isEmpty();
     }
     private static Optional<String> validateChanges(Customer original,Customer proposed,ContactTypeCatalog contacts,
             IdentifierTypeCatalog identifiers,Map<String,ValidationProfile> contactProfiles,Map<String,ValidationProfile> identifierProfiles) {
