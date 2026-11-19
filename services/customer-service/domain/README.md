@@ -252,3 +252,11 @@ deactivation is reachable from an actual branch candidate snapshot.
 Reactivation needs inactive snapshot support; other operations remain
 vocabulary. Effective parent state changes create no branch status
 event. No actual mutation, trusted attribution, durable Audit or publish.
+
+## Increment 04F — integrated branch domain verification
+
+Core basis 2df1f49; Backend basis 7ed4b98. Cross-component isolated
+candidate flow covers company collection, scoped types, independent contact
+ownership, lifecycle assessment, history and redacted event draft.
+Synthetic parent/status inputs verify effective state and reactivation
+eligibility; no applied state transition, database, GraphQL or broker.
