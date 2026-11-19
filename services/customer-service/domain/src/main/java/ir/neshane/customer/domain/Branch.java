@@ -13,6 +13,7 @@ public final class Branch {
     private final Optional<String> englishName;
     private final Optional<String> description;
     private final Optional<BranchTypeCatalog.Ref> type;
+    private final ContactInfo contactInfo;
 
     private Branch(BranchId id, TenantId tenantId, Company parent, String code,
                    String name, String englishName, String description, Optional<BranchTypeCatalog.Ref> type) {
@@ -27,6 +28,25 @@ public final class Branch {
         this.englishName = CustomerNames.optionalEnglishName(englishName);
         this.description = optionalRaw(description, "BRANCH_DESCRIPTION_REQUIRED");
         this.type = Objects.requireNonNull(type, "BRANCH_TYPE_OPTIONAL_REQUIRED");
+        this.contactInfo = ContactInfo.empty(new ContactOwner(tenantId, ContactOwner.Kind.BRANCH, id.value()));
+    }
+
+    private Branch(Branch source, ContactInfo contactInfo) {
+        this.id = source.id;
+        this.tenantId = source.tenantId;
+        this.companyId = source.companyId;
+        this.code = source.code;
+        this.name = source.name;
+        this.englishName = source.englishName;
+        this.description = source.description;
+        this.type = source.type;
+        this.contactInfo = ContactInfo.forOwner(source.contactInfo.owner(),
+            Objects.requireNonNull(contactInfo, "CONTACT_INFO_REQUIRED"));
+    }
+
+    /** Structural candidate attachment, not validation or authorized persistence. */
+    public Branch withCandidateContactInfo(ContactInfo contactInfo) {
+        return new Branch(this, contactInfo);
     }
 
     public static Branch createCandidate(BranchId id, TenantId tenant, Company parent,
@@ -57,6 +77,7 @@ public final class Branch {
     public Optional<String> englishName() { return englishName; }
     public Optional<String> description() { return description; }
     public Optional<BranchTypeCatalog.Ref> type() { return type; }
+    public ContactInfo contactInfo() { return contactInfo; }
     public BranchStatus status() { return BranchStatus.ACTIVE; }
     @Override public String toString() { return "Branch[candidate, redacted]"; }
 }

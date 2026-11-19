@@ -58,6 +58,7 @@ public final class CustomerDomainSpecification {
         LifecycleIntegrationSpecification.run();
         BranchSpecification.run();
         BranchTypeSpecification.run();
+        BranchContactSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

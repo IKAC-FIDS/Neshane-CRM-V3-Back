@@ -218,3 +218,12 @@ hide/unhide and custom status changes. Optional typed Branch creation
 requires selectable scoped reference. Existing references are preserved
 when catalog metadata changes or a type becomes inactive/hidden.
 No persistence, historical title store, authorization or runtime.
+
+## Increment 04C — branch contact ownership
+
+Core basis 62f8c0e; Backend basis 0726a2e. Branch starts with an empty
+owner-bound ContactInfo; no parent inheritance. Immutable candidate
+attachment checks kind, tenant and branch ID, retains all branch facts.
+Existing ContactTypeCatalog, group/primary and ValidationEngine rules
+are reused. Structural attachment does not imply validation, authority
+or a durable write; runtime and global branch identity remain open.
