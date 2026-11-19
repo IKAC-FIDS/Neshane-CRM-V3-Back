@@ -77,6 +77,7 @@ public final class CustomerDomainSpecification {
         DuplicateIntegrationSpecification.run();
         VerificationLifecycleSpecification.run();
         VerificationEvidenceSpecification.run();
+        ManualVerificationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

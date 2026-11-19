@@ -396,3 +396,13 @@ Explicit instant validity bounds, immutable selected evidence snapshot,
 scope/revision/method checks and fail-closed availability assessment.
 No blanket expiry; absence of end does not establish legal validity.
 No document storage, trust determination, completeness, or VERIFIED mutation.
+
+## Increment 07C — manual verification assessment
+
+Core basis 2df1f49; Backend basis b13abed. Synthetic scoped manual authority,
+protected local review bound to candidate/evidence/context, reason, current
+revision, available selected evidence and explicit qualification. Sensitive
+SoD cases require supplied excluded actors; unresolved mapping blocks.
+Fresh duplicate UPDATE comparison blocks definite conflict or unknown coverage.
+Eligible result is prospective only and carries Audit obligation; no trusted
+actor mapping, real evidence qualification, state write or durable Audit.
