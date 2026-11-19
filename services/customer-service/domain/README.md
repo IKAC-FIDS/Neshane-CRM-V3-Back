@@ -452,3 +452,13 @@ file metadata, document number, calendar dates, issuer, notes and uploader.
 Initial PROVIDED version does not prove authenticity or verification.
 No physical files, catalog policy, authorization, replacement, expiry
 evaluation, durable Audit, or storage.
+
+## Increment 08B — dynamic document type catalog
+
+Core basis 2df1f49; Backend basis 686acda. Tenant-scoped immutable catalog,
+stable ID and reserved canonical code, Persian title and localized text,
+applicability, requirement stage, multiplicity, file metadata limits,
+expiry applicability, status and display order. Inactive types retain
+historical reference but block new upload. Synthetic management authority,
+configured platform size and metadata checks only; production grammar,
+authorization, durable Audit and requirement enforcement remain open.
