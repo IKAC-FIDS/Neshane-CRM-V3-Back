@@ -435,3 +435,11 @@ revision/status continuity, sequence, recording order and local SoD exclusions.
 Evidence and reasons stay in protected history; minimal event drafts for
 verification/reverification/revocation only. No denied-attempt audit journal,
 trusted actor mapping, durable state, Audit ingestion or event publication.
+
+## Increment 07G — integrated verification domain rules
+
+Core basis 2df1f49; Backend basis 757cbec. Synthetic integrated checks cover
+manual verification, duplicate conflict, essential evidence expiry, renewed
+verification, stale basis/revision, material identity change, fundamental
+revocation, independent verifier, protected history, event drafts and tenant
+isolation. No runtime verification, durable authorization or Audit delivery.
