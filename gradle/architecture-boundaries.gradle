@@ -9,6 +9,8 @@ def allowedProjectDependencies = [
     ':services'                         : [] as Set,
     ':services:reference-service'       : [':platform-libraries:observability'] as Set,
     ':services:reference-peer-service'  : [':platform-libraries:observability'] as Set,
+    ':services:customer-service'        : [] as Set,
+    ':services:customer-service:domain' : [] as Set,
     ':platform-libraries'               : [] as Set,
     ':platform-libraries:observability' : [] as Set,
     ':contract-tests'                   : [] as Set,
@@ -23,7 +25,7 @@ def allowedProjectDependencies = [
     ] as Set
 ]
 
-def domainProject = project(':architecture-fixtures:domain')
+def domainProjects = [project(':architecture-fixtures:domain'), project(':services:customer-service:domain')]
 
 def projectDependencyPath = { ProjectDependency dependency ->
     dependency.hasProperty('path') ? dependency.path : dependency.dependencyProject.path
@@ -121,10 +123,12 @@ tasks.register('verifyModuleBoundaries') {
         violations.addAll(evaluateGraphBoundaries(graph, allowedProjectDependencies))
 
         def forbiddenDomainGroups = ['org.springframework', 'org.hibernate', 'jakarta.persistence']
-        domainProject.configurations.each { configuration ->
-            configuration.dependencies.withType(ExternalModuleDependency).each { dependency ->
-                if (forbiddenDomainGroups.any { prefix -> dependency.group?.startsWith(prefix) }) {
-                    violations.add("${domainProject.path}: forbidden domain framework dependency ${dependency.group}:${dependency.name}")
+        domainProjects.each { domainProject ->
+            domainProject.configurations.each { configuration ->
+                configuration.dependencies.withType(ExternalModuleDependency).each { dependency ->
+                    if (forbiddenDomainGroups.any { prefix -> dependency.group?.startsWith(prefix) }) {
+                        violations.add("${domainProject.path}: forbidden domain framework dependency ${dependency.group}:${dependency.name}")
+                    }
                 }
             }
         }
