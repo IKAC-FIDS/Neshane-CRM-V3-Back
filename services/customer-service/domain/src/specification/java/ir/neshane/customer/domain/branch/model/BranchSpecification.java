@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.model;
+
+import ir.neshane.customer.domain.CompanyBranches;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
@@ -7,9 +9,9 @@ import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import ir.neshane.customer.domain.shared.identifier.BranchId;
 
-final class BranchSpecification {
+public final class BranchSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("synthetic");
         var parent = Company.createCandidate(new CustomerId("company"), tenant, "Example", null);
         var other = Company.createCandidate(new CustomerId("other"), tenant, "Other", null);

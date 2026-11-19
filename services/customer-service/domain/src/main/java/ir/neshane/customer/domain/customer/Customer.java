@@ -1,5 +1,6 @@
 package ir.neshane.customer.domain.customer;
 
+
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactInfo;

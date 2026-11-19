@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.model.Branch;
+import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
+import ir.neshane.customer.domain.branch.model.BranchStatus;
+
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;

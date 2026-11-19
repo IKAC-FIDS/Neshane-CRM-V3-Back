@@ -1,10 +1,10 @@
 package ir.neshane.customer.domain.contact;
 
 import ir.neshane.customer.domain.BranchRegistration;
-import ir.neshane.customer.domain.BranchStatus;
+import ir.neshane.customer.domain.branch.model.BranchStatus;
 import ir.neshane.customer.domain.BranchTypeCatalog;
-import ir.neshane.customer.domain.BranchRecordVersion;
-import ir.neshane.customer.domain.Branch;
+import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
+import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.CompanyBranches;
 import ir.neshane.customer.domain.BranchUpdatePolicy;
 import ir.neshane.customer.domain.customer.Company;

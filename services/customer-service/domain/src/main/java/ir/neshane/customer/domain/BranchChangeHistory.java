@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
+import ir.neshane.customer.domain.branch.model.BranchStatus;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import java.util.ArrayList;

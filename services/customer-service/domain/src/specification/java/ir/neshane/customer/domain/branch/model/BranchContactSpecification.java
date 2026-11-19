@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.model;
 
 import ir.neshane.customer.domain.customer.Company;
 
@@ -24,9 +24,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-final class BranchContactSpecification {
+public final class BranchContactSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("synthetic");
         var companyId = new CustomerId("company");
         var companyOwner = new ContactOwner(tenant, ContactOwner.Kind.COMPANY, companyId.value());

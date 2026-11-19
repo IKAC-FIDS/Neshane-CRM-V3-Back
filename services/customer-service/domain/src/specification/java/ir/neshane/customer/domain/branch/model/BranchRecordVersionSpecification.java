@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.model;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;
@@ -8,11 +8,11 @@ import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import ir.neshane.customer.domain.shared.identifier.BranchId;
 
-import static ir.neshane.customer.domain.BranchRecordVersion.Outcome.*;
+import static ir.neshane.customer.domain.branch.model.BranchRecordVersion.Outcome.*;
 
-final class BranchRecordVersionSpecification {
+public final class BranchRecordVersionSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("private-tenant");
         var company = Company.createCandidate(new CustomerId("private-company"),tenant,"Company",null);
         var id = new BranchId("private-branch");
