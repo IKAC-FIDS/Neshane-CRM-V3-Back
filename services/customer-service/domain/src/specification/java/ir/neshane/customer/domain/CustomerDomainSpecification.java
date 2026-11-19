@@ -47,6 +47,7 @@ public final class CustomerDomainSpecification {
         reject("TENANT_ID_REQUIRED", () -> Person.createCandidate(ID, null, "Test", "Name", null));
         System.out.println("PASS: " + checks + " isolated domain assertions");
         ContactInfoSpecification.run();
+        ContactTypeCatalogSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

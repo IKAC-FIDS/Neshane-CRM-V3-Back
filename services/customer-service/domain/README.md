@@ -54,3 +54,28 @@ history policy is claimed. Synthetic phone values are deliberately not real
 telephone numbers. Contact type identity is not a code or trusted context.
 No persistence, IAM, GraphQL, events, runtime, actual PII or audit durability.
 Catalog and localization implementation remain subsequent increments.
+
+## Increment 02B — dynamic contact type catalog
+
+Farzad explicitly confirmed the System + Tenant catalog and its supplemental
+policies in conversation on 2026-11-19; base Core bf6a1df and Backend
+d0b41c51d580dedc6def3a42ad6145f8a0ee713c. Immutable ID/code/value shape,
+code trim/uppercase and A-Z/0-9/_ length 3–64, system reservations, tenant-local
+custom uniqueness, inactive reservations, hide/unhide, scope and multiplicity
+warnings, active/selectable typed assignment, and preservation of existing
+ContactInfo are modeled in an isolated snapshot. Initial vocabulary reserves
+all ten codes, even before a definition is supplied. Future system-code
+collision rejects the candidate without rewriting existing definitions.
+LocalizedText is a minimal immutable exact-key translation map; no locale
+negotiation or fallback is selected. Titles and descriptions may be revised,
+and validation profile is an opaque reference, not executable configuration.
+
+Actual default scope, multiplicity and profile values for system definitions
+remain open; the initial vocabulary supplies only codes, titles and shapes.
+No automatic seeding or persistence, no authorization of catalog management,
+publication, rollback, durable Audit, retention or concurrency guarantees.
+No current assignment is retroactively changed; scope/multiplicity revision
+returns warnings, not a completed authorized operation. Old 02A assembly
+methods remain synthetic structural helpers, not an authorized assignment
+path. Catalog append checks candidate shape, not legal/format validity.
+CM1-CNT-03/05/06 partial isolated coverage, no runtime or formal acceptance.
