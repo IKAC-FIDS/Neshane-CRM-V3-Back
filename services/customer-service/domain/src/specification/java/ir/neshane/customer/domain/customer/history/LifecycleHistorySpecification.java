@@ -1,4 +1,7 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.history;
+
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.LifecycleReasonDefinition;
 
 import ir.neshane.customer.domain.customer.event.CustomerEventDraft;
 
@@ -18,9 +21,9 @@ import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
 
-final class LifecycleHistorySpecification {
+public final class LifecycleHistorySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("synthetic-tenant");
         var customer = Person.createCandidate(new CustomerId("synthetic-id"), tenant, "Test", "Person", null);
         var catalog = LifecycleReasonCatalog.initial();

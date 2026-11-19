@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.history.LifecycleHistory;
+
 import ir.neshane.customer.domain.shared.validation.DomainText;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;

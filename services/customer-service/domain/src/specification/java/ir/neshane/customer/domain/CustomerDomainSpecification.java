@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.history.LifecycleHistorySpecification;
+
 import ir.neshane.customer.domain.coordination.registration.CustomerRegistrationSpecification;
 
 import ir.neshane.customer.domain.customer.Company;
