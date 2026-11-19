@@ -350,3 +350,12 @@ names, active phone and email hints; Persian/Arabic digits and letters,
 whitespace and name case. Phone keeps prefixes; extension omitted for
 shared-number warning. Email folds domain only. Multiple distinct signals
 on one subject raise warning priority. No fuzzy match or identity proof.
+
+## Increment 06D — duplicate registration exception
+
+Core basis 2df1f49; Backend basis e5edd3d. Fresh scoped review, synthetic
+evidence revision and local immutable candidate binding, independent
+exception authority and mandatory reason; definite conflict never overrideable.
+Reuse candidate requires visible matching same-kind subject; no actual reuse
+or write. Update exception remains outside this registration policy.
+No trusted authorization, durable review, Audit, concurrency or idempotency.
