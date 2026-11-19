@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft;
+
 import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.customer.Customer;
 import ir.neshane.customer.domain.customer.Person;
@@ -17,7 +19,7 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerChangeEventDraft.Type.*;
+import static ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft.Type.*;
 import static ir.neshane.customer.domain.CustomerChangeHistorySpecification.*;
 
 final class CustomerChangeEventDraftSpecification {

@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
+import ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft;
+
 import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;

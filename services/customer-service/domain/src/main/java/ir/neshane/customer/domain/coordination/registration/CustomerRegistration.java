@@ -1,4 +1,11 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.coordination.registration;
+
+import ir.neshane.customer.domain.DocumentValidity;
+import ir.neshane.customer.domain.DocumentRequirementPolicy;
+import ir.neshane.customer.domain.DuplicateDetection;
+import ir.neshane.customer.domain.DuplicateExceptionPolicy;
+import ir.neshane.customer.domain.DocumentCompleteness;
+import ir.neshane.customer.domain.DocumentVersionHistory;
 
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;
 import ir.neshane.customer.domain.customer.CustomerStatus;

@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
+import ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft;
+
 import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;
@@ -37,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerChangeEventDraft.Type.*;
+import static ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft.Type.*;
 import static ir.neshane.customer.domain.IdentityRevisionAssessment.Impact.*;
 import static ir.neshane.customer.domain.IdentityRevisionAssessment.IdentifierCorrection.*;
 

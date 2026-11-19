@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.event;
+
+import ir.neshane.customer.domain.CustomerChangeHistory;
 
 import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.verification.VerificationStatus;

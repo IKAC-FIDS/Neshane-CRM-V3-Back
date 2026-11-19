@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.event;
+
+import ir.neshane.customer.domain.LifecycleHistory;
 
 import ir.neshane.customer.domain.customer.CustomerStatus;
 

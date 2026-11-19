@@ -1,4 +1,15 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.coordination.registration;
+
+import ir.neshane.customer.domain.CustomerDocument;
+import ir.neshane.customer.domain.DocumentValidity;
+import ir.neshane.customer.domain.DocumentFileReference;
+import ir.neshane.customer.domain.DocumentRequirementPolicy;
+import ir.neshane.customer.domain.DuplicateDetection;
+import ir.neshane.customer.domain.DocumentTypeDefinition;
+import ir.neshane.customer.domain.DuplicateExceptionPolicy;
+import ir.neshane.customer.domain.DocumentCompleteness;
+import ir.neshane.customer.domain.DocumentVersionHistory;
+import ir.neshane.customer.domain.DocumentTypeCatalog;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerStatus;
@@ -35,9 +46,9 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.DuplicateExceptionPolicy.Authority.*;
-import static ir.neshane.customer.domain.CustomerRegistration.Outcome.*;
+import static ir.neshane.customer.domain.coordination.registration.CustomerRegistration.Outcome.*;
 
-final class CustomerRegistrationSpecification {
+public final class CustomerRegistrationSpecification {
     private static int checks;
     private static final TenantId TENANT = new TenantId("tenant");
     private static final LocalDate DAY = LocalDate.of(2026,11,19);
@@ -50,7 +61,7 @@ final class CustomerRegistrationSpecification {
         "passport","PASSPORT",SystemIdentifierVocabulary.PASSPORT.title(),Set.of(IdentityOwner.Kind.PERSON),Set.of(),
         Optional.of("p"),true,Optional.empty(),IdentifierTypeDefinition.Status.ACTIVE));
     private static final ValidationProfile PROFILE = new ValidationProfile("p",Optional.empty(),List.of(new ValidationProfile.Length(ValidationProfile.Field.VALUE,3,10)));
-    static void run() {
+    public static void run() {
         var person = Person.createCandidate(new CustomerId("person"),TENANT,"A","B",null);
         var company = Company.createCandidate(new CustomerId("company"),TENANT,"C",null);
         var policy = DocumentRequirementPolicy.initial(DocumentTypeCatalog.empty(TENANT,1000),"r1");
