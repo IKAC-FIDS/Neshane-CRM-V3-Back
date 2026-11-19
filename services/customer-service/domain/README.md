@@ -625,3 +625,12 @@ company collection, duplicate ID/exact code checks, current type selectability,
 contact validation and primary selection. Initial ACTIVE/version one; parent
 state and version unchanged. No global uniqueness, durable writes, trusted
 authorization or Audit delivery; audit obligation is retained.
+
+## Increment 10C — branch update policy
+
+Core basis 2df1f49; Backend basis 69d3c96. Owner-scoped factual edit checks
+authority, expected version, parent status, exact collection snapshot and
+code conflict. Name/code/description structural rules remain in Branch.
+No-op preserves version; inactive correction preserves status, archived
+parent blocks. Type/contact edits require separate validation in 10D.
+No durable change, lifecycle mutation, parent update or Audit delivery.

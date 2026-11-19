@@ -23,6 +23,20 @@ public final class CompanyBranches {
 
     public List<Branch> branches() { return branches; }
 
+    /** Replace an exact supplied snapshot without changing its owner or collection order. */
+    CompanyBranches replaceCandidate(Branch current,Branch proposed) {
+        if (!tenantId.equals(current.tenantId()) || !companyId.equals(current.companyId()) ||
+                !BranchRecordVersion.Owner.of(current).equals(BranchRecordVersion.Owner.of(proposed)))
+            throw new IllegalArgumentException("BRANCH_PARENT_SCOPE_MISMATCH");
+        int index=branches.indexOf(current);
+        if (index<0) throw new IllegalArgumentException("BRANCH_COLLECTION_SNAPSHOT_MISMATCH");
+        if (proposed.code().isPresent() && branches.stream().anyMatch(old -> old!=current && old.code().equals(proposed.code())))
+            throw new IllegalArgumentException("BRANCH_CODE_DUPLICATE");
+        var next=new ArrayList<>(branches);
+        next.set(index,proposed);
+        return new CompanyBranches(tenantId,companyId,next);
+    }
+
     public CompanyBranches appendCandidate(Branch branch) {
         Objects.requireNonNull(branch, "BRANCH_REQUIRED");
         if (!tenantId.equals(branch.tenantId()) || !companyId.equals(branch.companyId()))
