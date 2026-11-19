@@ -41,8 +41,9 @@ public final class RelationshipLifecycle {
         Objects.requireNonNull(day);
         Objects.requireNonNull(personStatus);
         if (fact.status() == Relationship.Status.ENDED) return EffectiveStatus.ENDED;
-        if (day.isBefore(fact.start())) return EffectiveStatus.SCHEDULED;
-        if (fact.end().isPresent() && !day.isBefore(fact.end().orElseThrow())) return EffectiveStatus.EXPIRED;
+        var position=RelationshipTemporalPolicy.position(fact,day);
+        if (position==TemporalPolicy.Position.BEFORE_START) return EffectiveStatus.SCHEDULED;
+        if (position==TemporalPolicy.Position.AFTER_END) return EffectiveStatus.EXPIRED;
         if (personStatus != CustomerStatus.ACTIVE || !targetAvailable) return EffectiveStatus.UNAVAILABLE;
         return EffectiveStatus.EFFECTIVE;
     }

@@ -17,6 +17,14 @@ public final class TemporalPolicy {
     public enum Position { BEFORE_START, WITHIN, AFTER_END, BOUNDARY_UNRESOLVED }
     private TemporalPolicy() {}
 
+    /** Two valid half-open intervals overlap only when both starts precede the opposite end. */
+    public static <T extends Comparable<? super T>> boolean overlapsExclusive(T firstStart,Optional<T> firstEnd,T secondStart,Optional<T> secondEnd) {
+        position(firstStart,firstEnd,firstStart,EndBoundary.EXCLUSIVE);
+        position(secondStart,secondEnd,secondStart,EndBoundary.EXCLUSIVE);
+        return (firstEnd.isEmpty() || secondStart.compareTo(firstEnd.orElseThrow())<0) &&
+            (secondEnd.isEmpty() || firstStart.compareTo(secondEnd.orElseThrow())<0);
+    }
+
     /** Start is inclusive; missing end is unbounded. The caller selects the end convention explicitly. */
     public static <T extends Comparable<? super T>> Position position(T start,Optional<T> end,T asOf,EndBoundary boundary) {
         Objects.requireNonNull(start,"TEMPORAL_START_REQUIRED");

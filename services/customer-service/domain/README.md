@@ -732,3 +732,12 @@ interval positioning supports inclusive start, explicit inclusive/exclusive
 end and unresolved boundary, including unbounded end. Invalid intervals are
 rejected. The existing relationship/document/evidence policies are unchanged;
 no expiry convention, timezone decision or automatic state mutation is added.
+
+## Increment 12B — relationship temporal rules
+
+Core basis 2df1f49; Backend basis 9f7bd2c. Relationship interval validation,
+effective status and overlap checks share the explicit half-open temporal
+policy. Adjacent intervals do not overlap, unbounded ends are supported;
+stored ENDED remains distinct from calendar expiry. Historical ended intervals
+retain overlap evidence. Manual END date semantics remain unresolved;
+no automatic version, history, status or event changes are introduced.

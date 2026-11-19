@@ -26,8 +26,7 @@ public final class RelationshipAssignment {
             Objects.requireNonNull(start);
             Objects.requireNonNull(end);
             Objects.requireNonNull(status);
-            if (end.isPresent() && !end.orElseThrow().isAfter(start))
-                throw new IllegalArgumentException("RELATIONSHIP_INTERVAL_INVALID");
+            RelationshipTemporalPolicy.requireInterval(start,end);
             if (version < 1) throw new IllegalArgumentException("RELATIONSHIP_VERSION_INVALID");
         }
         public static Fact of(Relationship relationship, long version) {
@@ -112,8 +111,7 @@ public final class RelationshipAssignment {
             "RELATIONSHIP_OVERLAP_EXCEPTION_CANDIDATE", Optional.of(reason));
     }
     private static boolean overlaps(Fact a, Fact b) {
-        return (a.end().isEmpty() || b.start().isBefore(a.end().orElseThrow()))
-            && (b.end().isEmpty() || a.start().isBefore(b.end().orElseThrow()));
+        return RelationshipTemporalPolicy.overlaps(a,b);
     }
     private static Assessment result(Fact candidate, BusinessRoleCatalog.Ref role, Map<RelationshipId, Fact> conflicts,
                                      Outcome outcome, String code) {

@@ -28,8 +28,7 @@ public final class Relationship {
             throw new IllegalArgumentException("RELATIONSHIP_PERSON_NOT_ACTIVE");
         this.roleCode = BusinessRoleDefinition.canonicalCode(roleCode);
         this.startDate = Objects.requireNonNull(startDate, "RELATIONSHIP_START_REQUIRED");
-        if (endDate != null && !endDate.isAfter(startDate))
-            throw new IllegalArgumentException("RELATIONSHIP_INTERVAL_INVALID");
+        RelationshipTemporalPolicy.requireInterval(startDate,Optional.ofNullable(endDate));
         this.endDate = Optional.ofNullable(endDate);
     }
 
