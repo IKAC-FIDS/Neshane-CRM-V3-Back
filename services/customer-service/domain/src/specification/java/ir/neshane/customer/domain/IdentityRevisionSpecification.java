@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
+
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
 import ir.neshane.customer.domain.customer.Person;
@@ -19,10 +22,10 @@ import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.Authority.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.Impact.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.IdentifierCorrection.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.Outcome.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Authority.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Impact.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.IdentifierCorrection.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Outcome.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 final class IdentityRevisionSpecification {

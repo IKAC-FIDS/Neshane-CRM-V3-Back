@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.state;
 
 import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.customer.Person;
@@ -24,9 +24,9 @@ import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.
 import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.ExceptionScope.*;
 import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.Outcome.*;
 
-final class CriticalFieldChangeSpecification {
+public final class CriticalFieldChangeSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var same = Person.createCandidate(person.id(),tenant," A ","B",null);

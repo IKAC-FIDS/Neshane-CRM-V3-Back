@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.VerificationRevocation;
+
 import ir.neshane.customer.domain.customer.Person;
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
@@ -11,11 +14,11 @@ import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import static ir.neshane.customer.domain.VerificationRevocation.Cause.*;
-import static ir.neshane.customer.domain.VerificationRevocation.Authority.*;
-import static ir.neshane.customer.domain.VerificationRevocation.Qualification.*;
-import static ir.neshane.customer.domain.VerificationRevocation.Outcome.*;
-import static ir.neshane.customer.domain.VerificationRevocation.Reliance.*;
+import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Cause.*;
+import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Authority.*;
+import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Qualification.*;
+import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Outcome.*;
+import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Reliance.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 final class VerificationRevocationSpecification {

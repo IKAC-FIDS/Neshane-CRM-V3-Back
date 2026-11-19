@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
+import ir.neshane.customer.domain.customer.state.CustomerLifecycleIntegration;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
@@ -23,7 +27,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
-import static ir.neshane.customer.domain.CustomerLifecycleIntegration.Authority.*;
+import static ir.neshane.customer.domain.customer.state.CustomerLifecycleIntegration.Authority.*;
 
 final class CustomerLifecycleIntegrationSpecification {
     private static int checks;

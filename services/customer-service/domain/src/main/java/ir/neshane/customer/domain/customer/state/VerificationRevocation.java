@@ -1,4 +1,8 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.state;
+
+import ir.neshane.customer.domain.VerificationEvidence;
+import ir.neshane.customer.domain.VerificationEvidenceSet;
+import ir.neshane.customer.domain.VerificationLifecycle;
 
 import ir.neshane.customer.domain.verification.VerificationStatus;
 

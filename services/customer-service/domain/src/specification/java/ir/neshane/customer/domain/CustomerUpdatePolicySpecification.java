@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;
 import ir.neshane.customer.domain.customer.CustomerStatus;
@@ -28,8 +31,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerUpdatePolicy.Outcome.*;
-import static ir.neshane.customer.domain.CustomerUpdatePolicy.Authority.*;
+import static ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.Outcome.*;
+import static ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.Authority.*;
 
 final class CustomerUpdatePolicySpecification {
     private static int checks;

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;
 
@@ -118,6 +120,10 @@ public final class BranchUpdatePolicy {
                 if (!checked.primary(group).equals(primary)) throw new IllegalArgumentException("BRANCH_CONTACT_PRIMARY_MISMATCH");
             }
         }
+    }
+    /** Compares explicitly supplied branch facts without exposing either snapshot. */
+    public static boolean sameFacts(Branch a,Branch b) {
+        return differences(a,b).isEmpty();
     }
     static EnumSet<Field> differences(Branch a,Branch b) {
         var fields=EnumSet.noneOf(Field.class);

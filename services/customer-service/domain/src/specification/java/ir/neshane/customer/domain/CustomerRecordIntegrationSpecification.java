@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.CustomerUpdateVerification;
+import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
@@ -43,8 +49,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft.Type.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.Impact.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.IdentifierCorrection.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Impact.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.IdentifierCorrection.*;
 
 /** Registration through independent reverification, using real domain assessments throughout. */
 final class CustomerRecordIntegrationSpecification {

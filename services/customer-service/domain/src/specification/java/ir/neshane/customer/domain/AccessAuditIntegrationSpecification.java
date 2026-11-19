@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;

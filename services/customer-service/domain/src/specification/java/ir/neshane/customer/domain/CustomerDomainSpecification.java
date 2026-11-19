@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.BranchRecordIntegrationSpecification;
+import ir.neshane.customer.domain.customer.state.CriticalFieldChangeSpecification;
+import ir.neshane.customer.domain.customer.state.FinalDomainIntegrationSpecification;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistorySpecification;
 
 import ir.neshane.customer.domain.coordination.registration.CustomerRegistrationSpecification;

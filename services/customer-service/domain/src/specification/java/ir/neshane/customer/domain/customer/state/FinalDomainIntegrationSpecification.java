@@ -1,4 +1,39 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.state;
+
+import ir.neshane.customer.domain.ArchiveDependencyCatalog;
+import ir.neshane.customer.domain.AuditRequirementsPolicy;
+import ir.neshane.customer.domain.Branch;
+import ir.neshane.customer.domain.BranchChangeEventDraft;
+import ir.neshane.customer.domain.BranchChangeHistory;
+import ir.neshane.customer.domain.BranchRegistration;
+import ir.neshane.customer.domain.BranchStatus;
+import ir.neshane.customer.domain.BranchTypeCatalog;
+import ir.neshane.customer.domain.BusinessRoleCatalog;
+import ir.neshane.customer.domain.CompanyBranches;
+import ir.neshane.customer.domain.CustomerDocument;
+import ir.neshane.customer.domain.DocumentCompleteness;
+import ir.neshane.customer.domain.DocumentEventDraft;
+import ir.neshane.customer.domain.DocumentFileReference;
+import ir.neshane.customer.domain.DocumentHistory;
+import ir.neshane.customer.domain.DocumentRequirementPolicy;
+import ir.neshane.customer.domain.DocumentTypeCatalog;
+import ir.neshane.customer.domain.DocumentTypeDefinition;
+import ir.neshane.customer.domain.DocumentValidity;
+import ir.neshane.customer.domain.DocumentVerification;
+import ir.neshane.customer.domain.DocumentVersionHistory;
+import ir.neshane.customer.domain.DuplicateDetection;
+import ir.neshane.customer.domain.DuplicateExceptionPolicy;
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.LogicalAccessPolicy;
+import ir.neshane.customer.domain.ManualVerification;
+import ir.neshane.customer.domain.ReadDisclosurePolicy;
+import ir.neshane.customer.domain.Relationship;
+import ir.neshane.customer.domain.RelationshipAssignment;
+import ir.neshane.customer.domain.RelationshipEventDraft;
+import ir.neshane.customer.domain.RelationshipLifecycle;
+import ir.neshane.customer.domain.RelationshipLifecycleIntegration;
+import ir.neshane.customer.domain.VerificationEvidence;
+import ir.neshane.customer.domain.VerificationEvidenceSet;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
@@ -45,7 +80,7 @@ import java.util.*;
 import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
 
 /** One connected synthetic scenario; no application execution or durable acceptance. */
-final class FinalDomainIntegrationSpecification {
+public final class FinalDomainIntegrationSpecification {
     private static final TenantId T=new TenantId("final-tenant");
     private static final LocalDate DAY=LocalDate.of(2026,11,19);
     private static final ContactTypeCatalog CONTACTS=ContactTypeCatalog.empty().withCandidateDefinition(new ContactTypeDefinition(
@@ -55,7 +90,7 @@ final class FinalDomainIntegrationSpecification {
         "passport","PASSPORT",SystemIdentifierVocabulary.PASSPORT.title(),Set.of(IdentityOwner.Kind.PERSON),Set.of(),Optional.of("p"),true,Optional.empty(),IdentifierTypeDefinition.Status.ACTIVE));
     private static final ValidationProfile PROFILE=new ValidationProfile("p",Optional.empty(),List.of(new ValidationProfile.Length(ValidationProfile.Field.VALUE,3,10)));
     private static int checks;
-    static void run() {
+    public static void run() {
         var base=Person.createCandidate(new CustomerId("person"),T,"A","B",null);
         var phone=new ContactPoint("phone",base.contactInfo().owner(),ContactTypeRef.system("MOBILE"),new ContactValue.Phone("123456",Optional.empty()));
         var contacts=CONTACTS.selectPrimaryCandidate(CONTACTS.appendCandidate(base.contactInfo(),phone),phone.id());

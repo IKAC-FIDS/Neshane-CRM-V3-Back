@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+import ir.neshane.customer.domain.customer.state.VerificationRevocation;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.customer.Customer;
@@ -24,7 +28,7 @@ import static ir.neshane.customer.domain.DocumentVerification.Necessity.ESSENTIA
 import static ir.neshane.customer.domain.DocumentVerification.Necessity.NON_ESSENTIAL;
 import static ir.neshane.customer.domain.DocumentVerification.Outcome.*;
 import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.VerificationRevocation.Authority.*;
+import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Authority.*;
 
 final class DocumentVerificationSpecification {
     private static int checks;

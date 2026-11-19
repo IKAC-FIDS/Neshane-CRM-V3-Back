@@ -1,4 +1,13 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer.state;
+
+import ir.neshane.customer.domain.ArchiveDependencyAssessment;
+import ir.neshane.customer.domain.BranchLifecycle;
+import ir.neshane.customer.domain.BranchStatus;
+import ir.neshane.customer.domain.BranchUpdatePolicy;
+import ir.neshane.customer.domain.Relationship;
+import ir.neshane.customer.domain.RelationshipAssignment;
+import ir.neshane.customer.domain.RelationshipLifecycle;
+import ir.neshane.customer.domain.RelationshipLifecycleIntegration;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;
@@ -55,7 +64,7 @@ public final class CrossAggregateLifecycle {
             if (company ? !same(root,parties.company()) : !same(root,parties.person())) throw new IllegalArgumentException("LIFECYCLE_RELATIONSHIP_SCOPE_MISMATCH");
             if (company && parties.branch().isPresent()) {
                 var branch=parties.branch().orElseThrow(); var known=branches.get(branch.branch().id());
-                if (known==null || !known.version().equals(branch.version()) || known.status()!=branch.status() || !BranchUpdatePolicy.differences(known.branch(),branch.branch()).isEmpty())
+                if (known==null || !known.version().equals(branch.version()) || known.status()!=branch.status() || !BranchUpdatePolicy.sameFacts(known.branch(),branch.branch()))
                     throw new IllegalArgumentException("LIFECYCLE_BRANCH_SNAPSHOT_MISMATCH");
             }
             var before=RelationshipLifecycleIntegration.effectiveStatus(fact,day,parties);

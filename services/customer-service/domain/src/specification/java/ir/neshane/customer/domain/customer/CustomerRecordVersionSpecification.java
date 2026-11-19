@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain.customer;
 
-import ir.neshane.customer.domain.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;

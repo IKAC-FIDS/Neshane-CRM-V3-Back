@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.CrossAggregateLifecycle;
+import ir.neshane.customer.domain.customer.state.CustomerLifecycleIntegration;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.customer.event.CustomerEventDraft;
