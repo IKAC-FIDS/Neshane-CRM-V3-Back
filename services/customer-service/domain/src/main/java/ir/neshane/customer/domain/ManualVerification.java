@@ -1,6 +1,7 @@
 package ir.neshane.customer.domain;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,17 +35,28 @@ public final class ManualVerification {
         private final VerificationEvidenceSet evidence;
         private final Context context;
         private final Qualification qualification;
+        private final Optional<DocumentVerification.Assessment> documentAssessment;
         private Review(Customer candidate, VerificationEvidenceSet evidence, Context context, Qualification qualification) {
+            this(candidate,evidence,context,qualification,Optional.empty());
+        }
+        private Review(Customer candidate, VerificationEvidenceSet evidence, Context context, Qualification qualification,
+                Optional<DocumentVerification.Assessment> documentAssessment) {
             this.candidate = Objects.requireNonNull(candidate);
             this.evidence = Objects.requireNonNull(evidence);
             this.context = Objects.requireNonNull(context);
             this.qualification = Objects.requireNonNull(qualification);
+            this.documentAssessment = documentAssessment;
         }
         @Override public String toString() { return "ManualVerification.Review[protected, redacted]"; }
     }
     private ManualVerification() {}
     public static Review review(Customer candidate, VerificationEvidenceSet evidence, Context context, Qualification qualification) {
         return new Review(candidate, evidence, context, qualification);
+    }
+    public static Review review(Customer candidate, VerificationEvidenceSet evidence, Context context, Qualification qualification,
+            List<DocumentVersionHistory> documents,LocalDate date,DocumentValidity.ExpiryBoundary boundary) {
+        return new Review(candidate,evidence,context,qualification,Optional.of(
+            DocumentVerification.assessSelection(evidence,documents,date,context.decisionAt(),boundary)));
     }
     public static Assessment assess(Customer candidate, String currentRevision, VerificationEvidenceSet evidence,
             Context context, Review review, DuplicateDetection.Request duplicateRequest,
@@ -66,6 +78,12 @@ public final class ManualVerification {
         if (review == null || review.candidate != candidate || review.evidence != evidence || !review.context.equals(context))
             return blocked("VERIFICATION_REVIEW_REQUIRED", false);
         if (review.qualification != Qualification.QUALIFIED_CANDIDATE) return blocked("VERIFICATION_EVIDENCE_QUALIFICATION_REQUIRED", false);
+        if (evidence.evidence().stream().anyMatch(e -> e.documentBinding().isPresent())) {
+            if (review.documentAssessment.isEmpty()) return blocked("DOCUMENT_EVIDENCE_REVIEW_REQUIRED",false);
+            var documentAssessment = review.documentAssessment.orElseThrow();
+            if (documentAssessment.outcome() != DocumentVerification.Outcome.AVAILABLE_CANDIDATE)
+                return blocked(documentAssessment.code(),false);
+        }
         if (duplicateRequest.operation() != DuplicateDetection.Operation.UPDATE)
             return blocked("VERIFICATION_DUPLICATE_UPDATE_SCOPE_REQUIRED", false);
         var duplicate = DuplicateDetection.assess(candidate,duplicateRequest,coverage,comparisons);

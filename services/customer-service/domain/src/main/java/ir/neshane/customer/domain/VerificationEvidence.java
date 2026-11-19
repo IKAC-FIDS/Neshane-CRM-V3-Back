@@ -8,10 +8,17 @@ import java.util.Optional;
 public record VerificationEvidence(String evidenceId, IdentityOwner owner, String identityRevision,
         long evidenceVersion, Method method, String source, String issuer, String protectedReference,
         String recordedBy, Instant recordedAt, Instant effectiveFrom, Optional<Instant> validUntilExclusive,
-        Status status) {
+        Status status, Optional<DocumentVerification.Binding> documentBinding) {
     public enum Method { MANUAL, SYSTEM }
     public enum Status { PROVIDED, SUPERSEDED, INVALIDATED }
     public enum Availability { AVAILABLE_CANDIDATE, NOT_YET_EFFECTIVE, EXPIRED, SUPERSEDED, INVALIDATED }
+
+    public VerificationEvidence(String evidenceId, IdentityOwner owner, String identityRevision,
+            long evidenceVersion, Method method, String source, String issuer, String protectedReference,
+            String recordedBy, Instant recordedAt, Instant effectiveFrom, Optional<Instant> validUntilExclusive, Status status) {
+        this(evidenceId,owner,identityRevision,evidenceVersion,method,source,issuer,protectedReference,
+            recordedBy,recordedAt,effectiveFrom,validUntilExclusive,status,Optional.empty());
+    }
 
     public VerificationEvidence {
         IdentityIdentifier.required(evidenceId, "VERIFICATION_EVIDENCE_ID_REQUIRED");
@@ -29,6 +36,9 @@ public record VerificationEvidence(String evidenceId, IdentityOwner owner, Strin
         if (validUntilExclusive.filter(end -> !end.isAfter(effectiveFrom)).isPresent())
             throw new IllegalArgumentException("EVIDENCE_VALIDITY_INTERVAL_INVALID");
         Objects.requireNonNull(status, "EVIDENCE_STATUS_REQUIRED");
+        Objects.requireNonNull(documentBinding,"DOCUMENT_BINDING_OPTIONAL_REQUIRED");
+        if (documentBinding.filter(b -> !b.owner().equals(owner)).isPresent())
+            throw new IllegalArgumentException("DOCUMENT_EVIDENCE_SCOPE_MISMATCH");
     }
 
     public Availability availabilityAt(Instant instant) {

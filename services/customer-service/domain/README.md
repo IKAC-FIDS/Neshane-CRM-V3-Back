@@ -500,3 +500,14 @@ type once; mixed observed states remain visible without precedence. Unknown
 counting or date rules can withhold the exact numerator. Zero requirements
 yield raw 0/0 counts, not a percentage or approval. No actual access,
 legal prerequisite decision, durable snapshot guarantee or verification mutation.
+
+## Increment 08G — document and verification integration
+
+Core basis 2df1f49; Backend basis 2fff69d. Optional typed evidence binding
+captures owner, document ID/version and necessity. Manual review with bound
+evidence requires a document availability candidate. Impact checks use the
+last recorded verification basis and original version dates/invalidation
+provenance; replacement alone warrants review, not automatic revocation.
+Established essential loss can propose reverification through separate
+revocation authority and a history candidate. No automatic verification,
+trusted authorization, durable freshness or Audit persistence.

@@ -1,6 +1,7 @@
 package ir.neshane.customer.domain;
 
 import java.time.Instant;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -101,10 +102,25 @@ public final class VerificationHistory {
         if (previousVerification.isPresent() && previousVerification.orElseThrow().evidence().stream().noneMatch(e ->
                 e.identityRevision().equals(context.basisRevision()) && e.evidenceId().equals(context.evidenceId()) &&
                 basis.evidence().stream().anyMatch(b -> b.evidenceId().equals(e.evidenceId()) &&
-                    b.evidenceVersion() == e.evidenceVersion() && b.protectedReference().equals(e.protectedReference()))))
+                    b.evidenceVersion() == e.evidenceVersion() && b.protectedReference().equals(e.protectedReference())
+                    && b.documentBinding().equals(e.documentBinding()))))
             throw new IllegalArgumentException("VERIFICATION_HISTORY_BASIS_MISMATCH");
         return append(result.proposed().orElseThrow(),Action.REVOCATION,metadata,context.effectiveAt(),result.code(),context.reason(),basis.evidence(),context.proofReference(),
             exclusions(result.differentVerifierRequired(),context.actorId()));
+    }
+    public VerificationHistory appendDocumentImpact(String expectedRevision,DocumentVersionHistory document,
+            LocalDate effectiveDate,Instant effectiveAt,DocumentValidity.ExpiryBoundary boundary,
+            VerificationRevocation.Authority authority,String reason,String proofReference,LifecycleHistory.Context context) {
+        validate(context);
+        CustomerNames.required(reason,"DOCUMENT_IMPACT_REASON",4000);
+        IdentityIdentifier.required(proofReference,"VERIFICATION_REVOCATION_EVIDENCE_REQUIRED");
+        if (effectiveAt.isAfter(context.occurredAt())) throw new IllegalArgumentException("VERIFICATION_REVOCATION_TIME_UNRESOLVED");
+        var result = DocumentVerification.assessImpact(this,expectedRevision,document,effectiveDate,effectiveAt,boundary,authority);
+        if (result.outcome() != DocumentVerification.Outcome.REVERIFICATION_REQUIRED_CANDIDATE)
+            throw new IllegalArgumentException(result.code());
+        var prior = entries.reversed().stream().filter(e -> e.action() == Action.MANUAL_VERIFY).findFirst().orElseThrow();
+        var next = IdentityRevision.snapshot(current.candidate(),current.value(),result.transition().orElseThrow().proposed().orElseThrow());
+        return append(next,Action.REVOCATION,context,effectiveAt,result.code(),reason,prior.evidence(),proofReference,excludedVerifiers);
     }
     private Set<String> exclusions(boolean different,String actor) {
         var next = new HashSet<>(excludedVerifiers);
