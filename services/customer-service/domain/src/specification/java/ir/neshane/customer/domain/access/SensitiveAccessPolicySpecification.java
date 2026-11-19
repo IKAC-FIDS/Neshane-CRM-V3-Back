@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.document.CustomerDocument;
 import ir.neshane.customer.domain.document.DocumentFileReference;
@@ -21,13 +21,13 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
 
-final class SensitiveAccessPolicySpecification {
+public final class SensitiveAccessPolicySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant=new TenantId("tenant");
         var foreign=new TenantId("foreign");
         var person=Person.createCandidate(new CustomerId("person"),tenant,"Private","Name",null);

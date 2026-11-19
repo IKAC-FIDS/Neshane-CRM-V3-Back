@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
 import ir.neshane.customer.domain.relationship.RelationshipAssignment;
@@ -9,7 +9,7 @@ import ir.neshane.customer.domain.customer.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
 
 /** Logical disclosure disposition only. No projection, masking algorithm or trusted grants. */
 public final class ReadDisclosurePolicy {

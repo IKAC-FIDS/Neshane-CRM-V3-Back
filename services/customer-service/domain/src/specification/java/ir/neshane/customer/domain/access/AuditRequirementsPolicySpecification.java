@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.relationship.RoleAuditPolicy;
 
@@ -7,14 +7,14 @@ import ir.neshane.customer.domain.shared.identifier.TenantId;
 import java.time.Instant;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
-import static ir.neshane.customer.domain.AuditRequirementsPolicy.Reason.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.AuditRequirementsPolicy.Reason.*;
 
-final class AuditRequirementsPolicySpecification {
+public final class AuditRequirementsPolicySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var ordinaryReads=Set.of(CUSTOMER_READ,BRANCH_READ,RELATIONSHIP_READ,DOCUMENT_READ,CATALOG_SELECTABLE_READ);
         var protectedReads=Set.of(IDENTITY_SENSITIVE_READ,DOCUMENT_CONTENT_READ,VERIFICATION_EVIDENCE_READ,HISTORY_READ,AUDIT_READ);
         var reasonOps=Set.of(RELATIONSHIP_END,DOCUMENT_INVALIDATE,IDENTITY_CORRECT,DUPLICATE_EXCEPTION,VERIFY_MANUAL,VERIFICATION_REVOKE);

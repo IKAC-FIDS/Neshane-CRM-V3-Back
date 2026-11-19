@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.access.AuditRequirementsPolicy;
+import ir.neshane.customer.domain.access.LogicalAccessPolicy;
+import ir.neshane.customer.domain.access.ReadDisclosurePolicy;
+
 import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
 import ir.neshane.customer.domain.relationship.Relationship;
 import ir.neshane.customer.domain.relationship.RelationshipAssignment;
@@ -29,10 +33,10 @@ import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 
 import java.time.LocalDate;
 import java.util.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
-import static ir.neshane.customer.domain.ReadDisclosurePolicy.IdentityFields.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.ReadDisclosurePolicy.IdentityFields.*;
 
 final class DomainInvariantsReviewSpecification {
     private static int checks;

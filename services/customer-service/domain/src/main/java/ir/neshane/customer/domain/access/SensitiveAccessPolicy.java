@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.document.CustomerDocument;
 
@@ -8,7 +8,7 @@ import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
 import ir.neshane.customer.domain.customer.Customer;
 
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
 
 /** Candidate access to protected facts; returns no resource values or references. */
 public final class SensitiveAccessPolicy {

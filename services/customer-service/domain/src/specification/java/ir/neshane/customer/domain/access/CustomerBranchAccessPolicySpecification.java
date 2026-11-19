@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
@@ -15,13 +15,13 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 
 import java.util.List;
 import java.util.Set;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
 
-final class CustomerBranchAccessPolicySpecification {
+public final class CustomerBranchAccessPolicySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant=new TenantId("tenant");
         var otherTenant=new TenantId("other");
         var person=Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);

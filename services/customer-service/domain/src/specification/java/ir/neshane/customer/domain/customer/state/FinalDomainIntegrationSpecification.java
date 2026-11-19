@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.customer.state;
 
 import ir.neshane.customer.domain.ArchiveDependencyCatalog;
-import ir.neshane.customer.domain.AuditRequirementsPolicy;
+import ir.neshane.customer.domain.access.AuditRequirementsPolicy;
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.event.BranchChangeEventDraft;
 import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
@@ -24,9 +24,9 @@ import ir.neshane.customer.domain.document.DocumentVersionHistory;
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
 import ir.neshane.customer.domain.LifecycleReasonCatalog;
-import ir.neshane.customer.domain.LogicalAccessPolicy;
+import ir.neshane.customer.domain.access.LogicalAccessPolicy;
 import ir.neshane.customer.domain.verification.ManualVerification;
-import ir.neshane.customer.domain.ReadDisclosurePolicy;
+import ir.neshane.customer.domain.access.ReadDisclosurePolicy;
 import ir.neshane.customer.domain.relationship.Relationship;
 import ir.neshane.customer.domain.relationship.RelationshipAssignment;
 import ir.neshane.customer.domain.relationship.RelationshipEventDraft;
@@ -77,7 +77,7 @@ import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
 
 import java.time.*;
 import java.util.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
 
 /** One connected synthetic scenario; no application execution or durable acceptance. */
 public final class FinalDomainIntegrationSpecification {

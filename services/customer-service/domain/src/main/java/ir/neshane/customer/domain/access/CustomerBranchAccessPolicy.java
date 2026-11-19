@@ -1,11 +1,11 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
 
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
 
 /** Resource-bound candidate access; does not replace lifecycle, version or validation rules. */
 public final class CustomerBranchAccessPolicy {

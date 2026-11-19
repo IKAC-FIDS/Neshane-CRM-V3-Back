@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
@@ -7,7 +7,7 @@ import ir.neshane.customer.domain.shared.identifier.TenantId;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
 
 /** Additive logical audit obligations; not a durable audit record or proof of action execution. */
 public final class AuditRequirementsPolicy {

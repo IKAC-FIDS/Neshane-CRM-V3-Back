@@ -1,15 +1,15 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.HashSet;
 import java.util.Set;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
 
-final class LogicalAccessPolicySpecification {
+public final class LogicalAccessPolicySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant=new TenantId("tenant");
         var foreign=new TenantId("foreign");
         var empty=new LogicalAccessPolicy.ActorContext("actor",tenant,Set.of());

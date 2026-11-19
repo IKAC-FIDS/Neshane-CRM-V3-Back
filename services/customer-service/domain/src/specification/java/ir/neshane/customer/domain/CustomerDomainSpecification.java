@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.access.AccessAuditIntegrationSpecification;
+import ir.neshane.customer.domain.access.AuditRequirementsPolicySpecification;
+import ir.neshane.customer.domain.access.CustomerBranchAccessPolicySpecification;
+import ir.neshane.customer.domain.access.LogicalAccessPolicySpecification;
+import ir.neshane.customer.domain.access.SensitiveAccessPolicySpecification;
+
 import ir.neshane.customer.domain.document.CustomerDocumentSpecification;
 import ir.neshane.customer.domain.document.DocumentCompletenessSpecification;
 import ir.neshane.customer.domain.document.DocumentHistorySpecification;

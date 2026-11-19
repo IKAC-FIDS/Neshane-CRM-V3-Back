@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.document.CustomerDocument;
 import ir.neshane.customer.domain.document.DocumentFileReference;
@@ -42,17 +42,17 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Function;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
-import static ir.neshane.customer.domain.AuditRequirementsPolicy.Reason.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.AuditRequirementsPolicy.Reason.*;
 
 /** Composes synthetic access and audit facts without enforcing or executing an operation. */
-final class AccessAuditIntegrationSpecification {
+public final class AccessAuditIntegrationSpecification {
     private static int checks;
     private static final Instant AT=Instant.parse("2030-01-01T00:00:00Z");
     private record Scenario(Operation operation,Function<ActorContext,Assessment> action,boolean sensitive) {}
-    static void run() {
+    public static void run() {
         var tenant=new TenantId("tenant");
         var foreign=new TenantId("foreign");
         var person=Person.createCandidate(new CustomerId("person"),tenant,"Private","Name",null);
