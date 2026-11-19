@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
 
 import ir.neshane.customer.domain.customer.state.VerificationHistory;
 

@@ -3,10 +3,10 @@ package ir.neshane.customer.domain.customer.state;
 import ir.neshane.customer.domain.DocumentValidity;
 import ir.neshane.customer.domain.DocumentVerification;
 import ir.neshane.customer.domain.DocumentVersionHistory;
-import ir.neshane.customer.domain.DuplicateDetection;
-import ir.neshane.customer.domain.ManualVerification;
-import ir.neshane.customer.domain.VerificationEvidence;
-import ir.neshane.customer.domain.VerificationEvidenceSet;
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+import ir.neshane.customer.domain.verification.ManualVerification;
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 

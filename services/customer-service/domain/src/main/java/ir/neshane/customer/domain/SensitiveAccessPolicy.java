@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
 import ir.neshane.customer.domain.customer.Customer;
 
 import static ir.neshane.customer.domain.LogicalAccessPolicy.*;

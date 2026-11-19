@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
@@ -27,14 +27,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DuplicateDetection.Coverage.*;
-import static ir.neshane.customer.domain.DuplicateExceptionPolicy.Authority.*;
-import static ir.neshane.customer.domain.DuplicateExceptionPolicy.Outcome.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Coverage.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy.Authority.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy.Outcome.*;
 
 /** Synthetic end-to-end domain composition, not a runtime registration workflow. */
-final class DuplicateIntegrationSpecification {
+public final class DuplicateIntegrationSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant-a");
         var a = person(tenant,"candidate","علي","كریمی");
         var b = person(tenant,"private-match","علی","کریمی");

@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
 
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
@@ -28,9 +28,9 @@ import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessme
 import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Outcome.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
-final class IdentityRevisionSpecification {
+public final class IdentityRevisionSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var id = new CustomerId("private-person");
         var person = Person.createCandidate(id,tenant,"A","B",null);

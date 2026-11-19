@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 

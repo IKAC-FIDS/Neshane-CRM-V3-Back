@@ -1,5 +1,13 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.ManualVerification;
+import ir.neshane.customer.domain.verification.VerificationEventDraft;
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
+import ir.neshane.customer.domain.verification.VerificationLifecycle;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
 import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
 import ir.neshane.customer.domain.relationship.BusinessRoleDefinition;
 import ir.neshane.customer.domain.relationship.Relationship;

@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain.customer.state;
 
-import ir.neshane.customer.domain.DuplicateDetection;
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 

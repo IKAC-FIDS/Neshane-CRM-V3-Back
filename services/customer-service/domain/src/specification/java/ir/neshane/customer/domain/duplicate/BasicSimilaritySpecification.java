@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Person;
@@ -16,12 +16,12 @@ import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DuplicateDetection.Signal.*;
-import static ir.neshane.customer.domain.DuplicateDetection.WarningPriority.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Signal.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.WarningPriority.*;
 
-final class BasicSimilaritySpecification {
+public final class BasicSimilaritySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("a");
         var a = person(tenant,"a","علي","كریمی","۰۹۱۲-۳۴۵۶","User@EXAMPLE.invalid",ContactPoint.Status.ACTIVE);
         var b = person(tenant,"b","علی","کریمی","0912 3456","User@example.invalid",ContactPoint.Status.ACTIVE);

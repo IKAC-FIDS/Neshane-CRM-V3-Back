@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 import ir.neshane.customer.domain.branch.model.BranchStatus;

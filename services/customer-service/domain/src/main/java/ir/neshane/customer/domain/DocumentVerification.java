@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
+import ir.neshane.customer.domain.verification.VerificationLifecycle;
+
 import ir.neshane.customer.domain.customer.state.VerificationHistory;
 import ir.neshane.customer.domain.customer.state.VerificationRevocation;
 

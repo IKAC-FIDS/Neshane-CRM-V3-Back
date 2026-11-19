@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
@@ -21,9 +23,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-final class VerificationHistorySpecification {
+public final class VerificationHistorySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var owner = person.identityInfo().owner();

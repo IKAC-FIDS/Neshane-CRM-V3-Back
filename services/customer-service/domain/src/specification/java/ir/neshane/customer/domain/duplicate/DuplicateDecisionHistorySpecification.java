@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
@@ -13,13 +13,13 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DuplicateDetection.Coverage.*;
-import static ir.neshane.customer.domain.DuplicateExceptionPolicy.Authority.*;
-import static ir.neshane.customer.domain.DuplicateExceptionPolicy.Outcome.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Coverage.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy.Authority.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy.Outcome.*;
 
-final class DuplicateDecisionHistorySpecification {
+public final class DuplicateDecisionHistorySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"), tenant, "A", "B", null);
         var other = Person.createCandidate(new CustomerId("private-subject"), tenant, "A", "B", null);

@@ -21,19 +21,19 @@ import ir.neshane.customer.domain.DocumentTypeDefinition;
 import ir.neshane.customer.domain.DocumentValidity;
 import ir.neshane.customer.domain.DocumentVerification;
 import ir.neshane.customer.domain.DocumentVersionHistory;
-import ir.neshane.customer.domain.DuplicateDetection;
-import ir.neshane.customer.domain.DuplicateExceptionPolicy;
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
 import ir.neshane.customer.domain.LifecycleReasonCatalog;
 import ir.neshane.customer.domain.LogicalAccessPolicy;
-import ir.neshane.customer.domain.ManualVerification;
+import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.ReadDisclosurePolicy;
 import ir.neshane.customer.domain.relationship.Relationship;
 import ir.neshane.customer.domain.relationship.RelationshipAssignment;
 import ir.neshane.customer.domain.relationship.RelationshipEventDraft;
 import ir.neshane.customer.domain.relationship.RelationshipLifecycle;
 import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
-import ir.neshane.customer.domain.VerificationEvidence;
-import ir.neshane.customer.domain.VerificationEvidenceSet;
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 

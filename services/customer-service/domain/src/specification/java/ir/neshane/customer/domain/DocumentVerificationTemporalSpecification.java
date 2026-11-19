@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationLifecycle;
+
 import ir.neshane.customer.domain.customer.Customer;
 import ir.neshane.customer.domain.customer.Person;
 import ir.neshane.customer.domain.verification.VerificationStatus;
@@ -14,8 +17,8 @@ import java.util.List;
 import java.util.Optional;
 import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
 import static ir.neshane.customer.domain.CustomerDocument.State.*;
-import static ir.neshane.customer.domain.VerificationEvidence.Availability.AVAILABLE_CANDIDATE;
-import static ir.neshane.customer.domain.VerificationEvidence.Availability.NOT_YET_EFFECTIVE;
+import static ir.neshane.customer.domain.verification.VerificationEvidence.Availability.AVAILABLE_CANDIDATE;
+import static ir.neshane.customer.domain.verification.VerificationEvidence.Availability.NOT_YET_EFFECTIVE;
 
 final class DocumentVerificationTemporalSpecification {
     private static int checks;

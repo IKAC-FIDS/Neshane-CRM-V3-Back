@@ -4,9 +4,9 @@ import ir.neshane.customer.domain.CustomerDocument;
 import ir.neshane.customer.domain.DocumentValidity;
 import ir.neshane.customer.domain.DocumentFileReference;
 import ir.neshane.customer.domain.DocumentRequirementPolicy;
-import ir.neshane.customer.domain.DuplicateDetection;
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.DocumentTypeDefinition;
-import ir.neshane.customer.domain.DuplicateExceptionPolicy;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
 import ir.neshane.customer.domain.DocumentCompleteness;
 import ir.neshane.customer.domain.DocumentVersionHistory;
 import ir.neshane.customer.domain.DocumentTypeCatalog;
@@ -45,7 +45,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DuplicateExceptionPolicy.Authority.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy.Authority.*;
 import static ir.neshane.customer.domain.coordination.registration.CustomerRegistration.Outcome.*;
 
 public final class CustomerRegistrationSpecification {

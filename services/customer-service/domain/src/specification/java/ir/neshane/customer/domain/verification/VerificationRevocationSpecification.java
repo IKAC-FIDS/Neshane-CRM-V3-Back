@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
 
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.customer.state.VerificationRevocation;
@@ -21,11 +21,11 @@ import static ir.neshane.customer.domain.customer.state.VerificationRevocation.O
 import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Reliance.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
-final class VerificationRevocationSpecification {
+public final class VerificationRevocationSpecification {
     private static int checks;
     private static final Instant START = Instant.ofEpochSecond(100);
     private static final Instant END = Instant.ofEpochSecond(200);
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("private-subject"),tenant,"A","B",null);
         var owner = person.identityInfo().owner();

@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
 import ir.neshane.customer.domain.customer.Customer;
 import ir.neshane.customer.domain.customer.Person;
@@ -13,16 +15,16 @@ import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.ManualVerification.Authority.*;
-import static ir.neshane.customer.domain.ManualVerification.Process.*;
-import static ir.neshane.customer.domain.ManualVerification.Qualification.*;
-import static ir.neshane.customer.domain.ManualVerification.Outcome.*;
-import static ir.neshane.customer.domain.DuplicateDetection.Coverage.COMPLETE_CANDIDATE;
+import static ir.neshane.customer.domain.verification.ManualVerification.Authority.*;
+import static ir.neshane.customer.domain.verification.ManualVerification.Process.*;
+import static ir.neshane.customer.domain.verification.ManualVerification.Qualification.*;
+import static ir.neshane.customer.domain.verification.ManualVerification.Outcome.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Coverage.COMPLETE_CANDIDATE;
 
-final class ManualVerificationSpecification {
+public final class ManualVerificationSpecification {
     private static int checks;
     private static final Instant NOW = Instant.ofEpochSecond(100);
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var a = Person.createCandidate(new CustomerId("subject"),tenant,"A","B",null);
         var owner = a.identityInfo().owner();

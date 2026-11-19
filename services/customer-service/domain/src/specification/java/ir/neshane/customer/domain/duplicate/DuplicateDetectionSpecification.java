@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
@@ -11,14 +11,14 @@ import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
 import java.util.List;
 import java.util.Set;
-import static ir.neshane.customer.domain.DuplicateDetection.Operation.*;
-import static ir.neshane.customer.domain.DuplicateDetection.Coverage.*;
-import static ir.neshane.customer.domain.DuplicateDetection.Outcome.*;
-import static ir.neshane.customer.domain.DuplicateDetection.Signal.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Operation.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Coverage.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Outcome.*;
+import static ir.neshane.customer.domain.duplicate.DuplicateDetection.Signal.*;
 
-final class DuplicateDetectionSpecification {
+public final class DuplicateDetectionSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("a");
         var foreign = new TenantId("b");
         var person = Person.createCandidate(new CustomerId("person"), tenant, "A", "B", null);

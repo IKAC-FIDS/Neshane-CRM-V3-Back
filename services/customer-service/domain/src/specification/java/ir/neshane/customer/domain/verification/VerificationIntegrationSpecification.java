@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
@@ -23,9 +25,9 @@ import java.util.Optional;
 import java.util.Set;
 
 /** Synthetic composition of domain rules; no deployed verification workflow. */
-final class VerificationIntegrationSpecification {
+public final class VerificationIntegrationSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var id = new CustomerId("customer");
         var original = Person.createCandidate(id,tenant,"A","B",null);

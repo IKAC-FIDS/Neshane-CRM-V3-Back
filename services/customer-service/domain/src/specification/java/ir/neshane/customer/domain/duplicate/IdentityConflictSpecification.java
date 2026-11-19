@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.identity.IdentifierTypeDefinition;
 import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
@@ -17,12 +17,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.IdentityConflictDetection.Verification.*;
-import static ir.neshane.customer.domain.IdentityConflictDetection.Outcome.*;
+import static ir.neshane.customer.domain.duplicate.IdentityConflictDetection.Verification.*;
+import static ir.neshane.customer.domain.duplicate.IdentityConflictDetection.Outcome.*;
 
-final class IdentityConflictSpecification {
+public final class IdentityConflictSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("a");
         var owner = new IdentityOwner(tenant, new CustomerId("a"), IdentityOwner.Kind.PERSON);
         var other = new IdentityOwner(tenant, new CustomerId("b"), IdentityOwner.Kind.PERSON);

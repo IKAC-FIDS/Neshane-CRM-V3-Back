@@ -1,5 +1,20 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.IdentityRevisionSpecification;
+import ir.neshane.customer.domain.verification.ManualVerificationSpecification;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSpecification;
+import ir.neshane.customer.domain.verification.VerificationHistorySpecification;
+import ir.neshane.customer.domain.verification.VerificationIntegrationSpecification;
+import ir.neshane.customer.domain.verification.VerificationLifecycleSpecification;
+import ir.neshane.customer.domain.verification.VerificationRevocationSpecification;
+
+import ir.neshane.customer.domain.duplicate.BasicSimilaritySpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateDecisionHistorySpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateDetectionSpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionSpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateIntegrationSpecification;
+import ir.neshane.customer.domain.duplicate.IdentityConflictSpecification;
+
 import ir.neshane.customer.domain.relationship.BusinessRoleCatalogSpecification;
 import ir.neshane.customer.domain.relationship.RelationshipAssignmentSpecification;
 import ir.neshane.customer.domain.relationship.RelationshipHistorySpecification;

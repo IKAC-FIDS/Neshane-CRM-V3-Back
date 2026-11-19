@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
+
 import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
 import ir.neshane.customer.domain.customer.state.CustomerLifecycleIntegration;
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;

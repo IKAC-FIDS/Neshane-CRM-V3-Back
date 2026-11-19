@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.verification;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerStatus;
@@ -8,13 +8,13 @@ import ir.neshane.customer.domain.verification.VerificationStatus;
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
-import static ir.neshane.customer.domain.VerificationLifecycle.Trigger.*;
-import static ir.neshane.customer.domain.VerificationLifecycle.Outcome.*;
+import static ir.neshane.customer.domain.verification.VerificationLifecycle.Trigger.*;
+import static ir.neshane.customer.domain.verification.VerificationLifecycle.Outcome.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
-final class VerificationLifecycleSpecification {
+public final class VerificationLifecycleSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var company = Company.createCandidate(new CustomerId("company"),tenant,"Company",null);
