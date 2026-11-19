@@ -759,3 +759,13 @@ including boundary combinations and unresolved document expiry. Explicit END,
 document invalidation and qualified revocation create separate candidate
 history and event drafts; evaluation alone leaves original facts, versions
 and history unchanged. Specification and documentation only.
+
+## Increment 13A — logical access policy foundation
+
+Core basis 2df1f49; Backend basis d3fb1f1. Explicit operation grants bind
+to the active tenant and exact requested operation; missing actor, foreign
+tenant or missing grant denies access. Read, mutation and sensitive operations
+are independent; no wildcard, implicit hierarchy or trusted credentials.
+Actor context is immutable and redacted. Eligibility is only a synthetic
+candidate, not authorization enforcement. Resource ownership, detailed
+sensitive-operation checks and audit obligations follow in later increments.
