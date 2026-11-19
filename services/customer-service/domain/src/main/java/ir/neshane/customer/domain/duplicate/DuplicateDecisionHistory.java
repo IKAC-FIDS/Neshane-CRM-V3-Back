@@ -2,7 +2,7 @@ package ir.neshane.customer.domain.duplicate;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 

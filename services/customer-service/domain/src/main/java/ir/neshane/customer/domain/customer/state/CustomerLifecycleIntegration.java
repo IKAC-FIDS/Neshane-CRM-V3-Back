@@ -8,8 +8,8 @@ import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.customer.event.CustomerEventDraft;
 
-import ir.neshane.customer.domain.customer.CustomerRecordVersion;
-import ir.neshane.customer.domain.customer.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 

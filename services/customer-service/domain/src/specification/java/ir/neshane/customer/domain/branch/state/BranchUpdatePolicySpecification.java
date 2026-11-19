@@ -9,10 +9,10 @@ import ir.neshane.customer.domain.branch.model.BranchStatus;
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerRecordVersion;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactPoint;
 

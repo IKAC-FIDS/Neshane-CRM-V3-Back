@@ -2,9 +2,9 @@ package ir.neshane.customer.domain.customer.history;
 
 import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 
-import ir.neshane.customer.domain.customer.CustomerLifecycle;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 

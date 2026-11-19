@@ -10,7 +10,7 @@ import ir.neshane.customer.domain.relationship.RelationshipLifecycle;
 import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.shared.identifier.BranchId;
 import ir.neshane.customer.domain.shared.identifier.RelationshipId;

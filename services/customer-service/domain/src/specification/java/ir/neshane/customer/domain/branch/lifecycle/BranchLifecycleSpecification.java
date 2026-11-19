@@ -6,9 +6,9 @@ import ir.neshane.customer.domain.lifecycle.LifecycleReasonDefinition;
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerLifecycle;
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 

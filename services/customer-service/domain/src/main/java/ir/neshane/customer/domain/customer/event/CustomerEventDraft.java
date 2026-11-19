@@ -2,7 +2,7 @@ package ir.neshane.customer.domain.customer.event;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 

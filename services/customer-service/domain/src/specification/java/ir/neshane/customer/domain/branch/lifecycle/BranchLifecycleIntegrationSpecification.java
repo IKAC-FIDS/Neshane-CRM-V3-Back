@@ -1,8 +1,12 @@
 package ir.neshane.customer.domain.branch.lifecycle;
 
-import ir.neshane.customer.domain.branch.event.BranchChangeEventDraft;
-import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
-import ir.neshane.customer.domain.branch.event.BranchEventDraft;
+import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle;
+
+import ir.neshane.customer.domain.branch.lifecycle.BranchHistory;
+
+import ir.neshane.customer.domain.branch.event.change.BranchChangeEventDraft;
+import ir.neshane.customer.domain.branch.lifecycle.BranchChangeHistory;
+import ir.neshane.customer.domain.branch.lifecycle.BranchEventDraft;
 import ir.neshane.customer.domain.branch.state.BranchRegistration;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 import ir.neshane.customer.domain.branch.state.CompanyBranches;
@@ -19,10 +23,10 @@ import ir.neshane.customer.domain.customer.state.IdentityRevision;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerRecordVersion;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 

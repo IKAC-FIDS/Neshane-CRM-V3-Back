@@ -1,14 +1,14 @@
-package ir.neshane.customer.domain.customer;
+package ir.neshane.customer.domain.customer.model;
 
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
-import static ir.neshane.customer.domain.customer.CustomerRecordVersion.Outcome.*;
+import static ir.neshane.customer.domain.customer.model.CustomerRecordVersion.Outcome.*;
 
 public final class CustomerRecordVersionSpecification {
     private static int checks;

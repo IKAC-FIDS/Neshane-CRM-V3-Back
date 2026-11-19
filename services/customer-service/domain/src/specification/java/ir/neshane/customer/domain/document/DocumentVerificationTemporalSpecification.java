@@ -1,11 +1,11 @@
 package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.verification.VerificationEvidence;
-import ir.neshane.customer.domain.verification.VerificationLifecycle;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycle;
 
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;

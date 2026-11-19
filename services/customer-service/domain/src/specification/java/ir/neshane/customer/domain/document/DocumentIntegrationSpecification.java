@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.verification.ManualVerification;
-import ir.neshane.customer.domain.verification.VerificationEventDraft;
+import ir.neshane.customer.domain.verification.event.VerificationEventDraft;
 import ir.neshane.customer.domain.verification.VerificationEvidence;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 
@@ -13,10 +13,10 @@ import ir.neshane.customer.domain.customer.state.VerificationRevocation;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
@@ -34,7 +34,7 @@ import static ir.neshane.customer.domain.document.DocumentVersionHistory.Authori
 import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.*;
 import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Applicability.*;
 import static ir.neshane.customer.domain.document.DocumentTypeDefinition.RequirementStage.*;
-import static ir.neshane.customer.domain.verification.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.model.VerificationStatus.*;
 
 /** End-to-end synthetic composition; not an application or persistence integration test. */
 public final class DocumentIntegrationSpecification {

@@ -2,8 +2,8 @@ package ir.neshane.customer.domain.branch.model;
 
 import ir.neshane.customer.domain.branch.state.CompanyBranches;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;

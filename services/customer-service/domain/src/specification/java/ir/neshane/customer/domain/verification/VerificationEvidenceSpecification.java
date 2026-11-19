@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.verification;
 
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 

@@ -7,21 +7,21 @@ import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
-import ir.neshane.customer.domain.customer.CustomerRecordVersion;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle;
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 import ir.neshane.customer.domain.customer.update.CustomerFactsValidation;
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
-import ir.neshane.customer.domain.identity.IdentityRevisionDifferences;
+import ir.neshane.customer.domain.customer.update.IdentityRevisionDifferences;
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
 
 import java.util.List;

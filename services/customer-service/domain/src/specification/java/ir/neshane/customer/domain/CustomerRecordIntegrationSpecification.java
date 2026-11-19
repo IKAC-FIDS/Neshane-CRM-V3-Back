@@ -25,15 +25,15 @@ import ir.neshane.customer.domain.customer.state.VerificationHistory;
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
-import ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft;
+import ir.neshane.customer.domain.customer.event.change.CustomerChangeEventDraft;
 
-import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerRecordVersion;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactOwner;
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
@@ -64,7 +64,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.customer.event.CustomerChangeEventDraft.Type.*;
+import static ir.neshane.customer.domain.customer.event.change.CustomerChangeEventDraft.Type.*;
 import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Impact.*;
 import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.IdentifierCorrection.*;
 

@@ -6,7 +6,7 @@ import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
 

@@ -1,9 +1,9 @@
-package ir.neshane.customer.domain.customer.event;
+package ir.neshane.customer.domain.customer.event.change;
 
 import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
 
-import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 

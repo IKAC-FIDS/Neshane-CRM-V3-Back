@@ -3,8 +3,8 @@ package ir.neshane.customer.domain.verification;
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.customer.state.VerificationRevocation;
 
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 
@@ -19,7 +19,7 @@ import static ir.neshane.customer.domain.customer.state.VerificationRevocation.A
 import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Qualification.*;
 import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Outcome.*;
 import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Reliance.*;
-import static ir.neshane.customer.domain.verification.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.model.VerificationStatus.*;
 
 public final class VerificationRevocationSpecification {
     private static int checks;

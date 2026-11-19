@@ -2,8 +2,8 @@ package ir.neshane.customer.domain.access;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
 

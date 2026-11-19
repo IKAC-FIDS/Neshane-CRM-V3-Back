@@ -1,6 +1,8 @@
 package ir.neshane.customer.domain.branch.lifecycle;
 
-import ir.neshane.customer.domain.branch.event.BranchEventDraft;
+import ir.neshane.customer.domain.branch.lifecycle.BranchHistory;
+
+import ir.neshane.customer.domain.branch.lifecycle.BranchEventDraft;
 import ir.neshane.customer.domain.branch.state.CompanyBranches;
 import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 
@@ -11,8 +13,8 @@ import ir.neshane.customer.domain.branch.model.BranchStatus;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.contact.ContactInfo;
 import ir.neshane.customer.domain.contact.ContactPoint;

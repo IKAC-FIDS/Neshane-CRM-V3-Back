@@ -1,10 +1,10 @@
 package ir.neshane.customer.domain.customer.state;
 
-import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactPoint;
 import ir.neshane.customer.domain.identity.IdentityInfo;
@@ -20,9 +20,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.Field.*;
-import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.ExceptionScope.*;
-import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.Outcome.*;
+import static ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment.Field.*;
+import static ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment.ExceptionScope.*;
+import static ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment.Outcome.*;
 
 public final class CriticalFieldChangeSpecification {
     private static int checks;

@@ -2,7 +2,7 @@ package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.model.Company;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 

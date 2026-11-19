@@ -11,8 +11,8 @@ import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
 import ir.neshane.customer.domain.shared.validation.DomainText;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;

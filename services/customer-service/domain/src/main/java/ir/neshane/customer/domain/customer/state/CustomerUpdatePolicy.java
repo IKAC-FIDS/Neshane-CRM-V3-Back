@@ -2,11 +2,11 @@ package ir.neshane.customer.domain.customer.state;
 
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
-import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
-import ir.neshane.customer.domain.customer.CustomerRecordVersion;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;

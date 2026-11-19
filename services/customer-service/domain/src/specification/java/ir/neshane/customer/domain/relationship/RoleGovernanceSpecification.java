@@ -2,8 +2,8 @@ package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Person;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 

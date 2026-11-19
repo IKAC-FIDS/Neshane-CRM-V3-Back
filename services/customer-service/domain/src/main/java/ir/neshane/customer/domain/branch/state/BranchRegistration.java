@@ -9,7 +9,7 @@ import ir.neshane.customer.domain.branch.model.BranchStatus;
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.contact.ContactInfo;

@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.shared.validation.DomainText;
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;

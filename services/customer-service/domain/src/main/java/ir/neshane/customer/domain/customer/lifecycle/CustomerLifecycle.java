@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain.customer;
+package ir.neshane.customer.domain.customer.lifecycle;
+
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import java.util.Objects;
 import java.util.Optional;

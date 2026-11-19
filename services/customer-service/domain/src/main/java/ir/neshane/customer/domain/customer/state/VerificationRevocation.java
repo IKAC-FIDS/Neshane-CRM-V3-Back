@@ -2,9 +2,9 @@ package ir.neshane.customer.domain.customer.state;
 
 import ir.neshane.customer.domain.verification.VerificationEvidence;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
-import ir.neshane.customer.domain.verification.VerificationLifecycle;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycle;
 
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;

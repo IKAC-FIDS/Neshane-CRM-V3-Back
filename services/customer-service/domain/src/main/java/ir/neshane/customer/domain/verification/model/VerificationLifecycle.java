@@ -1,6 +1,6 @@
-package ir.neshane.customer.domain.verification;
+package ir.neshane.customer.domain.verification.model;
 
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import java.util.Objects;
 import java.util.Optional;

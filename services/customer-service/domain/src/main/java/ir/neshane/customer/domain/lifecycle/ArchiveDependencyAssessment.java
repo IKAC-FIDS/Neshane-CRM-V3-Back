@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.lifecycle;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 

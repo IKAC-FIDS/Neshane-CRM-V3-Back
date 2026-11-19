@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain.branch.event;
+package ir.neshane.customer.domain.branch.lifecycle;
 
 import ir.neshane.customer.domain.branch.lifecycle.BranchHistory;
 import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle;

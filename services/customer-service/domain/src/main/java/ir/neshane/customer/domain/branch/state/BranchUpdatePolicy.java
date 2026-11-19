@@ -9,7 +9,7 @@ import ir.neshane.customer.domain.branch.model.BranchStatus;
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.contact.ContactInfo;
@@ -131,7 +131,8 @@ public final class BranchUpdatePolicy {
     public static boolean sameFacts(Branch a,Branch b) {
         return differences(a,b).isEmpty();
     }
-    static EnumSet<Field> differences(Branch a,Branch b) {
+    /** Pure comparison of caller-supplied snapshots; grants no state mutation authority. */
+    public static EnumSet<Field> differences(Branch a,Branch b) {
         var fields=EnumSet.noneOf(Field.class);
         if (!a.name().equals(b.name())) fields.add(Field.NAME);
         if (!a.englishName().equals(b.englishName())) fields.add(Field.ENGLISH_NAME);

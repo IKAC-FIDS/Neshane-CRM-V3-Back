@@ -5,7 +5,7 @@ import ir.neshane.customer.domain.relationship.RelationshipAssignment;
 import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
 import ir.neshane.customer.domain.relationship.RelationshipTarget;
 
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 

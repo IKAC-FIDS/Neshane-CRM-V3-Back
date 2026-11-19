@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain.customer.update;
 
-import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.model.Customer;
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;

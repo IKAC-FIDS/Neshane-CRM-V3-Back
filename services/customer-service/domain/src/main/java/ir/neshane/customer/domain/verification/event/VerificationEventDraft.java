@@ -1,8 +1,8 @@
-package ir.neshane.customer.domain.verification;
+package ir.neshane.customer.domain.verification.event;
 
 import ir.neshane.customer.domain.customer.state.VerificationHistory;
 
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 

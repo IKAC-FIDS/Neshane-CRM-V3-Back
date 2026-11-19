@@ -25,7 +25,7 @@ import ir.neshane.customer.domain.verification.ManualVerificationSpecification;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSpecification;
 import ir.neshane.customer.domain.verification.VerificationHistorySpecification;
 import ir.neshane.customer.domain.verification.VerificationIntegrationSpecification;
-import ir.neshane.customer.domain.verification.VerificationLifecycleSpecification;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycleSpecification;
 import ir.neshane.customer.domain.verification.VerificationRevocationSpecification;
 
 import ir.neshane.customer.domain.duplicate.BasicSimilaritySpecification;
@@ -45,9 +45,9 @@ import ir.neshane.customer.domain.relationship.RelationshipSpecification;
 import ir.neshane.customer.domain.relationship.RelationshipTemporalPolicySpecification;
 import ir.neshane.customer.domain.relationship.RoleGovernanceSpecification;
 
-import ir.neshane.customer.domain.branch.event.BranchChangeEventDraftSpecification;
+import ir.neshane.customer.domain.branch.event.change.BranchChangeEventDraftSpecification;
 
-import ir.neshane.customer.domain.branch.state.BranchChangeHistorySpecification;
+import ir.neshane.customer.domain.branch.lifecycle.BranchChangeHistorySpecification;
 import ir.neshane.customer.domain.branch.state.BranchRegistrationSpecification;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicySpecification;
 
@@ -70,13 +70,13 @@ import ir.neshane.customer.domain.customer.history.LifecycleHistorySpecification
 
 import ir.neshane.customer.domain.coordination.registration.CustomerRegistrationSpecification;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
-import ir.neshane.customer.domain.customer.CustomerLifecycleSpecification;
-import ir.neshane.customer.domain.customer.CustomerRecordVersionSpecification;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSpecification;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersionSpecification;
 
 import ir.neshane.customer.domain.contact.BranchTypeContactUpdateSpecification;
 import ir.neshane.customer.domain.contact.ContactValidationSpecification;

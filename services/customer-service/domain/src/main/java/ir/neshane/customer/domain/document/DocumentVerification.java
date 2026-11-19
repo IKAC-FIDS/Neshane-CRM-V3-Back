@@ -1,12 +1,12 @@
 package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
-import ir.neshane.customer.domain.verification.VerificationLifecycle;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycle;
 
 import ir.neshane.customer.domain.customer.state.VerificationHistory;
 import ir.neshane.customer.domain.customer.state.VerificationRevocation;
 
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 

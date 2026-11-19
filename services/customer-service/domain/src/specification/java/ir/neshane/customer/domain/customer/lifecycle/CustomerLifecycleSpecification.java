@@ -1,13 +1,17 @@
-package ir.neshane.customer.domain.customer;
+package ir.neshane.customer.domain.customer.lifecycle;
 
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+
+import ir.neshane.customer.domain.customer.model.Person;
+
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
-import static ir.neshane.customer.domain.customer.CustomerStatus.*;
-import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
-import static ir.neshane.customer.domain.customer.CustomerLifecycle.Outcome.*;
+import static ir.neshane.customer.domain.customer.model.CustomerStatus.*;
+import static ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle.Transition.*;
+import static ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle.Outcome.*;
 
 public final class CustomerLifecycleSpecification {
     private static int checks;

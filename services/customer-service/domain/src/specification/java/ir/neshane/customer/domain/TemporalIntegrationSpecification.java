@@ -11,10 +11,10 @@ import ir.neshane.customer.domain.document.DocumentVerification;
 import ir.neshane.customer.domain.document.DocumentVersionHistory;
 
 import ir.neshane.customer.domain.verification.ManualVerification;
-import ir.neshane.customer.domain.verification.VerificationEventDraft;
+import ir.neshane.customer.domain.verification.event.VerificationEventDraft;
 import ir.neshane.customer.domain.verification.VerificationEvidence;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
-import ir.neshane.customer.domain.verification.VerificationLifecycle;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycle;
 
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 
@@ -32,9 +32,9 @@ import ir.neshane.customer.domain.customer.state.VerificationRevocation;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.Person;
-import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 import ir.neshane.customer.domain.shared.temporal.TemporalPolicy;
@@ -51,7 +51,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.verification.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.model.VerificationStatus.*;
 
 /** Synthetic joint temporal scenario; no application transaction or scheduler. */
 final class TemporalIntegrationSpecification {

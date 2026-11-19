@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain.verification;
+package ir.neshane.customer.domain.verification.model;
 
 public enum VerificationStatus {
     NOT_VERIFIED,

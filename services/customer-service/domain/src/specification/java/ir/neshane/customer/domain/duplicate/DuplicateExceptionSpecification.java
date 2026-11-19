@@ -1,8 +1,8 @@
 package ir.neshane.customer.domain.duplicate;
 
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 

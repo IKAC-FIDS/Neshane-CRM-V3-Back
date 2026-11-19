@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain.branch.model;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.model.Company;
 
 import ir.neshane.customer.domain.contact.ContactOwner;
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;

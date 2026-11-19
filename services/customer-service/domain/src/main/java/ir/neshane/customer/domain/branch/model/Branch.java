@@ -2,9 +2,9 @@ package ir.neshane.customer.domain.branch.model;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.model.Company;
 import ir.neshane.customer.domain.shared.validation.DomainText;
-import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
 
 import ir.neshane.customer.domain.contact.ContactOwner;
 import ir.neshane.customer.domain.contact.ContactInfo;

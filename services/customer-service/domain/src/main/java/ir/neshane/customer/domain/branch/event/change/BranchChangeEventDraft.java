@@ -1,6 +1,6 @@
-package ir.neshane.customer.domain.branch.event;
+package ir.neshane.customer.domain.branch.event.change;
 
-import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
+import ir.neshane.customer.domain.branch.lifecycle.BranchChangeHistory;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;

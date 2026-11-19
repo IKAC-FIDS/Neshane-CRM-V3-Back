@@ -5,9 +5,9 @@ import ir.neshane.customer.domain.branch.model.BranchStatus;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
-import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Person;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 

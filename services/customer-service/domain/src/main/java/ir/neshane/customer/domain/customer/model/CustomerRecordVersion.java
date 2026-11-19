@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain.customer;
+package ir.neshane.customer.domain.customer.model;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 
