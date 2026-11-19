@@ -741,3 +741,12 @@ policy. Adjacent intervals do not overlap, unbounded ends are supported;
 stored ENDED remains distinct from calendar expiry. Historical ended intervals
 retain overlap evidence. Manual END date semantics remain unresolved;
 no automatic version, history, status or event changes are introduced.
+
+## Increment 12C — document and verification temporal rules
+
+Core basis 2df1f49; Backend basis 7ad2027. Document date-only expiry shares
+explicit upper-bound positioning, preserving absent issue dates, same-day
+issue/expiry and unresolved expiry conventions. Evidence uses half-open
+instant intervals, preserving recorded-at visibility and terminal status
+precedence. Passage of time alone does not change customer verification
+status. No automatic invalidation, revocation, history or event mutation.

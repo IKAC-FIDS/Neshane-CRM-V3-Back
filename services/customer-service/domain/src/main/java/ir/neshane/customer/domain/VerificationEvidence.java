@@ -33,8 +33,11 @@ public record VerificationEvidence(String evidenceId, IdentityOwner owner, Strin
         Objects.requireNonNull(recordedAt, "EVIDENCE_RECORDED_AT_REQUIRED");
         Objects.requireNonNull(effectiveFrom, "EVIDENCE_EFFECTIVE_FROM_REQUIRED");
         Objects.requireNonNull(validUntilExclusive, "EVIDENCE_VALID_UNTIL_OPTIONAL_REQUIRED");
-        if (validUntilExclusive.filter(end -> !end.isAfter(effectiveFrom)).isPresent())
+        try {
+            TemporalPolicy.position(effectiveFrom,validUntilExclusive,effectiveFrom,TemporalPolicy.EndBoundary.EXCLUSIVE);
+        } catch (IllegalArgumentException ex) {
             throw new IllegalArgumentException("EVIDENCE_VALIDITY_INTERVAL_INVALID");
+        }
         Objects.requireNonNull(status, "EVIDENCE_STATUS_REQUIRED");
         Objects.requireNonNull(documentBinding,"DOCUMENT_BINDING_OPTIONAL_REQUIRED");
         if (documentBinding.filter(b -> !b.owner().equals(owner)).isPresent())
@@ -45,9 +48,13 @@ public record VerificationEvidence(String evidenceId, IdentityOwner owner, Strin
         Objects.requireNonNull(instant, "EVIDENCE_AS_OF_REQUIRED");
         if (status == Status.INVALIDATED) return Availability.INVALIDATED;
         if (status == Status.SUPERSEDED) return Availability.SUPERSEDED;
-        if (instant.isBefore(effectiveFrom) || instant.isBefore(recordedAt)) return Availability.NOT_YET_EFFECTIVE;
-        if (validUntilExclusive.filter(end -> !instant.isBefore(end)).isPresent()) return Availability.EXPIRED;
-        return Availability.AVAILABLE_CANDIDATE;
+        if (instant.isBefore(recordedAt)) return Availability.NOT_YET_EFFECTIVE;
+        return switch (TemporalPolicy.position(effectiveFrom,validUntilExclusive,instant,TemporalPolicy.EndBoundary.EXCLUSIVE)) {
+            case BEFORE_START -> Availability.NOT_YET_EFFECTIVE;
+            case WITHIN -> Availability.AVAILABLE_CANDIDATE;
+            case AFTER_END -> Availability.EXPIRED;
+            case BOUNDARY_UNRESOLVED -> throw new IllegalStateException("EVIDENCE_BOUNDARY_UNRESOLVED");
+        };
     }
 
     @Override public String toString() { return "VerificationEvidence[protected, redacted]"; }

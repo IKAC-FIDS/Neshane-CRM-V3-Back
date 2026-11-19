@@ -20,14 +20,16 @@ public final class DocumentValidity {
             return new Assessment(Optional.empty(),"DOCUMENT_STATE_UNRESOLVED");
         if (document.issueDate().filter(d -> d.isAfter(asOf)).isPresent())
             return new Assessment(Optional.empty(),"DOCUMENT_ISSUE_DATE_FUTURE");
-        if (document.expiryDate().isEmpty()) return result(state);
-        var expiry = document.expiryDate().orElseThrow();
-        if (asOf.isBefore(expiry)) return result(state);
-        if (asOf.isAfter(expiry)) return result(CustomerDocument.State.EXPIRED);
-        return switch (boundary) {
-            case UNRESOLVED -> new Assessment(Optional.empty(),"DOCUMENT_EXPIRY_BOUNDARY_UNRESOLVED");
-            case LAST_VALID_DAY -> result(state);
-            case FIRST_INVALID_DAY -> result(CustomerDocument.State.EXPIRED);
+        var convention = switch (boundary) {
+            case UNRESOLVED -> TemporalPolicy.EndBoundary.UNRESOLVED;
+            case LAST_VALID_DAY -> TemporalPolicy.EndBoundary.INCLUSIVE;
+            case FIRST_INVALID_DAY -> TemporalPolicy.EndBoundary.EXCLUSIVE;
+        };
+        return switch (TemporalPolicy.endPosition(document.expiryDate(),asOf,convention)) {
+            case WITHIN -> result(state);
+            case AFTER_END -> result(CustomerDocument.State.EXPIRED);
+            case BOUNDARY_UNRESOLVED -> new Assessment(Optional.empty(),"DOCUMENT_EXPIRY_BOUNDARY_UNRESOLVED");
+            case BEFORE_START -> throw new IllegalStateException("DOCUMENT_END_POSITION_INVALID");
         };
     }
     private static Assessment result(CustomerDocument.State state) {

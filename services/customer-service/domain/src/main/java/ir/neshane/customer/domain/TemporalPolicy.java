@@ -37,6 +37,14 @@ public final class TemporalPolicy {
                 throw new IllegalArgumentException("TEMPORAL_INTERVAL_INVALID");
         }
         if (asOf.compareTo(start)<0) return Position.BEFORE_START;
+        return endPosition(end,asOf,boundary);
+    }
+
+    /** Evaluate an optional upper bound independently, including date-only facts with no issue date. */
+    public static <T extends Comparable<? super T>> Position endPosition(Optional<T> end,T asOf,EndBoundary boundary) {
+        Objects.requireNonNull(end,"TEMPORAL_END_OPTIONAL_REQUIRED");
+        Objects.requireNonNull(asOf,"TEMPORAL_AS_OF_REQUIRED");
+        Objects.requireNonNull(boundary,"TEMPORAL_BOUNDARY_REQUIRED");
         if (end.isEmpty()) return Position.WITHIN;
         int comparison=asOf.compareTo(end.orElseThrow());
         if (comparison<0) return Position.WITHIN;
