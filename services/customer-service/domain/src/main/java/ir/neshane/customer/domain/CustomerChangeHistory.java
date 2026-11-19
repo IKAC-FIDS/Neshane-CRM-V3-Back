@@ -94,7 +94,7 @@ public final class CustomerChangeHistory {
         if (!last.version().equals(previous.version()) || next.version().value() != previous.version().value()+1)
             throw new IllegalArgumentException("CUSTOMER_HISTORY_VERSION_DISCONTINUITY");
         // Lifecycle/verification-only operations can occur between factual updates.
-        if (!last.identity().value().equals(previous.identity().value()) || CustomerUpdatePolicy.changed(last.identity().candidate(),previous.identity().candidate()))
+        if (!last.identity().value().equals(previous.identity().value()) || !last.identity().sameFacts(previous.identity()))
             throw new IllegalArgumentException("CUSTOMER_HISTORY_IDENTITY_DISCONTINUITY");
         var change = update.history().entries().getLast();
         var context = change.context();

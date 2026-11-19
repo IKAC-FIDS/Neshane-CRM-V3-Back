@@ -70,7 +70,7 @@ public final class CrossAggregateLifecycle {
     }
     private static boolean same(CustomerUpdatePolicy.Current a,CustomerUpdatePolicy.Current b) {
         return a.version().equals(b.version()) && a.status()==b.status() && a.identity().value().equals(b.identity().value()) &&
-            a.identity().verificationStatus()==b.identity().verificationStatus() && !CustomerUpdatePolicy.changed(a.identity().candidate(),b.identity().candidate());
+            a.identity().verificationStatus()==b.identity().verificationStatus() && a.identity().sameFacts(b.identity());
     }
     private static ArchiveDependencyAssessment.Status status(boolean active) { return active?ArchiveDependencyAssessment.Status.BLOCKED:ArchiveDependencyAssessment.Status.CLEARED; }
     public static List<ArchiveDependencyAssessment.Evidence> archiveEvidence(CustomerUpdatePolicy.Current root,Snapshot snapshot,

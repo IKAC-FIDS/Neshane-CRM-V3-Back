@@ -1,13 +1,11 @@
 package ir.neshane.customer.domain;
 
-import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.identity.IdentityRevisionDifferences;
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
-import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -32,14 +30,10 @@ public final class IdentityRevisionAssessment {
         IdentifierText.requireNonBlank(nextRevision,"IDENTITY_REVISION_REQUIRED");
         if (!current.owner().equals(proposed.identityInfo().owner())) return blocked("IDENTITY_REVISION_SCOPE_MISMATCH",false,false);
         if (!current.value().equals(expectedRevision)) return blocked("IDENTITY_REVISION_STALE",false,false);
-        var original = current.candidate();
-        boolean identifiers = !new HashSet<>(original.identityInfo().identifiers()).equals(new HashSet<>(proposed.identityInfo().identifiers()));
-        boolean names = switch (original) {
-            case Person p -> !p.givenName().equals(((Person) proposed).givenName()) || !p.familyName().equals(((Person) proposed).familyName());
-            case Company c -> !c.companyName().equals(((Company) proposed).companyName());
-        };
-        boolean critical = identifiers || names;
-        boolean changed = critical || !original.englishName().equals(proposed.englishName()) || !original.contactInfo().equals(proposed.contactInfo());
+        var differences = IdentityRevisionDifferences.assess(current.candidate(), proposed);
+        boolean identifiers = differences.identifiers();
+        boolean critical = differences.critical();
+        boolean changed = differences.changed();
         if (authority != Authority.UPDATE) return blocked("IDENTITY_UPDATE_AUTHORITY_REQUIRED",critical,true);
         if (!changed) return new Assessment(Outcome.UNCHANGED,"IDENTITY_REVISION_UNCHANGED",Optional.of(current),false,false,false);
         if (critical && (reason == null || reason.codePoints().allMatch(cp -> Character.isWhitespace(cp) || Character.isSpaceChar(cp))))

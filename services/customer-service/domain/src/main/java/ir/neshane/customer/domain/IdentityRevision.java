@@ -1,6 +1,7 @@
 package ir.neshane.customer.domain;
 
 import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
@@ -26,6 +27,9 @@ public final class IdentityRevision {
     public IdentityOwner owner() { return candidate.identityInfo().owner(); }
     public String value() { return value; }
     public VerificationStatus verificationStatus() { return verificationStatus; }
+    boolean sameFacts(IdentityRevision other) {
+        return !CriticalFieldChangeAssessment.hasChanges(candidate, other.candidate);
+    }
     Customer candidate() { return candidate; }
     @Override public String toString() { return "IdentityRevision[protected, redacted]"; }
 }
