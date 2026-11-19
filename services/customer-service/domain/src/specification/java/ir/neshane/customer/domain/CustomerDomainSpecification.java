@@ -75,6 +75,7 @@ public final class CustomerDomainSpecification {
         DuplicateExceptionSpecification.run();
         DuplicateDecisionHistorySpecification.run();
         DuplicateIntegrationSpecification.run();
+        VerificationLifecycleSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

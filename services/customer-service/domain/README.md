@@ -377,3 +377,13 @@ identity and similarity signals, definite conflicts, fresh review, exception
 authority and reason, reuse visibility, protected history and minimal event
 drafts, tenant isolation and incomplete evidence. Composition is specification
 only; no runtime orchestration, durable Audit, persistence or publication.
+
+## Increment 07A — verification domain foundation
+
+Core basis 2df1f49; Backend basis 83b8876. CM1-PD-019..028/091:
+independent three-state verification lifecycle; no blanket expiry or dispute
+restoration. Material identity change or essential evidence invalidation
+proposes reverification; proven fundamental invalidity proposes NOT_VERIFIED.
+Manual/system success remains blocked pending trusted workflow assessment.
+Triggers are hypothetical facts; candidates require validated evidence,
+authority and Audit before mutation. No verification grants or state writer.
