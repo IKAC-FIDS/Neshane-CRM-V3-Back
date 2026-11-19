@@ -260,3 +260,12 @@ candidate flow covers company collection, scoped types, independent contact
 ownership, lifecycle assessment, history and redacted event draft.
 Synthetic parent/status inputs verify effective state and reactivation
 eligibility; no applied state transition, database, GraphQL or broker.
+
+## Increment 05A — relationship foundation
+
+Core basis 2df1f49; Backend basis b46e812. CM1-PD-029..032 and 086:
+one distinct relationship per business role, Person to Company or Branch.
+Immutable identifiers, typed tenant-scoped target, branch parent checks,
+initial ACTIVE candidate, canonical role code and half-open date range.
+No catalog selection, overlap clearance, end operation, persistence,
+trusted authorization, runtime or IAM grant. Exact day reference remains open.
