@@ -29,3 +29,28 @@ Owner requested GraphQL for APIs and events where needed. GraphQL needs separate
 contract/architecture alignment with ADR-V3-014 before adapter implementation;
 existing REST and CloudEvents contracts are not superseded here. Event publication
 requires approved contracts, ownership and durable outbox/inbox semantics.
+
+## Increment 02A — owned ContactInfo
+
+Core supplemental direction: bf6a1df9bf9ed03ba9b2e657342439be4d43dad9
+(contact-info-and-localization-addendum, CM1-PD-107–112); Backend parent
+5347c449053090f5355f85f1d5d86dba20440d0f. Owner approved Increment 02A in
+conversation on 2026-11-19.
+
+Immutable, optional ContactInfo collections belong to an opaque owner with
+Tenant, owner-kind and owner identity. ContactPoint has a stable supplied ID,
+system or tenant-scoped type reference and sealed candidate value shape.
+Cross-owner or mismatched tenant labels and duplicate point IDs in a collection
+are rejected; no global identity, authorization or uniqueness claim. The prior
+Person/Company factories retain their signatures and create empty collections.
+Branch attachment is deferred until Branch exists.
+
+CM1-CNT-01/02/04/08 partial structural coverage; the Gradle specification
+executes the prior 29 assertions and the new ContactInfo assertions. The
+remaining criteria are not software PASS results. Candidate values only enforce
+nonblank supplied facts; no complete validation, canonical normalization,
+catalog resolution, applicability, active-status, multiplicity, primary or
+history policy is claimed. Synthetic phone values are deliberately not real
+telephone numbers. Contact type identity is not a code or trusted context.
+No persistence, IAM, GraphQL, events, runtime, actual PII or audit durability.
+Catalog and localization implementation remain subsequent increments.

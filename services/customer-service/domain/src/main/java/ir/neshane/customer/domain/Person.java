@@ -10,19 +10,28 @@ public final class Person implements Customer {
     private final String givenName;
     private final String familyName;
     private final Optional<String> englishName;
+    private final ContactInfo contactInfo;
 
     private Person(CustomerId id, TenantId tenantId, String givenName,
-                   String familyName, String englishName) {
+                   String familyName, String englishName, ContactInfo contactInfo) {
         this.id = Objects.requireNonNull(id, "CUSTOMER_ID_REQUIRED");
         this.tenantId = Objects.requireNonNull(tenantId, "TENANT_ID_REQUIRED");
         this.givenName = CustomerNames.required(givenName, "GIVEN_NAME", 100);
         this.familyName = CustomerNames.required(familyName, "FAMILY_NAME", 100);
         this.englishName = CustomerNames.optionalEnglishName(englishName);
+        this.contactInfo = ContactInfo.forOwner(
+            ContactOwner.customer(this.tenantId, ContactOwner.Kind.PERSON, this.id), contactInfo);
     }
 
     public static Person createCandidate(CustomerId id, TenantId tenantId, String givenName,
                                          String familyName, String englishName) {
-        return new Person(id, tenantId, givenName, familyName, englishName);
+        return new Person(id, tenantId, givenName, familyName, englishName, null);
+    }
+
+    public static Person createCandidate(CustomerId id, TenantId tenantId, String givenName,
+                                         String familyName, String englishName, ContactInfo contactInfo) {
+        return new Person(id, tenantId, givenName, familyName, englishName,
+            Objects.requireNonNull(contactInfo, "CONTACT_INFO_REQUIRED"));
     }
 
     @Override
@@ -37,6 +46,9 @@ public final class Person implements Customer {
 
     @Override
     public Optional<String> englishName() { return englishName; }
+
+    @Override
+    public ContactInfo contactInfo() { return contactInfo; }
 
     @Override
     public CustomerStatus status() { return CustomerStatus.ACTIVE; }

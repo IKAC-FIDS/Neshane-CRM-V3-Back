@@ -7,6 +7,7 @@ public sealed interface Customer permits Person, Company {
     CustomerId id();
     TenantId tenantId();
     Optional<String> englishName();
+    ContactInfo contactInfo();
     CustomerStatus status();
     VerificationStatus verificationStatus();
 }

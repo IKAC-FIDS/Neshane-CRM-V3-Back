@@ -9,17 +9,27 @@ public final class Company implements Customer {
     private final TenantId tenantId;
     private final String companyName;
     private final Optional<String> englishName;
+    private final ContactInfo contactInfo;
 
-    private Company(CustomerId id, TenantId tenantId, String companyName, String englishName) {
+    private Company(CustomerId id, TenantId tenantId, String companyName, String englishName,
+                    ContactInfo contactInfo) {
         this.id = Objects.requireNonNull(id, "CUSTOMER_ID_REQUIRED");
         this.tenantId = Objects.requireNonNull(tenantId, "TENANT_ID_REQUIRED");
         this.companyName = CustomerNames.required(companyName, "COMPANY_NAME", 255);
         this.englishName = CustomerNames.optionalEnglishName(englishName);
+        this.contactInfo = ContactInfo.forOwner(
+            ContactOwner.customer(this.tenantId, ContactOwner.Kind.COMPANY, this.id), contactInfo);
     }
 
     public static Company createCandidate(CustomerId id, TenantId tenantId, String companyName,
                                            String englishName) {
-        return new Company(id, tenantId, companyName, englishName);
+        return new Company(id, tenantId, companyName, englishName, null);
+    }
+
+    public static Company createCandidate(CustomerId id, TenantId tenantId, String companyName,
+                                          String englishName, ContactInfo contactInfo) {
+        return new Company(id, tenantId, companyName, englishName,
+            Objects.requireNonNull(contactInfo, "CONTACT_INFO_REQUIRED"));
     }
 
     @Override
@@ -32,6 +42,9 @@ public final class Company implements Customer {
 
     @Override
     public Optional<String> englishName() { return englishName; }
+
+    @Override
+    public ContactInfo contactInfo() { return contactInfo; }
 
     @Override
     public CustomerStatus status() { return CustomerStatus.ACTIVE; }
