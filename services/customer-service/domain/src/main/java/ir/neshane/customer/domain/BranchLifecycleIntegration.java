@@ -2,7 +2,7 @@ package ir.neshane.customer.domain;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.identity.IdentityOwner;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
@@ -37,8 +37,8 @@ public final class BranchLifecycleIntegration {
             CompanyBranches collection,BranchRegistration.Coverage coverage,Context context,LifecycleReasonCatalog reasons,BranchHistory history) {
         Objects.requireNonNull(current); Objects.requireNonNull(context);
         var owner=current.version().owner(); var branch=current.branch();
-        if (parent==null || !(parent.identity().candidate() instanceof Company company)) return blocked("BRANCH_PARENT_REQUIRED",false);
-        if (!owner.tenantId().equals(context.tenant()) || !owner.tenantId().equals(company.tenantId()) || !owner.companyId().equals(company.id()))
+        if (parent==null || parent.identity().owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
+        if (!owner.tenantId().equals(context.tenant()) || !owner.tenantId().equals(parent.identity().owner().tenantId()) || !owner.companyId().equals(parent.identity().owner().customerId()))
             return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.TRANSITION) return blocked("BRANCH_LIFECYCLE_AUTHORITY_REQUIRED",true);
         var version=current.version().assessNext(expected,branch);

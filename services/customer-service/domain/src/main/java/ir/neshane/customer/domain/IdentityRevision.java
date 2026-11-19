@@ -30,6 +30,9 @@ public final class IdentityRevision {
     boolean sameFacts(IdentityRevision other) {
         return !CriticalFieldChangeAssessment.hasChanges(candidate, other.candidate);
     }
+    IdentityRevision withVerificationStatus(VerificationStatus status) {
+        return snapshot(candidate,value,status);
+    }
     Customer candidate() { return candidate; }
     @Override public String toString() { return "IdentityRevision[protected, redacted]"; }
 }

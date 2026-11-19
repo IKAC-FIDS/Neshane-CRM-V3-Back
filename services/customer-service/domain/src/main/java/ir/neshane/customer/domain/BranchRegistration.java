@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
@@ -47,8 +47,8 @@ public final class BranchRegistration {
             Coverage coverage,Context context,BranchTypeCatalog types,ContactTypeCatalog contacts,Map<String,ValidationProfile> profiles) {
         Objects.requireNonNull(branch);
         Objects.requireNonNull(context);
-        if (parent == null || !(parent.identity().candidate() instanceof Company company)) return blocked("BRANCH_PARENT_REQUIRED",false);
-        if (!context.tenant().equals(branch.tenantId()) || !company.tenantId().equals(branch.tenantId()) || !company.id().equals(branch.companyId()))
+        if (parent == null || parent.identity().owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
+        if (!context.tenant().equals(branch.tenantId()) || !parent.identity().owner().tenantId().equals(branch.tenantId()) || !parent.identity().owner().customerId().equals(branch.companyId()))
             return blocked("BRANCH_PARENT_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.REGISTER) return blocked("BRANCH_REGISTRATION_AUTHORITY_REQUIRED",true);
         if (parent.status()!=CustomerStatus.ACTIVE) return blocked("BRANCH_PARENT_NOT_ACTIVE",false);

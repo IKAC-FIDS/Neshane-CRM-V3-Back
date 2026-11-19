@@ -87,7 +87,7 @@ public final class VerificationHistory {
             throw new IllegalArgumentException("VERIFICATION_HISTORY_SOD_REQUIRED");
         var result = ManualVerification.assess(current.candidate(),current.value(),evidence,context,review,request,coverage,comparisons);
         if (result.outcome() != ManualVerification.Outcome.ELIGIBLE_CANDIDATE) throw new IllegalArgumentException(result.code());
-        var next = IdentityRevision.snapshot(current.candidate(),current.value(),result.proposed().orElseThrow());
+        var next = current.withVerificationStatus(result.proposed().orElseThrow());
         return append(next,Action.MANUAL_VERIFY,metadata,context.decisionAt(),result.code(),context.reason(),evidence.evidence(),null,Set.of());
     }
     public VerificationHistory appendIdentityChange(String expectedRevision,Customer proposed,String nextRevision,
@@ -128,7 +128,7 @@ public final class VerificationHistory {
         if (result.outcome() != DocumentVerification.Outcome.REVERIFICATION_REQUIRED_CANDIDATE)
             throw new IllegalArgumentException(result.code());
         var prior = entries.reversed().stream().filter(e -> e.action() == Action.MANUAL_VERIFY).findFirst().orElseThrow();
-        var next = IdentityRevision.snapshot(current.candidate(),current.value(),result.transition().orElseThrow().proposed().orElseThrow());
+        var next = current.withVerificationStatus(result.transition().orElseThrow().proposed().orElseThrow());
         return append(next,Action.REVOCATION,context,effectiveAt,result.code(),reason,prior.evidence(),proofReference,excludedVerifiers);
     }
     private Set<String> exclusions(boolean different,String actor) {

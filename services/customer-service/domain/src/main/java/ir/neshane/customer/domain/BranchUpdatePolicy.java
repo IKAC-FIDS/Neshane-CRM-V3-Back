@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
@@ -58,10 +58,10 @@ public final class BranchUpdatePolicy {
             CompanyBranches existing,BranchRegistration.Coverage coverage,Context context,BranchTypeCatalog types,
             ContactTypeCatalog contacts,Map<String,ValidationProfile> profiles) {
         Objects.requireNonNull(current); Objects.requireNonNull(proposed); Objects.requireNonNull(context);
-        if (parent==null || !(parent.identity().candidate() instanceof Company company)) return blocked("BRANCH_PARENT_REQUIRED",false);
+        if (parent==null || parent.identity().owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
         var owner=current.version().owner();
         if (!owner.equals(BranchRecordVersion.Owner.of(proposed)) || !owner.tenantId().equals(context.tenant()) ||
-                !owner.tenantId().equals(company.tenantId()) || !owner.companyId().equals(company.id())) return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);
+                !owner.tenantId().equals(parent.identity().owner().tenantId()) || !owner.companyId().equals(parent.identity().owner().customerId())) return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.UPDATE) return blocked("BRANCH_UPDATE_AUTHORITY_REQUIRED",true);
         if (expected==null) return blocked("BRANCH_RECORD_VERSION_REQUIRED",false);
         if (!owner.equals(expected.owner())) return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);

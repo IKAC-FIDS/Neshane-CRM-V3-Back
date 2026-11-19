@@ -71,7 +71,7 @@ public final class VerificationRevocation {
         if (transition.outcome() == VerificationLifecycle.Outcome.UNCHANGED)
             return fundamental ? new Assessment(Outcome.UNCHANGED,"VERIFICATION_REVOCATION_STATUS_UNCHANGED",
                 Optional.of(current),true,true,Reliance.DO_NOT_RELY) : unchanged(current);
-        var proposed = IdentityRevision.snapshot(current.candidate(),current.value(),transition.proposed().orElseThrow());
+        var proposed = current.withVerificationStatus(transition.proposed().orElseThrow());
         return new Assessment(Outcome.ELIGIBLE_CANDIDATE,"VERIFICATION_REVOCATION_CANDIDATE",
             Optional.of(proposed),true,fundamental,Reliance.DO_NOT_RELY);
     }

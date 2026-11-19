@@ -2,9 +2,8 @@ package ir.neshane.customer.domain;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;
-import ir.neshane.customer.domain.customer.Person;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
@@ -35,16 +34,18 @@ public final class RelationshipLifecycleIntegration {
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private RelationshipLifecycleIntegration() {}
     static void validateScope(RelationshipAssignment.Fact fact,Parties parties) {
-        if (!(parties.person().identity().candidate() instanceof Person person) || !fact.tenant().equals(person.tenantId()) || !fact.person().equals(person.id()))
+        var person=parties.person().identity().owner();
+        var company=parties.company().identity().owner();
+        if (person.kind()!=IdentityOwner.Kind.PERSON || !fact.tenant().equals(person.tenantId()) || !fact.person().equals(person.customerId()))
             throw new IllegalArgumentException("RELATIONSHIP_PERSON_SCOPE_MISMATCH");
-        if (!(parties.company().identity().candidate() instanceof Company company) || !fact.tenant().equals(company.tenantId()))
+        if (company.kind()!=IdentityOwner.Kind.COMPANY || !fact.tenant().equals(company.tenantId()))
             throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
         if (fact.target().kind()==RelationshipTarget.Kind.COMPANY) {
-            if (parties.branch().isPresent() || !fact.target().equals(RelationshipTarget.of(company))) throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
+            if (parties.branch().isPresent() || !fact.target().equals(new RelationshipTarget(company.tenantId(),RelationshipTarget.Kind.COMPANY,company.customerId().value(),java.util.Optional.empty()))) throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
             return;
         }
         var branch=parties.branch().orElseThrow(()->new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH"));
-        if (!fact.target().equals(RelationshipTarget.of(branch.branch())) || !branch.branch().companyId().equals(company.id()))
+        if (!fact.target().equals(RelationshipTarget.of(branch.branch())) || !branch.branch().companyId().equals(company.customerId()))
             throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
     }
     private static boolean targetAvailable(RelationshipAssignment.Fact fact,Parties parties) {

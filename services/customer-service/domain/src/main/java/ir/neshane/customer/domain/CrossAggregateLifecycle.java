@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain;
 
-import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;
 
 import ir.neshane.customer.domain.shared.identifier.BranchId;
@@ -36,12 +36,12 @@ public final class CrossAggregateLifecycle {
         Objects.requireNonNull(proposed); Objects.requireNonNull(day);
         if (snapshot==null || snapshot.coverage()!=Coverage.COMPLETE_CANDIDATE) throw new IllegalArgumentException("LIFECYCLE_DEPENDENCY_COVERAGE_UNRESOLVED");
         if (!same(root,snapshot.root())) throw new IllegalArgumentException("LIFECYCLE_DEPENDENCY_ROOT_MISMATCH");
-        var customer=root.identity().candidate(); boolean company=customer instanceof Company;
+        var customer=root.identity().owner(); boolean company=customer.kind()==IdentityOwner.Kind.COMPANY;
         Map<BranchId,BranchUpdatePolicy.Current> branches=new HashMap<>();
         Map<BranchId,BranchStatus> beforeB=new HashMap<>(),afterB=new HashMap<>();
         for (var branch:snapshot.branches()) {
             var owner=branch.version().owner();
-            if (!company || !owner.tenantId().equals(customer.tenantId()) || !owner.companyId().equals(customer.id())) throw new IllegalArgumentException("LIFECYCLE_BRANCH_SCOPE_MISMATCH");
+            if (!company || !owner.tenantId().equals(customer.tenantId()) || !owner.companyId().equals(customer.customerId())) throw new IllegalArgumentException("LIFECYCLE_BRANCH_SCOPE_MISMATCH");
             if (branches.putIfAbsent(owner.branchId(),branch)!=null) throw new IllegalArgumentException("LIFECYCLE_BRANCH_DUPLICATE");
             beforeB.put(owner.branchId(),BranchLifecycle.effectiveStatus(branch.status(),root.status()));
             afterB.put(owner.branchId(),BranchLifecycle.effectiveStatus(branch.status(),proposed));
