@@ -548,3 +548,12 @@ contact and identifier catalog/profile checks, duplicate review, current
 registration document policy and completeness. Candidate starts ACTIVE,
 NOT_VERIFIED and record version one; Audit obligation is retained.
 No actual identity allocation, durable uniqueness, registration write or IAM.
+
+## Increment 09C — customer update policy
+
+Core basis 2df1f49; Backend basis 61e9275. Preliminary update candidate
+checks owner, authority, version, lifecycle and unchanged verification status,
+detects no-op and validates changed contact/identifier facts. Preserves
+historical fact IDs, blocks definite duplicate conflicts and retains warnings.
+Critical reason, evidence impact, warning resolution and final update
+approval remain separate. No Branch/Relationship writes or durable mutation.

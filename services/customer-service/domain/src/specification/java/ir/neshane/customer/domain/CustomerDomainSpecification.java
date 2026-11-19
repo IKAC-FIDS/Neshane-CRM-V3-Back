@@ -93,6 +93,7 @@ public final class CustomerDomainSpecification {
         DocumentIntegrationSpecification.run();
         CustomerRecordVersionSpecification.run();
         CustomerRegistrationSpecification.run();
+        CustomerUpdatePolicySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
