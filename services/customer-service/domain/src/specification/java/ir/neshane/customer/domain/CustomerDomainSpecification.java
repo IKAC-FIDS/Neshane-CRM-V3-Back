@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.type.BranchTypeSpecification;
+
 import ir.neshane.customer.domain.branch.model.BranchContactSpecification;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersionSpecification;
 import ir.neshane.customer.domain.branch.model.BranchSpecification;

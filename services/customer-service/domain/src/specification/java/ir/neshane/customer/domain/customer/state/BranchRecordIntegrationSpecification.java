@@ -6,7 +6,7 @@ import ir.neshane.customer.domain.BranchChangeHistory;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 import ir.neshane.customer.domain.BranchRegistration;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
-import ir.neshane.customer.domain.BranchTypeCatalog;
+import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 import ir.neshane.customer.domain.BranchUpdatePolicy;
 import ir.neshane.customer.domain.CompanyBranches;
 

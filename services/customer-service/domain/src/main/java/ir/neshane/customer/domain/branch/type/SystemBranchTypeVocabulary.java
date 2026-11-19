@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.type;
 
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;

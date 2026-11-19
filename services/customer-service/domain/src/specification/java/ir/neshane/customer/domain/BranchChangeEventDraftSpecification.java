@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
+
 import ir.neshane.customer.domain.branch.model.Branch;
 
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;

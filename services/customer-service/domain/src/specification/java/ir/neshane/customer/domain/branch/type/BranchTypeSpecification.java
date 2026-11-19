@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.type;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
@@ -13,11 +13,11 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 import java.util.Map;
 import java.util.Optional;
 
-final class BranchTypeSpecification {
+public final class BranchTypeSpecification {
     private static final TenantId A = new TenantId("a");
     private static final TenantId B = new TenantId("b");
     private static int checks;
-    static void run() {
+    public static void run() {
         var catalog = BranchTypeCatalog.initial();
         expect(SystemBranchTypeVocabulary.values().length == 9);
         for (var item : SystemBranchTypeVocabulary.values()) {
