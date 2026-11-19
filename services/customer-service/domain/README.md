@@ -694,3 +694,13 @@ complete candidate collection and selectable lifecycle reasons. History and
 event drafts use the next branch version; facts, parent and siblings remain
 unchanged. Factual history advances across lifecycle candidates without creating
 factual events. No trusted authorization, persistence or publication.
+
+## Increment 11C — relationship lifecycle integration
+
+Core basis 2df1f49; Backend basis 44308d9. Relationship creation and END
+compose existing role/overlap/authority/history rules with owner-bound
+current person, company and optional branch records. Creation requires
+active parties; effective availability follows stored lifecycle and dates.
+END remains possible with inactive parties and historical roles, preserving
+interval facts. Events use history versions; parties remain unchanged.
+No reactivation transition, trusted authority, durable write or publication.
