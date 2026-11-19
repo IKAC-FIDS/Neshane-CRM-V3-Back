@@ -73,6 +73,7 @@ public final class CustomerDomainSpecification {
         IdentityConflictSpecification.run();
         BasicSimilaritySpecification.run();
         DuplicateExceptionSpecification.run();
+        DuplicateDecisionHistorySpecification.run();
     }
 
     private static void check(boolean condition, String description) {

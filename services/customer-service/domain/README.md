@@ -359,3 +359,13 @@ exception authority and mandatory reason; definite conflict never overrideable.
 Reuse candidate requires visible matching same-kind subject; no actual reuse
 or write. Update exception remains outside this registration policy.
 No trusted authorization, durable review, Audit, concurrency or idempotency.
+
+## Increment 06E — duplicate decision history and event draft
+
+Core basis 2df1f49; Backend basis ae6b0fd. Request-scoped immutable protected
+decision journal re-evaluates registration/reuse policy, records evidence
+revision, actor context and outcome, retains reason only for eligible exception.
+Registration candidates and authority denials carry Audit obligations.
+Only eligible exception admits a minimal prospective event; no reason, raw
+evidence, actor or matching subject in its payload. IDs must be opaque.
+No durable Audit, disclosure authorization, publication or idempotency.
