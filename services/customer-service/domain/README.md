@@ -530,3 +530,12 @@ version replacement, essential and non-essential verification evidence,
 expiry/invalidation, fresh manual verification, history and minimal event
 drafts, independent authority, stale policy and cross-tenant rejection.
 No deployed integration, actual files, durable transaction or Audit evidence.
+
+## Increment 09A — customer record versioning
+
+Core basis 2df1f49; Backend basis 3b2cf7e. Owner-bound positive record
+version starts at one; next version candidate requires exact current token,
+same Tenant/Customer/kind and no overflow. Record version is independent
+of identity revision and verification/lifecycle status. No automatic merge,
+write or policy approval. Actual change/no-op, authorization and Audit
+assessment are separate; durable atomic compare-and-set remains open.

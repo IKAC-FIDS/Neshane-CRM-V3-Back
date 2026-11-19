@@ -91,6 +91,7 @@ public final class CustomerDomainSpecification {
         DocumentVerificationSpecification.run();
         DocumentHistorySpecification.run();
         DocumentIntegrationSpecification.run();
+        CustomerRecordVersionSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
