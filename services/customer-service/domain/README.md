@@ -480,3 +480,13 @@ expected current version, monotonic upload time and current catalog checks.
 Replacement preserves prior file/metadata snapshots as SUPERSEDED and
 creates one PROVIDED current version. No file deletion, real authorization,
 durable concurrency or verification mutation.
+
+## Increment 08E — document validity and invalidation
+
+Core basis 2df1f49; Backend basis da7d49f. Date-only expiry assessment
+requires a caller-supplied date and explicit boundary convention; unresolved
+boundary and future issue date do not establish a state. Expiry is derived,
+not persisted. Independent invalidation authority, owner/ID/version guards,
+reason and decision timestamps produce an immutable audited candidate.
+Replacement retains invalidation provenance and historical file snapshots.
+No authenticity, actual authorization, durable Audit or verification mutation.

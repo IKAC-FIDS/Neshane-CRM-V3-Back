@@ -86,6 +86,7 @@ public final class CustomerDomainSpecification {
         DocumentTypeCatalogSpecification.run();
         DocumentRequirementPolicySpecification.run();
         DocumentVersionHistorySpecification.run();
+        DocumentValiditySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
