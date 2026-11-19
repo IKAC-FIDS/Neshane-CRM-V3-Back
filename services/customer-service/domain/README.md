@@ -416,3 +416,13 @@ Critical or evidence-material edits require a different revision token;
 material changes to VERIFIED require reverification. Corrected verified
 identifier carries different-verifier obligation. No address model yet,
 trusted impact resolution, durable versioning, authorization or state write.
+
+## Increment 07E — verification revocation policy
+
+Core basis 2df1f49; Backend basis db067c0. Scoped revision-bound revocation
+candidate with separate authority, historical evidence basis, reason, proof
+reference and effective/recorded times. Essential expiry/invalidation and
+fundamental invalidity remain distinct; dispute and age alone do not restore
+or revoke. Fundamental invalidity requires independent verifier and blocks
+reliance even before persistence. Actual evidence trust, essentiality,
+authorization, durable Audit and recovery remain outside this model.
