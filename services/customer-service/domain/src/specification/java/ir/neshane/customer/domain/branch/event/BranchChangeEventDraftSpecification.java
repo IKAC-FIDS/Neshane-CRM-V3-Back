@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.event;
 
 import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
 import ir.neshane.customer.domain.branch.state.BranchRegistration;
@@ -29,10 +29,10 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Set;
 
-final class BranchChangeEventDraftSpecification {
+public final class BranchChangeEventDraftSpecification {
     private static int checks;
     private static final Instant TIME=Instant.parse("2026-01-01T00:00:00Z");
-    static void run() {
+    public static void run() {
         var tenant=new TenantId("tenant");
         var company=Company.createCandidate(new CustomerId("company"),tenant,"Company",null);
         var parent=parent(company);

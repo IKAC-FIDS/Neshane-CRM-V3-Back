@@ -3,7 +3,7 @@ package ir.neshane.customer.domain.customer.state;
 import ir.neshane.customer.domain.ArchiveDependencyCatalog;
 import ir.neshane.customer.domain.AuditRequirementsPolicy;
 import ir.neshane.customer.domain.branch.model.Branch;
-import ir.neshane.customer.domain.BranchChangeEventDraft;
+import ir.neshane.customer.domain.branch.event.BranchChangeEventDraft;
 import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
 import ir.neshane.customer.domain.branch.state.BranchRegistration;
 import ir.neshane.customer.domain.branch.model.BranchStatus;

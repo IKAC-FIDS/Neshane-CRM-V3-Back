@@ -1,8 +1,8 @@
 package ir.neshane.customer.domain.branch.lifecycle;
 
-import ir.neshane.customer.domain.BranchChangeEventDraft;
+import ir.neshane.customer.domain.branch.event.BranchChangeEventDraft;
 import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
-import ir.neshane.customer.domain.BranchEventDraft;
+import ir.neshane.customer.domain.branch.event.BranchEventDraft;
 import ir.neshane.customer.domain.branch.state.BranchRegistration;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 import ir.neshane.customer.domain.branch.state.CompanyBranches;

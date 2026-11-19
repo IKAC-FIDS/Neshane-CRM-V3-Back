@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.event.BranchChangeEventDraftSpecification;
+
 import ir.neshane.customer.domain.branch.state.BranchChangeHistorySpecification;
 import ir.neshane.customer.domain.branch.state.BranchRegistrationSpecification;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicySpecification;
