@@ -309,3 +309,11 @@ Scoped endpoint validation, synthetic inactive/ended facts, half-open expiry
 without mutation. Manual END candidate requires scoped authority, matching
 version and reason; no reopen path, no interval rewrite or durable Audit.
 Exact business-day reference and effective END-date semantics remain open.
+
+## Increment 05F — relationship history and event drafts
+
+Core basis 2df1f49; Backend basis 5adb9fe. Fresh assignment/exception
+assessment retains protected reason and event-time localized role title.
+Immutable creation/END history checks identity, version, time and continuity.
+Minimal versioned event draft exposes no role title, reason, Person or target.
+No durable Audit, trusted attribution, actual END, expiry event or publishing.

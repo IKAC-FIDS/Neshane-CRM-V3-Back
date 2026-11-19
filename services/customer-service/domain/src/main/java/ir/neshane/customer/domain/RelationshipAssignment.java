@@ -44,17 +44,22 @@ public final class RelationshipAssignment {
         private final Map<RelationshipId, Fact> conflicts;
         private final Outcome outcome;
         private final String code;
+        private final Optional<String> exceptionReason;
         private Assessment(Fact candidate, BusinessRoleCatalog.Ref role, Map<RelationshipId, Fact> conflicts,
-                           Outcome outcome, String code) {
+                           Outcome outcome, String code, Optional<String> exceptionReason) {
             this.candidate = candidate;
             this.role = role;
             this.conflicts = Map.copyOf(conflicts);
             this.outcome = outcome;
             this.code = code;
+            this.exceptionReason = exceptionReason;
         }
         public Outcome outcome() { return outcome; }
         public String code() { return code; }
         public boolean auditRequired() { return outcome == Outcome.ELIGIBLE_CANDIDATE; }
+        Fact candidateFact() { return candidate; }
+        BusinessRoleCatalog.Ref roleReference() { return role; }
+        Optional<String> exceptionReason() { return exceptionReason; }
         @Override public String toString() { return "RelationshipAssessment[" + outcome + ", " + code + "]"; }
     }
     private RelationshipAssignment() {}
@@ -103,7 +108,8 @@ public final class RelationshipAssignment {
             return result(fresh.candidate, role, Map.of(), Outcome.BLOCKED, "RELATIONSHIP_OVERLAP_AUTHORITY_REQUIRED");
         if (reason == null || reason.codePoints().allMatch(cp -> Character.isWhitespace(cp) || Character.isSpaceChar(cp)))
             return result(fresh.candidate, role, Map.of(), Outcome.BLOCKED, "RELATIONSHIP_OVERLAP_REASON_REQUIRED");
-        return result(fresh.candidate, role, fresh.conflicts, Outcome.ELIGIBLE_CANDIDATE, "RELATIONSHIP_OVERLAP_EXCEPTION_CANDIDATE");
+        return new Assessment(fresh.candidate, role, fresh.conflicts, Outcome.ELIGIBLE_CANDIDATE,
+            "RELATIONSHIP_OVERLAP_EXCEPTION_CANDIDATE", Optional.of(reason));
     }
     private static boolean overlaps(Fact a, Fact b) {
         return (a.end().isEmpty() || b.start().isBefore(a.end().orElseThrow()))
@@ -111,6 +117,6 @@ public final class RelationshipAssignment {
     }
     private static Assessment result(Fact candidate, BusinessRoleCatalog.Ref role, Map<RelationshipId, Fact> conflicts,
                                      Outcome outcome, String code) {
-        return new Assessment(candidate, role, conflicts, outcome, code);
+        return new Assessment(candidate, role, conflicts, outcome, code, Optional.empty());
     }
 }
