@@ -769,3 +769,12 @@ are independent; no wildcard, implicit hierarchy or trusted credentials.
 Actor context is immutable and redacted. Eligibility is only a synthetic
 candidate, not authorization enforcement. Resource ownership, detailed
 sensitive-operation checks and audit obligations follow in later increments.
+
+## Increment 13B — customer and branch access rules
+
+Core basis 2df1f49; Backend basis ee19475. Resource-bound access derives
+tenant from customer or branch facts, checks both branch parent identity and
+tenant, and permits only the matching resource operation family. Creation
+uses structural candidates. Customer and branch grants remain independent;
+no implicit parent permission, lifecycle approval, resource-level ACL,
+trusted grant resolution or enforcement. No state or version mutation.

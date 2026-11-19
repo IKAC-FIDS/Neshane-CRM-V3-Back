@@ -116,6 +116,7 @@ public final class CustomerDomainSpecification {
         DocumentVerificationTemporalSpecification.run();
         TemporalIntegrationSpecification.run();
         LogicalAccessPolicySpecification.run();
+        CustomerBranchAccessPolicySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
