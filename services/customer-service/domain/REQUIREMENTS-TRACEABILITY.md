@@ -138,3 +138,11 @@ review is recorded in DOMAIN-INVARIANTS-REVIEW.md; partial dispositions
 do not change the original classifications. 14C/14D cannot turn open or
 unexecuted criteria into PASS. Freeze may only apply to the bounded
 isolated candidate after review and explicit owner acceptance.
+
+14C evidence (Backend basis 15369a6): FinalDomainIntegrationSpecification
+adds 40 connected synthetic assertions across FLD, DUP, BRN, REL, VER, UPD,
+LC, AUD, BND and V18 groups; 77 groups / 5843 local Java 21 assertions.
+It connects prior isolated evidence without extending criterion classification
+or resolving G01–G11, the 19 PDQs, trusted access, durable writes/events,
+external dependencies or runtime acceptance. Final Gradle/module-boundary
+evidence must be obtained from the target repository before 14D.

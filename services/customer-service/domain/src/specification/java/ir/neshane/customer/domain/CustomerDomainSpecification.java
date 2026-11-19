@@ -121,6 +121,7 @@ public final class CustomerDomainSpecification {
         AuditRequirementsPolicySpecification.run();
         AccessAuditIntegrationSpecification.run();
         DomainInvariantsReviewSpecification.run();
+        FinalDomainIntegrationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

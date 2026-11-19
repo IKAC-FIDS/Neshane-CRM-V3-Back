@@ -823,3 +823,14 @@ Independent Audit and selectable-role read candidates, identity masking
 disposition, relationship party scope and logical Audit information
 obligations refine G01–G03 without introducing trusted authorization,
 projection, persistence or an acceptance claim. All PDQs remain open.
+
+## Increment 14C — final integrated domain specification
+
+Core basis 2df1f49; Backend basis 15369a6. FinalDomainIntegrationSpecification
+shares one synthetic tenant, customer, company, branch, document and relationship
+across registration, conflict rejection, document-bound verification, critical
+identity correction, independent reverification, document invalidation,
+company deactivation and explicit relationship termination. It checks scope,
+stale versions, masking disposition, audit eligibility and preserved histories/
+event drafts. 40 additional assertions; 77 groups and 5843 assertions locally
+passing with Java 21. No production code change or new acceptance disposition.
