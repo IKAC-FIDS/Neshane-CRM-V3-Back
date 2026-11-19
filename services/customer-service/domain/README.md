@@ -387,3 +387,12 @@ proposes reverification; proven fundamental invalidity proposes NOT_VERIFIED.
 Manual/system success remains blocked pending trusted workflow assessment.
 Triggers are hypothetical facts; candidates require validated evidence,
 authority and Audit before mutation. No verification grants or state writer.
+
+## Increment 07B — verification evidence model
+
+Core basis 2df1f49; Backend basis 75cf719. Protected synthetic evidence metadata
+with method, provenance, opaque reference, identity revision and version.
+Explicit instant validity bounds, immutable selected evidence snapshot,
+scope/revision/method checks and fail-closed availability assessment.
+No blanket expiry; absence of end does not establish legal validity.
+No document storage, trust determination, completeness, or VERIFIED mutation.
