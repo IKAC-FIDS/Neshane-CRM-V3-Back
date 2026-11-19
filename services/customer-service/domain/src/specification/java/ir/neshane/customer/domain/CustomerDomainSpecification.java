@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.state.BranchChangeHistorySpecification;
+import ir.neshane.customer.domain.branch.state.BranchRegistrationSpecification;
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicySpecification;
+
 import ir.neshane.customer.domain.branch.lifecycle.BranchHistorySpecification;
 import ir.neshane.customer.domain.branch.lifecycle.BranchIntegrationSpecification;
 import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycleIntegrationSpecification;

@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.branch.state.BranchChangeHistory;
+import ir.neshane.customer.domain.branch.state.BranchRegistration;
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
+import ir.neshane.customer.domain.branch.state.CompanyBranches;
+
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
 import ir.neshane.customer.domain.branch.model.Branch;

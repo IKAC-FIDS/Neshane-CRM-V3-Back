@@ -1,12 +1,12 @@
 package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.BranchRegistration;
+import ir.neshane.customer.domain.branch.state.BranchRegistration;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 import ir.neshane.customer.domain.branch.model.Branch;
-import ir.neshane.customer.domain.CompanyBranches;
-import ir.neshane.customer.domain.BranchUpdatePolicy;
+import ir.neshane.customer.domain.branch.state.CompanyBranches;
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.BranchUpdatePolicy.Outcome.*;
+import static ir.neshane.customer.domain.branch.state.BranchUpdatePolicy.Outcome.*;
 
 public final class BranchTypeContactUpdateSpecification {
     private static int checks;

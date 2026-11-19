@@ -3,7 +3,7 @@ package ir.neshane.customer.domain.customer.state;
 import ir.neshane.customer.domain.ArchiveDependencyAssessment;
 import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
-import ir.neshane.customer.domain.BranchUpdatePolicy;
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 import ir.neshane.customer.domain.Relationship;
 import ir.neshane.customer.domain.RelationshipAssignment;
 import ir.neshane.customer.domain.RelationshipLifecycle;

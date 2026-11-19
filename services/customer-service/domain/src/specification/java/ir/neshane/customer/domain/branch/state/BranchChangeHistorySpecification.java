@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.state;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
@@ -26,11 +26,11 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Set;
 
-final class BranchChangeHistorySpecification {
+public final class BranchChangeHistorySpecification {
     private static int checks;
     private static final TenantId TENANT=new TenantId("tenant");
     private static final Instant TIME=Instant.parse("2026-01-01T00:00:00Z");
-    static void run() {
+    public static void run() {
         var company=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var parent=new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(company,"r1",VerificationStatus.VERIFIED),CustomerStatus.ACTIVE,CustomerRecordVersion.initial(company));
         var original=branch(company,"b","Original");

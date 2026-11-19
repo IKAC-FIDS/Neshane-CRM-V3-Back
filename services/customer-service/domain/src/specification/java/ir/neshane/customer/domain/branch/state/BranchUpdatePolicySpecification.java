@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.state;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
@@ -25,13 +25,13 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.BranchUpdatePolicy.Outcome.*;
-import static ir.neshane.customer.domain.BranchUpdatePolicy.Authority.*;
+import static ir.neshane.customer.domain.branch.state.BranchUpdatePolicy.Outcome.*;
+import static ir.neshane.customer.domain.branch.state.BranchUpdatePolicy.Authority.*;
 
-final class BranchUpdatePolicySpecification {
+public final class BranchUpdatePolicySpecification {
     private static int checks;
     private static final TenantId TENANT=new TenantId("tenant");
-    static void run() {
+    public static void run() {
         var company=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var parent=parent(company,CustomerStatus.ACTIVE);
         var branch=branch(company,"b1","one","Original",null,null);

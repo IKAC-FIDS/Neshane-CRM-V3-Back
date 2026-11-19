@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.state;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
@@ -36,11 +36,11 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.BranchRegistration.Authority.*;
-import static ir.neshane.customer.domain.BranchRegistration.Coverage.*;
-import static ir.neshane.customer.domain.BranchRegistration.Outcome.*;
+import static ir.neshane.customer.domain.branch.state.BranchRegistration.Authority.*;
+import static ir.neshane.customer.domain.branch.state.BranchRegistration.Coverage.*;
+import static ir.neshane.customer.domain.branch.state.BranchRegistration.Outcome.*;
 
-final class BranchRegistrationSpecification {
+public final class BranchRegistrationSpecification {
     private static int checks;
     private static final TenantId TENANT = new TenantId("tenant");
     private static final BranchTypeCatalog TYPES = BranchTypeCatalog.initial();
@@ -49,7 +49,7 @@ final class BranchRegistrationSpecification {
         ContactTypeRef.system("MOBILE"),"MOBILE",new LocalizedText(Map.of("fa","موبایل")),new LocalizedText(Map.of()),
         SystemContactVocabulary.MOBILE.valueType(),Set.of(ContactOwner.Kind.BRANCH),true,Optional.of("p"),ContactTypeDefinition.Status.ACTIVE,0));
     private static final ValidationProfile PROFILE = new ValidationProfile("p",Optional.empty(),java.util.List.of(new ValidationProfile.Length(ValidationProfile.Field.VALUE,3,10)));
-    static void run() {
+    public static void run() {
         var company=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var parent=current(company,CustomerStatus.ACTIVE);
         var existing=CompanyBranches.empty(company);

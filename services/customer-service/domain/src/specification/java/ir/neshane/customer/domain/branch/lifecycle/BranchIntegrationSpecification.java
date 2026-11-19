@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.branch.lifecycle;
 
 import ir.neshane.customer.domain.BranchEventDraft;
-import ir.neshane.customer.domain.CompanyBranches;
+import ir.neshane.customer.domain.branch.state.CompanyBranches;
 import ir.neshane.customer.domain.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
