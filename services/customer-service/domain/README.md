@@ -539,3 +539,12 @@ same Tenant/Customer/kind and no overflow. Record version is independent
 of identity revision and verification/lifecycle status. No automatic merge,
 write or policy approval. Actual change/no-op, authorization and Audit
 assessment are separate; durable atomic compare-and-set remains open.
+
+## Increment 09B — customer registration
+
+Core basis 2df1f49; Backend basis a7eb261. Synthetic create assessment
+combines owner scope, explicit registration/exception authority, structural
+contact and identifier catalog/profile checks, duplicate review, current
+registration document policy and completeness. Candidate starts ACTIVE,
+NOT_VERIFIED and record version one; Audit obligation is retained.
+No actual identity allocation, durable uniqueness, registration write or IAM.
