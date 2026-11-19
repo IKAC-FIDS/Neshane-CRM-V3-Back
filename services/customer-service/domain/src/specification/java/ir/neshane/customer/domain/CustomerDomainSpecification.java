@@ -118,6 +118,7 @@ public final class CustomerDomainSpecification {
         LogicalAccessPolicySpecification.run();
         CustomerBranchAccessPolicySpecification.run();
         SensitiveAccessPolicySpecification.run();
+        AuditRequirementsPolicySpecification.run();
     }
 
     private static void check(boolean condition, String description) {

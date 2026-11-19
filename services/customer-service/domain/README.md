@@ -788,3 +788,13 @@ Owner identity (tenant, customer ID and kind) binds documents, evidence and
 duplicate requests to the customer. Assessments return codes only, never
 protected values or references. No data projection, encryption, trusted
 authorization, qualification, revision validation or automatic mutation.
+
+## Increment 13D — audit requirements policy
+
+Core basis 2df1f49; Backend basis 7f8aca5. All access denials, mutations
+and protected reads require audit; ordinary reads retain optional domain
+obligations. Explicit reason requirements compose additively with prior
+domain rules without replacing them. Metadata records supplied opaque actor
+and tenant labels, operation, access outcome, instant and correlation only;
+missing actor is explicit for denied attempts. No raw payload, free-text
+reason, persistence, delivery, trusted identity or execution proof.
