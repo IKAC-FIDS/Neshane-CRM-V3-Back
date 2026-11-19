@@ -814,3 +814,12 @@ Core basis 2df1f49; Backend basis 96bbad2. See
 `REQUIREMENTS-TRACEABILITY.md` for the grouped 234-criterion inventory,
 supplemental direction, candidate evidence and unresolved gap register.
 No executable changes, criterion PASS promotion or acceptance claim.
+
+## Increment 14B — domain invariants and boundary review
+
+Core basis 2df1f49; Backend basis a82d57f. See DOMAIN-INVARIANTS-REVIEW.md
+for scope, status, history, temporal, authorization and Audit boundaries.
+Independent Audit and selectable-role read candidates, identity masking
+disposition, relationship party scope and logical Audit information
+obligations refine G01–G03 without introducing trusted authorization,
+projection, persistence or an acceptance claim. All PDQs remain open.

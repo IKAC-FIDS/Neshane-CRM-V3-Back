@@ -11,8 +11,8 @@ import static ir.neshane.customer.domain.AuditRequirementsPolicy.Reason.*;
 final class AuditRequirementsPolicySpecification {
     private static int checks;
     static void run() {
-        var ordinaryReads=Set.of(CUSTOMER_READ,BRANCH_READ,RELATIONSHIP_READ,DOCUMENT_READ);
-        var protectedReads=Set.of(IDENTITY_SENSITIVE_READ,DOCUMENT_CONTENT_READ,VERIFICATION_EVIDENCE_READ,HISTORY_READ);
+        var ordinaryReads=Set.of(CUSTOMER_READ,BRANCH_READ,RELATIONSHIP_READ,DOCUMENT_READ,CATALOG_SELECTABLE_READ);
+        var protectedReads=Set.of(IDENTITY_SENSITIVE_READ,DOCUMENT_CONTENT_READ,VERIFICATION_EVIDENCE_READ,HISTORY_READ,AUDIT_READ);
         var reasonOps=Set.of(RELATIONSHIP_END,DOCUMENT_INVALIDATE,IDENTITY_CORRECT,DUPLICATE_EXCEPTION,VERIFY_MANUAL,VERIFICATION_REVOKE);
         for (var op : Operation.values()) {
             var base=AuditRequirementsPolicy.requirement(op,ELIGIBLE_CANDIDATE,false,false);

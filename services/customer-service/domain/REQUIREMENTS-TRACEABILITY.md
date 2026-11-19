@@ -112,9 +112,9 @@ the exact Core/Backend basis for each increment and additional decision IDs.
 
 | Gap | Priority / disposition | Evidence or decision needed |
 |---|---|---|
-| G01 | Review before domain freeze | Independent Audit review permission, field masking and relationship/catalog resource access not modeled fully. Do not treat generic operation grants as approved IAM or complete authorization. |
-| G02 | Review before domain freeze | Logical audit metadata is only a subset; preserve source-required operation/actor/resource/event/reason/old-new/evidence metadata obligations. Access eligibility is not business outcome. |
-| G03 | Review before domain freeze | Customer/Branch status snapshots and historical candidates: check immutable scope, stale paths, non-cascade and unresolved states; avoid treating structural helpers as authorized operations. |
+| G01 | Partial after 14B review | Independent Audit/selectable-role read grants, identity masking disposition and relationship scope candidates added. Actual projection, resource authority and IAM remain open. |
+| G02 | Partial after 14B review | CM1-PD-093 logical information vocabulary added; Metadata remains an access-only subset, actual protected payload and durability remain open. |
+| G03 | Reviewed; residual open | Scope validation separated from lifecycle availability; existing snapshot/non-cascade checks retained. Trusted facts, concurrency and authorized historical projection remain open. |
 | G04 | Decision required | Exact reactivation/archive/restore, dependency completeness, race safety and END effective-date semantics. Preserve fail-closed behavior. |
 | G05 | Decision required | Character counting, normalization, field coverage, country dataset, identifier formats and issuer/evidence/SoD rules. |
 | G06 | Decision required | Document expiry boundary, completeness counting/zero denominator, requirements-stage wiring, secure storage and retention; no assumed document validity or identity proof. |
@@ -134,7 +134,7 @@ external service, Audit ingestion or IAM acceptance is asserted.
 Baseline evidence: 75 executable specification groups, 5,539 assertions
 reported passing, Java 21 and Gradle domain check/module boundaries.
 Counts are not acceptance-criterion coverage percentages. Increment 14B
-must review G01–G03 and any additional findings; fixes or new product
-decisions require explicit scope approval. 14C/14D cannot turn open or
+review is recorded in DOMAIN-INVARIANTS-REVIEW.md; partial dispositions
+do not change the original classifications. 14C/14D cannot turn open or
 unexecuted criteria into PASS. Freeze may only apply to the bounded
 isolated candidate after review and explicit owner acceptance.

@@ -120,6 +120,7 @@ public final class CustomerDomainSpecification {
         SensitiveAccessPolicySpecification.run();
         AuditRequirementsPolicySpecification.run();
         AccessAuditIntegrationSpecification.run();
+        DomainInvariantsReviewSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

@@ -26,19 +26,24 @@ public final class RelationshipLifecycleIntegration {
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private RelationshipLifecycleIntegration() {}
-    private static boolean targetAvailable(RelationshipAssignment.Fact fact,Parties parties) {
+    static void validateScope(RelationshipAssignment.Fact fact,Parties parties) {
         if (!(parties.person().identity().candidate() instanceof Person person) || !fact.tenant().equals(person.tenantId()) || !fact.person().equals(person.id()))
             throw new IllegalArgumentException("RELATIONSHIP_PERSON_SCOPE_MISMATCH");
         if (!(parties.company().identity().candidate() instanceof Company company) || !fact.tenant().equals(company.tenantId()))
             throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
         if (fact.target().kind()==RelationshipTarget.Kind.COMPANY) {
             if (parties.branch().isPresent() || !fact.target().equals(RelationshipTarget.of(company))) throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
-            return parties.company().status()==CustomerStatus.ACTIVE;
+            return;
         }
         var branch=parties.branch().orElseThrow(()->new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH"));
         if (!fact.target().equals(RelationshipTarget.of(branch.branch())) || !branch.branch().companyId().equals(company.id()))
             throw new IllegalArgumentException("RELATIONSHIP_TARGET_SCOPE_MISMATCH");
-        return BranchLifecycle.effectiveStatus(branch.status(),parties.company().status())==BranchStatus.ACTIVE;
+    }
+    private static boolean targetAvailable(RelationshipAssignment.Fact fact,Parties parties) {
+        validateScope(fact,parties);
+        if (fact.target().kind()==RelationshipTarget.Kind.COMPANY)
+            return parties.company().status()==CustomerStatus.ACTIVE;
+        return BranchLifecycle.effectiveStatus(parties.branch().orElseThrow().status(),parties.company().status())==BranchStatus.ACTIVE;
     }
     public static RelationshipLifecycle.EffectiveStatus effectiveStatus(RelationshipAssignment.Fact fact,LocalDate day,Parties parties) {
         return RelationshipLifecycle.effectiveStatus(fact,day,parties.person().status(),targetAvailable(fact,parties));

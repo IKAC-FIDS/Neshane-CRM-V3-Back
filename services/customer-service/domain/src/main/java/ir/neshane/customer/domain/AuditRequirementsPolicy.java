@@ -7,6 +7,15 @@ import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
 
 /** Additive logical audit obligations; not a durable audit record or proof of action execution. */
 public final class AuditRequirementsPolicy {
+    /** Required logical information vocabulary, not a storage schema or payload. */
+    public enum Information {
+        EVENT_ID, APPLICABLE_TENANT, ACTOR_ID_AND_TYPE, RESOURCE_TYPE_AND_AVAILABLE_ID,
+        OPERATION, APPLICABLE_OLD_NEW_VALUES, REQUIRED_OR_PROVIDED_REASON,
+        TIMESTAMP, OUTCOME, CORRELATION_ID, APPLICABLE_EVIDENCE_REFERENCE
+    }
+    public static java.util.Set<Information> logicalInformation() {
+        return java.util.Set.copyOf(java.util.EnumSet.allOf(Information.class));
+    }
     public enum Reason { NOT_APPLICABLE, OPTIONAL, REQUIRED }
     public record Requirement(boolean auditRequired,Reason reason) {}
     public record Metadata(Optional<String> actorId,Optional<TenantId> actorTenant,TenantId targetTenant,
@@ -35,9 +44,9 @@ public final class AuditRequirementsPolicy {
         if (outcome==Outcome.DENIED)
             return new Requirement(true,domainReasonRequired?Reason.REQUIRED:Reason.NOT_APPLICABLE);
         var base=switch (operation) {
-            case CUSTOMER_READ, BRANCH_READ, RELATIONSHIP_READ, DOCUMENT_READ ->
+            case CUSTOMER_READ, BRANCH_READ, RELATIONSHIP_READ, DOCUMENT_READ, CATALOG_SELECTABLE_READ ->
                 new Requirement(false,Reason.NOT_APPLICABLE);
-            case IDENTITY_SENSITIVE_READ, DOCUMENT_CONTENT_READ, VERIFICATION_EVIDENCE_READ, HISTORY_READ ->
+            case IDENTITY_SENSITIVE_READ, DOCUMENT_CONTENT_READ, VERIFICATION_EVIDENCE_READ, HISTORY_READ, AUDIT_READ ->
                 new Requirement(true,Reason.NOT_APPLICABLE);
             case RELATIONSHIP_END, DOCUMENT_INVALIDATE, IDENTITY_CORRECT, DUPLICATE_EXCEPTION, VERIFY_MANUAL, VERIFICATION_REVOKE ->
                 new Requirement(true,Reason.REQUIRED);
