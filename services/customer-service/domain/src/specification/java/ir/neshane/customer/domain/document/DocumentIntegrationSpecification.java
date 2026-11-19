@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.VerificationEventDraft;
@@ -30,17 +30,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentVersionHistory.Authority.*;
-import static ir.neshane.customer.domain.DocumentVerification.Necessity.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.Applicability.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.RequirementStage.*;
+import static ir.neshane.customer.domain.document.DocumentVersionHistory.Authority.*;
+import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Applicability.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.RequirementStage.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 /** End-to-end synthetic composition; not an application or persistence integration test. */
-final class DocumentIntegrationSpecification {
+public final class DocumentIntegrationSpecification {
     private static int checks;
     private static final LocalDate DAY = LocalDate.of(2026,11,19);
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var company = Company.createCandidate(new CustomerId("company"),tenant,"C",null);

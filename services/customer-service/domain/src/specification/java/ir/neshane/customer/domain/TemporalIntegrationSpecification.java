@@ -1,5 +1,15 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.document.CustomerDocument;
+import ir.neshane.customer.domain.document.DocumentEventDraft;
+import ir.neshane.customer.domain.document.DocumentFileReference;
+import ir.neshane.customer.domain.document.DocumentHistory;
+import ir.neshane.customer.domain.document.DocumentTypeCatalog;
+import ir.neshane.customer.domain.document.DocumentTypeDefinition;
+import ir.neshane.customer.domain.document.DocumentValidity;
+import ir.neshane.customer.domain.document.DocumentVerification;
+import ir.neshane.customer.domain.document.DocumentVersionHistory;
+
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.VerificationEventDraft;
 import ir.neshane.customer.domain.verification.VerificationEvidence;
@@ -40,7 +50,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
+import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
 import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 /** Synthetic joint temporal scenario; no application transaction or scheduler. */

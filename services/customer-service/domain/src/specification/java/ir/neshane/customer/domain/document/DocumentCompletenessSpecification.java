@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
@@ -17,15 +17,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentCompleteness.CountingConvention.ANY_CURRENT_PROVIDED;
-import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.CustomerDocument.State.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.Applicability.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.RequirementStage.*;
+import static ir.neshane.customer.domain.document.DocumentCompleteness.CountingConvention.ANY_CURRENT_PROVIDED;
+import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
+import static ir.neshane.customer.domain.document.CustomerDocument.State.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Applicability.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.RequirementStage.*;
 
-final class DocumentCompletenessSpecification {
+public final class DocumentCompletenessSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var company = Company.createCandidate(new CustomerId("company"),tenant,"C",null);

@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.document.CustomerDocument;
+import ir.neshane.customer.domain.document.DocumentFileReference;
+
 import ir.neshane.customer.domain.verification.VerificationEvidence;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
 

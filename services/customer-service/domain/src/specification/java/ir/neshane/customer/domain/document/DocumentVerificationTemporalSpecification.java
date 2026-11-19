@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.verification.VerificationEvidence;
 import ir.neshane.customer.domain.verification.VerificationLifecycle;
@@ -15,14 +15,14 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.CustomerDocument.State.*;
+import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
+import static ir.neshane.customer.domain.document.CustomerDocument.State.*;
 import static ir.neshane.customer.domain.verification.VerificationEvidence.Availability.AVAILABLE_CANDIDATE;
 import static ir.neshane.customer.domain.verification.VerificationEvidence.Availability.NOT_YET_EFFECTIVE;
 
-final class DocumentVerificationTemporalSpecification {
+public final class DocumentVerificationTemporalSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var person=Person.createCandidate(new CustomerId("person"),new TenantId("tenant"),"A","B",null);
         var day=LocalDate.of(2024,2,29);
         var start=Instant.parse("2024-02-29T00:00:00Z");

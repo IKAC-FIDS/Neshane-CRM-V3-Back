@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.document.DocumentCompleteness;
+import ir.neshane.customer.domain.document.DocumentRequirementPolicy;
+import ir.neshane.customer.domain.document.DocumentTypeCatalog;
+import ir.neshane.customer.domain.document.DocumentValidity;
+
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
 

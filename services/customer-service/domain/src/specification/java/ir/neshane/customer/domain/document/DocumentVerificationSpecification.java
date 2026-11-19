@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.VerificationEventDraft;
@@ -31,15 +31,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentVerification.Necessity.ESSENTIAL;
-import static ir.neshane.customer.domain.DocumentVerification.Necessity.NON_ESSENTIAL;
-import static ir.neshane.customer.domain.DocumentVerification.Outcome.*;
-import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
+import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.ESSENTIAL;
+import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.NON_ESSENTIAL;
+import static ir.neshane.customer.domain.document.DocumentVerification.Outcome.*;
+import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
 import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Authority.*;
 
-final class DocumentVerificationSpecification {
+public final class DocumentVerificationSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var owner = person.identityInfo().owner();

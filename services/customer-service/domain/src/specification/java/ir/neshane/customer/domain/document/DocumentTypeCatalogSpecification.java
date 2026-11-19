@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
@@ -19,15 +19,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.Applicability.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.RequirementStage.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.FileMultiplicity.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.Status.*;
-import static ir.neshane.customer.domain.DocumentTypeCatalog.Authority.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Applicability.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.RequirementStage.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.FileMultiplicity.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Status.*;
+import static ir.neshane.customer.domain.document.DocumentTypeCatalog.Authority.*;
 
-final class DocumentTypeCatalogSpecification {
+public final class DocumentTypeCatalogSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var other = new TenantId("foreign");
         var base = DocumentTypeCatalog.empty(tenant,1000);

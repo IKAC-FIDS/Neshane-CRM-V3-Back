@@ -1,5 +1,16 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.document.CustomerDocumentSpecification;
+import ir.neshane.customer.domain.document.DocumentCompletenessSpecification;
+import ir.neshane.customer.domain.document.DocumentHistorySpecification;
+import ir.neshane.customer.domain.document.DocumentIntegrationSpecification;
+import ir.neshane.customer.domain.document.DocumentRequirementPolicySpecification;
+import ir.neshane.customer.domain.document.DocumentTypeCatalogSpecification;
+import ir.neshane.customer.domain.document.DocumentValiditySpecification;
+import ir.neshane.customer.domain.document.DocumentVerificationSpecification;
+import ir.neshane.customer.domain.document.DocumentVerificationTemporalSpecification;
+import ir.neshane.customer.domain.document.DocumentVersionHistorySpecification;
+
 import ir.neshane.customer.domain.verification.IdentityRevisionSpecification;
 import ir.neshane.customer.domain.verification.ManualVerificationSpecification;
 import ir.neshane.customer.domain.verification.VerificationEvidenceSpecification;

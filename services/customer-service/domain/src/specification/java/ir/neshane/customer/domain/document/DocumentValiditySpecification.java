@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.customer.Customer;
 import ir.neshane.customer.domain.customer.Person;
@@ -18,13 +18,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.CustomerDocument.State.*;
-import static ir.neshane.customer.domain.DocumentVersionHistory.Authority.*;
+import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
+import static ir.neshane.customer.domain.document.CustomerDocument.State.*;
+import static ir.neshane.customer.domain.document.DocumentVersionHistory.Authority.*;
 
-final class DocumentValiditySpecification {
+public final class DocumentValiditySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var id = new CustomerDocumentId("document");

@@ -1,8 +1,8 @@
 package ir.neshane.customer.domain.customer.state;
 
-import ir.neshane.customer.domain.DocumentValidity;
-import ir.neshane.customer.domain.DocumentVerification;
-import ir.neshane.customer.domain.DocumentVersionHistory;
+import ir.neshane.customer.domain.document.DocumentValidity;
+import ir.neshane.customer.domain.document.DocumentVerification;
+import ir.neshane.customer.domain.document.DocumentVersionHistory;
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.VerificationEvidence;

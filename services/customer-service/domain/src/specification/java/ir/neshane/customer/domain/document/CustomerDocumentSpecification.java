@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Customer;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-final class CustomerDocumentSpecification {
+public final class CustomerDocumentSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var company = Company.createCandidate(new CustomerId("company"),tenant,"Company",null);

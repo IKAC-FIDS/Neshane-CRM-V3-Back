@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 
@@ -14,15 +14,15 @@ import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.Applicability.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.RequirementStage.*;
-import static ir.neshane.customer.domain.DocumentTypeDefinition.Status.*;
-import static ir.neshane.customer.domain.DocumentTypeCatalog.Authority.*;
-import static ir.neshane.customer.domain.DocumentRequirementPolicy.Outcome.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Applicability.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.RequirementStage.*;
+import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Status.*;
+import static ir.neshane.customer.domain.document.DocumentTypeCatalog.Authority.*;
+import static ir.neshane.customer.domain.document.DocumentRequirementPolicy.Outcome.*;
 
-final class DocumentRequirementPolicySpecification {
+public final class DocumentRequirementPolicySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var person = Person.createCandidate(new CustomerId("person"),tenant,"A","B",null);
         var company = Company.createCandidate(new CustomerId("company"),tenant,"C",null);

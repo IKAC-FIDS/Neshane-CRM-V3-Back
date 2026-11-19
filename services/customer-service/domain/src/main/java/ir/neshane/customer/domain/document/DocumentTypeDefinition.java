@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.document;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
