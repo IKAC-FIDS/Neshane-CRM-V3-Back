@@ -443,3 +443,12 @@ manual verification, duplicate conflict, essential evidence expiry, renewed
 verification, stale basis/revision, material identity change, fundamental
 revocation, independent verifier, protected history, event drafts and tenant
 isolation. No runtime verification, durable authorization or Audit delivery.
+
+## Increment 08A — customer document foundation
+
+Core basis 2df1f49; Backend basis 139d96b. Synthetic Person/Company-owned
+document candidate, stable ID, type reference, protected tenant-scoped
+file metadata, document number, calendar dates, issuer, notes and uploader.
+Initial PROVIDED version does not prove authenticity or verification.
+No physical files, catalog policy, authorization, replacement, expiry
+evaluation, durable Audit, or storage.
