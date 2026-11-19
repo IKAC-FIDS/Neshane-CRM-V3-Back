@@ -750,3 +750,12 @@ issue/expiry and unresolved expiry conventions. Evidence uses half-open
 instant intervals, preserving recorded-at visibility and terminal status
 precedence. Passage of time alone does not change customer verification
 status. No automatic invalidation, revocation, history or event mutation.
+
+## Increment 12D — integrated temporal specification
+
+Core basis 2df1f49; Backend basis 002ef86. A shared synthetic scenario
+evaluates relationship and document dates independently of evidence instants,
+including boundary combinations and unresolved document expiry. Explicit END,
+document invalidation and qualified revocation create separate candidate
+history and event drafts; evaluation alone leaves original facts, versions
+and history unchanged. Specification and documentation only.

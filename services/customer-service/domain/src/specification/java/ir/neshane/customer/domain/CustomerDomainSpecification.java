@@ -114,6 +114,7 @@ public final class CustomerDomainSpecification {
         TemporalPolicySpecification.run();
         RelationshipTemporalPolicySpecification.run();
         DocumentVerificationTemporalSpecification.run();
+        TemporalIntegrationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
