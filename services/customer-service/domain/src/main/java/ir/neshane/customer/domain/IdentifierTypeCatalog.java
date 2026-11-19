@@ -86,6 +86,11 @@ public final class IdentifierTypeCatalog {
         return definition;
     }
 
+    /** Existing identity references remain resolvable even if hidden or inactive. */
+    public IdentifierTypeDefinition resolveReference(String id) {
+        return require(id);
+    }
+
     public ValidationEngine.Result validateCandidate(IdentityInfo info, IdentityIdentifier identifier,
                                                       ValidationProfile profile) {
         appendCandidate(info, identifier);

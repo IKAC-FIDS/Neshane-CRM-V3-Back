@@ -333,3 +333,12 @@ request-scoped synthetic comparison signals, definite over potential,
 unknown coverage blocks, self excluded only on update. Redacted outcome
 without raw values or subject IDs. No actual matching, evidence trust,
 namespace determination, exception approval, merge, persistence or IAM.
+
+## Increment 06B — identity conflict comparison
+
+Core basis 2df1f49; Backend basis ee76fb2. Exact identifier-bound synthetic
+namespace/normalized value and verification evidence, catalog applicability,
+tenant scope, redacted classification and duplicate signal adaptation.
+Unresolved evidence blocks comparison; hidden historical types still resolve.
+No legal namespace rule, verification service, normalization algorithm,
+trusted evidence, database uniqueness, exception approval or runtime.
