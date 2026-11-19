@@ -406,3 +406,13 @@ SoD cases require supplied excluded actors; unresolved mapping blocks.
 Fresh duplicate UPDATE comparison blocks definite conflict or unknown coverage.
 Eligible result is prospective only and carries Audit obligation; no trusted
 actor mapping, real evidence qualification, state write or durable Audit.
+
+## Increment 07D — identity revision and reverification
+
+Core basis 2df1f49; Backend basis cafe9ef. Local snapshot and candidate diff
+for official names, identifiers and ordinary contact/Latin-name changes.
+Critical changes require reason; unresolved impact/correction blocks.
+Critical or evidence-material edits require a different revision token;
+material changes to VERIFIED require reverification. Corrected verified
+identifier carries different-verifier obligation. No address model yet,
+trusted impact resolution, durable versioning, authorization or state write.

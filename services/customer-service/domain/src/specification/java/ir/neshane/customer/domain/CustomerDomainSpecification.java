@@ -78,6 +78,7 @@ public final class CustomerDomainSpecification {
         VerificationLifecycleSpecification.run();
         VerificationEvidenceSpecification.run();
         ManualVerificationSpecification.run();
+        IdentityRevisionSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
