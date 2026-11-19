@@ -291,3 +291,12 @@ Unknown evidence blocks candidate changes; no private collision details.
 Existing role identities, relationships and tenant hide settings preserved.
 Logical Audit obligations only; no trusted coverage/authority, actual
 publication, durable Audit, persistence or concurrency guarantees.
+
+## Increment 05D — relationship assignment and overlap assessment
+
+Core basis 2df1f49; Backend basis 06f2f1c. CM1-PD-033..041:
+catalog-aware creation assessment, synthetic scoped evidence including ENDED
+intervals, half-open overlap, independent exception authority and fresh reason.
+Opaque warning binds candidate and conflict snapshot; recheck rejects changes.
+Existing IDs block new creation; no durable idempotency, update/version
+protocol, authenticated authority, trusted evidence, Audit or actual write.
