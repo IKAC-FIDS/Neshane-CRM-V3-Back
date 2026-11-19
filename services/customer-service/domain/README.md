@@ -209,3 +209,12 @@ an immutable company-scoped candidate collection, not persistence or
 global uniqueness; code normalization and concurrency remain open.
 Initial ACTIVE only; type, contact, lifecycle and event details follow
 in later increments. No reparenting, transfer, authorization or runtime.
+
+## Increment 04B — dynamic branch types
+
+Core basis 0579b5d; Backend basis 463a2d7. Nine system types, tenant
+custom definitions, stable codes and IDs, localized metadata, tenant
+hide/unhide and custom status changes. Optional typed Branch creation
+requires selectable scoped reference. Existing references are preserved
+when catalog metadata changes or a type becomes inactive/hidden.
+No persistence, historical title store, authorization or runtime.

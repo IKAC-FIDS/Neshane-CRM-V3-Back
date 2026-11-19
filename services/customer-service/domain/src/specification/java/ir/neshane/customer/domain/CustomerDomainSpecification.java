@@ -57,6 +57,7 @@ public final class CustomerDomainSpecification {
         ArchiveDependencySpecification.run();
         LifecycleIntegrationSpecification.run();
         BranchSpecification.run();
+        BranchTypeSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
