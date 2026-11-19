@@ -634,3 +634,14 @@ code conflict. Name/code/description structural rules remain in Branch.
 No-op preserves version; inactive correction preserves status, archived
 parent blocks. Type/contact edits require separate validation in 10D.
 No durable change, lifecycle mutation, parent update or Audit delivery.
+
+## Increment 10D — branch type and contact updates
+
+Core basis 2df1f49; Backend basis d3f9fec. Integrated branch update validates
+changed types against the current tenant catalog; unchanged historical types
+are preserved. Contact additions and edits require selectable definitions,
+validation profiles, active multiplicity and valid primary selection. Existing
+contact IDs cannot be deleted; deactivation retains facts and clears primary,
+inactive contacts cannot be rewritten or reactivated through this path.
+Successful changes advance only branch version and retain audit obligation;
+no durable write, lifecycle mutation, parent update or Audit delivery.
