@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
+import ir.neshane.customer.domain.relationship.RelationshipTarget;
+
 import ir.neshane.customer.domain.customer.Customer;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -42,8 +47,7 @@ public final class ReadDisclosurePolicy {
         var grant=assess(actor,new Request(fact.tenant(),Operation.RELATIONSHIP_READ));
         if (grant.outcome()!=Outcome.ELIGIBLE_CANDIDATE) return grant;
         // Scope validation deliberately ignores lifecycle eligibility: historical facts remain readable candidates.
-        try { RelationshipLifecycleIntegration.validateScope(fact,parties); }
-        catch (IllegalArgumentException ex) { return denied(); }
+        if (!RelationshipLifecycleIntegration.matchesScope(fact,parties)) return denied();
         return grant;
     }
 

@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 
@@ -41,6 +41,11 @@ public final class RelationshipLifecycleIntegration {
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private RelationshipLifecycleIntegration() {}
+    /** Checks supplied party scope only, without lifecycle eligibility or authorization. */
+    public static boolean matchesScope(RelationshipAssignment.Fact fact,Parties parties) {
+        try { validateScope(fact,parties); return true; }
+        catch (IllegalArgumentException ex) { return false; }
+    }
     static void validateScope(RelationshipAssignment.Fact fact,Parties parties) {
         var person=parties.person().identity().owner();
         var company=parties.company().identity().owner();

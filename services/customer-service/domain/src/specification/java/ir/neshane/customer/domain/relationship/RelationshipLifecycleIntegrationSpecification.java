@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 
@@ -31,11 +31,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-final class RelationshipLifecycleIntegrationSpecification {
+public final class RelationshipLifecycleIntegrationSpecification {
     private static int checks;
     private static final TenantId TENANT=new TenantId("tenant");
     private static final LocalDate DAY=LocalDate.of(2026,11,19);
-    static void run() {
+    public static void run() {
         var person=Person.createCandidate(new CustomerId("person"),TENANT,"A","B",null);
         var company=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var branch=Branch.createCandidate(new BranchId("branch"),TENANT,company,null,"Branch",null,null);

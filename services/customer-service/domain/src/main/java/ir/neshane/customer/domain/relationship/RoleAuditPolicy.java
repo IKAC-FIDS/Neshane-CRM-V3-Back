@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 /** Logical governance obligations only; no durable recording or actor validation. */
 public final class RoleAuditPolicy {

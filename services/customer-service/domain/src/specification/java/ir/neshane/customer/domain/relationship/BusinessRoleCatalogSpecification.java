@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.Person;
@@ -12,14 +12,14 @@ import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Optional;
-import static ir.neshane.customer.domain.BusinessRoleDefinition.Scope.*;
-import static ir.neshane.customer.domain.BusinessRoleDefinition.Status.*;
-import static ir.neshane.customer.domain.RelationshipTarget.Kind.COMPANY;
-import static ir.neshane.customer.domain.RelationshipTarget.Kind.BRANCH;
+import static ir.neshane.customer.domain.relationship.BusinessRoleDefinition.Scope.*;
+import static ir.neshane.customer.domain.relationship.BusinessRoleDefinition.Status.*;
+import static ir.neshane.customer.domain.relationship.RelationshipTarget.Kind.COMPANY;
+import static ir.neshane.customer.domain.relationship.RelationshipTarget.Kind.BRANCH;
 
-final class BusinessRoleCatalogSpecification {
+public final class BusinessRoleCatalogSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var a = new TenantId("a");
         var b = new TenantId("b");
         var initial = BusinessRoleCatalog.initial();

@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
@@ -13,12 +13,12 @@ import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import static ir.neshane.customer.domain.RelationshipLifecycle.EffectiveStatus.*;
-import static ir.neshane.customer.domain.RelationshipLifecycle.Authority.*;
+import static ir.neshane.customer.domain.relationship.RelationshipLifecycle.EffectiveStatus.*;
+import static ir.neshane.customer.domain.relationship.RelationshipLifecycle.Authority.*;
 
-final class RelationshipLifecycleSpecification {
+public final class RelationshipLifecycleSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("a");
         var foreign = new TenantId("b");
         var person = Person.createCandidate(new CustomerId("person"), tenant, "A", "B", null);

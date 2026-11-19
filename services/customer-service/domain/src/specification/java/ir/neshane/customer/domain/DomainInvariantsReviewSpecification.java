@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
+import ir.neshane.customer.domain.relationship.Relationship;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
+import ir.neshane.customer.domain.relationship.RelationshipTarget;
+
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 
 import ir.neshane.customer.domain.branch.model.Branch;

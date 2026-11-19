@@ -4,10 +4,10 @@ import ir.neshane.customer.domain.ArchiveDependencyAssessment;
 import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
-import ir.neshane.customer.domain.Relationship;
-import ir.neshane.customer.domain.RelationshipAssignment;
-import ir.neshane.customer.domain.RelationshipLifecycle;
-import ir.neshane.customer.domain.RelationshipLifecycleIntegration;
+import ir.neshane.customer.domain.relationship.Relationship;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycle;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.CustomerStatus;

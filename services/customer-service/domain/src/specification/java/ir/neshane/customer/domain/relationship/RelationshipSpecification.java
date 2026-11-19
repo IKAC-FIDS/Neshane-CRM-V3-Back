@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 
@@ -13,9 +13,9 @@ import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 import java.time.LocalDate;
 import java.util.Optional;
 
-final class RelationshipSpecification {
+public final class RelationshipSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant-a");
         var otherTenant = new TenantId("tenant-b");
         var person = Person.createCandidate(new CustomerId("person"), tenant, "First", "Last", null);

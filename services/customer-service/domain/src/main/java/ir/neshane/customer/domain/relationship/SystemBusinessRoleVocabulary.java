@@ -1,11 +1,11 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import java.util.Map;
 import java.util.Optional;
-import static ir.neshane.customer.domain.BusinessRoleDefinition.Scope.*;
+import static ir.neshane.customer.domain.relationship.BusinessRoleDefinition.Scope.*;
 
 /** Initial product vocabulary; candidate identifiers are not a persistence contract. */
 public enum SystemBusinessRoleVocabulary {

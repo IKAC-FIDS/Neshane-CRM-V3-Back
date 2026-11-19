@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerStatus;
@@ -14,12 +14,12 @@ import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import static ir.neshane.customer.domain.RelationshipLifecycle.EffectiveStatus.*;
+import static ir.neshane.customer.domain.relationship.RelationshipLifecycle.EffectiveStatus.*;
 
-final class RelationshipTemporalPolicySpecification {
+public final class RelationshipTemporalPolicySpecification {
     private static int checks;
     private static final TenantId TENANT=new TenantId("tenant");
-    static void run() {
+    public static void run() {
         var p=Person.createCandidate(new CustomerId("person"),TENANT,"A","B",null);
         var c=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var day=LocalDate.of(2024,2,28); var end=day.plusDays(2);

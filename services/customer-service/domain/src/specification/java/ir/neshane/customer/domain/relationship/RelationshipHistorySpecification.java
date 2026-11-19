@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
@@ -16,13 +16,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import static ir.neshane.customer.domain.RelationshipAssignment.Authority.*;
-import static ir.neshane.customer.domain.RelationshipAssignment.Coverage.*;
-import static ir.neshane.customer.domain.RelationshipLifecycle.Authority.END_RELATIONSHIP;
+import static ir.neshane.customer.domain.relationship.RelationshipAssignment.Authority.*;
+import static ir.neshane.customer.domain.relationship.RelationshipAssignment.Coverage.*;
+import static ir.neshane.customer.domain.relationship.RelationshipLifecycle.Authority.END_RELATIONSHIP;
 
-final class RelationshipHistorySpecification {
+public final class RelationshipHistorySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("a");
         var person = Person.createCandidate(new CustomerId("person"), tenant, "A", "B", null);
         var company = Company.createCandidate(new CustomerId("company"), tenant, "Company", null);

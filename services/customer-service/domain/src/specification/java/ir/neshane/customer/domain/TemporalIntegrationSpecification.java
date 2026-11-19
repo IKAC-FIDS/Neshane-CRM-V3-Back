@@ -1,5 +1,13 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
+import ir.neshane.customer.domain.relationship.BusinessRoleDefinition;
+import ir.neshane.customer.domain.relationship.Relationship;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipEventDraft;
+import ir.neshane.customer.domain.relationship.RelationshipHistory;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycle;
+
 import ir.neshane.customer.domain.customer.state.IdentityRevision;
 import ir.neshane.customer.domain.customer.state.VerificationHistory;
 import ir.neshane.customer.domain.customer.state.VerificationRevocation;

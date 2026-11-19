@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.relationship;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
@@ -21,14 +21,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import static ir.neshane.customer.domain.RelationshipAssignment.Authority.*;
-import static ir.neshane.customer.domain.RelationshipAssignment.Coverage.*;
-import static ir.neshane.customer.domain.RelationshipAssignment.Outcome.*;
+import static ir.neshane.customer.domain.relationship.RelationshipAssignment.Authority.*;
+import static ir.neshane.customer.domain.relationship.RelationshipAssignment.Coverage.*;
+import static ir.neshane.customer.domain.relationship.RelationshipAssignment.Outcome.*;
 
 /** End-to-end isolated domain candidate scenario, not an application transaction. */
-final class RelationshipIntegrationSpecification {
+public final class RelationshipIntegrationSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("a");
         var foreign = new TenantId("b");
         var person = Person.createCandidate(new CustomerId("person"), tenant, "A", "B", null);

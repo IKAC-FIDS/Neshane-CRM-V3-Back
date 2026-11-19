@@ -1,5 +1,15 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalogSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipAssignmentSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipHistorySpecification;
+import ir.neshane.customer.domain.relationship.RelationshipIntegrationSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegrationSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipTemporalPolicySpecification;
+import ir.neshane.customer.domain.relationship.RoleGovernanceSpecification;
+
 import ir.neshane.customer.domain.branch.event.BranchChangeEventDraftSpecification;
 
 import ir.neshane.customer.domain.branch.state.BranchChangeHistorySpecification;
