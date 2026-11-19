@@ -723,3 +723,12 @@ deactivates the company, closes the branch and ends the relationship.
 Checks effective versus stored state, independent versions, history/events,
 blocked archive before dependency cleanup and unresolved archive afterward.
 Test and documentation only; no persistence or runtime acceptance.
+
+## Increment 12A — temporal policy foundation
+
+Core basis 2df1f49; Backend basis 8a93d9e. Explicit business date and evaluation
+instant are independent inputs; no implicit timezone or system clock. Pure
+interval positioning supports inclusive start, explicit inclusive/exclusive
+end and unresolved boundary, including unbounded end. Invalid intervals are
+rejected. The existing relationship/document/evidence policies are unchanged;
+no expiry convention, timezone decision or automatic state mutation is added.

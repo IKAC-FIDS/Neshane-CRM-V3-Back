@@ -111,6 +111,7 @@ public final class CustomerDomainSpecification {
         RelationshipLifecycleIntegrationSpecification.run();
         CrossAggregateLifecycleSpecification.run();
         CrossAggregateLifecycleIntegrationSpecification.run();
+        TemporalPolicySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
