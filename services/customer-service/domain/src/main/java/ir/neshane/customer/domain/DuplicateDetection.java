@@ -37,7 +37,10 @@ public final class DuplicateDetection {
         }
         @Override public String toString() { return "DuplicateComparison[redacted]"; }
     }
-    public record Assessment(Outcome outcome, String code) {}
+    public enum WarningPriority { NONE, STANDARD, HIGH }
+    public record Assessment(Outcome outcome, String code, WarningPriority warningPriority) {
+        public Assessment(Outcome outcome, String code) { this(outcome, code, WarningPriority.NONE); }
+    }
     private DuplicateDetection() {}
     public static Assessment assess(Customer candidate, Request request, Coverage coverage, List<Comparison> comparisons) {
         if (!Request.of(candidate, request.operation(), request.requestId()).equals(request))
@@ -47,6 +50,7 @@ public final class DuplicateDetection {
         Set<CustomerId> seen = new HashSet<>();
         boolean definite = false;
         boolean potential = false;
+        boolean multipleSignals = false;
         for (var comparison : List.copyOf(comparisons)) {
             if (!request.equals(comparison.request()) || !request.tenant().equals(comparison.tenant()))
                 return new Assessment(Outcome.BLOCKED, "DUPLICATE_EVIDENCE_SCOPE_MISMATCH");
@@ -61,9 +65,11 @@ public final class DuplicateDetection {
             }
             if (comparison.signals().contains(Signal.VERIFIED_VALID_IDENTIFIER)) definite = true;
             if (!comparison.signals().isEmpty()) potential = true;
+            if (comparison.signals().size() > 1) multipleSignals = true;
         }
         if (definite) return new Assessment(Outcome.DEFINITE_CONFLICT, "DUPLICATE_DEFINITE_CONFLICT");
-        if (potential) return new Assessment(Outcome.POTENTIAL_DUPLICATE, "DUPLICATE_WARNING");
+        if (potential) return new Assessment(Outcome.POTENTIAL_DUPLICATE, "DUPLICATE_WARNING",
+            multipleSignals ? WarningPriority.HIGH : WarningPriority.STANDARD);
         return new Assessment(Outcome.NO_MATCH, "DUPLICATE_NO_MATCH_CANDIDATE");
     }
 }

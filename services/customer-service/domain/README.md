@@ -342,3 +342,11 @@ tenant scope, redacted classification and duplicate signal adaptation.
 Unresolved evidence blocks comparison; hidden historical types still resolve.
 No legal namespace rule, verification service, normalization algorithm,
 trusted evidence, database uniqueness, exception approval or runtime.
+
+## Increment 06C — basic similarity hints
+
+Core basis 2df1f49; Backend basis cd97f92. Exact normalized same-kind
+names, active phone and email hints; Persian/Arabic digits and letters,
+whitespace and name case. Phone keeps prefixes; extension omitted for
+shared-number warning. Email folds domain only. Multiple distinct signals
+on one subject raise warning priority. No fuzzy match or identity proof.

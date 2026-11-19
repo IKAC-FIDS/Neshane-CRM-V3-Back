@@ -71,6 +71,7 @@ public final class CustomerDomainSpecification {
         RelationshipIntegrationSpecification.run();
         DuplicateDetectionSpecification.run();
         IdentityConflictSpecification.run();
+        BasicSimilaritySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
