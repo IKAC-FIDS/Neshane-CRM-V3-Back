@@ -68,6 +68,7 @@ public final class CustomerDomainSpecification {
         RelationshipAssignmentSpecification.run();
         RelationshipLifecycleSpecification.run();
         RelationshipHistorySpecification.run();
+        RelationshipIntegrationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

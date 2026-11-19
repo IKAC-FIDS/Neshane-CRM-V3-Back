@@ -317,3 +317,11 @@ assessment retains protected reason and event-time localized role title.
 Immutable creation/END history checks identity, version, time and continuity.
 Minimal versioned event draft exposes no role title, reason, Person or target.
 No durable Audit, trusted attribution, actual END, expiry event or publishing.
+
+## Increment 05G — integrated relationship verification
+
+Core basis 2df1f49; Backend basis 1be4848. Cross-component isolated
+scenario covers tenant role selection, target discrimination, overlap
+review/exception, temporal eligibility, role revision, protected history
+and minimal event drafts. No actual transaction, state mutation or durable
+Audit; runtime, concurrency and final authorization remain open.
