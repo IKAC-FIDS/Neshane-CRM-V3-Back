@@ -24,7 +24,7 @@ public final class BranchHistory {
             this.companyId = branch.companyId();
             this.branchId = branch.id();
             this.operation = operation;
-            this.previousStatus = branch.status();
+            this.previousStatus = result.current();
             this.newStatus = result.proposed().orElseThrow();
             this.reason = result.reason();
             this.comment = Optional.ofNullable(comment);
@@ -59,17 +59,27 @@ public final class BranchHistory {
 
     public BranchHistory appendCandidate(Branch branch, Company parent, BranchLifecycle.Transition operation,
             LifecycleReasonCatalog catalog, boolean system, String reasonId, String comment, LifecycleHistory.Context context) {
+        Objects.requireNonNull(context,"HISTORY_CONTEXT_REQUIRED");
+        if (!tenantId.equals(branch.tenantId()) || !companyId.equals(branch.companyId()) || !branchId.equals(branch.id()))
+            throw new IllegalArgumentException("HISTORY_BRANCH_SCOPE_MISMATCH");
+        Objects.requireNonNull(parent,"BRANCH_PARENT_REQUIRED");
+        if (!branch.tenantId().equals(parent.tenantId()) || !branch.companyId().equals(parent.id()))
+            throw new IllegalArgumentException("BRANCH_PARENT_SCOPE_MISMATCH");
+        return appendCandidate(branch,branch.status(),parent.status(),operation,catalog,system,reasonId,comment,context);
+    }
+    BranchHistory appendCandidate(Branch branch,BranchStatus current,CustomerStatus parent,BranchLifecycle.Transition operation,
+            LifecycleReasonCatalog catalog,boolean system,String reasonId,String comment,LifecycleHistory.Context context) {
         Objects.requireNonNull(context, "HISTORY_CONTEXT_REQUIRED");
         if (!tenantId.equals(branch.tenantId()) || !companyId.equals(branch.companyId()) || !branchId.equals(branch.id()))
             throw new IllegalArgumentException("HISTORY_BRANCH_SCOPE_MISMATCH");
-        var result = BranchLifecycle.assess(branch, parent, operation, catalog, system, reasonId, comment);
+        var result = BranchLifecycle.assessCandidate(branch.tenantId(),current,parent,operation,catalog,system,reasonId,comment);
         if (result.outcome() != BranchLifecycle.Outcome.ELIGIBLE_CANDIDATE)
             throw new IllegalArgumentException(result.code());
         if (entries.stream().anyMatch(e -> e.context().historyId().equals(context.historyId())))
             throw new IllegalArgumentException("HISTORY_ID_DUPLICATE");
         if (!entries.isEmpty()) {
             Entry last = entries.getLast();
-            if (last.newStatus() != branch.status()) throw new IllegalArgumentException("HISTORY_STATUS_DISCONTINUITY");
+            if (last.newStatus() != current) throw new IllegalArgumentException("HISTORY_STATUS_DISCONTINUITY");
             if (context.occurredAt().isBefore(last.context().occurredAt()))
                 throw new IllegalArgumentException("HISTORY_TIME_DISCONTINUITY");
         }

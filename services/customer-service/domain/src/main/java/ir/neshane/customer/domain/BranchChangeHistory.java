@@ -33,9 +33,14 @@ public final class BranchChangeHistory {
     }
     private final List<Entry> entries;
     private final BranchUpdatePolicy.Current current;
+    private final List<LifecycleHistory.Context> timeline;
     private BranchChangeHistory(List<Entry> entries,BranchUpdatePolicy.Current current) {
+        this(entries,current,entries.stream().map(Entry::context).toList());
+    }
+    private BranchChangeHistory(List<Entry> entries,BranchUpdatePolicy.Current current,List<LifecycleHistory.Context> timeline) {
         this.entries=List.copyOf(entries);
         this.current=current;
+        this.timeline=List.copyOf(timeline);
     }
     public static BranchChangeHistory start(BranchRegistration.Candidate registration,LifecycleHistory.Context context) {
         Objects.requireNonNull(registration,"BRANCH_REGISTRATION_CANDIDATE_REQUIRED");
@@ -45,6 +50,19 @@ public final class BranchChangeHistory {
     }
     public List<Entry> entries() { return entries; }
     public BranchUpdatePolicy.Current current() { return current; }
+    public BranchChangeHistory advanceLifecycle(BranchLifecycleIntegration.Candidate change) {
+        Objects.requireNonNull(change,"BRANCH_LIFECYCLE_CANDIDATE_REQUIRED");
+        var previous=change.previous();
+        if (!current.version().equals(previous.version()) || current.status()!=previous.status() ||
+                !BranchUpdatePolicy.differences(current.branch(),previous.branch()).isEmpty())
+            throw new IllegalArgumentException("BRANCH_HISTORY_LIFECYCLE_DISCONTINUITY");
+        return new BranchChangeHistory(entries,change.record(),advanceTimeline(change.history().entries().getLast().context()));
+    }
+    private List<LifecycleHistory.Context> advanceTimeline(LifecycleHistory.Context context) {
+        if (timeline.stream().anyMatch(e -> e.historyId().equals(context.historyId()))) throw new IllegalArgumentException("HISTORY_ID_DUPLICATE");
+        if (context.occurredAt().isBefore(timeline.getLast().occurredAt())) throw new IllegalArgumentException("HISTORY_TIME_DISCONTINUITY");
+        var copy=new ArrayList<>(timeline); copy.add(context); return copy;
+    }
     public BranchChangeHistory append(BranchUpdatePolicy.Candidate update,LifecycleHistory.Context context) {
         Objects.requireNonNull(update,"BRANCH_UPDATE_CANDIDATE_REQUIRED");
         Objects.requireNonNull(context,"HISTORY_CONTEXT_REQUIRED");
@@ -66,7 +84,7 @@ public final class BranchChangeHistory {
             throw new IllegalArgumentException("HISTORY_TIME_DISCONTINUITY");
         var copy=new ArrayList<>(entries);
         copy.add(new Entry(previous.version(),next.version(),Action.UPDATE,fields,context));
-        return new BranchChangeHistory(copy,next);
+        return new BranchChangeHistory(copy,next,advanceTimeline(context));
     }
     @Override public String toString() { return "BranchChangeHistory[protected, redacted]"; }
 }

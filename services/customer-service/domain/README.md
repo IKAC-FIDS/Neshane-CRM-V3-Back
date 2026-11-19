@@ -685,3 +685,12 @@ Archive evidence is request-scoped and fail-closed; even synthetic clearance
 does not unlock archive, reactivation or restoration. Factual history can
 advance across an eligible lifecycle candidate without emitting a factual event.
 No trusted authorization, durable write or event publication is introduced.
+
+## Increment 11B — branch lifecycle integration
+
+Core basis 2df1f49; Backend basis e2ce838. Owner and version checked branch
+deactivation/reactivation candidates use the parent's supplied current status,
+complete candidate collection and selectable lifecycle reasons. History and
+event drafts use the next branch version; facts, parent and siblings remain
+unchanged. Factual history advances across lifecycle candidates without creating
+factual events. No trusted authorization, persistence or publication.
