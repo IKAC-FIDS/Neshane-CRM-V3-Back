@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyAssessment;
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyCatalog;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
+
 import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
 import ir.neshane.customer.domain.relationship.BusinessRoleDefinition;
 import ir.neshane.customer.domain.relationship.Relationship;

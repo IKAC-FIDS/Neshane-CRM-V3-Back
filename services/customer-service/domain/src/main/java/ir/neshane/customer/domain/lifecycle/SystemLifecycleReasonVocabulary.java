@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.lifecycle;
 
 
 import ir.neshane.customer.domain.customer.CustomerLifecycle;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
-import static ir.neshane.customer.domain.LifecycleReasonDefinition.Scope.*;
+import static ir.neshane.customer.domain.lifecycle.LifecycleReasonDefinition.Scope.*;
 
 public enum SystemLifecycleReasonVocabulary {
     CUSTOMER_REQUEST("درخواست مشتری", "Customer request", false, BOTH, DEACTIVATE, ARCHIVE),

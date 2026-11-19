@@ -1,8 +1,8 @@
 package ir.neshane.customer.domain.customer.state;
 
-import ir.neshane.customer.domain.ArchiveDependencyAssessment;
-import ir.neshane.customer.domain.ArchiveDependencyCatalog;
-import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyAssessment;
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyCatalog;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 

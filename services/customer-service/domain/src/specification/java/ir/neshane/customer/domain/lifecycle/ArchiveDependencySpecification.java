@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.lifecycle;
 
 import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.customer.CustomerLifecycle;
@@ -15,12 +15,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import static ir.neshane.customer.domain.ArchiveDependencyAssessment.Status.*;
-import static ir.neshane.customer.domain.ArchiveDependencyAssessment.Outcome.ALL_CLEARED_CANDIDATE;
+import static ir.neshane.customer.domain.lifecycle.ArchiveDependencyAssessment.Status.*;
+import static ir.neshane.customer.domain.lifecycle.ArchiveDependencyAssessment.Outcome.ALL_CLEARED_CANDIDATE;
 
-final class ArchiveDependencySpecification {
+public final class ArchiveDependencySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("synthetic");
         var id = new CustomerId("customer");
         var company = Company.createCandidate(id, tenant, "Example", null);

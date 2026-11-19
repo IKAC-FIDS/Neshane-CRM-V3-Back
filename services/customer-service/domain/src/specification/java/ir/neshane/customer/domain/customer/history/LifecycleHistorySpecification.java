@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.customer.history;
 
-import ir.neshane.customer.domain.LifecycleReasonCatalog;
-import ir.neshane.customer.domain.LifecycleReasonDefinition;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonDefinition;
 
 import ir.neshane.customer.domain.customer.event.CustomerEventDraft;
 

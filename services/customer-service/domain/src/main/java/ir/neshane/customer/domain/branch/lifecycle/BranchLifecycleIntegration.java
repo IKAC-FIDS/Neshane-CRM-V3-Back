@@ -4,7 +4,7 @@ import ir.neshane.customer.domain.branch.event.BranchEventDraft;
 import ir.neshane.customer.domain.branch.state.BranchRegistration;
 import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
 import ir.neshane.customer.domain.branch.state.CompanyBranches;
-import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 

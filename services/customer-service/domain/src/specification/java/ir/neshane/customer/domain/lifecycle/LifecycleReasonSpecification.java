@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.lifecycle;
 
 import ir.neshane.customer.domain.customer.CustomerLifecycle;
 import ir.neshane.customer.domain.customer.CustomerStatus;
@@ -14,12 +14,12 @@ import static ir.neshane.customer.domain.customer.CustomerStatus.*;
 import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
 import static ir.neshane.customer.domain.customer.CustomerLifecycle.Outcome.*;
 
-final class LifecycleReasonSpecification {
+public final class LifecycleReasonSpecification {
     private static final TenantId A = new TenantId("a");
     private static final TenantId B = new TenantId("b");
     private static int checks;
 
-    static void run() {
+    public static void run() {
         var catalog = LifecycleReasonCatalog.initial();
         expect(SystemLifecycleReasonVocabulary.values().length == 11);
         for (var reason : SystemLifecycleReasonVocabulary.values()) {

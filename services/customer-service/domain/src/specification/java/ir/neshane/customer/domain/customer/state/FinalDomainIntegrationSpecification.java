@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain.customer.state;
 
-import ir.neshane.customer.domain.ArchiveDependencyCatalog;
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyCatalog;
 import ir.neshane.customer.domain.access.AuditRequirementsPolicy;
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.event.BranchChangeEventDraft;
@@ -23,7 +23,7 @@ import ir.neshane.customer.domain.document.DocumentVerification;
 import ir.neshane.customer.domain.document.DocumentVersionHistory;
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
-import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 import ir.neshane.customer.domain.access.LogicalAccessPolicy;
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.access.ReadDisclosurePolicy;

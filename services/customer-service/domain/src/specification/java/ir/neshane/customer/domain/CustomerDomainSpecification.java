@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencySpecification;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonSpecification;
+
 import ir.neshane.customer.domain.access.AccessAuditIntegrationSpecification;
 import ir.neshane.customer.domain.access.AuditRequirementsPolicySpecification;
 import ir.neshane.customer.domain.access.CustomerBranchAccessPolicySpecification;

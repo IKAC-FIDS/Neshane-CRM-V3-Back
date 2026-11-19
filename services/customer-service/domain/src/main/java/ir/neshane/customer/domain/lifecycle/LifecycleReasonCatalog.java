@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.lifecycle;
 
 import ir.neshane.customer.domain.customer.CustomerLifecycle;
 import ir.neshane.customer.domain.customer.CustomerStatus;
