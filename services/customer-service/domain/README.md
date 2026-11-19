@@ -162,3 +162,16 @@ immutable title snapshot, not a persisted history item. The catalog
 assessment delegates to 03A and cannot unblock conditional transitions.
 The old raw assessment remains a low-level structural helper, not a
 validated reason or authorization. No actual lifecycle mutation or Audit.
+
+## Increment 03C — history and event drafts
+
+Core basis 5d7395f; Backend basis a043f3e. Immutable append-candidate history
+reassesses catalog rules, binds customer/tenant, preserves reason title,
+comment, actor and UTC instant; rejects duplicate IDs and discontinuity.
+Candidate event envelope v1 contains only statuses and correlation metadata,
+not reason, comment, name, contact or identifier values. Only eligible
+deactivation can yield a prospective draft; other event names are vocabulary
+only. Neither history nor draft establishes a completed transition.
+Caller-supplied versions, IDs and times are not trusted production contracts.
+Audit, transactional outbox, durable append, publication and idempotency
+remain downstream; no runtime, API, persistence or actual status mutation.
