@@ -807,3 +807,10 @@ audit requirements and redacted metadata, including foreign tenant and
 missing actor denials. Eligible access does not bypass reason, stale version
 or lifecycle guards. Original document history, identity state and versions
 remain unchanged. Specification and documentation only.
+
+## Increment 14A — requirements traceability and gap analysis
+
+Core basis 2df1f49; Backend basis 96bbad2. See
+`REQUIREMENTS-TRACEABILITY.md` for the grouped 234-criterion inventory,
+supplemental direction, candidate evidence and unresolved gap register.
+No executable changes, criterion PASS promotion or acceptance claim.
