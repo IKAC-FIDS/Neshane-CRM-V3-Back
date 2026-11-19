@@ -198,3 +198,14 @@ tenant isolation and unchanged verification. Even fully cleared synthetic
 evidence cannot unlock archive. No production code changes or gate changes.
 These tests do not establish actual status mutation, persistence, trusted
 authorization, durable Audit or event publication.
+
+## Increment 04A — branch base candidate
+
+Core basis 8f37266; Backend basis e498da7. Branch is not a Customer and
+belongs to exactly one immutable Company ID and tenant. Branch identity
+is separate, names reuse existing bounded rules, code and description
+optional. CompanyBranches checks exact supplied code uniqueness within
+an immutable company-scoped candidate collection, not persistence or
+global uniqueness; code normalization and concurrency remain open.
+Initial ACTIVE only; type, contact, lifecycle and event details follow
+in later increments. No reparenting, transfer, authorization or runtime.
