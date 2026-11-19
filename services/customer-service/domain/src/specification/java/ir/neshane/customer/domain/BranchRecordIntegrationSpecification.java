@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactOwner;
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactTypeDefinition;
+import ir.neshane.customer.domain.contact.ContactPoint;
+import ir.neshane.customer.domain.contact.SystemContactVocabulary;
+
 import ir.neshane.customer.domain.contact.ContactValue;
 import ir.neshane.customer.domain.contact.ContactGroup;
 import ir.neshane.customer.domain.contact.ContactTypeRef;
@@ -75,7 +81,7 @@ final class BranchRecordIntegrationSpecification {
         var deactivate=assess(enrichedHistory.current(),candidate.record().version(),deactivated,parent,candidate.branches(),TENANT,BranchUpdatePolicy.Authority.UPDATE,Map.of()).proposed().orElseThrow();
         var completed=enrichedHistory.append(deactivate,context(4));
         expect(completed.current().version().value()==4); expect(completed.current().status()==BranchStatus.ACTIVE);
-        expect(deactivated.contactInfo().points().equals(List.of(phone.inactive()))); expect(deactivated.contactInfo().primary(ContactGroup.TELEPHONE).isEmpty());
+        expect(deactivated.contactInfo().points().size()==1 && deactivated.contactInfo().points().getFirst().isInactiveVersionOf(phone)); expect(deactivated.contactInfo().primary(ContactGroup.TELEPHONE).isEmpty());
         expect(completed.entries().size()==4); expect(enrichedHistory.entries().size()==3);
         var events=BranchChangeEventDraft.fromHistory(completed);
         expect(events.size()==4); expect(events.stream().map(BranchChangeEventDraft::eventId).distinct().count()==4);

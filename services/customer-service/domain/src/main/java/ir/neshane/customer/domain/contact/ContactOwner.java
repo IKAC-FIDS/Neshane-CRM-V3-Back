@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
@@ -17,7 +17,8 @@ public record ContactOwner(TenantId tenantId, Kind kind, String ownerId) {
         }
     }
 
-    static ContactOwner customer(TenantId tenantId, Kind kind, CustomerId id) {
+    /** Typed owner label factory; not an authorization credential. */
+    public static ContactOwner customer(TenantId tenantId, Kind kind, CustomerId id) {
         return new ContactOwner(tenantId, kind, Objects.requireNonNull(id, "CUSTOMER_ID_REQUIRED").value());
     }
 }

@@ -1,6 +1,7 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.shared.validation.ValidationEngine;
+
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -159,6 +160,6 @@ public final class ContactTypeCatalog {
         if (type.ref().tenantId().isEmpty() && profile.tenant().isPresent()) {
             return ValidationEngine.blocked("VALIDATION_SYSTEM_PROFILE_REQUIRED");
         }
-        return ValidationEngine.contact(profile, point);
+        return ContactValidation.evaluate(profile, point);
     }
 }

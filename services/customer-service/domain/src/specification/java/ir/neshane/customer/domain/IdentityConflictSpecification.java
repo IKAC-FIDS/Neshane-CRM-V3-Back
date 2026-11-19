@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentifierTypeDefinition;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentityInfo;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.identity.IdentityIdentifier;
 

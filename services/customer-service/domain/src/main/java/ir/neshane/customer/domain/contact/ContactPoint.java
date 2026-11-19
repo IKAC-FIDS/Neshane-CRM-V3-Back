@@ -1,7 +1,5 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactValue;
-import ir.neshane.customer.domain.contact.ContactTypeRef;
 
 import java.util.Objects;
 
@@ -23,6 +21,11 @@ public record ContactPoint(String id, ContactOwner owner, ContactTypeRef type, C
         if (type.tenantId().isPresent() && !type.tenantId().orElseThrow().equals(owner.tenantId())) {
             throw new IllegalArgumentException("CONTACT_TYPE_TENANT_MISMATCH");
         }
+    }
+
+    /** Read-only comparison with the exact inactive snapshot of an earlier point. */
+    public boolean isInactiveVersionOf(ContactPoint earlier) {
+        return earlier != null && earlier.inactive().equals(this);
     }
 
     ContactPoint inactive() {

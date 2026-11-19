@@ -1,7 +1,9 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactValue;
-import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.Company;
+import ir.neshane.customer.domain.Person;
+import ir.neshane.customer.domain.VerificationStatus;
+
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
@@ -10,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-final class ContactInfoSpecification {
+public final class ContactInfoSpecification {
     private static final CustomerId ID = new CustomerId("synthetic-customer");
     private static final TenantId TENANT = new TenantId("synthetic-tenant");
     private static final TenantId OTHER = new TenantId("synthetic-other");
@@ -19,7 +21,7 @@ final class ContactInfoSpecification {
 
     private ContactInfoSpecification() {}
 
-    static void run() {
+    public static void run() {
         Person person = Person.createCandidate(ID, TENANT, "Test", "Person", null);
         Company company = Company.createCandidate(ID, TENANT, "Test Company", null);
         check(person.contactInfo().points().isEmpty(), "optional person contact");

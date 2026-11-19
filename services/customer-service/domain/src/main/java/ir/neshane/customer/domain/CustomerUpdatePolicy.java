@@ -1,5 +1,12 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactInfo;
+import ir.neshane.customer.domain.contact.ContactPoint;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentityInfo;
+import ir.neshane.customer.domain.shared.validation.ValidationEngine;
+
 import ir.neshane.customer.domain.contact.ContactGroup;
 import ir.neshane.customer.domain.identity.IdentityIdentifier;
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
@@ -92,7 +99,7 @@ public final class CustomerUpdatePolicy {
                 var old = oldContacts.points().stream().filter(p -> p.id().equals(point.id())).findFirst();
                 if (old.filter(point::equals).isPresent()) continue;
                 if (point.status() == ContactPoint.Status.INACTIVE) {
-                    if (old.filter(p -> p.inactive().equals(point)).isEmpty()) return Optional.of("CUSTOMER_CONTACT_INACTIVE_CHANGE_INVALID");
+                    if (old.filter(point::isInactiveVersionOf).isEmpty()) return Optional.of("CUSTOMER_CONTACT_INACTIVE_CHANGE_INVALID");
                     continue;
                 }
                 var others = new ContactInfo(newContacts.owner(),newContacts.points().stream()

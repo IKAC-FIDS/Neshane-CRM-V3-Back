@@ -1,8 +1,8 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactValue;
-import ir.neshane.customer.domain.contact.ContactGroup;
-import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.shared.validation.ValidationEngine;
+import ir.neshane.customer.domain.identity.IdentityValidation;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.identity.IdentityIdentifier;
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
@@ -17,12 +17,12 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-final class ContactValidationSpecification {
+public final class ContactValidationSpecification {
     private static final TenantId TENANT = new TenantId("synthetic");
     private static final ContactOwner OWNER = new ContactOwner(TENANT, ContactOwner.Kind.PERSON, "person");
     private static int checks;
 
-    static void run() {
+    public static void run() {
         var mobile = definition(SystemContactVocabulary.MOBILE);
         var phone = definition(SystemContactVocabulary.PHONE);
         var email = definition(SystemContactVocabulary.EMAIL);
@@ -62,28 +62,28 @@ final class ContactValidationSpecification {
         check(catalog.validateCandidate(empty, a, null).status() == ValidationEngine.Status.BLOCKED);
         check(catalog.validateCandidate(empty, a, profile(new ValidationProfile.Length(field, 4, 5))).status()
             == ValidationEngine.Status.FAIL);
-        check(ValidationEngine.contact(profile(new ValidationProfile.Required(ValidationProfile.Field.EXTENSION)), a)
+        check(ContactValidation.evaluate(profile(new ValidationProfile.Required(ValidationProfile.Field.EXTENSION)), a)
             .status() == ValidationEngine.Status.FAIL);
-        check(ValidationEngine.contact(profile(new ValidationProfile.Length(ValidationProfile.Field.EXTENSION, 1, 3)), a)
+        check(ContactValidation.evaluate(profile(new ValidationProfile.Length(ValidationProfile.Field.EXTENSION, 1, 3)), a)
             .status() == ValidationEngine.Status.PASS);
-        check(ValidationEngine.contact(profile(new ValidationProfile.AllowedValues(field, Set.of("other"))), a)
+        check(ContactValidation.evaluate(profile(new ValidationProfile.AllowedValues(field, Set.of("other"))), a)
             .status() == ValidationEngine.Status.FAIL);
         var unknown = new ValidationProfile.Unsupported(ValidationProfile.UnsupportedKind.ALGORITHM);
-        check(ValidationEngine.contact(profile(unknown), a).status() == ValidationEngine.Status.BLOCKED);
-        check(ValidationEngine.contact(profile(unknown, new ValidationProfile.Length(field, 4, 5)), a)
+        check(ContactValidation.evaluate(profile(unknown), a).status() == ValidationEngine.Status.BLOCKED);
+        check(ContactValidation.evaluate(profile(unknown, new ValidationProfile.Length(field, 4, 5)), a)
             .status() == ValidationEngine.Status.FAIL);
         var foreign = new ValidationProfile("p", Optional.of(new TenantId("other")), profile.rules());
-        check(ValidationEngine.contact(foreign, a).status() == ValidationEngine.Status.BLOCKED);
+        check(ContactValidation.evaluate(foreign, a).status() == ValidationEngine.Status.BLOCKED);
         check(catalog.validateCandidate(empty, a, foreign).status() == ValidationEngine.Status.BLOCKED);
         var unicode = new ContactPoint("unicode", OWNER, mobile.ref(), new ContactValue.Phone("😀", Optional.empty()));
-        check(ValidationEngine.contact(profile(new ValidationProfile.Length(field, 1, 1)), unicode)
+        check(ContactValidation.evaluate(profile(new ValidationProfile.Length(field, 1, 1)), unicode)
             .status() == ValidationEngine.Status.BLOCKED);
         var identifier = new IdentityIdentifier("id", new IdentityOwner(TENANT, new CustomerId("person"), IdentityOwner.Kind.PERSON),
             "type", "123", Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(),
             IdentityIdentifier.Status.ACTIVE);
-        check(ValidationEngine.identity(profile, identifier).status() == ValidationEngine.Status.PASS);
-        check(ValidationEngine.identity(foreign, identifier).status() == ValidationEngine.Status.BLOCKED);
-        check(!ValidationEngine.contact(profile(new ValidationProfile.Length(field, 4, 5)), a).issues().toString().contains("123"));
+        check(IdentityValidation.evaluate(profile, identifier).status() == ValidationEngine.Status.PASS);
+        check(IdentityValidation.evaluate(foreign, identifier).status() == ValidationEngine.Status.BLOCKED);
+        check(!ContactValidation.evaluate(profile(new ValidationProfile.Length(field, 4, 5)), a).issues().toString().contains("123"));
         System.out.println("PASS: " + checks + " isolated contact primary and validation assertions");
     }
 

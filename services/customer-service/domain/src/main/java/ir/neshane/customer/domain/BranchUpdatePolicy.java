@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactInfo;
+import ir.neshane.customer.domain.contact.ContactPoint;
+import ir.neshane.customer.domain.shared.validation.ValidationEngine;
+
 import ir.neshane.customer.domain.contact.ContactGroup;
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
 
@@ -90,7 +95,7 @@ public final class BranchUpdatePolicy {
             if (old.filter(p -> p.status()==ContactPoint.Status.INACTIVE).isPresent())
                 throw new IllegalArgumentException("BRANCH_CONTACT_INACTIVE_CHANGE_INVALID");
             if (point.status()==ContactPoint.Status.INACTIVE) {
-                if (old.filter(p -> p.inactive().equals(point)).isEmpty())
+                if (old.filter(point::isInactiveVersionOf).isEmpty())
                     throw new IllegalArgumentException("BRANCH_CONTACT_INACTIVE_CHANGE_INVALID");
                 continue;
             }

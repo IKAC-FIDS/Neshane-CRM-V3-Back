@@ -1,6 +1,7 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.identity;
 
-import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.validation.ValidationEngine;
+
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -103,6 +104,6 @@ public final class IdentifierTypeCatalog {
         if (profile == null || !type.validationProfile().equals(java.util.Optional.of(profile.id()))) {
             return ValidationEngine.blocked("VALIDATION_PROFILE_NOT_RESOLVED");
         }
-        return ValidationEngine.identity(profile, identifier);
+        return IdentityValidation.evaluate(profile, identifier);
     }
 }

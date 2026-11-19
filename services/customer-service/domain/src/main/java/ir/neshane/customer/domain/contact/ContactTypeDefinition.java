@@ -1,8 +1,5 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactValue;
-import ir.neshane.customer.domain.contact.ContactGroup;
-import ir.neshane.customer.domain.contact.ContactTypeRef;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 

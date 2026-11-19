@@ -1,8 +1,19 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactValue;
-import ir.neshane.customer.domain.contact.ContactGroup;
-import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.BranchRegistration;
+import ir.neshane.customer.domain.BranchStatus;
+import ir.neshane.customer.domain.BranchTypeCatalog;
+import ir.neshane.customer.domain.BranchRecordVersion;
+import ir.neshane.customer.domain.Branch;
+import ir.neshane.customer.domain.CompanyBranches;
+import ir.neshane.customer.domain.BranchUpdatePolicy;
+import ir.neshane.customer.domain.Company;
+import ir.neshane.customer.domain.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.CustomerRecordVersion;
+import ir.neshane.customer.domain.CustomerStatus;
+import ir.neshane.customer.domain.IdentityRevision;
+import ir.neshane.customer.domain.VerificationStatus;
+
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
@@ -17,7 +28,7 @@ import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.BranchUpdatePolicy.Outcome.*;
 
-final class BranchTypeContactUpdateSpecification {
+public final class BranchTypeContactUpdateSpecification {
     private static int checks;
     private static final TenantId TENANT=new TenantId("tenant");
     private static final BranchTypeCatalog TYPES=BranchTypeCatalog.initial();
@@ -27,7 +38,7 @@ final class BranchTypeContactUpdateSpecification {
         MOBILE,"MOBILE",new LocalizedText(Map.of("fa","موبایل")),new LocalizedText(Map.of()),
         SystemContactVocabulary.MOBILE.valueType(),Set.of(ContactOwner.Kind.BRANCH),true,Optional.of("p"),ContactTypeDefinition.Status.ACTIVE,0));
     private static final ValidationProfile PROFILE=new ValidationProfile("p",Optional.empty(),List.of(new ValidationProfile.Length(ValidationProfile.Field.VALUE,3,10)));
-    static void run() {
+    public static void run() {
         var company=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var parent=new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(company,"r1",VerificationStatus.VERIFIED),CustomerStatus.ACTIVE,CustomerRecordVersion.initial(company));
         var base=Branch.createCandidate(new BranchId("b"),TENANT,company,"code","Branch",null,null);

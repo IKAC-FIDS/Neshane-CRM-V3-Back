@@ -1,7 +1,5 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.identity;
 
-import ir.neshane.customer.domain.identity.IdentityOwner;
-import ir.neshane.customer.domain.identity.IdentityIdentifier;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -35,7 +33,8 @@ public record IdentityInfo(IdentityOwner owner, List<IdentityIdentifier> identif
         return new IdentityInfo(owner, next);
     }
 
-    static IdentityInfo forOwner(IdentityOwner expected, IdentityInfo supplied) {
+    /** Checked owner binding; never changes or reassigns ownership. */
+    public static IdentityInfo forOwner(IdentityOwner expected, IdentityInfo supplied) {
         if (supplied == null) {
             return empty(expected);
         }

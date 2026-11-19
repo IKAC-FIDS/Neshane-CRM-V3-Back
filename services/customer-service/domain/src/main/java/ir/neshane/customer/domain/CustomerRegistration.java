@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactInfo;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentityInfo;
+import ir.neshane.customer.domain.shared.validation.ValidationEngine;
+
 import ir.neshane.customer.domain.contact.ContactGroup;
 import ir.neshane.customer.domain.identity.IdentityIdentifier;
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;

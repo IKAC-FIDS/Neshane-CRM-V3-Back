@@ -1,7 +1,5 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactValue;
-import ir.neshane.customer.domain.contact.ContactTypeRef;
 
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
@@ -11,7 +9,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-final class ContactTypeCatalogSpecification {
+public final class ContactTypeCatalogSpecification {
     private static final TenantId ONE = new TenantId("synthetic-one");
     private static final TenantId TWO = new TenantId("synthetic-two");
     private static final ContactOwner OWNER = new ContactOwner(ONE, ContactOwner.Kind.PERSON, "person");
@@ -27,7 +25,7 @@ final class ContactTypeCatalogSpecification {
 
     private ContactTypeCatalogSpecification() {}
 
-    static void run() {
+    public static void run() {
         check(SystemContactVocabulary.values().length == 10, "initial vocabulary");
         check(SystemContactVocabulary.MOBILE.title().exact("fa").orElseThrow().equals("تلفن همراه"), "Persian title");
         check(SystemContactVocabulary.MOBILE.title().exact("en").orElseThrow().equals("Mobile"), "English title");

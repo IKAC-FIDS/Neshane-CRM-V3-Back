@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactOwner;
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactTypeDefinition;
+import ir.neshane.customer.domain.contact.ContactPoint;
+import ir.neshane.customer.domain.contact.SystemContactVocabulary;
+
 import ir.neshane.customer.domain.contact.ContactValue;
 import ir.neshane.customer.domain.contact.ContactGroup;
 import ir.neshane.customer.domain.contact.ContactTypeRef;

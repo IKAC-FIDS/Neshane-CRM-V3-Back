@@ -1,7 +1,9 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.identity;
 
-import ir.neshane.customer.domain.identity.IdentityOwner;
-import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.Company;
+import ir.neshane.customer.domain.Person;
+import ir.neshane.customer.domain.VerificationStatus;
+
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
@@ -12,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-final class IdentityInfoSpecification {
+public final class IdentityInfoSpecification {
     private static final TenantId TENANT = new TenantId("synthetic-one");
     private static final TenantId OTHER = new TenantId("synthetic-two");
     private static final CustomerId ID = new CustomerId("synthetic-customer");
@@ -22,7 +24,7 @@ final class IdentityInfoSpecification {
 
     private IdentityInfoSpecification() {}
 
-    static void run() {
+    public static void run() {
         Person person = Person.createCandidate(ID, TENANT, "Test", "Person", null);
         Company company = Company.createCandidate(ID, TENANT, "Test Company", null);
         check(person.identityInfo().identifiers().isEmpty(), "optional identifiers");

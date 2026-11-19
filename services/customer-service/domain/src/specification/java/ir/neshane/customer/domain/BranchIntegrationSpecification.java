@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactInfo;
+import ir.neshane.customer.domain.contact.ContactPoint;
+
 import ir.neshane.customer.domain.contact.ContactValue;
 import ir.neshane.customer.domain.contact.ContactTypeRef;
 

@@ -1,6 +1,5 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
-import ir.neshane.customer.domain.contact.ContactGroup;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -53,7 +52,8 @@ public final class ContactInfo {
         return new ContactInfo(owner, candidate, primary);
     }
 
-    ContactPoint requirePoint(String id) {
+    /** Read-only lookup; does not grant mutation authority. */
+    public ContactPoint requirePoint(String id) {
         return points.stream().filter(point -> point.id().equals(id)).findFirst()
             .orElseThrow(() -> new IllegalArgumentException("CONTACT_POINT_UNKNOWN"));
     }
@@ -83,7 +83,8 @@ public final class ContactInfo {
         return new ContactInfo(owner, next, nextPrimary);
     }
 
-    static ContactInfo forOwner(ContactOwner expected, ContactInfo supplied) {
+    /** Checked owner binding; never changes or reassigns ownership. */
+    public static ContactInfo forOwner(ContactOwner expected, ContactInfo supplied) {
         if (supplied == null) {
             return empty(expected);
         }

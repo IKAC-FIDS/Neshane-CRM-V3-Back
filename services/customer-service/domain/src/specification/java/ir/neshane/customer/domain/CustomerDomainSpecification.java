@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.BranchTypeContactUpdateSpecification;
+import ir.neshane.customer.domain.contact.ContactValidationSpecification;
+import ir.neshane.customer.domain.contact.ContactTypeCatalogSpecification;
+import ir.neshane.customer.domain.contact.ContactInfoSpecification;
+import ir.neshane.customer.domain.identity.IdentityInfoSpecification;
+
 import ir.neshane.customer.domain.shared.localization.LocalizationSpecification;
 import ir.neshane.customer.domain.shared.temporal.TemporalPolicySpecification;
 
