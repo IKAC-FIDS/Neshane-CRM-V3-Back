@@ -369,3 +369,11 @@ Registration candidates and authority denials carry Audit obligations.
 Only eligible exception admits a minimal prospective event; no reason, raw
 evidence, actor or matching subject in its payload. IDs must be opaque.
 No durable Audit, disclosure authorization, publication or idempotency.
+
+## Increment 06F — integrated duplicate domain verification
+
+Core basis 2df1f49; Backend basis e05c86f. Synthetic integrated checks for
+identity and similarity signals, definite conflicts, fresh review, exception
+authority and reason, reuse visibility, protected history and minimal event
+drafts, tenant isolation and incomplete evidence. Composition is specification
+only; no runtime orchestration, durable Audit, persistence or publication.
