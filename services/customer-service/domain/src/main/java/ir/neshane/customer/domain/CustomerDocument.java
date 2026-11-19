@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.validation.DomainText;
+import ir.neshane.customer.domain.customer.Customer;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
@@ -49,7 +52,7 @@ public final class CustomerDocument {
         if (issueDate.isPresent() && expiryDate.filter(d -> d.isBefore(issueDate.orElseThrow())).isPresent())
             throw new IllegalArgumentException("DOCUMENT_DATE_ORDER_INVALID");
         this.issuer = optional(issuer,"DOCUMENT_ISSUER_REQUIRED");
-        this.notes = Objects.requireNonNull(notes,"DOCUMENT_NOTES_OPTIONAL_REQUIRED").map(n -> CustomerNames.required(n,"DOCUMENT_NOTES",4000));
+        this.notes = Objects.requireNonNull(notes,"DOCUMENT_NOTES_OPTIONAL_REQUIRED").map(n -> DomainText.required(n,"DOCUMENT_NOTES",4000));
         IdentifierText.requireNonBlank(uploader,"DOCUMENT_UPLOADER_REQUIRED");
         this.uploader = uploader;
         this.uploadedAt = Objects.requireNonNull(uploadedAt,"DOCUMENT_UPLOAD_TIME_REQUIRED");

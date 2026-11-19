@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer;
 
 import ir.neshane.customer.domain.identity.IdentityIdentifier;
 
@@ -39,10 +39,14 @@ public final class CriticalFieldChangeAssessment {
             return new Assessment(Outcome.BLOCKED,"CUSTOMER_CRITICAL_CHANGE_REASON_REQUIRED",fields,true,false);
         return new Assessment(Outcome.ELIGIBLE_CANDIDATE,"CUSTOMER_FIELD_CHANGE_CANDIDATE",fields,required,true);
     }
-    static boolean critical(Field field) {
+    /** Value-free classification of a field. */
+    public static boolean critical(Field field) {
         return field != Field.ENGLISH_NAME && field != Field.CONTACT_INFO;
     }
-    static EnumSet<Field> differences(Customer original,Customer proposed) {
+    public static boolean hasChanges(Customer original, Customer proposed) {
+        return !differences(original, proposed).isEmpty();
+    }
+    private static EnumSet<Field> differences(Customer original,Customer proposed) {
         var fields = EnumSet.noneOf(Field.class);
         switch (original) {
             case Person person -> {

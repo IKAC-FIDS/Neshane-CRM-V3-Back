@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -9,7 +14,7 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerLifecycle.Transition.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
 
 final class LifecycleHistorySpecification {
     private static int checks;

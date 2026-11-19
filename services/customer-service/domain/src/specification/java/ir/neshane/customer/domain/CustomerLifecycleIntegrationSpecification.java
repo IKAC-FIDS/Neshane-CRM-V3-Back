@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
 
@@ -10,7 +16,7 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import static ir.neshane.customer.domain.CustomerLifecycle.Transition.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
 import static ir.neshane.customer.domain.CustomerLifecycleIntegration.Authority.*;
 
 final class CustomerLifecycleIntegrationSpecification {

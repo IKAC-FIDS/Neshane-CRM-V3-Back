@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.Customer;
+
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
 

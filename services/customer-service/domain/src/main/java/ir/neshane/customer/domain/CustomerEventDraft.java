@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CustomerStatus;
+
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;

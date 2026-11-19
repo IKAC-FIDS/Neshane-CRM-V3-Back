@@ -1,5 +1,13 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+import ir.neshane.customer.domain.customer.CustomerLifecycleSpecification;
+import ir.neshane.customer.domain.customer.CustomerRecordVersionSpecification;
+
 import ir.neshane.customer.domain.contact.BranchTypeContactUpdateSpecification;
 import ir.neshane.customer.domain.contact.ContactValidationSpecification;
 import ir.neshane.customer.domain.contact.ContactTypeCatalogSpecification;

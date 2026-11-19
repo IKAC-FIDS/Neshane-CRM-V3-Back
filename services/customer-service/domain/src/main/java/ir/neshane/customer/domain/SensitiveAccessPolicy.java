@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Customer;
+
 import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
 
 /** Candidate access to protected facts; returns no resource values or references. */

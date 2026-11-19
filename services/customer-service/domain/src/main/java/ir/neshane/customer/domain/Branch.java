@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.shared.validation.DomainText;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+
 import ir.neshane.customer.domain.contact.ContactOwner;
 import ir.neshane.customer.domain.contact.ContactInfo;
 
@@ -33,8 +37,8 @@ public final class Branch {
         if (parent.status() != CustomerStatus.ACTIVE) throw new IllegalArgumentException("BRANCH_PARENT_NOT_ACTIVE");
         this.companyId = parent.id();
         this.code = optionalRaw(code, "BRANCH_CODE_REQUIRED");
-        this.name = CustomerNames.required(name, "BRANCH_NAME", 255);
-        this.englishName = CustomerNames.optionalEnglishName(englishName);
+        this.name = DomainText.required(name, "BRANCH_NAME", 255);
+        this.englishName = DomainText.optionalEnglishName(englishName);
         this.description = optionalRaw(description, "BRANCH_DESCRIPTION_REQUIRED");
         this.type = Objects.requireNonNull(type, "BRANCH_TYPE_OPTIONAL_REQUIRED");
         this.contactInfo = ContactInfo.empty(new ContactOwner(tenantId, ContactOwner.Kind.BRANCH, id.value()));

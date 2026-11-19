@@ -1,15 +1,18 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer;
+
+import ir.neshane.customer.domain.IdentityRevision;
+import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
-import static ir.neshane.customer.domain.CustomerRecordVersion.Outcome.*;
+import static ir.neshane.customer.domain.customer.CustomerRecordVersion.Outcome.*;
 
-final class CustomerRecordVersionSpecification {
+public final class CustomerRecordVersionSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant");
         var id = new CustomerId("private-id");
         var person = Person.createCandidate(id,tenant,"A","B",null);

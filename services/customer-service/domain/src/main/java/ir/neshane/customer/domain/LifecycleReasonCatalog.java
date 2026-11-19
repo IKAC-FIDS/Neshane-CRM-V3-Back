@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;

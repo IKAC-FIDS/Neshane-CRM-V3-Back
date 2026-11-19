@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
 import ir.neshane.customer.domain.contact.ContactInfo;
 import ir.neshane.customer.domain.contact.ContactPoint;
@@ -84,7 +90,7 @@ public final class CustomerUpdatePolicy {
             Optional.of(new Candidate(proposed,current.status(),current.identity().verificationStatus(),version.proposed().orElseThrow(),duplicate)),true);
     }
     static boolean changed(Customer original,Customer proposed) {
-        return !CriticalFieldChangeAssessment.differences(original,proposed).isEmpty();
+        return CriticalFieldChangeAssessment.hasChanges(original,proposed);
     }
     private static Optional<String> validateChanges(Customer original,Customer proposed,ContactTypeCatalog contacts,
             IdentifierTypeCatalog identifiers,Map<String,ValidationProfile> contactProfiles,Map<String,ValidationProfile> identifierProfiles) {

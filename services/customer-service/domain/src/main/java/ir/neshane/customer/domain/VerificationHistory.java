@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.validation.DomainText;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
@@ -115,7 +119,7 @@ public final class VerificationHistory {
             LocalDate effectiveDate,Instant effectiveAt,DocumentValidity.ExpiryBoundary boundary,
             VerificationRevocation.Authority authority,String reason,String proofReference,LifecycleHistory.Context context) {
         validate(context);
-        CustomerNames.required(reason,"DOCUMENT_IMPACT_REASON",4000);
+        DomainText.required(reason,"DOCUMENT_IMPACT_REASON",4000);
         IdentifierText.requireNonBlank(proofReference,"VERIFICATION_REVOCATION_EVIDENCE_REQUIRED");
         if (effectiveAt.isAfter(context.occurredAt())) throw new IllegalArgumentException("VERIFICATION_REVOCATION_TIME_UNRESOLVED");
         var result = DocumentVerification.assessImpact(this,expectedRevision,document,effectiveDate,effectiveAt,boundary,authority);

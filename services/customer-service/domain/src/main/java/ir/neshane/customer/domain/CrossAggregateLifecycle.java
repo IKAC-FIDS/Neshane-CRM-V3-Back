@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+
 import ir.neshane.customer.domain.shared.identifier.BranchId;
 import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 

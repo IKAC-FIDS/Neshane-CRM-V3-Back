@@ -1,4 +1,7 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer;
+
+import ir.neshane.customer.domain.shared.validation.DomainText;
+import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactOwner;
 import ir.neshane.customer.domain.contact.ContactInfo;
@@ -26,9 +29,9 @@ public final class Person implements Customer {
                    String familyName, String englishName, ContactInfo contactInfo, IdentityInfo identityInfo) {
         this.id = Objects.requireNonNull(id, "CUSTOMER_ID_REQUIRED");
         this.tenantId = Objects.requireNonNull(tenantId, "TENANT_ID_REQUIRED");
-        this.givenName = CustomerNames.required(givenName, "GIVEN_NAME", 100);
-        this.familyName = CustomerNames.required(familyName, "FAMILY_NAME", 100);
-        this.englishName = CustomerNames.optionalEnglishName(englishName);
+        this.givenName = DomainText.required(givenName, "GIVEN_NAME", 100);
+        this.familyName = DomainText.required(familyName, "FAMILY_NAME", 100);
+        this.englishName = DomainText.optionalEnglishName(englishName);
         this.contactInfo = ContactInfo.forOwner(
             ContactOwner.customer(this.tenantId, ContactOwner.Kind.PERSON, this.id), contactInfo);
         this.identityInfo = IdentityInfo.forOwner(

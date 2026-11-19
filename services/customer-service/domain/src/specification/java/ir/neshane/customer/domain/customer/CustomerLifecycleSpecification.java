@@ -1,16 +1,18 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.customer;
+
+import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
-import static ir.neshane.customer.domain.CustomerStatus.*;
-import static ir.neshane.customer.domain.CustomerLifecycle.Transition.*;
-import static ir.neshane.customer.domain.CustomerLifecycle.Outcome.*;
+import static ir.neshane.customer.domain.customer.CustomerStatus.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Outcome.*;
 
-final class CustomerLifecycleSpecification {
+public final class CustomerLifecycleSpecification {
     private static int checks;
 
-    static void run() {
+    public static void run() {
         check(ACTIVE, DEACTIVATE, INACTIVE, ELIGIBLE_CANDIDATE);
         check(ACTIVE, REACTIVATE, null, REJECTED);
         check(ACTIVE, ARCHIVE, ARCHIVED, BLOCKED);

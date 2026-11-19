@@ -1,11 +1,11 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.validation;
 
 import java.util.Optional;
 
-final class CustomerNames {
-    private CustomerNames() {}
+public final class DomainText {
+    private DomainText() {}
 
-    static String required(String value, String field, int maximum) {
+    public static String required(String value, String field, int maximum) {
         if (value == null) {
             throw new IllegalArgumentException(field + "_REQUIRED");
         }
@@ -24,7 +24,7 @@ final class CustomerNames {
         return trimmed;
     }
 
-    static Optional<String> optionalEnglishName(String value) {
+    public static Optional<String> optionalEnglishName(String value) {
         return value == null ? Optional.empty()
             : Optional.of(required(value, "ENGLISH_NAME", 255));
     }

@@ -1,5 +1,12 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.contact.ContactOwner;
 import ir.neshane.customer.domain.contact.ContactInfo;
 import ir.neshane.customer.domain.contact.ContactPoint;
@@ -16,8 +23,8 @@ import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
-import static ir.neshane.customer.domain.CustomerLifecycle.Transition.*;
-import static ir.neshane.customer.domain.CustomerLifecycle.Outcome.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Outcome.*;
 
 /** Cross-component synthetic candidate tests, not runtime integration. */
 final class LifecycleIntegrationSpecification {

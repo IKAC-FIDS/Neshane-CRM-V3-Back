@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.validation.DomainText;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 
 import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
@@ -96,7 +98,7 @@ public final class DocumentHistory {
             throw new IllegalArgumentException("DOCUMENT_HISTORY_TIME_INVALID");
     }
     private static String optionalReason(String reason) {
-        return reason == null ? null : CustomerNames.required(reason,"DOCUMENT_HISTORY_REASON",4000);
+        return reason == null ? null : DomainText.required(reason,"DOCUMENT_HISTORY_REASON",4000);
     }
     private static DocumentVersionHistory require(DocumentVersionHistory.Assessment result) {
         if (result.outcome() != DocumentVersionHistory.Outcome.ELIGIBLE_CANDIDATE)

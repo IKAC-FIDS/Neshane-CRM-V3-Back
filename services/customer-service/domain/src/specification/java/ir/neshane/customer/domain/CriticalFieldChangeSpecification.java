@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.contact.ContactPoint;
 import ir.neshane.customer.domain.identity.IdentityInfo;
 
@@ -14,9 +20,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CriticalFieldChangeAssessment.Field.*;
-import static ir.neshane.customer.domain.CriticalFieldChangeAssessment.ExceptionScope.*;
-import static ir.neshane.customer.domain.CriticalFieldChangeAssessment.Outcome.*;
+import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.Field.*;
+import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.ExceptionScope.*;
+import static ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment.Outcome.*;
 
 final class CriticalFieldChangeSpecification {
     private static int checks;

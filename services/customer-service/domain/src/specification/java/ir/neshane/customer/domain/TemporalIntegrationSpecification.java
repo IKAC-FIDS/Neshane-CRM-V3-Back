@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 import ir.neshane.customer.domain.shared.temporal.TemporalPolicy;
 
@@ -15,7 +19,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 /** Synthetic joint temporal scenario; no application transaction or scheduler. */
 final class TemporalIntegrationSpecification {

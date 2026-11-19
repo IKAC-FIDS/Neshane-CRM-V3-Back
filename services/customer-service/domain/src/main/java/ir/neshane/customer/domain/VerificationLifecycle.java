@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import java.util.Objects;
 import java.util.Optional;
 

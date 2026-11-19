@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -16,7 +21,7 @@ import static ir.neshane.customer.domain.DocumentVersionHistory.Authority.*;
 import static ir.neshane.customer.domain.DocumentVerification.Necessity.*;
 import static ir.neshane.customer.domain.DocumentTypeDefinition.Applicability.*;
 import static ir.neshane.customer.domain.DocumentTypeDefinition.RequirementStage.*;
-import static ir.neshane.customer.domain.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 /** End-to-end synthetic composition; not an application or persistence integration test. */
 final class DocumentIntegrationSpecification {

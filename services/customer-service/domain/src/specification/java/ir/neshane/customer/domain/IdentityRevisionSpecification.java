@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.Customer;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.contact.ContactInfo;
 import ir.neshane.customer.domain.contact.ContactPoint;
 import ir.neshane.customer.domain.identity.IdentityInfo;
@@ -18,7 +23,7 @@ import static ir.neshane.customer.domain.IdentityRevisionAssessment.Authority.*;
 import static ir.neshane.customer.domain.IdentityRevisionAssessment.Impact.*;
 import static ir.neshane.customer.domain.IdentityRevisionAssessment.IdentifierCorrection.*;
 import static ir.neshane.customer.domain.IdentityRevisionAssessment.Outcome.*;
-import static ir.neshane.customer.domain.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 final class IdentityRevisionSpecification {
     private static int checks;

@@ -1,11 +1,13 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.CustomerLifecycle;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerLifecycle.Transition.*;
+import static ir.neshane.customer.domain.customer.CustomerLifecycle.Transition.*;
 import static ir.neshane.customer.domain.LifecycleReasonDefinition.Scope.*;
 
 public enum SystemLifecycleReasonVocabulary {

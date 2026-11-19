@@ -1,11 +1,16 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.CustomerStatus;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
 import static ir.neshane.customer.domain.VerificationLifecycle.Trigger.*;
 import static ir.neshane.customer.domain.VerificationLifecycle.Outcome.*;
-import static ir.neshane.customer.domain.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 final class VerificationLifecycleSpecification {
     private static int checks;

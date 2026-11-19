@@ -7,12 +7,12 @@ import ir.neshane.customer.domain.BranchRecordVersion;
 import ir.neshane.customer.domain.Branch;
 import ir.neshane.customer.domain.CompanyBranches;
 import ir.neshane.customer.domain.BranchUpdatePolicy;
-import ir.neshane.customer.domain.Company;
+import ir.neshane.customer.domain.customer.Company;
 import ir.neshane.customer.domain.CustomerUpdatePolicy;
-import ir.neshane.customer.domain.CustomerRecordVersion;
-import ir.neshane.customer.domain.CustomerStatus;
+import ir.neshane.customer.domain.customer.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.CustomerStatus;
 import ir.neshane.customer.domain.IdentityRevision;
-import ir.neshane.customer.domain.VerificationStatus;
+import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.validation.ValidationProfile;
 

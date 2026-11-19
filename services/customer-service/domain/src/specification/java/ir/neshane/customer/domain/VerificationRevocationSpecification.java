@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
+
 import ir.neshane.customer.domain.identity.IdentityOwner;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -13,7 +16,7 @@ import static ir.neshane.customer.domain.VerificationRevocation.Authority.*;
 import static ir.neshane.customer.domain.VerificationRevocation.Qualification.*;
 import static ir.neshane.customer.domain.VerificationRevocation.Outcome.*;
 import static ir.neshane.customer.domain.VerificationRevocation.Reliance.*;
-import static ir.neshane.customer.domain.VerificationStatus.*;
+import static ir.neshane.customer.domain.verification.VerificationStatus.*;
 
 final class VerificationRevocationSpecification {
     private static int checks;

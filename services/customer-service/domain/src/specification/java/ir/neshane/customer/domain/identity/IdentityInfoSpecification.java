@@ -1,8 +1,8 @@
 package ir.neshane.customer.domain.identity;
 
-import ir.neshane.customer.domain.Company;
-import ir.neshane.customer.domain.Person;
-import ir.neshane.customer.domain.VerificationStatus;
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.Person;
+import ir.neshane.customer.domain.verification.VerificationStatus;
 
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;

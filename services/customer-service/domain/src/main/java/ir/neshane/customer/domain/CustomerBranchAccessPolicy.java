@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.Company;
+import ir.neshane.customer.domain.customer.Customer;
+
 import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
 
 /** Resource-bound candidate access; does not replace lifecycle, version or validation rules. */
