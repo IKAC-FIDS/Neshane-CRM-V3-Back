@@ -50,6 +50,7 @@ public final class CustomerDomainSpecification {
         ContactTypeCatalogSpecification.run();
         LocalizationSpecification.run();
         IdentityInfoSpecification.run();
+        ContactValidationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

@@ -85,4 +85,14 @@ public final class IdentifierTypeCatalog {
         }
         return definition;
     }
+
+    public ValidationEngine.Result validateCandidate(IdentityInfo info, IdentityIdentifier identifier,
+                                                      ValidationProfile profile) {
+        appendCandidate(info, identifier);
+        IdentifierTypeDefinition type = require(identifier.typeId());
+        if (profile == null || !type.validationProfile().equals(java.util.Optional.of(profile.id()))) {
+            return ValidationEngine.blocked("VALIDATION_PROFILE_NOT_RESOLVED");
+        }
+        return ValidationEngine.identity(profile, identifier);
+    }
 }

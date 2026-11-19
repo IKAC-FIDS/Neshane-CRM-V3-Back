@@ -61,6 +61,9 @@ public final class ContactTypeCatalog {
         if (!existing.code().equals(replacement.code()) || existing.valueType() != replacement.valueType()) {
             throw new IllegalArgumentException("CONTACT_TYPE_IDENTITY_IMMUTABLE");
         }
+        if (!existing.group().equals(replacement.group())) {
+            throw new IllegalArgumentException("CONTACT_GROUP_CHANGE_POLICY_UNRESOLVED");
+        }
         Set<Warning> warnings = new HashSet<>();
         if (!existing.applicableTo().equals(replacement.applicableTo())) {
             warnings.add(Warning.SCOPE_CHANGED);
@@ -96,6 +99,9 @@ public final class ContactTypeCatalog {
         if (!info.owner().equals(point.owner())) {
             throw new IllegalArgumentException("CONTACT_POINT_OWNER_MISMATCH");
         }
+        if (point.status() != ContactPoint.Status.ACTIVE) {
+            throw new IllegalArgumentException("CONTACT_POINT_NOT_ACTIVE");
+        }
         ContactTypeDefinition type = require(point.type());
         if (type.status() != ContactTypeDefinition.Status.ACTIVE
                 || hidden.contains(new Hidden(info.owner().tenantId(), type.ref()))) {
@@ -110,7 +116,7 @@ public final class ContactTypeCatalog {
         if (!type.allowMultiple() && info.points().stream().anyMatch(existing -> existing.type().equals(type.ref()))) {
             throw new IllegalArgumentException("CONTACT_TYPE_MULTIPLICITY_EXCEEDED");
         }
-        // No declarative profile interpreter approved yet; do not report validity.
+        // Structural candidate only; profile evaluation is separate.
         return info.withCandidatePoint(point);
     }
 
@@ -120,5 +126,34 @@ public final class ContactTypeCatalog {
             throw new IllegalArgumentException("CONTACT_TYPE_UNKNOWN");
         }
         return value;
+    }
+
+    public ContactInfo selectPrimaryCandidate(ContactInfo info, String pointId) {
+        ContactPoint point = Objects.requireNonNull(info, "CONTACT_INFO_REQUIRED").requirePoint(pointId);
+        ContactTypeDefinition definition = require(point.type());
+        if (definition.status() != ContactTypeDefinition.Status.ACTIVE
+                || hidden.contains(new Hidden(info.owner().tenantId(), definition.ref()))) {
+            throw new IllegalArgumentException("CONTACT_TYPE_NOT_SELECTABLE");
+        }
+        if (!definition.applicableTo().contains(info.owner().kind())) {
+            throw new IllegalArgumentException("CONTACT_TYPE_SCOPE_MISMATCH");
+        }
+        if (!definition.valueType().accepts(point.value())) {
+            throw new IllegalArgumentException("CONTACT_VALUE_TYPE_MISMATCH");
+        }
+        return info.selectPrimary(definition.group()
+            .orElseThrow(() -> new IllegalArgumentException("CONTACT_GROUP_NOT_CONFIGURED")), pointId);
+    }
+
+    public ValidationEngine.Result validateCandidate(ContactInfo info, ContactPoint point, ValidationProfile profile) {
+        appendCandidate(info, point);
+        ContactTypeDefinition type = require(point.type());
+        if (profile == null || !type.validationProfile().equals(java.util.Optional.of(profile.id()))) {
+            return ValidationEngine.blocked("VALIDATION_PROFILE_NOT_RESOLVED");
+        }
+        if (type.ref().tenantId().isEmpty() && profile.tenant().isPresent()) {
+            return ValidationEngine.blocked("VALIDATION_SYSTEM_PROFILE_REQUIRED");
+        }
+        return ValidationEngine.contact(profile, point);
     }
 }

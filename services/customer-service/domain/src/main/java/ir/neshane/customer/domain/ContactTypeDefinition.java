@@ -8,7 +8,8 @@ import java.util.Set;
 /** Immutable candidate definition; the profile reference is not an executable validator. */
 public record ContactTypeDefinition(ContactTypeRef ref, String code, LocalizedText title,
         LocalizedText description, ValueType valueType, Set<ContactOwner.Kind> applicableTo,
-        boolean allowMultiple, Optional<String> validationProfile, Status status, int displayOrder) {
+        boolean allowMultiple, Optional<String> validationProfile, Status status, int displayOrder,
+        Optional<ContactGroup> group) {
     public enum Status { ACTIVE, INACTIVE }
 
     public enum ValueType {
@@ -40,6 +41,23 @@ public record ContactTypeDefinition(ContactTypeRef ref, String code, LocalizedTe
         }
         Objects.requireNonNull(validationProfile, "CONTACT_VALIDATION_PROFILE_REQUIRED");
         Objects.requireNonNull(status, "CONTACT_TYPE_STATUS_REQUIRED");
+        Objects.requireNonNull(group, "CONTACT_GROUP_OPTIONAL_REQUIRED");
+        if (ref.tenantId().isEmpty()) {
+            SystemContactVocabulary.find(code).ifPresent(initial -> {
+                if (!group.equals(Optional.of(initial.group()))) {
+                    throw new IllegalArgumentException("CONTACT_SYSTEM_GROUP_MISMATCH");
+                }
+            });
+        }
+    }
+
+    public ContactTypeDefinition(ContactTypeRef ref, String code, LocalizedText title,
+            LocalizedText description, ValueType valueType, Set<ContactOwner.Kind> applicableTo,
+            boolean allowMultiple, Optional<String> validationProfile, Status status, int displayOrder) {
+        this(ref, code, title, description, valueType, applicableTo, allowMultiple, validationProfile,
+            status, displayOrder, ref.tenantId().isEmpty()
+                ? SystemContactVocabulary.find(normalizeCode(code)).map(SystemContactVocabulary::group)
+                : Optional.empty());
     }
 
     public static String normalizeCode(String code) {

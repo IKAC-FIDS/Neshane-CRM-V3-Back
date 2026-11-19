@@ -29,6 +29,18 @@ public enum SystemContactVocabulary {
 
     public ContactTypeDefinition.ValueType valueType() { return valueType; }
 
+    public ContactGroup group() {
+        return switch (this) {
+            case PHONE, MOBILE -> ContactGroup.TELEPHONE;
+            case FAX -> ContactGroup.FAX;
+            case EMAIL -> ContactGroup.EMAIL;
+            case ADDRESS -> ContactGroup.ADDRESS;
+            case WEBSITE -> ContactGroup.WEBSITE;
+            case WHATSAPP, TELEGRAM -> ContactGroup.MESSENGER;
+            case LINKEDIN, INSTAGRAM -> ContactGroup.SOCIAL;
+        };
+    }
+
     public static Optional<SystemContactVocabulary> find(String code) {
         return Arrays.stream(values()).filter(value -> value.name().equals(code)).findFirst();
     }

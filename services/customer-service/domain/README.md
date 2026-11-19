@@ -122,3 +122,22 @@ history store or durable Audit established. No update or revoke operation.
 Profile references are opaque; no arbitrary code. Raw identifier values are
 not included in diagnostic toString. Actual PII remains prohibited.
 No schema, API, Spring, IAM, trust, persistence, or event publication.
+
+## Increment 02E — contact groups and bounded validation
+
+Core basis 68b3248; Backend basis ce543c7. Trace CM1-PD-131..136.
+System contacts have stable groups; tenant custom types may specify an
+existing group at creation. Group reassignment is blocked pending migration.
+Primary is optional, per owner and group; explicit selection replaces the
+previous selection. Deactivating the selected point clears its primary
+without selecting another. Points and previous immutable snapshots remain.
+Hide/unhide does not rewrite existing selections. Historical multiplicity
+and migration, concurrency and durable Audit are not implemented.
+Contact and identity catalogs can evaluate explicitly supplied matching
+profile snapshots; required, length and exact allowed values are supported.
+Unsupported rules or unresolved profiles are BLOCKED; definite failures
+take precedence. No arbitrary scripts; legal identifiers require system
+profiles. Structural candidate append is not a validated or authorized write.
+PASS means only the supplied bounded checks passed, not verification or
+legal authenticity. Profile registry/provenance, Unicode policy, legal
+algorithms, normalization, IAM, API, persistence and events remain open.
