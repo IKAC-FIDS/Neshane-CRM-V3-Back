@@ -521,3 +521,12 @@ Duplicate history IDs, stale versions, scope and context inconsistencies
 are rejected. Minimal event drafts omit file metadata, actor and reasons.
 Computed expiry does not create an operation or event. No event publication,
 durable Audit, idempotency store or production authorization.
+
+## Increment 08I — integrated document domain rules
+
+Core basis 2df1f49; Backend basis e0264e7. Synthetic composition covers
+catalog and stage policy, Person/Company upload, completeness, immutable
+version replacement, essential and non-essential verification evidence,
+expiry/invalidation, fresh manual verification, history and minimal event
+drafts, independent authority, stale policy and cross-tenant rejection.
+No deployed integration, actual files, durable transaction or Audit evidence.

@@ -90,6 +90,7 @@ public final class CustomerDomainSpecification {
         DocumentCompletenessSpecification.run();
         DocumentVerificationSpecification.run();
         DocumentHistorySpecification.run();
+        DocumentIntegrationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
