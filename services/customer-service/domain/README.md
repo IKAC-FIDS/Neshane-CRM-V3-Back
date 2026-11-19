@@ -426,3 +426,12 @@ fundamental invalidity remain distinct; dispute and age alone do not restore
 or revoke. Fundamental invalidity requires independent verifier and blocks
 reliance even before persistence. Actual evidence trust, essentiality,
 authorization, durable Audit and recovery remain outside this model.
+
+## Increment 07F — verification history and event drafts
+
+Core basis 2df1f49; Backend basis ddec3c2. Immutable protected candidate history
+re-evaluates manual verification, identity change and revocation; maintains
+revision/status continuity, sequence, recording order and local SoD exclusions.
+Evidence and reasons stay in protected history; minimal event drafts for
+verification/reverification/revocation only. No denied-attempt audit journal,
+trusted actor mapping, durable state, Audit ingestion or event publication.

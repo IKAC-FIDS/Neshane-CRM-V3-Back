@@ -80,6 +80,7 @@ public final class CustomerDomainSpecification {
         ManualVerificationSpecification.run();
         IdentityRevisionSpecification.run();
         VerificationRevocationSpecification.run();
+        VerificationHistorySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
