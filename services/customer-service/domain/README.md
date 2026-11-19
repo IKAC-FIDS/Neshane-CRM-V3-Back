@@ -778,3 +778,13 @@ tenant, and permits only the matching resource operation family. Creation
 uses structural candidates. Customer and branch grants remain independent;
 no implicit parent permission, lifecycle approval, resource-level ACL,
 trusted grant resolution or enforcement. No state or version mutation.
+
+## Increment 13C — sensitive operations and data protection
+
+Core basis 2df1f49; Backend basis fcb8c3b. Exact independent grants cover
+identity read/correction, document metadata/content and change operations,
+evidence read/manual verification/revocation and duplicate exception.
+Owner identity (tenant, customer ID and kind) binds documents, evidence and
+duplicate requests to the customer. Assessments return codes only, never
+protected values or references. No data projection, encryption, trusted
+authorization, qualification, revision validation or automatic mutation.
