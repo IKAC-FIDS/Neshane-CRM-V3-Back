@@ -17,7 +17,21 @@ public final class CustomerRegistration {
         }
         @Override public String toString() { return "CustomerRegistration.Context[redacted]"; }
     }
-    public record Candidate(Customer customer,CustomerRecordVersion version,DuplicateExceptionPolicy.Decision duplicateDecision) {
+    public static final class Candidate {
+        private final Customer customer;
+        private final CustomerRecordVersion version;
+        private final DuplicateExceptionPolicy.Decision duplicateDecision;
+        private final Optional<String> exceptionReason;
+        private Candidate(Customer customer,CustomerRecordVersion version,DuplicateExceptionPolicy.Decision duplicateDecision,String reason) {
+            this.customer = customer;
+            this.version = version;
+            this.duplicateDecision = duplicateDecision;
+            this.exceptionReason = duplicateDecision.outcome() == DuplicateExceptionPolicy.Outcome.EXCEPTION_CANDIDATE ? Optional.of(reason) : Optional.empty();
+        }
+        public Customer customer() { return customer; }
+        public CustomerRecordVersion version() { return version; }
+        public DuplicateExceptionPolicy.Decision duplicateDecision() { return duplicateDecision; }
+        public Optional<String> exceptionReason() { return exceptionReason; }
         @Override public String toString() { return "CustomerRegistration.Candidate[redacted]"; }
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
@@ -52,7 +66,7 @@ public final class CustomerRegistration {
         if (summary.completedRequired().orElseThrow() != summary.totalRequired())
             return blocked("CUSTOMER_REGISTRATION_DOCUMENTS_INCOMPLETE",false);
         return new Assessment(Outcome.ELIGIBLE_CANDIDATE,"CUSTOMER_REGISTRATION_CANDIDATE",
-            Optional.of(new Candidate(customer,CustomerRecordVersion.initial(customer),decision)),true);
+            Optional.of(new Candidate(customer,CustomerRecordVersion.initial(customer),decision,exceptionReason)),true);
     }
     private static Optional<String> validateFields(Customer customer,ContactTypeCatalog contacts,IdentifierTypeCatalog identifiers,
             Map<String,ValidationProfile> contactProfiles,Map<String,ValidationProfile> identifierProfiles) {

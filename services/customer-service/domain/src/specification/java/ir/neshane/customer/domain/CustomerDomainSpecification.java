@@ -96,6 +96,7 @@ public final class CustomerDomainSpecification {
         CustomerUpdatePolicySpecification.run();
         CriticalFieldChangeSpecification.run();
         CustomerUpdateVerificationSpecification.run();
+        CustomerChangeHistorySpecification.run();
     }
 
     private static void check(boolean condition, String description) {

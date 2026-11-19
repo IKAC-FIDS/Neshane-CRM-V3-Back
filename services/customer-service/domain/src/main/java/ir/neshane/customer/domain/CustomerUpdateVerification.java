@@ -8,9 +8,25 @@ import java.util.Set;
 /** Composes update eligibility and evidence impact without committing a customer record. */
 public final class CustomerUpdateVerification {
     public enum Outcome { ELIGIBLE_CANDIDATE, UNCHANGED, BLOCKED }
-    public record Candidate(CustomerUpdatePolicy.Current record, VerificationHistory history,
-            Set<CriticalFieldChangeAssessment.Field> fields, boolean differentVerifierRequired) {
-        public Candidate { fields = Set.copyOf(fields); }
+    public static final class Candidate {
+        private final CustomerUpdatePolicy.Current previous;
+        private final CustomerUpdatePolicy.Current record;
+        private final VerificationHistory history;
+        private final Set<CriticalFieldChangeAssessment.Field> fields;
+        private final boolean differentVerifierRequired;
+        private Candidate(CustomerUpdatePolicy.Current previous,CustomerUpdatePolicy.Current record,VerificationHistory history,
+                Set<CriticalFieldChangeAssessment.Field> fields,boolean differentVerifierRequired) {
+            this.previous = previous;
+            this.record = record;
+            this.history = history;
+            this.fields = Set.copyOf(fields);
+            this.differentVerifierRequired = differentVerifierRequired;
+        }
+        public CustomerUpdatePolicy.Current previous() { return previous; }
+        public CustomerUpdatePolicy.Current record() { return record; }
+        public VerificationHistory history() { return history; }
+        public Set<CriticalFieldChangeAssessment.Field> fields() { return fields; }
+        public boolean differentVerifierRequired() { return differentVerifierRequired; }
         @Override public String toString() { return "CustomerUpdateVerification.Candidate[redacted]"; }
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
@@ -47,7 +63,7 @@ public final class CustomerUpdateVerification {
                 IdentityRevisionAssessment.Authority.UPDATE,impact,correction,reason,historyContext);
             var record = new CustomerUpdatePolicy.Current(next.current(),preliminary.preservedStatus(),preliminary.nextVersion());
             return new Assessment(Outcome.ELIGIBLE_CANDIDATE,"CUSTOMER_UPDATE_VERIFICATION_CANDIDATE",
-                Optional.of(new Candidate(record,next,fields.fields(),revision.differentVerifierRequired())),true);
+                Optional.of(new Candidate(current,record,next,fields.fields(),revision.differentVerifierRequired())),true);
         } catch (IllegalArgumentException ex) {
             return blocked(ex.getMessage(),false);
         }

@@ -576,3 +576,13 @@ duplicate warnings block; material verified changes require reverification.
 Verified identifier correction preserves independent-verifier exclusions.
 No-op preserves versions and history. Evidence impact is supplied explicitly;
 no direct verification approval, durable mutation, IAM or Audit delivery.
+
+## Increment 09F — customer change history
+
+Core basis 2df1f49; Backend basis a71c1f7. Immutable registration and factual
+update history accepts only locally issued candidates. Records scoped versions,
+identity revisions, verification transitions, field classifications, protected
+reason and metadata. Rejects repeated IDs, stale versions, changed prior facts
+and time discontinuity. Independent lifecycle/verification operations remain
+in their own histories; the current snapshot is the last factual change.
+No persistence, authenticated actor proof or external Audit delivery.
