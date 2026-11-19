@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.time.Instant;
@@ -19,14 +21,14 @@ public final class DuplicateEventDraft {
         Objects.requireNonNull(entry, "HISTORY_ENTRY_REQUIRED");
         if (entry.decision().outcome() != DuplicateExceptionPolicy.Outcome.EXCEPTION_CANDIDATE)
             throw new IllegalArgumentException("DUPLICATE_EXCEPTION_EVENT_NOT_ELIGIBLE");
-        IdentityIdentifier.required(eventId, "EVENT_ID_REQUIRED");
+        IdentifierText.requireNonBlank(eventId, "EVENT_ID_REQUIRED");
         this.tenantId = entry.request().tenant();
         this.requestId = entry.request().requestId();
         this.eventId = eventId;
         this.occurredAt = entry.context().occurredAt();
         this.correlationId = entry.context().correlationId();
         this.causationId = Objects.requireNonNull(causationId, "CAUSATION_OPTIONAL_REQUIRED");
-        causationId.ifPresent(id -> IdentityIdentifier.required(id, "CAUSATION_ID_REQUIRED"));
+        causationId.ifPresent(id -> IdentifierText.requireNonBlank(id, "CAUSATION_ID_REQUIRED"));
     }
     public static DuplicateEventDraft fromCandidate(DuplicateDecisionHistory.Entry entry, String eventId, Optional<String> causationId) {
         return new DuplicateEventDraft(entry, eventId, causationId);

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
@@ -25,11 +27,11 @@ public final class CustomerEventDraft {
 
     private CustomerEventDraft(String eventId, Type type, CustomerId id, long version,
             TenantId tenant, Instant instant, String correlationId, Optional<String> causationId, Payload payload) {
-        IdentityIdentifier.required(eventId, "EVENT_ID_REQUIRED");
+        IdentifierText.requireNonBlank(eventId, "EVENT_ID_REQUIRED");
         if (version < 1) throw new IllegalArgumentException("AGGREGATE_VERSION_INVALID");
-        IdentityIdentifier.required(correlationId, "CORRELATION_ID_REQUIRED");
+        IdentifierText.requireNonBlank(correlationId, "CORRELATION_ID_REQUIRED");
         Objects.requireNonNull(causationId, "CAUSATION_OPTIONAL_REQUIRED")
-            .ifPresent(value -> IdentityIdentifier.required(value, "CAUSATION_ID_REQUIRED"));
+            .ifPresent(value -> IdentifierText.requireNonBlank(value, "CAUSATION_ID_REQUIRED"));
         this.eventId = eventId;
         this.eventType = type;
         this.aggregateId = id;

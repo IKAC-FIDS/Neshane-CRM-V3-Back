@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;

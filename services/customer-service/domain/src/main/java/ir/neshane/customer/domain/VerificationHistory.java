@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -113,7 +116,7 @@ public final class VerificationHistory {
             VerificationRevocation.Authority authority,String reason,String proofReference,LifecycleHistory.Context context) {
         validate(context);
         CustomerNames.required(reason,"DOCUMENT_IMPACT_REASON",4000);
-        IdentityIdentifier.required(proofReference,"VERIFICATION_REVOCATION_EVIDENCE_REQUIRED");
+        IdentifierText.requireNonBlank(proofReference,"VERIFICATION_REVOCATION_EVIDENCE_REQUIRED");
         if (effectiveAt.isAfter(context.occurredAt())) throw new IllegalArgumentException("VERIFICATION_REVOCATION_TIME_UNRESOLVED");
         var result = DocumentVerification.assessImpact(this,expectedRevision,document,effectiveDate,effectiveAt,boundary,authority);
         if (result.outcome() != DocumentVerification.Outcome.REVERIFICATION_REQUIRED_CANDIDATE)

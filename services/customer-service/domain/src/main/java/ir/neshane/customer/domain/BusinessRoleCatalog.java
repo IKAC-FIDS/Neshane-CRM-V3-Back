@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.HashMap;
@@ -13,7 +15,7 @@ import java.util.Set;
 public final class BusinessRoleCatalog {
     public record Ref(String id, Optional<TenantId> tenantId) {
         public Ref {
-            IdentityIdentifier.required(id, "ROLE_ID_REQUIRED");
+            IdentifierText.requireNonBlank(id, "ROLE_ID_REQUIRED");
             Objects.requireNonNull(tenantId, "ROLE_ORIGIN_REQUIRED");
         }
     }
@@ -100,8 +102,8 @@ public final class BusinessRoleCatalog {
             Coverage coverage, String reason, String releaseReference) {
         requireGovernance(authority, Optional.empty(), Optional.empty());
         if (def.tenantId().isPresent()) throw new IllegalArgumentException("ROLE_SYSTEM_REQUIRED");
-        IdentityIdentifier.required(reason, "ROLE_PUBLICATION_REASON_REQUIRED");
-        IdentityIdentifier.required(releaseReference, "ROLE_RELEASE_REFERENCE_REQUIRED");
+        IdentifierText.requireNonBlank(reason, "ROLE_PUBLICATION_REASON_REQUIRED");
+        IdentifierText.requireNonBlank(releaseReference, "ROLE_RELEASE_REFERENCE_REQUIRED");
         if (coverage != Coverage.COMPLETE_CANDIDATE) throw new IllegalArgumentException("ROLE_PUBLICATION_EVIDENCE_MISSING");
         if (def.status() != BusinessRoleDefinition.Status.ACTIVE) throw new IllegalArgumentException("ROLE_INITIAL_STATUS_INVALID");
         if (definitions.containsKey(ref(def))) throw new IllegalArgumentException("ROLE_ID_DUPLICATE");
@@ -139,7 +141,7 @@ public final class BusinessRoleCatalog {
             BusinessRoleDefinition.Scope proposed, Coverage coverage, java.util.List<Relationship> relationships, String reason) {
         var impact = assessScopeCandidate(authority, actorTenant, ref, proposed, coverage, relationships);
         if (impact == Impact.BLOCKED) throw new IllegalArgumentException("ROLE_SCOPE_EVIDENCE_MISSING");
-        if (impact == Impact.INCOMPATIBLE_CANDIDATE) IdentityIdentifier.required(reason, "ROLE_SCOPE_REASON_REQUIRED");
+        if (impact == Impact.INCOMPATIBLE_CANDIDATE) IdentifierText.requireNonBlank(reason, "ROLE_SCOPE_REASON_REQUIRED");
         var old = definitions.get(ref);
         return replace(new BusinessRoleDefinition(old.id(), old.tenantId(), old.code(), old.title(),
             old.description(), proposed, old.status()));

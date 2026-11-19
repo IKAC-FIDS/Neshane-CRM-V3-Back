@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.contact;
 
 import java.util.Objects;
 import java.util.Optional;

@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import java.util.Objects;
@@ -14,8 +17,8 @@ public record IdentifierTypeDefinition(String id, String code, LocalizedText tit
     public enum Status { ACTIVE, INACTIVE }
 
     public IdentifierTypeDefinition {
-        IdentityIdentifier.required(id, "IDENTIFIER_TYPE_ID_REQUIRED");
-        IdentityIdentifier.required(code, "IDENTIFIER_TYPE_CODE_REQUIRED");
+        IdentifierText.requireNonBlank(id, "IDENTIFIER_TYPE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(code, "IDENTIFIER_TYPE_CODE_REQUIRED");
         Objects.requireNonNull(title, "IDENTIFIER_TYPE_TITLE_REQUIRED");
         if (title.translations().isEmpty()) {
             throw new IllegalArgumentException("IDENTIFIER_TYPE_TITLE_REQUIRED");
@@ -25,7 +28,7 @@ public record IdentifierTypeDefinition(String id, String code, LocalizedText tit
             throw new IllegalArgumentException("IDENTIFIER_SCOPE_REQUIRED");
         }
         applicableCountries = Set.copyOf(Objects.requireNonNull(applicableCountries, "IDENTIFIER_COUNTRIES_REQUIRED"));
-        applicableCountries.forEach(country -> IdentityIdentifier.required(country, "IDENTIFIER_COUNTRY_REQUIRED"));
+        applicableCountries.forEach(country -> IdentifierText.requireNonBlank(country, "IDENTIFIER_COUNTRY_REQUIRED"));
         Objects.requireNonNull(validationProfile, "IDENTIFIER_VALIDATION_PROFILE_REQUIRED");
         Objects.requireNonNull(verificationProfile, "IDENTIFIER_VERIFICATION_PROFILE_REQUIRED");
         Objects.requireNonNull(status, "IDENTIFIER_TYPE_STATUS_REQUIRED");

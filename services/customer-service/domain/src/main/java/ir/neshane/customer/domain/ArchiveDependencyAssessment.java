@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
@@ -17,17 +19,17 @@ public final class ArchiveDependencyAssessment {
         public Request {
             Objects.requireNonNull(tenantId, "TENANT_REQUIRED");
             Objects.requireNonNull(customerId, "CUSTOMER_REQUIRED");
-            IdentityIdentifier.required(requestId, "ARCHIVE_REQUEST_REQUIRED");
+            IdentifierText.requireNonBlank(requestId, "ARCHIVE_REQUEST_REQUIRED");
         }
     }
     public record Evidence(Request request, String dependencyCode, String ownerService,
             Status status, String evidenceId, Instant observedAt) {
         public Evidence {
             Objects.requireNonNull(request, "ARCHIVE_REQUEST_REQUIRED");
-            IdentityIdentifier.required(dependencyCode, "DEPENDENCY_CODE_REQUIRED");
-            IdentityIdentifier.required(ownerService, "DEPENDENCY_OWNER_REQUIRED");
+            IdentifierText.requireNonBlank(dependencyCode, "DEPENDENCY_CODE_REQUIRED");
+            IdentifierText.requireNonBlank(ownerService, "DEPENDENCY_OWNER_REQUIRED");
             Objects.requireNonNull(status, "DEPENDENCY_STATUS_REQUIRED");
-            IdentityIdentifier.required(evidenceId, "DEPENDENCY_EVIDENCE_REQUIRED");
+            IdentifierText.requireNonBlank(evidenceId, "DEPENDENCY_EVIDENCE_REQUIRED");
             Objects.requireNonNull(observedAt, "DEPENDENCY_TIME_REQUIRED");
         }
     }

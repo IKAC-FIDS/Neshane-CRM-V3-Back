@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import java.util.HashMap;
@@ -16,14 +18,14 @@ public final class ArchiveDependencyCatalog {
             LocalizedText description, String ownerService, Set<CustomerKind> applicableCustomerTypes,
             Status status, int displayOrder) {
         public Definition {
-            IdentityIdentifier.required(dependencyId, "DEPENDENCY_ID_REQUIRED");
-            IdentityIdentifier.required(code, "DEPENDENCY_CODE_REQUIRED");
+            IdentifierText.requireNonBlank(dependencyId, "DEPENDENCY_ID_REQUIRED");
+            IdentifierText.requireNonBlank(code, "DEPENDENCY_CODE_REQUIRED");
             code = code.strip().toUpperCase(Locale.ROOT);
             if (!code.matches("[A-Z0-9_]{3,64}")) throw new IllegalArgumentException("DEPENDENCY_CODE_INVALID");
             Objects.requireNonNull(title, "DEPENDENCY_TITLE_REQUIRED");
             if (title.translations().isEmpty()) throw new IllegalArgumentException("DEPENDENCY_TITLE_REQUIRED");
             Objects.requireNonNull(description, "DEPENDENCY_DESCRIPTION_REQUIRED");
-            IdentityIdentifier.required(ownerService, "DEPENDENCY_OWNER_REQUIRED");
+            IdentifierText.requireNonBlank(ownerService, "DEPENDENCY_OWNER_REQUIRED");
             applicableCustomerTypes = Set.copyOf(applicableCustomerTypes);
             if (applicableCustomerTypes.isEmpty()) throw new IllegalArgumentException("DEPENDENCY_SCOPE_REQUIRED");
             Objects.requireNonNull(status, "DEPENDENCY_STATUS_REQUIRED");

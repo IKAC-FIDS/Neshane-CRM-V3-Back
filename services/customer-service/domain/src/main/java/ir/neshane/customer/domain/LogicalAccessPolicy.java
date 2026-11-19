@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.Objects;
@@ -25,7 +27,7 @@ public final class LogicalAccessPolicy {
     }
     public record ActorContext(String actorId,TenantId tenant,Set<Grant> grants) {
         public ActorContext {
-            IdentityIdentifier.required(actorId,"ACCESS_ACTOR_REQUIRED");
+            IdentifierText.requireNonBlank(actorId,"ACCESS_ACTOR_REQUIRED");
             Objects.requireNonNull(tenant,"ACCESS_ACTOR_TENANT_REQUIRED");
             grants=Set.copyOf(Objects.requireNonNull(grants,"ACCESS_GRANTS_REQUIRED"));
         }

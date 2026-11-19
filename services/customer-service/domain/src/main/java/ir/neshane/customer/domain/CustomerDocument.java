@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
 
 import java.time.Instant;
@@ -31,7 +34,7 @@ public final class CustomerDocument {
             Optional<String> issuer,Optional<String> notes,String uploader,Instant uploadedAt,long version,State state) {
         this.id = Objects.requireNonNull(id,"DOCUMENT_ID_REQUIRED");
         this.owner = Objects.requireNonNull(owner,"DOCUMENT_OWNER_REQUIRED");
-        IdentityIdentifier.required(typeId,"DOCUMENT_TYPE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(typeId,"DOCUMENT_TYPE_ID_REQUIRED");
         this.typeId = typeId;
         this.files = List.copyOf(files);
         if (this.files.isEmpty()) throw new IllegalArgumentException("DOCUMENT_FILES_REQUIRED");
@@ -47,7 +50,7 @@ public final class CustomerDocument {
             throw new IllegalArgumentException("DOCUMENT_DATE_ORDER_INVALID");
         this.issuer = optional(issuer,"DOCUMENT_ISSUER_REQUIRED");
         this.notes = Objects.requireNonNull(notes,"DOCUMENT_NOTES_OPTIONAL_REQUIRED").map(n -> CustomerNames.required(n,"DOCUMENT_NOTES",4000));
-        IdentityIdentifier.required(uploader,"DOCUMENT_UPLOADER_REQUIRED");
+        IdentifierText.requireNonBlank(uploader,"DOCUMENT_UPLOADER_REQUIRED");
         this.uploader = uploader;
         this.uploadedAt = Objects.requireNonNull(uploadedAt,"DOCUMENT_UPLOAD_TIME_REQUIRED");
         if (version < 1) throw new IllegalArgumentException("DOCUMENT_VERSION_INVALID");
@@ -62,7 +65,7 @@ public final class CustomerDocument {
     }
     private static Optional<String> optional(Optional<String> value,String code) {
         Objects.requireNonNull(value,"DOCUMENT_OPTIONAL_REQUIRED");
-        value.ifPresent(v -> IdentityIdentifier.required(v,code));
+        value.ifPresent(v -> IdentifierText.requireNonBlank(v,code));
         return value;
     }
     public CustomerDocumentId id() { return id; }

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.time.Instant;
@@ -26,14 +28,14 @@ public final class AuditRequirementsPolicy {
             Objects.requireNonNull(actorId,"AUDIT_ACTOR_OPTIONAL_REQUIRED");
             Objects.requireNonNull(actorTenant,"AUDIT_ACTOR_TENANT_OPTIONAL_REQUIRED");
             if (actorId.isPresent()!=actorTenant.isPresent()) throw new IllegalArgumentException("AUDIT_ACTOR_SCOPE_INCOMPLETE");
-            actorId.ifPresent(id->IdentityIdentifier.required(id,"AUDIT_ACTOR_REQUIRED"));
+            actorId.ifPresent(id->IdentifierText.requireNonBlank(id,"AUDIT_ACTOR_REQUIRED"));
             Objects.requireNonNull(targetTenant,"AUDIT_TARGET_TENANT_REQUIRED");
             Objects.requireNonNull(operation,"AUDIT_OPERATION_REQUIRED");
             Objects.requireNonNull(outcome,"AUDIT_OUTCOME_REQUIRED");
             if (outcome==Outcome.ELIGIBLE_CANDIDATE && (actorTenant.isEmpty() || !actorTenant.orElseThrow().equals(targetTenant)))
                 throw new IllegalArgumentException("AUDIT_ELIGIBILITY_SCOPE_INVALID");
             Objects.requireNonNull(occurredAt,"AUDIT_TIMESTAMP_REQUIRED");
-            IdentityIdentifier.required(correlationId,"AUDIT_CORRELATION_REQUIRED");
+            IdentifierText.requireNonBlank(correlationId,"AUDIT_CORRELATION_REQUIRED");
         }
         @Override public String toString() { return "AuditRequirementsPolicy.Metadata[redacted]"; }
     }

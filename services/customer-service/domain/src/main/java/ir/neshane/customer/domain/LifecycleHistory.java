@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
@@ -13,10 +15,10 @@ import java.util.Optional;
 public final class LifecycleHistory {
     public record Context(String historyId, String actorId, Instant occurredAt, String correlationId) {
         public Context {
-            IdentityIdentifier.required(historyId, "HISTORY_ID_REQUIRED");
-            IdentityIdentifier.required(actorId, "ACTOR_ID_REQUIRED");
+            IdentifierText.requireNonBlank(historyId, "HISTORY_ID_REQUIRED");
+            IdentifierText.requireNonBlank(actorId, "ACTOR_ID_REQUIRED");
             Objects.requireNonNull(occurredAt, "OCCURRED_AT_REQUIRED");
-            IdentityIdentifier.required(correlationId, "CORRELATION_ID_REQUIRED");
+            IdentifierText.requireNonBlank(correlationId, "CORRELATION_ID_REQUIRED");
         }
         @Override public String toString() { return "LifecycleHistory.Context[redacted]"; }
     }

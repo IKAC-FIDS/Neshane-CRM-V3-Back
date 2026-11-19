@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import ir.neshane.customer.domain.shared.identifier.BranchId;
@@ -23,10 +25,10 @@ public final class BranchEventDraft {
     private final Payload payload;
 
     private BranchEventDraft(BranchHistory.Entry entry, String eventId, long proposedVersion, Optional<String> causationId) {
-        IdentityIdentifier.required(eventId, "EVENT_ID_REQUIRED");
+        IdentifierText.requireNonBlank(eventId, "EVENT_ID_REQUIRED");
         if (proposedVersion < 1) throw new IllegalArgumentException("AGGREGATE_VERSION_INVALID");
         Objects.requireNonNull(causationId, "CAUSATION_OPTIONAL_REQUIRED")
-            .ifPresent(value -> IdentityIdentifier.required(value, "CAUSATION_ID_REQUIRED"));
+            .ifPresent(value -> IdentifierText.requireNonBlank(value, "CAUSATION_ID_REQUIRED"));
         if (entry.operation() == BranchLifecycle.Transition.DEACTIVATE &&
                 entry.previousStatus() == BranchStatus.ACTIVE && entry.newStatus() == BranchStatus.INACTIVE) {
             eventType = Type.BranchDeactivated;

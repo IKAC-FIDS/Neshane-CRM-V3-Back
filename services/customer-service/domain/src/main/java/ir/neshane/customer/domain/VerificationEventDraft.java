@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
@@ -28,10 +30,10 @@ public final class VerificationEventDraft {
         else if (entry.action() == VerificationHistory.Action.REVOCATION && entry.previousStatus() != VerificationStatus.NOT_VERIFIED && entry.proposedStatus() == VerificationStatus.NOT_VERIFIED)
             type = Type.CustomerVerificationRevoked;
         else throw new IllegalArgumentException("VERIFICATION_EVENT_NOT_ELIGIBLE");
-        IdentityIdentifier.required(eventId,"EVENT_ID_REQUIRED");
+        IdentifierText.requireNonBlank(eventId,"EVENT_ID_REQUIRED");
         this.eventId = eventId;
         this.causationId = Objects.requireNonNull(causationId,"CAUSATION_OPTIONAL_REQUIRED");
-        causationId.ifPresent(id -> IdentityIdentifier.required(id,"CAUSATION_ID_REQUIRED"));
+        causationId.ifPresent(id -> IdentifierText.requireNonBlank(id,"CAUSATION_ID_REQUIRED"));
         this.tenantId = entry.owner().tenantId();
         this.customerId = entry.owner().customerId();
         this.historySequence = entry.sequence();

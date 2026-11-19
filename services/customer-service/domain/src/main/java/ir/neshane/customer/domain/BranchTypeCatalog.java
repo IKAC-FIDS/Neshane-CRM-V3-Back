@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.HashMap;
@@ -13,7 +15,7 @@ import java.util.Set;
 public final class BranchTypeCatalog {
     public record Ref(String id, Optional<TenantId> tenantId) {
         public Ref {
-            IdentityIdentifier.required(id, "BRANCH_TYPE_ID_REQUIRED");
+            IdentifierText.requireNonBlank(id, "BRANCH_TYPE_ID_REQUIRED");
             Objects.requireNonNull(tenantId, "BRANCH_TYPE_SCOPE_REQUIRED");
         }
     }

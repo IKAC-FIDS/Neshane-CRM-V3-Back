@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactGroup;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
@@ -25,10 +27,10 @@ public final class DocumentEventDraft {
     private final Optional<String> causationId;
     private DocumentEventDraft(DocumentHistory.Entry entry,String eventId,Optional<String> causationId) {
         Objects.requireNonNull(entry,"HISTORY_ENTRY_REQUIRED");
-        IdentityIdentifier.required(eventId,"EVENT_ID_REQUIRED");
+        IdentifierText.requireNonBlank(eventId,"EVENT_ID_REQUIRED");
         this.eventId = eventId;
         this.causationId = Objects.requireNonNull(causationId,"CAUSATION_OPTIONAL_REQUIRED");
-        causationId.ifPresent(id -> IdentityIdentifier.required(id,"CAUSATION_ID_REQUIRED"));
+        causationId.ifPresent(id -> IdentifierText.requireNonBlank(id,"CAUSATION_ID_REQUIRED"));
         type = switch (entry.action()) {
             case UPLOAD -> Type.CustomerDocumentUploaded;
             case REPLACE -> Type.CustomerDocumentReplaced;

@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,8 +19,8 @@ public final class IdentityConflictDetection {
             Objects.requireNonNull(namespace);
             Objects.requireNonNull(comparisonValue);
             Objects.requireNonNull(verification);
-            namespace.ifPresent(v -> IdentityIdentifier.required(v, "IDENTITY_NAMESPACE_REQUIRED"));
-            comparisonValue.ifPresent(v -> IdentityIdentifier.required(v, "IDENTITY_COMPARISON_VALUE_REQUIRED"));
+            namespace.ifPresent(v -> IdentifierText.requireNonBlank(v, "IDENTITY_NAMESPACE_REQUIRED"));
+            comparisonValue.ifPresent(v -> IdentifierText.requireNonBlank(v, "IDENTITY_COMPARISON_VALUE_REQUIRED"));
         }
         @Override public String toString() { return "IdentityConflictEvidence[redacted]"; }
     }

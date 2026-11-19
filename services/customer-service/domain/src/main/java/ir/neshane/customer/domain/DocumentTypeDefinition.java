@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -25,8 +28,8 @@ public record DocumentTypeDefinition(TenantId tenantId,String id,String code,Loc
     public enum Status { ACTIVE, INACTIVE }
     public DocumentTypeDefinition {
         Objects.requireNonNull(tenantId,"TENANT_ID_REQUIRED");
-        IdentityIdentifier.required(id,"DOCUMENT_TYPE_ID_REQUIRED");
-        IdentityIdentifier.required(code,"DOCUMENT_TYPE_CODE_REQUIRED");
+        IdentifierText.requireNonBlank(id,"DOCUMENT_TYPE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(code,"DOCUMENT_TYPE_CODE_REQUIRED");
         code = canonicalCode(code);
         Objects.requireNonNull(title,"DOCUMENT_TYPE_TITLE_REQUIRED");
         if (title.exact("fa").isEmpty()) throw new IllegalArgumentException("DOCUMENT_TYPE_PERSIAN_TITLE_REQUIRED");
@@ -36,7 +39,7 @@ public record DocumentTypeDefinition(TenantId tenantId,String id,String code,Loc
         Objects.requireNonNull(multiplicity,"DOCUMENT_TYPE_MULTIPLICITY_REQUIRED");
         allowedFormats = Set.copyOf(allowedFormats);
         if (allowedFormats.isEmpty()) throw new IllegalArgumentException("DOCUMENT_TYPE_FORMATS_REQUIRED");
-        allowedFormats.forEach(f -> IdentityIdentifier.required(f,"DOCUMENT_FILE_FORMAT_REQUIRED"));
+        allowedFormats.forEach(f -> IdentifierText.requireNonBlank(f,"DOCUMENT_FILE_FORMAT_REQUIRED"));
         if (maximumFileSize <= 0) throw new IllegalArgumentException("DOCUMENT_TYPE_FILE_SIZE_INVALID");
         Objects.requireNonNull(status,"DOCUMENT_TYPE_STATUS_REQUIRED");
         if (displayOrder < 0) throw new IllegalArgumentException("DOCUMENT_TYPE_DISPLAY_ORDER_INVALID");

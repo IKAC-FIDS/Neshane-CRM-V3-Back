@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -12,9 +14,9 @@ public record BranchTypeDefinition(String id, Optional<TenantId> tenantId, Strin
         LocalizedText title, LocalizedText description, Status status, int displayOrder) {
     public enum Status { ACTIVE, INACTIVE }
     public BranchTypeDefinition {
-        IdentityIdentifier.required(id, "BRANCH_TYPE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(id, "BRANCH_TYPE_ID_REQUIRED");
         Objects.requireNonNull(tenantId, "BRANCH_TYPE_SCOPE_REQUIRED");
-        IdentityIdentifier.required(code, "BRANCH_TYPE_CODE_REQUIRED");
+        IdentifierText.requireNonBlank(code, "BRANCH_TYPE_CODE_REQUIRED");
         code = code.strip().toUpperCase(Locale.ROOT);
         if (!code.matches("[A-Z0-9_]{3,64}")) throw new IllegalArgumentException("BRANCH_TYPE_CODE_INVALID");
         Objects.requireNonNull(title, "BRANCH_TYPE_TITLE_REQUIRED");

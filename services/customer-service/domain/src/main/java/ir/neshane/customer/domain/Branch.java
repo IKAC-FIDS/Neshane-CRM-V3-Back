@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 import ir.neshane.customer.domain.shared.identifier.BranchId;
@@ -69,7 +71,7 @@ public final class Branch {
 
     private static Optional<String> optionalRaw(String value, String error) {
         if (value == null) return Optional.empty();
-        IdentityIdentifier.required(value, error);
+        IdentifierText.requireNonBlank(value, error);
         return Optional.of(value);
     }
 

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,8 +23,8 @@ public final class IdentityRevisionAssessment {
         Objects.requireNonNull(authority);
         Objects.requireNonNull(impact);
         Objects.requireNonNull(correction);
-        IdentityIdentifier.required(expectedRevision,"IDENTITY_REVISION_REQUIRED");
-        IdentityIdentifier.required(nextRevision,"IDENTITY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(expectedRevision,"IDENTITY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(nextRevision,"IDENTITY_REVISION_REQUIRED");
         if (!current.owner().equals(proposed.identityInfo().owner())) return blocked("IDENTITY_REVISION_SCOPE_MISMATCH",false,false);
         if (!current.value().equals(expectedRevision)) return blocked("IDENTITY_REVISION_STALE",false,false);
         var original = current.candidate();

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.RelationshipId;
 
@@ -28,10 +30,10 @@ public final class RelationshipEventDraft {
         this.occurredAt = entry.context().occurredAt();
         this.correlationId = entry.context().correlationId();
         this.proposedStatus = entry.proposedStatus();
-        IdentityIdentifier.required(eventId, "EVENT_ID_REQUIRED");
+        IdentifierText.requireNonBlank(eventId, "EVENT_ID_REQUIRED");
         this.eventId = eventId;
         this.causationId = Objects.requireNonNull(causationId, "CAUSATION_OPTIONAL_REQUIRED");
-        causationId.ifPresent(id -> IdentityIdentifier.required(id, "CAUSATION_ID_REQUIRED"));
+        causationId.ifPresent(id -> IdentifierText.requireNonBlank(id, "CAUSATION_ID_REQUIRED"));
     }
     public static RelationshipEventDraft fromCandidate(RelationshipHistory.Entry entry, String eventId, Optional<String> causationId) {
         return new RelationshipEventDraft(entry, eventId, causationId);

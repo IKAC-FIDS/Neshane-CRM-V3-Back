@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
 import java.util.List;
@@ -32,7 +34,7 @@ public final class DuplicateExceptionPolicy {
     private DuplicateExceptionPolicy() {}
     public static Review review(Customer candidate, DuplicateDetection.Request request, DuplicateDetection.Coverage coverage,
             List<DuplicateDetection.Comparison> evidence, String evidenceRevision) {
-        IdentityIdentifier.required(evidenceRevision, "DUPLICATE_EVIDENCE_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(evidenceRevision, "DUPLICATE_EVIDENCE_REVISION_REQUIRED");
         var snapshot = List.copyOf(evidence);
         return new Review(candidate, request, snapshot, evidenceRevision, DuplicateDetection.assess(candidate, request, coverage, snapshot));
     }

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactValue;
+
 import java.text.Normalizer;
 import java.util.EnumSet;
 import java.util.Locale;

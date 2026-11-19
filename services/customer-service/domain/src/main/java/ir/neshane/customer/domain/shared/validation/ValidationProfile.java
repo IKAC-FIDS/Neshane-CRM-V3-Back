@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.validation;
+
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
@@ -45,7 +47,7 @@ public record ValidationProfile(String id, Optional<TenantId> tenant, List<Rule>
     }
 
     public ValidationProfile {
-        IdentityIdentifier.required(id, "VALIDATION_PROFILE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(id, "VALIDATION_PROFILE_ID_REQUIRED");
         Objects.requireNonNull(tenant, "VALIDATION_PROFILE_SCOPE_REQUIRED");
         rules = List.copyOf(Objects.requireNonNull(rules, "VALIDATION_RULES_REQUIRED"));
         if (rules.isEmpty()) {

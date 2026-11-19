@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
@@ -16,14 +19,14 @@ public final class VerificationRevocation {
             String reason, Instant effectiveAt, Instant recordedAt, String correlationId) {
         public Context {
             Objects.requireNonNull(owner, "IDENTITY_OWNER_REQUIRED");
-            IdentityIdentifier.required(expectedRevision,"IDENTITY_REVISION_REQUIRED");
-            IdentityIdentifier.required(basisRevision,"IDENTITY_REVISION_REQUIRED");
-            IdentityIdentifier.required(actorId,"ACTOR_ID_REQUIRED");
+            IdentifierText.requireNonBlank(expectedRevision,"IDENTITY_REVISION_REQUIRED");
+            IdentifierText.requireNonBlank(basisRevision,"IDENTITY_REVISION_REQUIRED");
+            IdentifierText.requireNonBlank(actorId,"ACTOR_ID_REQUIRED");
             Objects.requireNonNull(authority,"VERIFICATION_REVOCATION_AUTHORITY_REQUIRED");
             Objects.requireNonNull(cause,"VERIFICATION_REVOCATION_CAUSE_REQUIRED");
             Objects.requireNonNull(effectiveAt,"VERIFICATION_EFFECTIVE_TIME_REQUIRED");
             Objects.requireNonNull(recordedAt,"VERIFICATION_RECORD_TIME_REQUIRED");
-            IdentityIdentifier.required(correlationId,"CORRELATION_ID_REQUIRED");
+            IdentifierText.requireNonBlank(correlationId,"CORRELATION_ID_REQUIRED");
         }
         @Override public String toString() { return "VerificationRevocation.Context[protected, redacted]"; }
     }

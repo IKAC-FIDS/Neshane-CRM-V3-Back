@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.util.Objects;
 
 /** Local identity revision snapshot; not a persisted concurrency token. */
@@ -10,7 +13,7 @@ public final class IdentityRevision {
 
     private IdentityRevision(Customer candidate, String value, VerificationStatus status) {
         this.candidate = Objects.requireNonNull(candidate, "CUSTOMER_REQUIRED");
-        IdentityIdentifier.required(value, "IDENTITY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(value, "IDENTITY_REVISION_REQUIRED");
         this.value = value;
         this.verificationStatus = Objects.requireNonNull(status, "VERIFICATION_STATUS_REQUIRED");
     }

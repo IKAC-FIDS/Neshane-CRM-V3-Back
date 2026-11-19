@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
@@ -16,7 +19,7 @@ public final class VerificationEvidenceSet {
 
     public VerificationEvidenceSet(IdentityOwner owner, String identityRevision, List<VerificationEvidence> evidence) {
         this.owner = Objects.requireNonNull(owner, "IDENTITY_OWNER_REQUIRED");
-        IdentityIdentifier.required(identityRevision, "IDENTITY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(identityRevision, "IDENTITY_REVISION_REQUIRED");
         this.identityRevision = identityRevision;
         this.evidence = List.copyOf(evidence);
         Set<String> ids = new HashSet<>();
@@ -34,7 +37,7 @@ public final class VerificationEvidenceSet {
     /** All supplied selected evidence must be available. Completeness/trust is not determined here. */
     public Assessment assess(Customer candidate, String currentRevision, VerificationEvidence.Method method, Instant asOf) {
         Objects.requireNonNull(candidate, "CUSTOMER_REQUIRED");
-        IdentityIdentifier.required(currentRevision, "IDENTITY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(currentRevision, "IDENTITY_REVISION_REQUIRED");
         Objects.requireNonNull(method, "VERIFICATION_METHOD_REQUIRED");
         Objects.requireNonNull(asOf, "EVIDENCE_AS_OF_REQUIRED");
         if (!owner.equals(candidate.identityInfo().owner())) return blocked("VERIFICATION_EVIDENCE_SCOPE_MISMATCH");

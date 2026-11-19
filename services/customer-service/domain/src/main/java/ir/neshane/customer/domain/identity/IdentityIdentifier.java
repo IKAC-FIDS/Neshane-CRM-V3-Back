@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.identity;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
 
@@ -13,10 +13,10 @@ public record IdentityIdentifier(String id, IdentityOwner owner, String typeId, 
     public enum Status { ACTIVE, INACTIVE }
 
     public IdentityIdentifier {
-        required(id, "IDENTIFIER_ID_REQUIRED");
+        IdentifierText.requireNonBlank(id, "IDENTIFIER_ID_REQUIRED");
         Objects.requireNonNull(owner, "IDENTITY_OWNER_REQUIRED");
-        required(typeId, "IDENTIFIER_TYPE_ID_REQUIRED");
-        required(value, "IDENTIFIER_VALUE_REQUIRED");
+        IdentifierText.requireNonBlank(typeId, "IDENTIFIER_TYPE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(value, "IDENTIFIER_VALUE_REQUIRED");
         optional(issuingCountry);
         optional(issuingAuthority);
         Objects.requireNonNull(issueDate, "IDENTIFIER_ISSUE_DATE_OPTIONAL_REQUIRED");
@@ -24,13 +24,9 @@ public record IdentityIdentifier(String id, IdentityOwner owner, String typeId, 
         Objects.requireNonNull(status, "IDENTIFIER_STATUS_REQUIRED");
     }
 
-    static void required(String value, String code) {
-        IdentifierText.requireNonBlank(value, code);
-    }
-
     private static void optional(Optional<String> value) {
         Objects.requireNonNull(value, "IDENTIFIER_OPTIONAL_REQUIRED");
-        value.ifPresent(text -> required(text, "IDENTIFIER_VALUE_REQUIRED"));
+        value.ifPresent(text -> IdentifierText.requireNonBlank(text, "IDENTIFIER_VALUE_REQUIRED"));
     }
 
     @Override

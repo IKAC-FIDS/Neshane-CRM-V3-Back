@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,7 +37,7 @@ public final class DocumentRequirementPolicy {
     private final String revision;
     private DocumentRequirementPolicy(DocumentTypeCatalog catalog,String revision) {
         this.catalog = Objects.requireNonNull(catalog,"DOCUMENT_CATALOG_REQUIRED");
-        IdentityIdentifier.required(revision,"DOCUMENT_POLICY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(revision,"DOCUMENT_POLICY_REVISION_REQUIRED");
         this.revision = revision;
     }
     public static DocumentRequirementPolicy initial(DocumentTypeCatalog catalog,String revision) {
@@ -45,7 +48,7 @@ public final class DocumentRequirementPolicy {
     public Snapshot forOperation(Customer customer,Operation operation,String requestId) {
         Objects.requireNonNull(customer,"CUSTOMER_REQUIRED");
         Objects.requireNonNull(operation,"DOCUMENT_OPERATION_REQUIRED");
-        IdentityIdentifier.required(requestId,"DOCUMENT_REQUEST_ID_REQUIRED");
+        IdentifierText.requireNonBlank(requestId,"DOCUMENT_REQUEST_ID_REQUIRED");
         var owner = customer.identityInfo().owner();
         if (!catalog.tenantId().equals(owner.tenantId())) throw new IllegalArgumentException("DOCUMENT_POLICY_SCOPE_MISMATCH");
         var stage = operation == Operation.REGISTRATION ? DocumentTypeDefinition.RequirementStage.REGISTRATION : DocumentTypeDefinition.RequirementStage.VERIFICATION;
@@ -55,7 +58,7 @@ public final class DocumentRequirementPolicy {
     public Assessment assessSnapshot(Customer customer,Operation operation,String requestId,Snapshot snapshot) {
         Objects.requireNonNull(customer,"CUSTOMER_REQUIRED");
         Objects.requireNonNull(operation,"DOCUMENT_OPERATION_REQUIRED");
-        IdentityIdentifier.required(requestId,"DOCUMENT_REQUEST_ID_REQUIRED");
+        IdentifierText.requireNonBlank(requestId,"DOCUMENT_REQUEST_ID_REQUIRED");
         if (!catalog.tenantId().equals(customer.tenantId())) return blocked("DOCUMENT_POLICY_SCOPE_MISMATCH");
         if (snapshot == null) return blocked("DOCUMENT_POLICY_SNAPSHOT_REQUIRED");
         if (!snapshot.owner.equals(customer.identityInfo().owner()) || snapshot.operation != operation || !snapshot.requestId.equals(requestId))
@@ -70,8 +73,8 @@ public final class DocumentRequirementPolicy {
         return change(expectedRevision,nextRevision,definition,authority,false);
     }
     private Change change(String expected,String next,DocumentTypeDefinition def,DocumentTypeCatalog.Authority authority,boolean add) {
-        IdentityIdentifier.required(expected,"DOCUMENT_POLICY_REVISION_REQUIRED");
-        IdentityIdentifier.required(next,"DOCUMENT_POLICY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(expected,"DOCUMENT_POLICY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(next,"DOCUMENT_POLICY_REVISION_REQUIRED");
         Objects.requireNonNull(def,"DOCUMENT_TYPE_REQUIRED");
         if (!catalog.tenantId().equals(def.tenantId())) return denied("DOCUMENT_POLICY_SCOPE_MISMATCH",false);
         if (authority != DocumentTypeCatalog.Authority.MANAGE) return denied("DOCUMENT_TYPE_MANAGEMENT_AUTHORITY_REQUIRED",true);

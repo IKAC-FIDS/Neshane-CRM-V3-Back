@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.HashSet;

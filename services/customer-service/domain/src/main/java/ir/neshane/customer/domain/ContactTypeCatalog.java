@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.HashMap;

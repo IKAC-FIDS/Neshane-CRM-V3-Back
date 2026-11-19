@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactValue;
+import ir.neshane.customer.domain.contact.ContactGroup;
+import ir.neshane.customer.domain.contact.ContactTypeRef;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import java.util.Locale;

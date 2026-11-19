@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.temporal.TemporalPolicy;
 
 import java.time.Instant;
@@ -23,15 +26,15 @@ public record VerificationEvidence(String evidenceId, IdentityOwner owner, Strin
     }
 
     public VerificationEvidence {
-        IdentityIdentifier.required(evidenceId, "VERIFICATION_EVIDENCE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(evidenceId, "VERIFICATION_EVIDENCE_ID_REQUIRED");
         Objects.requireNonNull(owner, "IDENTITY_OWNER_REQUIRED");
-        IdentityIdentifier.required(identityRevision, "IDENTITY_REVISION_REQUIRED");
+        IdentifierText.requireNonBlank(identityRevision, "IDENTITY_REVISION_REQUIRED");
         if (evidenceVersion < 1) throw new IllegalArgumentException("EVIDENCE_VERSION_INVALID");
         Objects.requireNonNull(method, "VERIFICATION_METHOD_REQUIRED");
-        IdentityIdentifier.required(source, "EVIDENCE_SOURCE_REQUIRED");
-        IdentityIdentifier.required(issuer, "EVIDENCE_ISSUER_REQUIRED");
-        IdentityIdentifier.required(protectedReference, "EVIDENCE_REFERENCE_REQUIRED");
-        IdentityIdentifier.required(recordedBy, "EVIDENCE_RECORDER_REQUIRED");
+        IdentifierText.requireNonBlank(source, "EVIDENCE_SOURCE_REQUIRED");
+        IdentifierText.requireNonBlank(issuer, "EVIDENCE_ISSUER_REQUIRED");
+        IdentifierText.requireNonBlank(protectedReference, "EVIDENCE_REFERENCE_REQUIRED");
+        IdentifierText.requireNonBlank(recordedBy, "EVIDENCE_RECORDER_REQUIRED");
         Objects.requireNonNull(recordedAt, "EVIDENCE_RECORDED_AT_REQUIRED");
         Objects.requireNonNull(effectiveFrom, "EVIDENCE_EFFECTIVE_FROM_REQUIRED");
         Objects.requireNonNull(validUntilExclusive, "EVIDENCE_VALID_UNTIL_OPTIONAL_REQUIRED");

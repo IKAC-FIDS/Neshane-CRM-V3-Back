@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;
@@ -20,7 +22,7 @@ public record BusinessRoleDefinition(String id, Optional<TenantId> tenantId, Str
         }
     }
     public BusinessRoleDefinition {
-        IdentityIdentifier.required(id, "ROLE_ID_REQUIRED");
+        IdentifierText.requireNonBlank(id, "ROLE_ID_REQUIRED");
         Objects.requireNonNull(tenantId, "ROLE_ORIGIN_REQUIRED");
         code = canonicalCode(code);
         Objects.requireNonNull(title, "ROLE_TITLE_REQUIRED");
@@ -30,7 +32,7 @@ public record BusinessRoleDefinition(String id, Optional<TenantId> tenantId, Str
         Objects.requireNonNull(status, "ROLE_STATUS_REQUIRED");
     }
     static String canonicalCode(String code) {
-        IdentityIdentifier.required(code, "RELATIONSHIP_ROLE_CODE_REQUIRED");
+        IdentifierText.requireNonBlank(code, "RELATIONSHIP_ROLE_CODE_REQUIRED");
         String canonical = code.trim().toUpperCase(Locale.ROOT);
         if (!canonical.matches("[A-Z0-9_]{3,64}"))
             throw new IllegalArgumentException("RELATIONSHIP_ROLE_CODE_INVALID");

@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

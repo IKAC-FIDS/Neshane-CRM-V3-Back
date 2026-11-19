@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
@@ -14,7 +16,7 @@ public record RelationshipTarget(TenantId tenantId, Kind kind, String id,
     public RelationshipTarget {
         Objects.requireNonNull(tenantId, "TENANT_ID_REQUIRED");
         Objects.requireNonNull(kind, "RELATIONSHIP_TARGET_KIND_REQUIRED");
-        IdentityIdentifier.required(id, "RELATIONSHIP_TARGET_ID_REQUIRED");
+        IdentifierText.requireNonBlank(id, "RELATIONSHIP_TARGET_ID_REQUIRED");
         Objects.requireNonNull(parentCompanyId, "RELATIONSHIP_PARENT_OPTIONAL_REQUIRED");
         if ((kind == Kind.BRANCH) != parentCompanyId.isPresent())
             throw new IllegalArgumentException("RELATIONSHIP_TARGET_PARENT_MISMATCH");

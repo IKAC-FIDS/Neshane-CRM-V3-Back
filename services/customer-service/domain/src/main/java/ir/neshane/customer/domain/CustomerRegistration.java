@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactGroup;
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.time.LocalDate;
@@ -14,7 +19,7 @@ public final class CustomerRegistration {
     public record Context(TenantId tenant,String requestId,DuplicateExceptionPolicy.Authority authority) {
         public Context {
             Objects.requireNonNull(tenant);
-            IdentityIdentifier.required(requestId,"CUSTOMER_REGISTRATION_REQUEST_REQUIRED");
+            IdentifierText.requireNonBlank(requestId,"CUSTOMER_REGISTRATION_REQUEST_REQUIRED");
             Objects.requireNonNull(authority);
         }
         @Override public String toString() { return "CustomerRegistration.Context[redacted]"; }

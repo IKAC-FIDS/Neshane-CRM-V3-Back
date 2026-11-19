@@ -1,5 +1,10 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactGroup;
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.List;
@@ -24,7 +29,7 @@ public final class CustomerUpdatePolicy {
                           VerificationStatus requestedVerification) {
         public Context {
             Objects.requireNonNull(tenant);
-            IdentityIdentifier.required(requestId,"CUSTOMER_UPDATE_REQUEST_REQUIRED");
+            IdentifierText.requireNonBlank(requestId,"CUSTOMER_UPDATE_REQUEST_REQUIRED");
             Objects.requireNonNull(authority);
             Objects.requireNonNull(requestedStatus);
             Objects.requireNonNull(requestedVerification);

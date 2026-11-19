@@ -1,5 +1,12 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.contact.ContactValue;
+import ir.neshane.customer.domain.contact.ContactGroup;
+import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+
 import ir.neshane.customer.domain.shared.localization.LocalizedText;
 
 import ir.neshane.customer.domain.shared.identifier.TenantId;

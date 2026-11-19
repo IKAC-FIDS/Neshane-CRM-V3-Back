@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 import ir.neshane.customer.domain.shared.identifier.CustomerId;
 
@@ -21,7 +24,7 @@ public final class DuplicateDetection {
             Objects.requireNonNull(customerId);
             Objects.requireNonNull(kind);
             Objects.requireNonNull(operation);
-            IdentityIdentifier.required(requestId, "DUPLICATE_REQUEST_ID_REQUIRED");
+            IdentifierText.requireNonBlank(requestId, "DUPLICATE_REQUEST_ID_REQUIRED");
         }
         public static Request of(Customer candidate, Operation operation, String requestId) {
             return new Request(candidate.tenantId(), candidate.id(), candidate.identityInfo().owner().kind(), operation, requestId);

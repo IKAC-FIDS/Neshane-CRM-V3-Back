@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
 
 import java.util.ArrayList;
@@ -19,10 +22,10 @@ public final class DocumentVersionHistory {
         public Invalidation {
             Objects.requireNonNull(owner);
             Objects.requireNonNull(documentId);
-            IdentityIdentifier.required(actorId,"ACTOR_ID_REQUIRED");
+            IdentifierText.requireNonBlank(actorId,"ACTOR_ID_REQUIRED");
             Objects.requireNonNull(effectiveAt);
             Objects.requireNonNull(recordedAt);
-            IdentityIdentifier.required(correlationId,"CORRELATION_ID_REQUIRED");
+            IdentifierText.requireNonBlank(correlationId,"CORRELATION_ID_REQUIRED");
         }
         @Override public String toString() { return "DocumentInvalidation[protected, redacted]"; }
     }
