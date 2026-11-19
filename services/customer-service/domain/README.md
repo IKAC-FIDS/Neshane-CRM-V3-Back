@@ -269,3 +269,15 @@ Immutable identifiers, typed tenant-scoped target, branch parent checks,
 initial ACTIVE candidate, canonical role code and half-open date range.
 No catalog selection, overlap clearance, end operation, persistence,
 trusted authorization, runtime or IAM grant. Exact day reference remains open.
+
+## Increment 05B — business role candidate catalog
+
+Core basis 2df1f49; Backend basis 0501a26. RC-001..021: exact twelve
+initial system codes/Persian titles/scopes, illustrative English labels,
+tenant-owned candidates, canonical unique reserved codes, immutable identity,
+tenant-local system hide/unhide and scoped ACTIVE selectability.
+Separate reference resolution preserves hidden/inactive catalog entries.
+Custom status and display revisions preserve existing relationships.
+Scope changes fail closed pending impact assessment. System governance,
+publication collision gate, assignment integration, durable Audit,
+authorization and concurrency are not implemented here.

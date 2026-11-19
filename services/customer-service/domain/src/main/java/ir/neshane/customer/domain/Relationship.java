@@ -1,7 +1,6 @@
 package ir.neshane.customer.domain;
 
 import java.time.LocalDate;
-import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -27,11 +26,7 @@ public final class Relationship {
             throw new IllegalArgumentException("RELATIONSHIP_TENANT_MISMATCH");
         if (person.status() != CustomerStatus.ACTIVE)
             throw new IllegalArgumentException("RELATIONSHIP_PERSON_NOT_ACTIVE");
-        IdentityIdentifier.required(roleCode, "RELATIONSHIP_ROLE_CODE_REQUIRED");
-        String canonical = roleCode.trim().toUpperCase(Locale.ROOT);
-        if (!canonical.matches("[A-Z0-9_]{3,64}"))
-            throw new IllegalArgumentException("RELATIONSHIP_ROLE_CODE_INVALID");
-        this.roleCode = canonical;
+        this.roleCode = BusinessRoleDefinition.canonicalCode(roleCode);
         this.startDate = Objects.requireNonNull(startDate, "RELATIONSHIP_START_REQUIRED");
         if (endDate != null && !endDate.isAfter(startDate))
             throw new IllegalArgumentException("RELATIONSHIP_INTERVAL_INVALID");
