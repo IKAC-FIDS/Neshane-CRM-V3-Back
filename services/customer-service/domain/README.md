@@ -152,3 +152,13 @@ Reactivate, archive and restore remain blocked by unresolved contracts.
 No dependency or authorization clearance is inferred. Customer snapshots,
 verification and associated entities remain unchanged. No physical delete,
 direct archived-to-active transition, durable Audit or event publication.
+
+## Increment 03B — lifecycle reason catalog
+
+Core basis b09407c; Backend basis 1122551. Eight system reasons, tenant
+custom definitions, protected codes, localized titles, scoped hide/unhide,
+inactive and transition checks, required comments. Selection returns an
+immutable title snapshot, not a persisted history item. The catalog
+assessment delegates to 03A and cannot unblock conditional transitions.
+The old raw assessment remains a low-level structural helper, not a
+validated reason or authorization. No actual lifecycle mutation or Audit.
