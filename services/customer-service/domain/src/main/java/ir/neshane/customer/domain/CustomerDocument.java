@@ -22,9 +22,11 @@ public final class CustomerDocument {
     private final Optional<String> notes;
     private final String uploader;
     private final Instant uploadedAt;
+    private final long version;
+    private final State state;
     private CustomerDocument(CustomerDocumentId id,IdentityOwner owner,String typeId,List<DocumentFileReference> files,
             Optional<String> documentNumber,Optional<LocalDate> issueDate,Optional<LocalDate> expiryDate,
-            Optional<String> issuer,Optional<String> notes,String uploader,Instant uploadedAt) {
+            Optional<String> issuer,Optional<String> notes,String uploader,Instant uploadedAt,long version,State state) {
         this.id = Objects.requireNonNull(id,"DOCUMENT_ID_REQUIRED");
         this.owner = Objects.requireNonNull(owner,"DOCUMENT_OWNER_REQUIRED");
         IdentityIdentifier.required(typeId,"DOCUMENT_TYPE_ID_REQUIRED");
@@ -46,12 +48,15 @@ public final class CustomerDocument {
         IdentityIdentifier.required(uploader,"DOCUMENT_UPLOADER_REQUIRED");
         this.uploader = uploader;
         this.uploadedAt = Objects.requireNonNull(uploadedAt,"DOCUMENT_UPLOAD_TIME_REQUIRED");
+        if (version < 1) throw new IllegalArgumentException("DOCUMENT_VERSION_INVALID");
+        this.version = version;
+        this.state = Objects.requireNonNull(state,"DOCUMENT_STATE_REQUIRED");
     }
     public static CustomerDocument createCandidate(Customer customer,CustomerDocumentId id,String typeId,List<DocumentFileReference> files,
             Optional<String> number,Optional<LocalDate> issue,Optional<LocalDate> expiry,Optional<String> issuer,
             Optional<String> notes,String uploader,Instant uploadedAt) {
         Objects.requireNonNull(customer,"CUSTOMER_REQUIRED");
-        return new CustomerDocument(id,customer.identityInfo().owner(),typeId,files,number,issue,expiry,issuer,notes,uploader,uploadedAt);
+        return new CustomerDocument(id,customer.identityInfo().owner(),typeId,files,number,issue,expiry,issuer,notes,uploader,uploadedAt,1,State.PROVIDED);
     }
     private static Optional<String> optional(Optional<String> value,String code) {
         Objects.requireNonNull(value,"DOCUMENT_OPTIONAL_REQUIRED");
@@ -69,7 +74,10 @@ public final class CustomerDocument {
     public Optional<String> notes() { return notes; }
     public String uploader() { return uploader; }
     public Instant uploadedAt() { return uploadedAt; }
-    public long version() { return 1; }
-    public State state() { return State.PROVIDED; }
+    public long version() { return version; }
+    public State state() { return state; }
+    CustomerDocument asVersion(long number,State nextState) {
+        return new CustomerDocument(id,owner,typeId,files,documentNumber,issueDate,expiryDate,issuer,notes,uploader,uploadedAt,number,nextState);
+    }
     @Override public String toString() { return "CustomerDocument[protected, redacted]"; }
 }

@@ -471,3 +471,12 @@ requested registration or verification stage. Optional/inactive types are
 not required. Changes affect later snapshots; stale snapshots block and
 historical references remain. No automatic verification invalidation, legal
 prerequisite determination, completeness or durable Audit.
+
+## Increment 08D — document versioning and replacement
+
+Core basis 2df1f49; Backend basis 443ef59. Immutable version chain with
+stable ID/owner/type, independent upload/replacement authority candidates,
+expected current version, monotonic upload time and current catalog checks.
+Replacement preserves prior file/metadata snapshots as SUPERSEDED and
+creates one PROVIDED current version. No file deletion, real authorization,
+durable concurrency or verification mutation.
