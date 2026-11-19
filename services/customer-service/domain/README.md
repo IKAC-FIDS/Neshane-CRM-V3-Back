@@ -798,3 +798,12 @@ domain rules without replacing them. Metadata records supplied opaque actor
 and tenant labels, operation, access outcome, instant and correlation only;
 missing actor is explicit for denied attempts. No raw payload, free-text
 reason, persistence, delivery, trusted identity or execution proof.
+
+## Increment 13E — integrated access and audit specification
+
+Core basis 2df1f49; Backend basis 9ed1461. A synthetic cross-role scenario
+composes customer, branch, document, identity and verification access with
+audit requirements and redacted metadata, including foreign tenant and
+missing actor denials. Eligible access does not bypass reason, stale version
+or lifecycle guards. Original document history, identity state and versions
+remain unchanged. Specification and documentation only.
