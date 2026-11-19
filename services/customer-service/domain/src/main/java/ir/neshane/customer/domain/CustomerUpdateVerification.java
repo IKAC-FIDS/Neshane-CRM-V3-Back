@@ -62,7 +62,7 @@ public final class CustomerUpdateVerification {
             return blocked("CUSTOMER_UPDATE_DUPLICATE_WARNING_UNRESOLVED",true);
         if (exceptionScope == null || impact == null || correction == null || historyContext == null)
             return blocked("CUSTOMER_UPDATE_CONTEXT_REQUIRED",false);
-        var fields = CriticalFieldChangeAssessment.assess(current.identity().candidate(),proposed,exceptionScope,reason);
+        var fields = current.identity().assessCriticalChanges(proposed,exceptionScope,reason);
         if (fields.outcome() != CriticalFieldChangeAssessment.Outcome.ELIGIBLE_CANDIDATE)
             return blocked(fields.code(),fields.auditRequired());
         try {

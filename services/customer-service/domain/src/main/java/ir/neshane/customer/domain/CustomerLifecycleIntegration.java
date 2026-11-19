@@ -55,10 +55,10 @@ public final class CustomerLifecycleIntegration {
     public static Assessment assess(CustomerUpdatePolicy.Current current,CustomerRecordVersion expected,Context context,
             LifecycleReasonCatalog reasons,LifecycleHistory history,ArchiveDependencyCatalog dependencies,List<ArchiveDependencyAssessment.Evidence> evidence) {
         Objects.requireNonNull(current); Objects.requireNonNull(context);
-        var customer=current.identity().candidate();
+        var identity=current.identity();
         if (!current.version().owner().tenantId().equals(context.tenant())) return blocked("CUSTOMER_RECORD_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.TRANSITION) return blocked("CUSTOMER_LIFECYCLE_AUTHORITY_REQUIRED",true);
-        var version=current.version().assessNext(expected,customer);
+        var version=identity.assessVersion(current.version(),expected);
         if (version.outcome()!=CustomerRecordVersion.Outcome.ELIGIBLE_CANDIDATE) return blocked(version.code(),false);
         if (context.history()==null || reasons==null || history==null) return blocked("CUSTOMER_LIFECYCLE_CONTEXT_REQUIRED",false);
         try {
@@ -66,14 +66,14 @@ public final class CustomerLifecycleIntegration {
             if (decision.transition().outcome()==CustomerLifecycle.Outcome.REJECTED) return blocked(decision.transition().code(),false);
             if (context.transition()==CustomerLifecycle.Transition.ARCHIVE) {
                 if (dependencies==null || evidence==null) return blocked("CUSTOMER_ARCHIVE_CLEARANCE_UNRESOLVED",false);
-                var request=new ArchiveDependencyAssessment.Request(context.tenant(),customer.id(),context.history().correlationId());
-                var clearance=ArchiveDependencyAssessment.assess(customer,request,dependencies,evidence);
+                var request=new ArchiveDependencyAssessment.Request(context.tenant(),identity.owner().customerId(),context.history().correlationId());
+                var clearance=identity.assessArchive(request,dependencies,evidence);
                 if (clearance.outcome()!=ArchiveDependencyAssessment.Outcome.ALL_CLEARED_CANDIDATE) return blocked("CUSTOMER_ARCHIVE_DEPENDENCIES_BLOCKED",false);
             }
             // Synthetic clearance is not trusted authorization. Never unlock unresolved transitions.
             if (decision.transition().outcome()!=CustomerLifecycle.Outcome.ELIGIBLE_CANDIDATE) return blocked(decision.transition().code(),false);
-            if (current.status()!=customer.status()) return blocked("CUSTOMER_LIFECYCLE_SNAPSHOT_MISMATCH",false);
-            var nextHistory=history.appendCandidate(customer,reasons,context.transition(),context.systemReason(),context.reasonId(),context.comment(),context.history());
+            if (current.status()!=identity.snapshotStatus()) return blocked("CUSTOMER_LIFECYCLE_SNAPSHOT_MISMATCH",false);
+            var nextHistory=identity.appendLifecycle(history,reasons,context.transition(),context.systemReason(),context.reasonId(),context.comment(),context.history());
             var next=new CustomerUpdatePolicy.Current(current.identity(),decision.transition().proposed().orElseThrow(),version.proposed().orElseThrow());
             var event=CustomerEventDraft.fromCandidate(nextHistory.entries().getLast(),context.eventId(),next.version().value(),Optional.empty());
             return new Assessment(Outcome.ELIGIBLE_CANDIDATE,"CUSTOMER_LIFECYCLE_CANDIDATE",Optional.of(new Candidate(current,next,nextHistory,event)),true);

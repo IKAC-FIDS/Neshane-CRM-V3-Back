@@ -85,7 +85,7 @@ public final class VerificationHistory {
         if (!context.excludedActors().containsAll(excludedVerifiers) || excludedVerifiers.contains(context.actorId())
                 || (!excludedVerifiers.isEmpty() && context.process() == ManualVerification.Process.ORDINARY))
             throw new IllegalArgumentException("VERIFICATION_HISTORY_SOD_REQUIRED");
-        var result = ManualVerification.assess(current.candidate(),current.value(),evidence,context,review,request,coverage,comparisons);
+        var result = current.assessManualVerification(evidence,context,review,request,coverage,comparisons);
         if (result.outcome() != ManualVerification.Outcome.ELIGIBLE_CANDIDATE) throw new IllegalArgumentException(result.code());
         var next = current.withVerificationStatus(result.proposed().orElseThrow());
         return append(next,Action.MANUAL_VERIFY,metadata,context.decisionAt(),result.code(),context.reason(),evidence.evidence(),null,Set.of());

@@ -4,7 +4,6 @@ import ir.neshane.customer.domain.customer.CriticalFieldChangeAssessment;
 import ir.neshane.customer.domain.customer.CustomerRecordVersion;
 import ir.neshane.customer.domain.customer.CustomerStatus;
 import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.customer.update.CustomerFactsValidation;
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.contact.ContactTypeCatalog;
@@ -69,11 +68,10 @@ public final class CustomerUpdatePolicy {
         if (context.requestedStatus() != current.status()) return blocked("CUSTOMER_UPDATE_LIFECYCLE_CHANGE_FORBIDDEN",false);
         if (context.requestedVerification() != current.identity().verificationStatus())
             return blocked("CUSTOMER_UPDATE_VERIFICATION_CHANGE_FORBIDDEN",false);
-        var original = current.identity().candidate();
-        if (!changed(original,proposed)) return new Assessment(Outcome.UNCHANGED,"CUSTOMER_UPDATE_UNCHANGED",Optional.empty(),false);
+        if (!current.identity().hasChanges(proposed)) return new Assessment(Outcome.UNCHANGED,"CUSTOMER_UPDATE_UNCHANGED",Optional.empty(),false);
         var version = current.version().assessNext(expected,proposed);
         if (version.outcome() != CustomerRecordVersion.Outcome.ELIGIBLE_CANDIDATE) return blocked(version.code(),false);
-        var error = CustomerFactsValidation.validateChanges(original,proposed,contacts,identifiers,Map.copyOf(contactProfiles),Map.copyOf(identifierProfiles));
+        var error = current.identity().validateChanges(proposed,contacts,identifiers,Map.copyOf(contactProfiles),Map.copyOf(identifierProfiles));
         if (error.isPresent()) return blocked(error.orElseThrow(),false);
         if (!DuplicateDetection.Request.of(proposed,DuplicateDetection.Operation.UPDATE,context.requestId()).equals(request))
             return blocked("CUSTOMER_UPDATE_DUPLICATE_SCOPE_MISMATCH",false);

@@ -1,7 +1,6 @@
 package ir.neshane.customer.domain;
 
 import ir.neshane.customer.domain.customer.Customer;
-import ir.neshane.customer.domain.identity.IdentityRevisionDifferences;
 import ir.neshane.customer.domain.verification.VerificationStatus;
 
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;
@@ -30,7 +29,7 @@ public final class IdentityRevisionAssessment {
         IdentifierText.requireNonBlank(nextRevision,"IDENTITY_REVISION_REQUIRED");
         if (!current.owner().equals(proposed.identityInfo().owner())) return blocked("IDENTITY_REVISION_SCOPE_MISMATCH",false,false);
         if (!current.value().equals(expectedRevision)) return blocked("IDENTITY_REVISION_STALE",false,false);
-        var differences = IdentityRevisionDifferences.assess(current.candidate(), proposed);
+        var differences = current.differences(proposed);
         boolean identifiers = differences.identifiers();
         boolean critical = differences.critical();
         boolean changed = differences.changed();
