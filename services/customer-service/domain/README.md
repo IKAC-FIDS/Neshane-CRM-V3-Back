@@ -175,3 +175,16 @@ only. Neither history nor draft establishes a completed transition.
 Caller-supplied versions, IDs and times are not trusted production contracts.
 Audit, transactional outbox, durable append, publication and idempotency
 remain downstream; no runtime, API, persistence or actual status mutation.
+
+## Increment 03D — archive dependency assessment
+
+Core basis 7f4382b; Backend basis 97af744. Ten initial dependency
+definitions with illustrative service owners, localized metadata and
+extensible system-only candidate catalog. All applicable entries require
+explicit matching evidence; unknown, unavailable, blocked, missing,
+inactive applicable definition or contradictory applicability blocks.
+Branch scope excludes Person. Request/customer/tenant, owner and unique
+dependency response checks are structural only. ALL_CLEARED_CANDIDATE
+does not unblock archive; evidence authenticity, expiry, registry
+authority, applicable deployed capabilities, concurrent changes and
+durable Audit remain unresolved. No external service calls.

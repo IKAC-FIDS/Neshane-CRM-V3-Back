@@ -54,6 +54,7 @@ public final class CustomerDomainSpecification {
         CustomerLifecycleSpecification.run();
         LifecycleReasonSpecification.run();
         LifecycleHistorySpecification.run();
+        ArchiveDependencySpecification.run();
     }
 
     private static void check(boolean condition, String description) {
