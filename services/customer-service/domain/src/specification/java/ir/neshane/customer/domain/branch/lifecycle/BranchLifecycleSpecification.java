@@ -1,4 +1,7 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.LifecycleReasonDefinition;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
@@ -16,12 +19,12 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.BranchLifecycle.Transition.*;
-import static ir.neshane.customer.domain.BranchLifecycle.Outcome.*;
+import static ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle.Transition.*;
+import static ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle.Outcome.*;
 
-final class BranchLifecycleSpecification {
+public final class BranchLifecycleSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("synthetic");
         var catalog = LifecycleReasonCatalog.initial();
         for (var status : BranchStatus.values()) {

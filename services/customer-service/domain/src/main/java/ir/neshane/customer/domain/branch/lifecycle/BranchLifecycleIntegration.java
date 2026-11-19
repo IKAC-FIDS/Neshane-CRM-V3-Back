@@ -1,4 +1,10 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.BranchEventDraft;
+import ir.neshane.customer.domain.BranchRegistration;
+import ir.neshane.customer.domain.BranchUpdatePolicy;
+import ir.neshane.customer.domain.CompanyBranches;
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 
@@ -50,7 +56,7 @@ public final class BranchLifecycleIntegration {
         if (coverage!=BranchRegistration.Coverage.COMPLETE_CANDIDATE || collection==null) return blocked("BRANCH_LIFECYCLE_COVERAGE_UNRESOLVED",false);
         if (context.history()==null || reasons==null || history==null) return blocked("BRANCH_LIFECYCLE_CONTEXT_REQUIRED",false);
         try {
-            collection.replaceCandidate(branch,branch);
+            collection.requireExistingCandidate(branch);
             var nextHistory=history.appendCandidate(branch,current.status(),parent.status(),context.transition(),reasons,context.systemReason(),context.reasonId(),context.comment(),context.history());
             var entry=nextHistory.entries().getLast();
             var next=new BranchUpdatePolicy.Current(branch,entry.newStatus(),version.proposed().orElseThrow());

@@ -1,4 +1,6 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchStatus;

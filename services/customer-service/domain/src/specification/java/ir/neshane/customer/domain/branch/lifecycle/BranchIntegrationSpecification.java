@@ -1,4 +1,8 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.BranchEventDraft;
+import ir.neshane.customer.domain.CompanyBranches;
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
@@ -22,12 +26,12 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 
 import java.time.Instant;
 import java.util.Optional;
-import static ir.neshane.customer.domain.BranchLifecycle.Transition.*;
+import static ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle.Transition.*;
 
 /** Isolated cross-component candidate flow; no persistence or publishing. */
-final class BranchIntegrationSpecification {
+public final class BranchIntegrationSpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("tenant-a");
         var foreign = new TenantId("tenant-b");
         var parent = Company.createCandidate(new CustomerId("company"), tenant, "Company", null);

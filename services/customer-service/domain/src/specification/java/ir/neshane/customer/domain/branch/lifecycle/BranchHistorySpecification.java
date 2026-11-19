@@ -1,4 +1,8 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.BranchEventDraft;
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.LifecycleReasonDefinition;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
@@ -19,11 +23,11 @@ import java.time.Instant;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.BranchLifecycle.Transition.*;
+import static ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle.Transition.*;
 
-final class BranchHistorySpecification {
+public final class BranchHistorySpecification {
     private static int checks;
-    static void run() {
+    public static void run() {
         var tenant = new TenantId("synthetic");
         var company = Company.createCandidate(new CustomerId("company"), tenant, "Example", null);
         var branch = Branch.createCandidate(new BranchId("branch"), tenant, company, null, "Branch", null, null);

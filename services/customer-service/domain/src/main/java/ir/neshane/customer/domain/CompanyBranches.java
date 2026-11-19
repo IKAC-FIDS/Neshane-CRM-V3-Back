@@ -31,6 +31,11 @@ public final class CompanyBranches {
 
     public List<Branch> branches() { return branches; }
 
+    /** Checks that an exact supplied snapshot is present and consistent; does not replace it. */
+    public void requireExistingCandidate(Branch branch) {
+        replaceCandidate(branch, branch);
+    }
+
     /** Replace an exact supplied snapshot without changing its owner or collection order. */
     CompanyBranches replaceCandidate(Branch current,Branch proposed) {
         if (!tenantId.equals(current.tenantId()) || !companyId.equals(current.companyId()) ||

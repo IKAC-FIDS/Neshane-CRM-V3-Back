@@ -1,4 +1,7 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
+import ir.neshane.customer.domain.LifecycleReasonDefinition;
 
 import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
@@ -66,7 +69,7 @@ public final class BranchLifecycle {
         Optional<LifecycleReasonCatalog.Selection> selection = Optional.empty();
         if (reasonId != null) {
             try {
-                selection = Optional.of(catalog.select(tenant, LifecycleReasonDefinition.Scope.BRANCH,
+                selection = Optional.of(catalog.selectBranchReason(tenant,
                     CustomerLifecycle.Transition.valueOf(transition.name()), system, reasonId, comment));
             } catch (IllegalArgumentException ex) {
                 return result(current, proposed, Outcome.REJECTED, ex.getMessage(), Optional.empty());

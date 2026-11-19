@@ -96,6 +96,12 @@ public final class LifecycleReasonCatalog {
         }
     }
 
+    /** Resolves a branch reason only; does not authorize or apply a transition. */
+    public Selection selectBranchReason(TenantId tenant, CustomerLifecycle.Transition transition,
+            boolean system, String reasonId, String comment) {
+        return select(tenant, LifecycleReasonDefinition.Scope.BRANCH, transition, system, reasonId, comment);
+    }
+
     Selection select(TenantId tenant, LifecycleReasonDefinition.Scope target, CustomerLifecycle.Transition transition,
                      boolean system, String reasonId, String comment) {
         Objects.requireNonNull(tenant);

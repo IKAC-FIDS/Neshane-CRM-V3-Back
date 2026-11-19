@@ -1,4 +1,12 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.branch.lifecycle;
+
+import ir.neshane.customer.domain.BranchChangeEventDraft;
+import ir.neshane.customer.domain.BranchChangeHistory;
+import ir.neshane.customer.domain.BranchEventDraft;
+import ir.neshane.customer.domain.BranchRegistration;
+import ir.neshane.customer.domain.BranchUpdatePolicy;
+import ir.neshane.customer.domain.CompanyBranches;
+import ir.neshane.customer.domain.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
 
@@ -25,14 +33,14 @@ import ir.neshane.customer.domain.shared.identifier.BranchId;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import static ir.neshane.customer.domain.BranchLifecycle.Transition.*;
-import static ir.neshane.customer.domain.BranchLifecycleIntegration.Authority.*;
+import static ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle.Transition.*;
+import static ir.neshane.customer.domain.branch.lifecycle.BranchLifecycleIntegration.Authority.*;
 
-final class BranchLifecycleIntegrationSpecification {
+public final class BranchLifecycleIntegrationSpecification {
     private static int checks;
     private static final TenantId TENANT=new TenantId("tenant");
     private static final LifecycleReasonCatalog REASONS=LifecycleReasonCatalog.initial();
-    static void run() {
+    public static void run() {
         var company=Company.createCandidate(new CustomerId("company"),TENANT,"Company",null);
         var parent=new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(company,"r1",VerificationStatus.VERIFIED),CustomerStatus.ACTIVE,CustomerRecordVersion.initial(company));
         var branch=Branch.createCandidate(new BranchId("branch"),TENANT,company,"code","Branch",null,null);
