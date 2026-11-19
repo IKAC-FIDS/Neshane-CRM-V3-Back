@@ -616,3 +616,12 @@ reject missing/stale/foreign versions, parent changes and overflow. A next
 version candidate does not mutate the source or advance the Customer version.
 Actual change detection, authority, lifecycle and durable compare-and-set
 remain separate; no persistence, API, IAM or runtime behavior.
+
+## Increment 10B — integrated branch registration
+
+Core basis 2df1f49; Backend basis 3c9296e. Synthetic registration combines
+explicit authority, current company status, owner scope, complete candidate
+company collection, duplicate ID/exact code checks, current type selectability,
+contact validation and primary selection. Initial ACTIVE/version one; parent
+state and version unchanged. No global uniqueness, durable writes, trusted
+authorization or Audit delivery; audit obligation is retained.
