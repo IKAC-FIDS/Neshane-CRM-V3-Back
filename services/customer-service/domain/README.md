@@ -675,3 +675,13 @@ duplicate code, profile failure, no-op and retained contact history. History
 and deterministic event drafts are checked together; parent and sibling
 remain unchanged. Test and documentation only; no runtime or persistence
 acceptance is claimed.
+
+## Increment 11A — customer lifecycle integration
+
+Core basis 2df1f49; Backend basis 303e07c. Explicit transition authority,
+owner/version checks, reason selection and immutable lifecycle history produce
+a version-bound deactivation draft without altering identity or verification.
+Archive evidence is request-scoped and fail-closed; even synthetic clearance
+does not unlock archive, reactivation or restoration. Factual history can
+advance across an eligible lifecycle candidate without emitting a factual event.
+No trusted authorization, durable write or event publication is introduced.
