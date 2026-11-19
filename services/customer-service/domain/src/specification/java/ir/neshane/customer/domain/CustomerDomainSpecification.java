@@ -99,6 +99,7 @@ public final class CustomerDomainSpecification {
         CustomerChangeHistorySpecification.run();
         CustomerChangeEventDraftSpecification.run();
         CustomerRecordIntegrationSpecification.run();
+        BranchRecordVersionSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

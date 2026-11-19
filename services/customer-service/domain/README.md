@@ -607,3 +607,12 @@ Verified identifier correction requires independent reverification with fresh
 evidence; stale/forbidden/no-op changes do not produce history or events.
 Verification-only transitions do not advance factual record versions.
 No production persistence, IAM, API, outbox or deployment acceptance.
+
+## Increment 10A — branch record versioning
+
+Core basis 2df1f49; Backend basis 8dff791. Independent immutable branch
+record version scoped to Tenant, Company and Branch ID. Initial version one,
+reject missing/stale/foreign versions, parent changes and overflow. A next
+version candidate does not mutate the source or advance the Customer version.
+Actual change detection, authority, lifecycle and durable compare-and-set
+remain separate; no persistence, API, IAM or runtime behavior.
