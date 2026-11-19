@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 import static ir.neshane.customer.domain.VerificationLifecycle.Trigger.*;
 import static ir.neshane.customer.domain.VerificationLifecycle.Outcome.*;
 import static ir.neshane.customer.domain.VerificationStatus.*;

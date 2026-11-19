@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+
 import java.util.HashSet;
 import java.util.Set;
 import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;

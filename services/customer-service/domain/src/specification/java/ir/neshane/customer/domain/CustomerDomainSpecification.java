@@ -1,5 +1,8 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 /** Executable unit specification with synthetic data only; no external dependencies. */
 public final class CustomerDomainSpecification {
     private static final CustomerId ID = new CustomerId("synthetic-customer");

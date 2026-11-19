@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+
 import java.time.Instant;
 import java.util.Optional;
 import java.util.Set;

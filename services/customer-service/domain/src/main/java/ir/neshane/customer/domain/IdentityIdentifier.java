@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.IdentifierText;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,10 +25,7 @@ public record IdentityIdentifier(String id, IdentityOwner owner, String typeId, 
     }
 
     static void required(String value, String code) {
-        if (value == null || value.codePoints().allMatch(cp ->
-                Character.isWhitespace(cp) || Character.isSpaceChar(cp))) {
-            throw new IllegalArgumentException(code);
-        }
+        IdentifierText.requireNonBlank(value, code);
     }
 
     private static void optional(Optional<String> value) {

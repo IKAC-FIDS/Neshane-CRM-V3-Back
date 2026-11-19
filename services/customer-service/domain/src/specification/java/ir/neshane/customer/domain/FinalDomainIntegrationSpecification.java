@@ -1,5 +1,11 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+import ir.neshane.customer.domain.shared.identifier.BranchId;
+import ir.neshane.customer.domain.shared.identifier.RelationshipId;
+import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
+
 import java.time.*;
 import java.util.*;
 import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;

@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+
 import java.util.Objects;
 
 /** Synthetic protected file reference, not a storage path, URL or scanned file. */

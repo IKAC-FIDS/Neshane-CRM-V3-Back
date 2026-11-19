@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+
 import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
 
 /** Logical disclosure disposition only. No projection, masking algorithm or trusted grants. */

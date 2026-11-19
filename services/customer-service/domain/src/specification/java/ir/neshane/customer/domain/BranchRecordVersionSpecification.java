@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+import ir.neshane.customer.domain.shared.identifier.BranchId;
+
 import static ir.neshane.customer.domain.BranchRecordVersion.Outcome.*;
 
 final class BranchRecordVersionSpecification {

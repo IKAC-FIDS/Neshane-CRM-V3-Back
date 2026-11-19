@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.identifier;
 
 /** Logical ownership label, not a trust or authorization credential. */
 public record TenantId(String value) {

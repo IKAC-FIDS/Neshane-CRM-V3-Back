@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.identifier;
 
 /** Opaque, caller-supplied identity; no generation or topology policy. */
 public record CustomerId(String value) {
