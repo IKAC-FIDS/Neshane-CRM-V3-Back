@@ -79,3 +79,25 @@ returns warnings, not a completed authorized operation. Old 02A assembly
 methods remain synthetic structural helpers, not an authorized assignment
 path. Catalog append checks candidate shape, not legal/format validity.
 CM1-CNT-03/05/06 partial isolated coverage, no runtime or formal acceptance.
+
+## Increment 02C — localization candidate
+
+Owner confirmed platform direction on 2026-11-19. Core basis d59a163,
+Backend basis 1a4ba51a97a2089f85ef639d8bb292ba28f54b22.
+Service-owned LocalizedText and pure resolver, no shared translation service.
+Candidate inputs: tenant-enabled locales, optional explicit user locale,
+tenant default and configurable platform default (initial fa). Inconsistent
+candidate settings are rejected rather than silently accepted. Exact-key
+fallback: user, tenant, platform, caller-provided original/display code.
+The chosen value and fallback source are returned without mutating facts.
+Platform fallback can be used even if not selectable as a user preference.
+Exact locale normalization, request negotiation, language registry, preference
+storage and unavailable-user-preference migration remain open.
+
+MessageDescriptor supports stable code/key independent of displayed text;
+no new API error namespace, bundle runtime, error mapping or frontend contract.
+No changes to legal names, identifiers, role codes, customer record status,
+canonical dates, time zones, calendars or formatting. Real formatting and
+multilingual business-fact storage/mapping require separate contracts.
+CM1-CNT-06/09 partial synthetic coverage; CM1-CNT-10 not claimed tested.
+No runtime, Spring, API, IAM, persistence, events or shared module introduced.

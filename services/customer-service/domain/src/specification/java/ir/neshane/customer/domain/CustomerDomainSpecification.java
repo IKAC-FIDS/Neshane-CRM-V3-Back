@@ -48,6 +48,7 @@ public final class CustomerDomainSpecification {
         System.out.println("PASS: " + checks + " isolated domain assertions");
         ContactInfoSpecification.run();
         ContactTypeCatalogSpecification.run();
+        LocalizationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
