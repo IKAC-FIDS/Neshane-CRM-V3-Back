@@ -325,3 +325,11 @@ scenario covers tenant role selection, target discrimination, overlap
 review/exception, temporal eligibility, role revision, protected history
 and minimal event drafts. No actual transaction, state mutation or durable
 Audit; runtime, concurrency and final authorization remain open.
+
+## Increment 06A — duplicate detection foundation
+
+Core basis 2df1f49; Backend basis 434f973. CM1-PD-083/084:
+request-scoped synthetic comparison signals, definite over potential,
+unknown coverage blocks, self excluded only on update. Redacted outcome
+without raw values or subject IDs. No actual matching, evidence trust,
+namespace determination, exception approval, merge, persistence or IAM.
