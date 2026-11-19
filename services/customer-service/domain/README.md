@@ -596,3 +596,14 @@ use length-framed owner, version, history ID and event type. Includes opaque
 actor/correlation IDs, versions, field codes and verification transitions;
 excludes facts, reasons and evidence. No-op/blocked updates issue no entry.
 No committed state, broker, outbox, deduplication store or Audit delivery.
+
+## Increment 09H — integrated customer record specifications
+
+Core basis 2df1f49; Backend basis d9ed275. Synthetic end-to-end domain
+specification composes registration, contact/identifier validation, required
+documents, duplicate blocking, manual verification, factual updates, record
+versions, identity revisions, protected change history and event drafts.
+Verified identifier correction requires independent reverification with fresh
+evidence; stale/forbidden/no-op changes do not produce history or events.
+Verification-only transitions do not advance factual record versions.
+No production persistence, IAM, API, outbox or deployment acceptance.

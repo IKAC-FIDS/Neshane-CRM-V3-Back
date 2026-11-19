@@ -98,6 +98,7 @@ public final class CustomerDomainSpecification {
         CustomerUpdateVerificationSpecification.run();
         CustomerChangeHistorySpecification.run();
         CustomerChangeEventDraftSpecification.run();
+        CustomerRecordIntegrationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {
