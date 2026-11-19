@@ -490,3 +490,13 @@ not persisted. Independent invalidation authority, owner/ID/version guards,
 reason and decision timestamps produce an immutable audited candidate.
 Replacement retains invalidation provenance and historical file snapshots.
 No authenticity, actual authorization, durable Audit or verification mutation.
+
+## Increment 08F — document completeness assessment
+
+Core basis 2df1f49; Backend basis 6b5f6fe. Request-scoped mandatory type
+coverage using current versions only, rejecting foreign owners and duplicate
+history IDs. Explicit synthetic ANY_CURRENT_PROVIDED convention counts each
+type once; mixed observed states remain visible without precedence. Unknown
+counting or date rules can withhold the exact numerator. Zero requirements
+yield raw 0/0 counts, not a percentage or approval. No actual access,
+legal prerequisite decision, durable snapshot guarantee or verification mutation.
