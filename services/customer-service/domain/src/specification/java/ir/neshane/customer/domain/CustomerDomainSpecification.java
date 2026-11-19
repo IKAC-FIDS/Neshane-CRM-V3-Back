@@ -110,6 +110,7 @@ public final class CustomerDomainSpecification {
         BranchLifecycleIntegrationSpecification.run();
         RelationshipLifecycleIntegrationSpecification.run();
         CrossAggregateLifecycleSpecification.run();
+        CrossAggregateLifecycleIntegrationSpecification.run();
     }
 
     private static void check(boolean condition, String description) {

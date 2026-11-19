@@ -714,3 +714,12 @@ mutate stored state or versions. Internal archive evidence conservatively
 blocks stored active branches and relationships, even if unavailable or
 expired; external evidence cannot override internal dependency codes.
 No trusted clearance or cascade writes; unresolved archive remains blocked.
+
+## Increment 11E — integrated lifecycle specification
+
+Core basis 2df1f49; Backend basis 43d94a9. Synthetic integrated scenario
+registers a branch, creates a relationship, closes/reopens the branch,
+deactivates the company, closes the branch and ends the relationship.
+Checks effective versus stored state, independent versions, history/events,
+blocked archive before dependency cleanup and unresolved archive afterward.
+Test and documentation only; no persistence or runtime acceptance.
