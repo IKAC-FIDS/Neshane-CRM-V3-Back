@@ -84,6 +84,7 @@ public final class CustomerDomainSpecification {
         VerificationIntegrationSpecification.run();
         CustomerDocumentSpecification.run();
         DocumentTypeCatalogSpecification.run();
+        DocumentRequirementPolicySpecification.run();
     }
 
     private static void check(boolean condition, String description) {

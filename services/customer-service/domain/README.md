@@ -462,3 +462,12 @@ expiry applicability, status and display order. Inactive types retain
 historical reference but block new upload. Synthetic management authority,
 configured platform size and metadata checks only; production grammar,
 authorization, durable Audit and requirement enforcement remain open.
+
+## Increment 08C — document requirement policy
+
+Core basis 2df1f49; Backend basis b20b349. Immutable candidate policy revisions
+and request-scoped snapshots select active mandatory types for the explicitly
+requested registration or verification stage. Optional/inactive types are
+not required. Changes affect later snapshots; stale snapshots block and
+historical references remain. No automatic verification invalidation, legal
+prerequisite determination, completeness or durable Audit.
