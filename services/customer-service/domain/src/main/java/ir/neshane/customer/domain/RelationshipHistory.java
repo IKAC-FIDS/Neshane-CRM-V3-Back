@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.localization.LocalizedText;
+
 import ir.neshane.customer.domain.shared.identifier.TenantId;
 
 import java.util.ArrayList;

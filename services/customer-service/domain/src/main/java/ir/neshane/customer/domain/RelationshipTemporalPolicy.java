@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.temporal.TemporalPolicy;
+
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.Optional;

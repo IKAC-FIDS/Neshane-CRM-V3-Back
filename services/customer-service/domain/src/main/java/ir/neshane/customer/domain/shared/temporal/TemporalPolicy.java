@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.temporal;
 
 import java.time.Instant;
 import java.time.LocalDate;

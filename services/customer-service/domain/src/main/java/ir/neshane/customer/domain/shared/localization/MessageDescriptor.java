@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.localization;
 
 /** Stable internal message metadata, not an approved external error contract. */
 public record MessageDescriptor(String code, String messageKey) {

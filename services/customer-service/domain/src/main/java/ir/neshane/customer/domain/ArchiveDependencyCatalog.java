@@ -1,5 +1,7 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.shared.localization.LocalizedText;
+
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;

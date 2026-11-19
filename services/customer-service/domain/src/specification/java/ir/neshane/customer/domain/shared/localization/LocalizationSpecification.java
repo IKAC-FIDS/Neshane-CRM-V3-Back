@@ -1,16 +1,16 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.localization;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
-final class LocalizationSpecification {
+public final class LocalizationSpecification {
     private static int checks;
 
     private LocalizationSpecification() {}
 
-    static void run() {
+    public static void run() {
         LocalizedText text = new LocalizedText(Map.of("fa", "تلفن همراه", "en", "Mobile"));
         var user = new LocalizationContext(Set.of("fa", "en"), Optional.of("en"), "fa", "fa");
         var tenant = new LocalizationContext(Set.of("en", "ar"), Optional.of("ar"), "en", "fa");

@@ -1,4 +1,4 @@
-package ir.neshane.customer.domain;
+package ir.neshane.customer.domain.shared.localization;
 
 import java.util.Objects;
 import java.util.Optional;
