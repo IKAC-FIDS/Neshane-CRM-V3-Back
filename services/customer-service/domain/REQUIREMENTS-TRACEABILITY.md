@@ -146,3 +146,9 @@ It connects prior isolated evidence without extending criterion classification
 or resolving G01–G11, the 19 PDQs, trusted access, durable writes/events,
 external dependencies or runtime acceptance. Final Gradle/module-boundary
 evidence must be obtained from the target repository before 14D.
+
+14D: target 14C Gradle/module-boundary run reported BUILD SUCCESSFUL and
+77 groups / 5843 assertions; reviewed executable commit 0fa932f was pushed.
+DOMAIN-ACCEPTANCE.md and DOMAIN-BASELINE.md preserve the classifications
+and all 19 OPEN PDQs. This is a bounded freeze candidate pending final
+target verification and explicit owner acceptance; no criterion promotion.

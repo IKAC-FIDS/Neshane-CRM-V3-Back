@@ -834,3 +834,11 @@ company deactivation and explicit relationship termination. It checks scope,
 stale versions, masking disposition, audit eligibility and preserved histories/
 event drafts. 40 additional assertions; 77 groups and 5843 assertions locally
 passing with Java 21. No production code change or new acceptance disposition.
+
+## Increment 14D — bounded acceptance and baseline freeze candidate
+
+Backend reviewed executable basis 0fa932f. DOMAIN-ACCEPTANCE.md records
+the bounded acceptance proposal and retained PDQs; DOMAIN-BASELINE.md
+pins evidence and the target verification procedure. This increment is
+documentation only. Final owner acceptance follows the target build and
+commit verification; no downstream execution or runtime gate is authorized.
