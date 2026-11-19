@@ -645,3 +645,13 @@ contact IDs cannot be deleted; deactivation retains facts and clears primary,
 inactive contacts cannot be rewritten or reactivated through this path.
 Successful changes advance only branch version and retain audit obligation;
 no durable write, lifecycle mutation, parent update or Audit delivery.
+
+## Increment 10E — immutable branch change history
+
+Core basis 2df1f49; Backend basis e04279f. Registration and factual update
+history accepts only eligible candidate objects from branch policies. Entries
+carry owner-scoped versions, action, changed-field names and history context,
+without raw contact or branch values. Append checks version and fact continuity,
+unique history ID and nondecreasing time; original history remains immutable.
+Lifecycle-only corrections remain separate. No persistent history, event
+publication, authenticated actor or proof of a completed write.
