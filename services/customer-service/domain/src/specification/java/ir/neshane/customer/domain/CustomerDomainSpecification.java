@@ -60,6 +60,7 @@ public final class CustomerDomainSpecification {
         BranchTypeSpecification.run();
         BranchContactSpecification.run();
         BranchLifecycleSpecification.run();
+        BranchHistorySpecification.run();
     }
 
     private static void check(boolean condition, String description) {

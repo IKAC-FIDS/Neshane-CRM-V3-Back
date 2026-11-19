@@ -240,3 +240,15 @@ reason, optional reactivation reason and selected comment enforcement.
 Synthetic status assessment covers inactive snapshots without introducing
 rehydration or trusted state. No automatic changes, transfer, Audit,
 persistence, API or runtime.
+
+## Increment 04E — branch history and event drafts
+
+Core basis ecd2615; Backend basis 8f3f4f8. Immutable branch history
+reuses lifecycle context, reassesses branch/parent and scoped reason,
+retains historical title and comment, checks scope and continuity.
+Versioned event draft contains branch ID, Company ID, tenant, statuses
+and correlation metadata only. Six target event types; currently only
+deactivation is reachable from an actual branch candidate snapshot.
+Reactivation needs inactive snapshot support; other operations remain
+vocabulary. Effective parent state changes create no branch status
+event. No actual mutation, trusted attribution, durable Audit or publish.
