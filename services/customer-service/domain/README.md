@@ -704,3 +704,13 @@ active parties; effective availability follows stored lifecycle and dates.
 END remains possible with inactive parties and historical roles, preserving
 interval facts. Events use history versions; parties remain unchanged.
 No reactivation transition, trusted authority, durable write or publication.
+
+## Increment 11D — cross-aggregate lifecycle rules
+
+Core basis 2df1f49; Backend basis c8e3b91. Complete synthetic dependency
+snapshots bind current root, branches and related parties; reject foreign,
+duplicate and inconsistent facts. Prospective effective statuses do not
+mutate stored state or versions. Internal archive evidence conservatively
+blocks stored active branches and relationships, even if unavailable or
+expired; external evidence cannot override internal dependency codes.
+No trusted clearance or cascade writes; unresolved archive remains blocked.

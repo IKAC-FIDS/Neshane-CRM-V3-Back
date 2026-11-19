@@ -3,6 +3,7 @@ package ir.neshane.customer.domain;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.time.LocalDate;
 
 /** Composes existing fail-closed lifecycle rules with optimistic record versioning. */
 public final class CustomerLifecycleIntegration {
@@ -28,6 +29,20 @@ public final class CustomerLifecycleIntegration {
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private CustomerLifecycleIntegration() {}
+    public static Assessment assessWithDependencies(CustomerUpdatePolicy.Current current,CustomerRecordVersion expected,Context context,
+            LifecycleReasonCatalog reasons,LifecycleHistory history,ArchiveDependencyCatalog dependencies,List<ArchiveDependencyAssessment.Evidence> external,
+            CrossAggregateLifecycle.Snapshot snapshot,LocalDate day) {
+        if (context.transition()!=CustomerLifecycle.Transition.ARCHIVE)
+            return assess(current,expected,context,reasons,history,dependencies,external);
+        if (!current.version().owner().tenantId().equals(context.tenant()) || context.authority()!=Authority.TRANSITION ||
+                expected==null || !current.version().equals(expected) || context.history()==null)
+            return assess(current,expected,context,reasons,history,dependencies,external);
+        try {
+            var request=new ArchiveDependencyAssessment.Request(context.tenant(),current.version().owner().customerId(),context.history().correlationId());
+            var evidence=CrossAggregateLifecycle.archiveEvidence(current,snapshot,request,day,context.history().occurredAt(),external);
+            return assess(current,expected,context,reasons,history,dependencies,evidence);
+        } catch (IllegalArgumentException ex) { return blocked(ex.getMessage(),false); }
+    }
     public static Assessment assess(CustomerUpdatePolicy.Current current,CustomerRecordVersion expected,Context context,
             LifecycleReasonCatalog reasons,LifecycleHistory history,ArchiveDependencyCatalog dependencies,List<ArchiveDependencyAssessment.Evidence> evidence) {
         Objects.requireNonNull(current); Objects.requireNonNull(context);
