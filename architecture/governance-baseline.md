@@ -222,3 +222,41 @@ If Root is missing, continue only where this local guidance and an approved Task
 - V3-014 remains `CLOSED — CONFIGURATION AND SECRET CONTRACTS R1 BASELINE`. This synchronization establishes
   neither Security Sign-off nor Production Readiness.
 
+<a id="ip-01-p00-007-alignment"></a>
+## IP-01.6.2 — Persistence architecture synchronization
+
+- Task: IP-01.6.2.
+- Authority: explicit Product Decision Owner / Technical Architecture Owner approval.
+- Recording timestamp: 2026-11-20T21:02:20.2330223+03:30.
+- Core Main: 124253f31696db9b4733a317472c6c5799429a74.
+- Backend source baseline: 1c2489c85f895f6a770eaeba46d6a15a01b34898.
+- Architecture: NESHANE-V3-ARCH-P00-007.
+- Governance: NESHANE-V3-GOV-P00-000A.
+- Scope: five-file Backend documentation alignment.
+
+| Decision | Selected architecture |
+| --- | --- |
+| OD-013 / DEC-017 / ADR-V3-017 | Flyway versioned SQL migrations |
+| OD-014 / DEC-018 / ADR-V3-018 | Spring JDBC, PostgreSQL JDBC, private HikariCP pools, secured Tenant Unit of Work, RLS, READ COMMITTED, optimistic locking |
+
+The above selections govern new persistence development after
+traceable Backend documentation registration.
+
+Historical P00-005 and P00-006 engineering and governance
+records retain their original acceptance boundaries.
+
+All 47 V3-024 conditions, 41/1/5 classifications,
+negative cases, GS and F-R2 obligations remain applicable.
+
+Raw Hikari SESSION-state leakage remains a recorded failure.
+DB01 and DB13 evidence obligations remain applicable.
+No new runtime security control is verified by this alignment.
+
+OD-012 and other unresolved decisions retain their existing status.
+Independent specialist sign-off is not recorded.
+
+Implementation, database provisioning, actual migrations,
+runtime acceptance and production deployment require separately
+authorized scope and applicable prerequisites.
+
+Status: OWNER-APPROVED ALIGNMENT — pending traceable Backend registration.

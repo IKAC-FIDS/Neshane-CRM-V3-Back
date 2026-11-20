@@ -41,3 +41,26 @@ Read the smallest relevant set under `.agents/skills/`: `neshane-service`, `nesh
 - For implementation tasks, report in Persian: implementation, changed files, configuration, exact commands executed and results, manual commands for unexecuted checks, and limitations.
 - For documentation-only tasks, do not invent build or deployment commands; report documents, approval gaps, manual review, conflicts, and the next authorized task.
 
+<a id="ip-01-p00-007-alignment"></a>
+## Current persistence architecture — P00-007
+
+For persistence architecture, this section supersedes earlier
+unresolved OD-013/OD-014 guidance.
+
+- Authoritative Core Main: 124253f31696db9b4733a317472c6c5799429a74.
+- Architecture: NESHANE-V3-ARCH-P00-007.
+- Governance: NESHANE-V3-GOV-P00-000A.
+- Apply DEC-017 / ADR-V3-017 for Flyway SQL migrations.
+- Apply DEC-018 / ADR-V3-018 for Spring JDBC persistence.
+- Use explicit secured Tenant Unit of Work and privately controlled HikariCP.
+- Use validated transaction-local Tenant Context and applicable PostgreSQL RLS.
+- Preserve READ COMMITTED scope and optimistic locking requirements.
+- Keep migration and runtime identities separate.
+- Preserve independent service and Cell database ownership.
+- Do not expose raw connections, pools or transaction control to business operations.
+- Preserve all V3-024 security conditions and negative verification obligations.
+
+Earlier engineering acceptances remain historical.
+Architecture alignment authorizes no production migration,
+runtime acceptance, deployment or security waiver.
+Actual implementation requires an explicitly scoped development Task.

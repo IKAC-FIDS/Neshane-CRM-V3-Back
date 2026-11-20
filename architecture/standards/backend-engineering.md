@@ -59,3 +59,51 @@ ADR-V3-013 approves Java 21 LTS, Spring Boot 4.1.2, and Gradle multi-project wit
 
 Base-package prefix, API protocol/versioning, identity/session model, migration tool and RLS mechanism, broker topology/contracts, error namespace, secret provider, testing stack, plugin model, and numeric operational limits still require approval.
 
+<a id="ip-01-p00-007-alignment"></a>
+## Persistence engineering — P00-007
+
+Apply ADR-V3-017 and ADR-V3-018 to new persistence tasks.
+
+### Module boundaries
+
+- Domain remains framework and database independent.
+- Application owns outbound port contracts.
+- Persistence adapters own parameterized SQL and database mappings.
+- Runtime composition owns dependency wiring and configuration.
+- Cross-service SQL and database access are prohibited.
+
+### Migration requirements
+
+- Flyway versioned SQL migrations.
+- Service-owned migration artifacts.
+- Separate migration and runtime identities.
+- Immutable released migrations and checksum validation.
+- No automatic ORM schema mutation.
+- No automatic ordinary-runtime migration execution.
+- Fail-closed migration and compatibility checks.
+- Explicit authorization for destructive operations.
+
+### Transaction and isolation requirements
+
+- Explicit secured Tenant Unit of Work.
+- Privately controlled HikariCP pools.
+- Validated Tenant and Cell authority.
+- Transaction-local Tenant Context.
+- Tenant-aware primary, unique and foreign-key constraints.
+- Applicable read/write RLS and FORCE ROW LEVEL SECURITY.
+- Non-owner runtime roles without SUPERUSER or BYPASSRLS.
+- Initial READ COMMITTED isolation.
+- Optimistic locking for versioned aggregates.
+- Atomic owned state, history and required Outbox records.
+- Verified connection cleanup and unsafe connection eviction.
+- No automatic business replay after unknown commit outcomes.
+
+### Verification
+
+Real PostgreSQL verification must use Task-owned disposable databases.
+
+Preserve positive controls, negative isolation checks,
+migration validation, rollback and recovery checks,
+pool contamination tests and applicable V3-024 DB01-DB14 obligations.
+
+Selection of these technologies is not implementation acceptance.
