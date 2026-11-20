@@ -18,6 +18,7 @@ public final class CustomerApplicationSpecification {
     private CustomerApplicationSpecification() {}
 
     public static void main(String[] args) {
+        ir.neshane.customer.application.verification.VerificationApplicationSpecification.run();
         ir.neshane.customer.application.duplicate.DuplicateApplicationSpecification.run();
         ir.neshane.customer.application.relationship.RelationshipApplicationSpecification.run();
         ir.neshane.customer.application.branch.lifecycle.BranchLifecycleApplicationSpecification.run();
