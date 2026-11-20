@@ -106,3 +106,35 @@ Supported assessment:
 No durable customer update, trusted runtime authorization,
 database transaction, audit execution or external event
 publication is implemented.
+
+## AP-05 - Customer Lifecycle Candidate
+
+Components:
+
+- CustomerLifecycleCandidateCommand
+- CustomerLifecycleCandidateUseCase
+- AssessCustomerLifecycleCandidate
+- CustomerLifecycleCandidateResult
+
+The application coordinates existing
+CustomerLifecycleIntegration domain rules.
+
+Supported assessment operations:
+
+- DEACTIVATE
+- REACTIVATE
+- ARCHIVE
+- RESTORE
+
+Deactivation may produce an eligible synthetic candidate.
+Reactivation, archive and restoration remain blocked
+under existing unresolved domain prerequisites.
+
+Cross-aggregate archive dependency assessments preserve
+fail-closed behavior and reject internal evidence overrides.
+
+Proposed status, record version and audit requirements
+are represented in the application result.
+
+No durable transition, runtime authorization, audit
+execution or event publication is implemented.
