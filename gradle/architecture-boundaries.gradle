@@ -11,6 +11,7 @@ def allowedProjectDependencies = [
     ':services:reference-peer-service'  : [':platform-libraries:observability'] as Set,
     ':services:customer-service'        : [] as Set,
     ':services:customer-service:domain' : [] as Set,
+    ':services:customer-service:application': [':services:customer-service:domain'] as Set,
     ':platform-libraries'               : [] as Set,
     ':platform-libraries:observability' : [] as Set,
     ':contract-tests'                   : [] as Set,
