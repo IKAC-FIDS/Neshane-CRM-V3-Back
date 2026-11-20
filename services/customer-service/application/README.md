@@ -138,3 +138,37 @@ are represented in the application result.
 
 No durable transition, runtime authorization, audit
 execution or event publication is implemented.
+
+## AP-06 - Branch Registration and Update Candidates
+
+Registration components:
+
+- RegisterBranchCandidateCommand
+- RegisterBranchCandidateUseCase
+- RegisterBranchCandidate
+- RegisterBranchCandidateResult
+
+Update components:
+
+- UpdateBranchCandidateCommand
+- UpdateBranchCandidateUseCase
+- UpdateBranchCandidate
+- UpdateBranchCandidateResult
+
+The application coordinates existing BranchRegistration
+and BranchUpdatePolicy domain rules.
+
+Supported assessments:
+
+- Parent company scope and lifecycle.
+- Branch registration eligibility.
+- Branch identity and code uniqueness.
+- Record version checks.
+- Branch type and contact validation.
+- Changed field classification.
+- Audit requirement propagation.
+- Safe result mapping.
+
+No durable branch registration, update, transfer,
+runtime authorization, persistence, audit execution
+or event publication is implemented.
