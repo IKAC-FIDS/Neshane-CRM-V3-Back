@@ -48,3 +48,29 @@ trusted IAM, production data, external adapter or
 runtime acceptance is established.
 
 Existing governance gates and open decisions remain unchanged.
+
+## AP-03 — Customer Registration Candidate
+
+Components:
+
+- RegisterCustomerCandidateCommand
+- RegisterCustomerCandidateUseCase
+- RegisterCustomerCandidate
+- RegisterCustomerCandidateResult
+
+The use case coordinates existing CustomerRegistration
+domain rules without changing domain behavior.
+
+Supported outcomes:
+
+- ELIGIBLE_CANDIDATE
+- BLOCKED
+
+Audit requirements are propagated to the application result.
+Known result codes are retained; unrecognized codes are
+mapped to a generic blocked result.
+
+No durable customer registration, real IAM, persistence,
+external validation or audit execution is implemented.
+
+Registration inputs and test scenarios are synthetic.
