@@ -56,7 +56,7 @@ public final class BranchRecordIntegrationSpecification {
         var sibling=branch(company,"sibling","other","Other");
         var original=branch(company,"branch","code","Original");
         var initial=CompanyBranches.empty(company).appendCandidate(sibling);
-        var registration=BranchRegistration.assess(original,parent,initial,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        var registration=BranchRegistration.assess(original, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),initial,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchRegistration.Context(TENANT,BranchRegistration.Authority.REGISTER),TYPES,CONTACTS,Map.of());
         expect(registration.outcome()==BranchRegistration.Outcome.ELIGIBLE_CANDIDATE); expect(registration.auditRequired());
         var registered=registration.proposed().orElseThrow();
@@ -119,7 +119,7 @@ public final class BranchRecordIntegrationSpecification {
     private static Branch branch(Company c,String id,String code,String name) { return Branch.createCandidate(new BranchId(id),c.tenantId(),c,code,name,null,null); }
     private static LifecycleHistory.Context context(int i) { return new LifecycleHistory.Context("h"+i,"actor",Instant.parse("2026-01-01T00:00:00Z").plusSeconds(i),"request"+i); }
     private static BranchUpdatePolicy.Assessment assess(BranchUpdatePolicy.Current current,BranchRecordVersion expected,Branch proposed,CustomerUpdatePolicy.Current parent,CompanyBranches branches,TenantId tenant,BranchUpdatePolicy.Authority authority,Map<String,ValidationProfile> profiles) {
-        return BranchUpdatePolicy.assess(current,expected,proposed,parent,branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        return BranchUpdatePolicy.assess(current,expected,proposed, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchUpdatePolicy.Context(tenant,authority,current.status()),TYPES,CONTACTS,profiles);
     }
     private static void blocked(BranchUpdatePolicy.Assessment result,String code) { expect(result.outcome()==BranchUpdatePolicy.Outcome.BLOCKED); expect(result.code().equals(code)); expect(result.proposed().isEmpty()); }

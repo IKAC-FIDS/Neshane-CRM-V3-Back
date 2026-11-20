@@ -49,7 +49,7 @@ public final class BranchLifecycleIntegrationSpecification {
         var parent=new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(company,"r1",VerificationStatus.VERIFIED),CustomerStatus.ACTIVE,CustomerRecordVersion.initial(company));
         var branch=Branch.createCandidate(new BranchId("branch"),TENANT,company,"code","Branch",null,null);
         var sibling=Branch.createCandidate(new BranchId("sibling"),TENANT,company,"other","Other",null,null);
-        var reg=BranchRegistration.assess(branch,parent,CompanyBranches.empty(company).appendCandidate(sibling),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        var reg=BranchRegistration.assess(branch, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),CompanyBranches.empty(company).appendCandidate(sibling),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchRegistration.Context(TENANT,BranchRegistration.Authority.REGISTER),BranchTypeCatalog.initial(),ContactTypeCatalog.empty(),Map.of()).proposed().orElseThrow();
         var facts=BranchChangeHistory.start(reg,meta(0)); var current=facts.current(); var history=BranchHistory.empty(branch); var collection=reg.branches();
         var close=context(TENANT,TRANSITION,DEACTIVATE,"BRANCH_CLOSED",1);
@@ -85,7 +85,7 @@ public final class BranchLifecycleIntegrationSpecification {
         expect(reopened.history().entries().size()==2); expect(reopened.history().entries().getLast().previousStatus()==BranchStatus.INACTIVE);
         var completed=advanced.advanceLifecycle(reopened); expect(completed.current().version().value()==3); expect(completed.entries().size()==1);
         var renamed=Branch.createCandidate(branch.id(),TENANT,company,"code","Renamed",null,null);
-        var edit=BranchUpdatePolicy.assess(completed.current(),completed.current().version(),renamed,parent,collection,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        var edit=BranchUpdatePolicy.assess(completed.current(),completed.current().version(),renamed, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),collection,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchUpdatePolicy.Context(TENANT,BranchUpdatePolicy.Authority.UPDATE,BranchStatus.ACTIVE)).proposed().orElseThrow();
         var afterEdit=completed.append(edit,meta(3)); expect(afterEdit.current().version().value()==4); expect(afterEdit.entries().size()==2);
         expect(BranchChangeEventDraft.fromHistory(afterEdit).getLast().recordVersion()==4);
@@ -96,7 +96,7 @@ public final class BranchLifecycleIntegrationSpecification {
     private static LifecycleHistory.Context meta(int i) { return new LifecycleHistory.Context("h"+i,"actor",Instant.ofEpochSecond(i),"request"+i); }
     private static BranchLifecycleIntegration.Context context(TenantId t,BranchLifecycleIntegration.Authority a,BranchLifecycle.Transition op,String reason,int i) { return new BranchLifecycleIntegration.Context(t,a,op,true,reason,null,meta(i),"event"+i); }
     private static BranchLifecycleIntegration.Assessment assess(BranchUpdatePolicy.Current c,BranchRecordVersion v,CustomerUpdatePolicy.Current p,CompanyBranches branches,BranchLifecycleIntegration.Context ctx,BranchHistory history) {
-        return BranchLifecycleIntegration.assess(c,v,p,branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,ctx,REASONS,history);
+        return BranchLifecycleIntegration.assess(c,v, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p),branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,ctx,REASONS,history);
     }
     private static void blocked(BranchLifecycleIntegration.Assessment a,String code) { expect(a.outcome()==BranchLifecycleIntegration.Outcome.BLOCKED); expect(a.code().equals(code)); expect(a.proposed().isEmpty()); }
     private static void expect(boolean value) { if (!value) throw new AssertionError("Branch lifecycle integration assertion "+(checks+1)); checks++; }

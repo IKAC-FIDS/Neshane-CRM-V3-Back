@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain.document;
 
+import ir.neshane.customer.domain.verification.DocumentVerification;
+
+import ir.neshane.customer.domain.customer.state.DocumentVerificationImpact;
+
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.event.VerificationEventDraft;
 import ir.neshane.customer.domain.verification.VerificationEvidence;
@@ -31,7 +35,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import static ir.neshane.customer.domain.document.DocumentVersionHistory.Authority.*;
-import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.*;
+import static ir.neshane.customer.domain.verification.DocumentVerification.Necessity.*;
 import static ir.neshane.customer.domain.document.DocumentTypeDefinition.Applicability.*;
 import static ir.neshane.customer.domain.document.DocumentTypeDefinition.RequirementStage.*;
 import static ir.neshane.customer.domain.verification.model.VerificationStatus.*;
@@ -135,7 +139,7 @@ public final class DocumentIntegrationSpecification {
             DocumentCompleteness.CountingConvention.ANY_CURRENT_PROVIDED).summary().orElseThrow().completedRequired().orElseThrow();
     }
     private static DocumentVerification.Outcome impact(VerificationHistory v,DocumentHistory h,LocalDate day,long at) {
-        return DocumentVerification.assessImpact(v,"r1",h.versions(),day,time(at),DocumentValidity.ExpiryBoundary.UNRESOLVED,VerificationRevocation.Authority.REVOKE_MANUAL).outcome();
+        return DocumentVerificationImpact.assessImpact(v,"r1",h.versions(),day,time(at),DocumentValidity.ExpiryBoundary.UNRESOLVED,VerificationRevocation.Authority.REVOKE_MANUAL).outcome();
     }
     private static DocumentVerification.Binding binding(DocumentHistory h,DocumentVerification.Necessity necessity) {
         return new DocumentVerification.Binding(h.current().owner(),h.current().id(),h.current().version(),necessity);

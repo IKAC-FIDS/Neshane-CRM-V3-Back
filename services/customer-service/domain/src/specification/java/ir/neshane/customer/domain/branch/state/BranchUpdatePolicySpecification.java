@@ -65,7 +65,7 @@ public final class BranchUpdatePolicySpecification {
         blocked(assess(current,version,branch(company,"b1","two","Changed",null,null),parent,existing,ctx),"BRANCH_CODE_DUPLICATE");
         blocked(assess(current,version,edited,parent,CompanyBranches.empty(company),ctx),"BRANCH_COLLECTION_SNAPSHOT_MISMATCH");
         blocked(assess(current,version,edited,parent,null,ctx),"BRANCH_UPDATE_COVERAGE_UNRESOLVED");
-        blocked(BranchUpdatePolicy.assess(current,version,edited,parent,existing,BranchRegistration.Coverage.UNKNOWN,ctx),"BRANCH_UPDATE_COVERAGE_UNRESOLVED");
+        blocked(BranchUpdatePolicy.assess(current,version,edited, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),existing,BranchRegistration.Coverage.UNKNOWN,ctx),"BRANCH_UPDATE_COVERAGE_UNRESOLVED");
         var denied=assess(current,version,edited,parent,existing,new BranchUpdatePolicy.Context(TENANT,NONE,BranchStatus.ACTIVE));
         blocked(denied,"BRANCH_UPDATE_AUTHORITY_REQUIRED"); expect(denied.auditRequired());
         blocked(assess(current,version,edited,parent,existing,new BranchUpdatePolicy.Context(TENANT,UPDATE,BranchStatus.INACTIVE)),"BRANCH_UPDATE_LIFECYCLE_CHANGE_FORBIDDEN");
@@ -88,7 +88,7 @@ public final class BranchUpdatePolicySpecification {
     }
     private static Branch branch(Company c,String id,String code,String name,String english,String description) { return Branch.createCandidate(new BranchId(id),c.tenantId(),c,code,name,english,description); }
     private static CustomerUpdatePolicy.Current parent(Company c,CustomerStatus s) { return new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(c,"r1",VerificationStatus.VERIFIED),s,CustomerRecordVersion.initial(c)); }
-    private static BranchUpdatePolicy.Assessment assess(BranchUpdatePolicy.Current c,BranchRecordVersion v,Branch b,CustomerUpdatePolicy.Current p,CompanyBranches e,BranchUpdatePolicy.Context ctx) { return BranchUpdatePolicy.assess(c,v,b,p,e,BranchRegistration.Coverage.COMPLETE_CANDIDATE,ctx); }
+    private static BranchUpdatePolicy.Assessment assess(BranchUpdatePolicy.Current c,BranchRecordVersion v,Branch b,CustomerUpdatePolicy.Current p,CompanyBranches e,BranchUpdatePolicy.Context ctx) { return BranchUpdatePolicy.assess(c,v,b, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p),e,BranchRegistration.Coverage.COMPLETE_CANDIDATE,ctx); }
     private static void blocked(BranchUpdatePolicy.Assessment a,String code) { expect(a.outcome()==BLOCKED); expect(a.code().equals(code)); expect(a.proposed().isEmpty()); }
     private static void expect(boolean value) { if (!value) throw new AssertionError("Branch update policy assertion "+(checks+1)); checks++; }
 }

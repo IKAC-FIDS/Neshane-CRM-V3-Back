@@ -74,14 +74,14 @@ final class DomainInvariantsReviewSpecification {
         var pc=current(person,CustomerStatus.INACTIVE);
         var cc=current(company,CustomerStatus.ARCHIVED);
         var bc=new BranchUpdatePolicy.Current(branch,BranchStatus.INACTIVE,BranchRecordVersion.initial(branch));
-        var parties=new RelationshipLifecycleIntegration.Parties(pc,cc,Optional.of(bc));
+        var parties=new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(cc),Optional.of(bc));
         var relationshipReader=actor(tenant,RELATIONSHIP_READ);
         expect(eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,parties)));
         expect(!eligible(ReadDisclosurePolicy.relationship(reader,fact,parties)));
         expect(!eligible(ReadDisclosurePolicy.relationship(actor(foreign,RELATIONSHIP_READ),fact,parties)));
-        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties(pc,cc,Optional.empty()))));
+        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(cc),Optional.empty()))));
         var wrong=current(Company.createCandidate(new CustomerId("other"),tenant,"Other",null),CustomerStatus.ACTIVE);
-        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties(pc,wrong,Optional.of(bc)))));
+        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(wrong),Optional.of(bc)))));
         var ended=new RelationshipAssignment.Fact(fact.id(),fact.tenant(),fact.person(),fact.target(),fact.roleCode(),day,Optional.empty(),Relationship.Status.ENDED,2);
         expect(eligible(ReadDisclosurePolicy.relationship(relationshipReader,ended,parties)));
         expect(fact.status()==Relationship.Status.ACTIVE && fact.version()==1 && bc.status()==BranchStatus.INACTIVE && cc.status()==CustomerStatus.ARCHIVED);

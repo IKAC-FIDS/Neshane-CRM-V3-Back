@@ -6,7 +6,7 @@ import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
 
-import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.model.CustomerStatus;
@@ -58,18 +58,18 @@ public final class BranchUpdatePolicy {
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private BranchUpdatePolicy() {}
-    public static Assessment assess(Current current,BranchRecordVersion expected,Branch proposed,CustomerUpdatePolicy.Current parent,
+    public static Assessment assess(Current current,BranchRecordVersion expected,Branch proposed,CustomerLifecycleSnapshot parent,
             CompanyBranches existing,BranchRegistration.Coverage coverage,Context context) {
         return assess(current,expected,proposed,parent,existing,coverage,context,null,null,null);
     }
-    public static Assessment assess(Current current,BranchRecordVersion expected,Branch proposed,CustomerUpdatePolicy.Current parent,
+    public static Assessment assess(Current current,BranchRecordVersion expected,Branch proposed,CustomerLifecycleSnapshot parent,
             CompanyBranches existing,BranchRegistration.Coverage coverage,Context context,BranchTypeCatalog types,
             ContactTypeCatalog contacts,Map<String,ValidationProfile> profiles) {
         Objects.requireNonNull(current); Objects.requireNonNull(proposed); Objects.requireNonNull(context);
-        if (parent==null || parent.identity().owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
+        if (parent==null || parent.owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
         var owner=current.version().owner();
         if (!owner.equals(BranchRecordVersion.Owner.of(proposed)) || !owner.tenantId().equals(context.tenant()) ||
-                !owner.tenantId().equals(parent.identity().owner().tenantId()) || !owner.companyId().equals(parent.identity().owner().customerId())) return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);
+                !owner.tenantId().equals(parent.owner().tenantId()) || !owner.companyId().equals(parent.owner().customerId())) return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.UPDATE) return blocked("BRANCH_UPDATE_AUTHORITY_REQUIRED",true);
         if (expected==null) return blocked("BRANCH_RECORD_VERSION_REQUIRED",false);
         if (!owner.equals(expected.owner())) return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);

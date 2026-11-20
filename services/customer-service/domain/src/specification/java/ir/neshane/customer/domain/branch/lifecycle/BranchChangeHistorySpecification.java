@@ -92,11 +92,11 @@ public final class BranchChangeHistorySpecification {
     private static Branch branch(Company c,String id,String name) { return Branch.createCandidate(new BranchId(id),c.tenantId(),c,"code",name,null,null); }
     private static LifecycleHistory.Context context(String id,long seconds) { return new LifecycleHistory.Context(id,"actor",TIME.plusSeconds(seconds),"request-"+id); }
     private static BranchRegistration.Candidate register(Company c,CustomerUpdatePolicy.Current parent,Branch b) {
-        return BranchRegistration.assess(b,parent,CompanyBranches.empty(c),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        return BranchRegistration.assess(b, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),CompanyBranches.empty(c),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchRegistration.Context(TENANT,BranchRegistration.Authority.REGISTER),BranchTypeCatalog.initial(),ContactTypeCatalog.empty(),Map.of()).proposed().orElseThrow();
     }
     private static BranchUpdatePolicy.Assessment assess(BranchUpdatePolicy.Current current,Branch b,CustomerUpdatePolicy.Current parent,CompanyBranches collection) {
-        return BranchUpdatePolicy.assess(current,current.version(),b,parent,collection,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        return BranchUpdatePolicy.assess(current,current.version(),b, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),collection,BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchUpdatePolicy.Context(TENANT,BranchUpdatePolicy.Authority.UPDATE,current.status()));
     }
     private static BranchUpdatePolicy.Candidate update(BranchUpdatePolicy.Current c,Branch b,CustomerUpdatePolicy.Current p,CompanyBranches collection) { return assess(c,b,p,collection).proposed().orElseThrow(); }

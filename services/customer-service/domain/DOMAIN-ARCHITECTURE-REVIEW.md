@@ -1,5 +1,20 @@
 # Customer domain architecture review
 
+## Follow-up: cycle resolution
+
+The baseline below describes the earlier refactoring milestone. It is superseded
+by the following production dependency result: 27 packages, 136 directed edges,
+zero cross-package dependency cycles. A redacted immutable lifecycle snapshot
+lets branch and relationship policies consume only the needed coordination facts
+without depending on protected customer state. Document evidence selection now
+belongs to verification, while impact on recorded decision history belongs to
+customer state. No raw protected snapshot accessor or mutation authority was added.
+
+`verifyCustomerDomainArchitecture` uses the JDK bytecode dependency analyzer,
+rejects new package cycles and non-JDK dependencies, and runs as part of `check`.
+The gate is separately reported from the unchanged 77 groups / 5,843 assertions.
+See `services/SERVICE-ARCHITECTURE-STANDARD.md` for the service-wide convention.
+
 ## Packaging convention
 
 Organize by business capability first, then by responsibility where useful.

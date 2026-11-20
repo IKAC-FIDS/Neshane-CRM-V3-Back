@@ -85,7 +85,7 @@ public final class BranchTypeContactUpdateSpecification {
     }
     private static BranchUpdatePolicy.Assessment assess(Company company,CustomerUpdatePolicy.Current parent,Branch original,Branch proposed,BranchTypeCatalog types,ContactTypeCatalog contacts,Map<String,ValidationProfile> profiles) {
         var version=BranchRecordVersion.initial(original);
-        return BranchUpdatePolicy.assess(new BranchUpdatePolicy.Current(original,BranchStatus.ACTIVE,version),version,proposed,parent,
+        return BranchUpdatePolicy.assess(new BranchUpdatePolicy.Current(original,BranchStatus.ACTIVE,version),version,proposed, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),
             CompanyBranches.empty(company).appendCandidate(original),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchUpdatePolicy.Context(TENANT,BranchUpdatePolicy.Authority.UPDATE,BranchStatus.ACTIVE),types,contacts,profiles);
     }

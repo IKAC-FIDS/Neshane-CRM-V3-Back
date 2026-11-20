@@ -6,7 +6,7 @@ import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle;
 
 import ir.neshane.customer.domain.branch.model.BranchStatus;
 
-import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
@@ -23,7 +23,7 @@ import java.util.Optional;
 /** Composes relationship rules with owner-bound current customer and branch snapshots. */
 public final class RelationshipLifecycleIntegration {
     public enum Outcome { ELIGIBLE_CANDIDATE, BLOCKED }
-    public record Parties(CustomerUpdatePolicy.Current person,CustomerUpdatePolicy.Current company,Optional<BranchUpdatePolicy.Current> branch) {
+    public record Parties(CustomerLifecycleSnapshot person,CustomerLifecycleSnapshot company,Optional<BranchUpdatePolicy.Current> branch) {
         public Parties { Objects.requireNonNull(person); Objects.requireNonNull(company); Objects.requireNonNull(branch); }
         @Override public String toString() { return "RelationshipLifecycleIntegration.Parties[redacted]"; }
     }
@@ -47,8 +47,8 @@ public final class RelationshipLifecycleIntegration {
         catch (IllegalArgumentException ex) { return false; }
     }
     static void validateScope(RelationshipAssignment.Fact fact,Parties parties) {
-        var person=parties.person().identity().owner();
-        var company=parties.company().identity().owner();
+        var person=parties.person().owner();
+        var company=parties.company().owner();
         if (person.kind()!=IdentityOwner.Kind.PERSON || !fact.tenant().equals(person.tenantId()) || !fact.person().equals(person.customerId()))
             throw new IllegalArgumentException("RELATIONSHIP_PERSON_SCOPE_MISMATCH");
         if (company.kind()!=IdentityOwner.Kind.COMPANY || !fact.tenant().equals(company.tenantId()))

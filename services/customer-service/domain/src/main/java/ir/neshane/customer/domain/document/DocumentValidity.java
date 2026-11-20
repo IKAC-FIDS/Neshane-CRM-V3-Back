@@ -11,6 +11,10 @@ public final class DocumentValidity {
     public enum ExpiryBoundary { UNRESOLVED, LAST_VALID_DAY, FIRST_INVALID_DAY }
     public record Assessment(Optional<CustomerDocument.State> state,String code) {}
     private DocumentValidity() {}
+    /** Date-only reassessment of a historical version, not a change to its stored state. */
+    public static Assessment assessHistoricalProvided(CustomerDocument document,LocalDate asOf,ExpiryBoundary boundary) {
+        return assess(document.asVersion(document.version(),CustomerDocument.State.PROVIDED),asOf,boundary);
+    }
     public static Assessment assess(CustomerDocument document,LocalDate asOf,ExpiryBoundary boundary) {
         Objects.requireNonNull(document);
         Objects.requireNonNull(asOf);

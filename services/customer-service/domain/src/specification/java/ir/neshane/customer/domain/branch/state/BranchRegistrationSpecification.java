@@ -100,7 +100,7 @@ public final class BranchRegistrationSpecification {
     }
     private static Branch branch(Company c,String id,String code) { return Branch.createCandidate(new BranchId(id),c.tenantId(),c,code,"Branch",null,null,TYPES,Optional.of(TYPE)); }
     private static CustomerUpdatePolicy.Current current(Customer c,CustomerStatus s) { return new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(c,"r1",VerificationStatus.VERIFIED),s,CustomerRecordVersion.initial(c)); }
-    private static BranchRegistration.Assessment assess(Branch b,CustomerUpdatePolicy.Current p,CompanyBranches e,BranchRegistration.Coverage coverage,BranchRegistration.Context ctx,BranchTypeCatalog t,Map<String,ValidationProfile> profiles) { return BranchRegistration.assess(b,p,e,coverage,ctx,t,CONTACTS,profiles); }
+    private static BranchRegistration.Assessment assess(Branch b,CustomerUpdatePolicy.Current p,CompanyBranches e,BranchRegistration.Coverage coverage,BranchRegistration.Context ctx,BranchTypeCatalog t,Map<String,ValidationProfile> profiles) { return BranchRegistration.assess(b, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p),e,coverage,ctx,t,CONTACTS,profiles); }
     private static void blocked(BranchRegistration.Assessment a,String code) { expect(a.outcome()==BLOCKED); expect(a.code().equals(code)); expect(a.proposed().isEmpty()); }
     private static void expect(boolean value) { if (!value) throw new AssertionError("Branch registration assertion "+(checks+1)); checks++; }
 }

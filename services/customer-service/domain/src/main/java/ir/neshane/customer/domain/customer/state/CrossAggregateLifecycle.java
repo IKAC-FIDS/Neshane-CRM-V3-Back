@@ -56,12 +56,13 @@ public final class CrossAggregateLifecycle {
             afterB.put(owner.branchId(),BranchLifecycle.effectiveStatus(branch.status(),proposed));
         }
         Map<RelationshipId,RelationshipLifecycle.EffectiveStatus> beforeR=new HashMap<>(),afterR=new HashMap<>();
-        var changedRoot=new CustomerUpdatePolicy.Current(root.identity(),proposed,root.version());
+        var rootSnapshot=root.lifecycleSnapshot();
+        var changedRoot=rootSnapshot.withStatus(proposed);
         boolean activeRelation=false;
         for (var related:snapshot.relationships()) {
             var fact=related.fact(); var parties=related.parties();
             if (!fact.tenant().equals(customer.tenantId())) throw new IllegalArgumentException("LIFECYCLE_RELATIONSHIP_SCOPE_MISMATCH");
-            if (company ? !same(root,parties.company()) : !same(root,parties.person())) throw new IllegalArgumentException("LIFECYCLE_RELATIONSHIP_SCOPE_MISMATCH");
+            if (company ? !rootSnapshot.sameSnapshot(parties.company()) : !rootSnapshot.sameSnapshot(parties.person())) throw new IllegalArgumentException("LIFECYCLE_RELATIONSHIP_SCOPE_MISMATCH");
             if (company && parties.branch().isPresent()) {
                 var branch=parties.branch().orElseThrow(); var known=branches.get(branch.branch().id());
                 if (known==null || !known.version().equals(branch.version()) || known.status()!=branch.status() || !BranchUpdatePolicy.sameFacts(known.branch(),branch.branch()))

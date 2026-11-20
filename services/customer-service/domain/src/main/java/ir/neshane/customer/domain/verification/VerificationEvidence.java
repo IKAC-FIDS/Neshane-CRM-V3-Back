@@ -1,6 +1,6 @@
 package ir.neshane.customer.domain.verification;
 
-import ir.neshane.customer.domain.document.DocumentVerification;
+import ir.neshane.customer.domain.verification.DocumentVerification;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.shared.identifier.IdentifierText;

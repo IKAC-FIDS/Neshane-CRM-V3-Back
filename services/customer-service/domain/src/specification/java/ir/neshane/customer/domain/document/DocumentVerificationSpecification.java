@@ -1,5 +1,9 @@
 package ir.neshane.customer.domain.document;
 
+import ir.neshane.customer.domain.verification.DocumentVerification;
+
+import ir.neshane.customer.domain.customer.state.DocumentVerificationImpact;
+
 import ir.neshane.customer.domain.verification.ManualVerification;
 import ir.neshane.customer.domain.verification.event.VerificationEventDraft;
 import ir.neshane.customer.domain.verification.VerificationEvidence;
@@ -31,9 +35,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.ESSENTIAL;
-import static ir.neshane.customer.domain.document.DocumentVerification.Necessity.NON_ESSENTIAL;
-import static ir.neshane.customer.domain.document.DocumentVerification.Outcome.*;
+import static ir.neshane.customer.domain.verification.DocumentVerification.Necessity.ESSENTIAL;
+import static ir.neshane.customer.domain.verification.DocumentVerification.Necessity.NON_ESSENTIAL;
+import static ir.neshane.customer.domain.verification.DocumentVerification.Outcome.*;
 import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
 import static ir.neshane.customer.domain.customer.state.VerificationRevocation.Authority.*;
 
@@ -71,10 +75,10 @@ public final class DocumentVerificationSpecification {
         expect(impact(verified,history,day,4)==UNCHANGED);
         expect(impact(verified,history,day.plusDays(1),4)==REVIEW_REQUIRED);
         expect(impact(verified,history,day.plusDays(2),4)==REVERIFICATION_REQUIRED_CANDIDATE);
-        expect(DocumentVerification.assessImpact(verified,"r1",history,day.plusDays(1),time(4),LAST_VALID_DAY,REVOKE_MANUAL).outcome()==UNCHANGED);
-        expect(DocumentVerification.assessImpact(verified,"r1",history,day.plusDays(1),time(4),FIRST_INVALID_DAY,REVOKE_MANUAL).outcome()==REVERIFICATION_REQUIRED_CANDIDATE);
-        expect(DocumentVerification.assessImpact(verified,"stale",history,day.plusDays(2),time(4),UNRESOLVED,REVOKE_MANUAL).outcome()==BLOCKED);
-        expect(DocumentVerification.assessImpact(verified,"r1",history,day.plusDays(2),time(4),UNRESOLVED,NONE).auditRequired());
+        expect(DocumentVerificationImpact.assessImpact(verified,"r1",history,day.plusDays(1),time(4),LAST_VALID_DAY,REVOKE_MANUAL).outcome()==UNCHANGED);
+        expect(DocumentVerificationImpact.assessImpact(verified,"r1",history,day.plusDays(1),time(4),FIRST_INVALID_DAY,REVOKE_MANUAL).outcome()==REVERIFICATION_REQUIRED_CANDIDATE);
+        expect(DocumentVerificationImpact.assessImpact(verified,"stale",history,day.plusDays(2),time(4),UNRESOLVED,REVOKE_MANUAL).outcome()==BLOCKED);
+        expect(DocumentVerificationImpact.assessImpact(verified,"r1",history,day.plusDays(2),time(4),UNRESOLVED,NONE).auditRequired());
         expect(impact(verified,history,day.plusDays(2),2)==BLOCKED);
         expect(impact(initial,history,day.plusDays(2),4)==UNCHANGED);
         var noBasis = VerificationHistory.empty(IdentityRevision.snapshot(person,"r1",VerificationStatus.VERIFIED));
@@ -122,7 +126,7 @@ public final class DocumentVerificationSpecification {
         return DocumentVerification.assessSelection(set,docs,day,time(3),UNRESOLVED).outcome();
     }
     private static DocumentVerification.Outcome impact(VerificationHistory verified,DocumentVersionHistory doc,LocalDate day,long at) {
-        return DocumentVerification.assessImpact(verified,"r1",doc,day,time(at),UNRESOLVED,REVOKE_MANUAL).outcome();
+        return DocumentVerificationImpact.assessImpact(verified,"r1",doc,day,time(at),UNRESOLVED,REVOKE_MANUAL).outcome();
     }
     private static VerificationEvidenceSet evidence(IdentityOwner owner,CustomerDocumentId id,long version,DocumentVerification.Necessity necessity) {
         return new VerificationEvidenceSet(owner,"r1",List.of(new VerificationEvidence("e1",owner,"r1",1,VerificationEvidence.Method.MANUAL,

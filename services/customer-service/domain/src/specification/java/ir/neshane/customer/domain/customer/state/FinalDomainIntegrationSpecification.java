@@ -19,7 +19,7 @@ import ir.neshane.customer.domain.document.DocumentRequirementPolicy;
 import ir.neshane.customer.domain.document.DocumentTypeCatalog;
 import ir.neshane.customer.domain.document.DocumentTypeDefinition;
 import ir.neshane.customer.domain.document.DocumentValidity;
-import ir.neshane.customer.domain.document.DocumentVerification;
+import ir.neshane.customer.domain.verification.DocumentVerification;
 import ir.neshane.customer.domain.document.DocumentVersionHistory;
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
@@ -113,13 +113,13 @@ public final class FinalDomainIntegrationSpecification {
         expect(ph.current().version().value()==1 && ch.current().version().value()==1);
         expect(ph.current().identity().candidate().contactInfo().primary(ContactGroup.TELEPHONE).orElseThrow().equals("phone"));
         var branch=Branch.createCandidate(new BranchId("branch"),T,company,null,"Branch",null,null);
-        var br=BranchRegistration.assess(branch,ch.current(),CompanyBranches.empty(company),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        var br=BranchRegistration.assess(branch, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(ch.current()),CompanyBranches.empty(company),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchRegistration.Context(T,BranchRegistration.Authority.REGISTER),BranchTypeCatalog.initial(),CONTACTS,Map.of());
         var bh=BranchChangeHistory.start(br.proposed().orElseThrow(),meta("branch",3));
         var roles=BusinessRoleCatalog.initial();
         var role=new BusinessRoleCatalog.Ref("BRANCH_MANAGER",Optional.empty());
         var relationship=Relationship.createCandidate(new RelationshipId("rel"),person,branch,company,"BRANCH_MANAGER",DAY,DAY.plusDays(10));
-        var parties=new RelationshipLifecycleIntegration.Parties(ph.current(),ch.current(),Optional.of(bh.current()));
+        var parties=new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(ph.current()), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(ch.current()),Optional.of(bh.current()));
         var rel=RelationshipLifecycleIntegration.create(relationship,parties,roles,role,RelationshipAssignment.Authority.ASSIGN,
             RelationshipAssignment.Coverage.COMPLETE_CANDIDATE,List.of(),null,null,meta("rel",4),"rel-created").proposed().orElseThrow();
         expect(rel.fact().version()==1 && rel.history().entries().size()==1);
@@ -149,7 +149,7 @@ public final class FinalDomainIntegrationSpecification {
         expect(invalid.entries().size()==2 && documents.entries().size()==1);
         expect(DocumentEventDraft.fromCandidate(invalid.entries().getLast(),"doc-invalid",Optional.empty()).eventType()==DocumentEventDraft.Type.CustomerDocumentInvalidated);
         var updated=new CustomerUpdatePolicy.Current(renewed.current(),changed.current().status(),changed.current().version());
-        var updatedParties=new RelationshipLifecycleIntegration.Parties(updated,ch.current(),Optional.of(bh.current()));
+        var updatedParties=new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(updated), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(ch.current()),Optional.of(bh.current()));
         var snapshot=new CrossAggregateLifecycle.Snapshot(ch.current(),CrossAggregateLifecycle.Coverage.COMPLETE_CANDIDATE,List.of(bh.current()),
             List.of(new CrossAggregateLifecycle.Related(rel.fact(),updatedParties)));
         var impact=CrossAggregateLifecycle.assess(ch.current(),snapshot,CustomerStatus.INACTIVE,DAY);
@@ -158,7 +158,7 @@ public final class FinalDomainIntegrationSpecification {
         var inactive=CustomerLifecycleIntegration.assess(ch.current(),ch.current().version(),
             new CustomerLifecycleIntegration.Context(T,CustomerLifecycleIntegration.Authority.TRANSITION,CustomerLifecycle.Transition.DEACTIVATE,true,"CUSTOMER_REQUEST",null,meta("inactive",10),"inactive-event"),
             LifecycleReasonCatalog.initial(),LifecycleHistory.empty(company),ArchiveDependencyCatalog.initial(),List.of()).proposed().orElseThrow();
-        var inactiveParties=new RelationshipLifecycleIntegration.Parties(updated,inactive.record(),Optional.of(bh.current()));
+        var inactiveParties=new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(updated), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(inactive.record()),Optional.of(bh.current()));
         expect(RelationshipLifecycleIntegration.effectiveStatus(rel.fact(),DAY,inactiveParties)==RelationshipLifecycle.EffectiveStatus.UNAVAILABLE);
         var reader=actor(T,CUSTOMER_READ,RELATIONSHIP_READ);
         expect(ReadDisclosurePolicy.identityFields(reader,corrected)==ReadDisclosurePolicy.IdentityFields.MASK_REQUIRED);

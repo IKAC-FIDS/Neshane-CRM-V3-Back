@@ -1,7 +1,7 @@
 package ir.neshane.customer.domain.customer.state;
 
 import ir.neshane.customer.domain.document.DocumentValidity;
-import ir.neshane.customer.domain.document.DocumentVerification;
+import ir.neshane.customer.domain.verification.DocumentVerification;
 import ir.neshane.customer.domain.document.DocumentVersionHistory;
 import ir.neshane.customer.domain.duplicate.DuplicateDetection;
 import ir.neshane.customer.domain.verification.ManualVerification;
@@ -132,7 +132,7 @@ public final class VerificationHistory {
         DomainText.required(reason,"DOCUMENT_IMPACT_REASON",4000);
         IdentifierText.requireNonBlank(proofReference,"VERIFICATION_REVOCATION_EVIDENCE_REQUIRED");
         if (effectiveAt.isAfter(context.occurredAt())) throw new IllegalArgumentException("VERIFICATION_REVOCATION_TIME_UNRESOLVED");
-        var result = DocumentVerification.assessImpact(this,expectedRevision,document,effectiveDate,effectiveAt,boundary,authority);
+        var result = DocumentVerificationImpact.assessImpact(this,expectedRevision,document,effectiveDate,effectiveAt,boundary,authority);
         if (result.outcome() != DocumentVerification.Outcome.REVERIFICATION_REQUIRED_CANDIDATE)
             throw new IllegalArgumentException(result.code());
         var prior = entries.reversed().stream().filter(e -> e.action() == Action.MANUAL_VERIFY).findFirst().orElseThrow();

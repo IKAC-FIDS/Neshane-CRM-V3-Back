@@ -52,7 +52,7 @@ final class CrossAggregateLifecycleSpecification {
         var bc=new BranchUpdatePolicy.Current(branch,BranchStatus.ACTIVE,BranchRecordVersion.initial(branch));
         var relationship=Relationship.createCandidate(new RelationshipId("rel"),person,branch,company,"CUSTOM",DAY.minusDays(1),DAY.plusDays(1));
         var fact=RelationshipAssignment.Fact.of(relationship,1);
-        var related=new CrossAggregateLifecycle.Related(fact,new RelationshipLifecycleIntegration.Parties(pc,root,Optional.of(bc)));
+        var related=new CrossAggregateLifecycle.Related(fact,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(root),Optional.of(bc)));
         var snapshot=snapshot(root,List.of(bc),List.of(related));
         var impact=CrossAggregateLifecycle.assess(root,snapshot,CustomerStatus.INACTIVE,DAY);
         expect(impact.beforeBranches().get(branch.id())==BranchStatus.ACTIVE); expect(impact.afterBranches().get(branch.id())==BranchStatus.INACTIVE);
@@ -63,7 +63,7 @@ final class CrossAggregateLifecycleSpecification {
         var expired=CrossAggregateLifecycle.assess(root,snapshot,CustomerStatus.ARCHIVED,DAY.plusDays(1));
         expect(expired.afterRelationships().get(fact.id())==RelationshipLifecycle.EffectiveStatus.EXPIRED); expect(expired.activeRelationships()==ArchiveDependencyAssessment.Status.BLOCKED);
         var inactiveRoot=current(company,CustomerStatus.INACTIVE);
-        var inactiveSnapshot=snapshot(inactiveRoot,List.of(bc),List.of(new CrossAggregateLifecycle.Related(fact,new RelationshipLifecycleIntegration.Parties(pc,inactiveRoot,Optional.of(bc)))));
+        var inactiveSnapshot=snapshot(inactiveRoot,List.of(bc),List.of(new CrossAggregateLifecycle.Related(fact,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(inactiveRoot),Optional.of(bc)))));
         var inactiveImpact=CrossAggregateLifecycle.assess(inactiveRoot,inactiveSnapshot,CustomerStatus.ARCHIVED,DAY);
         expect(inactiveImpact.beforeBranches().get(branch.id())==BranchStatus.INACTIVE); expect(inactiveImpact.activeBranches()==ArchiveDependencyAssessment.Status.BLOCKED);
         expect(inactiveImpact.activeRelationships()==ArchiveDependencyAssessment.Status.BLOCKED);
@@ -85,7 +85,7 @@ final class CrossAggregateLifecycleSpecification {
         reject("LIFECYCLE_INTERNAL_EVIDENCE_OVERRIDE",()->CrossAggregateLifecycle.archiveEvidence(root,snapshot,request,DAY,Instant.EPOCH,evidence));
         var ended=new RelationshipAssignment.Fact(fact.id(),fact.tenant(),fact.person(),fact.target(),fact.roleCode(),fact.start(),fact.end(),Relationship.Status.ENDED,2);
         var closed=new BranchUpdatePolicy.Current(branch,BranchStatus.INACTIVE,new BranchRecordVersion(bc.version().owner(),2));
-        var cleared=snapshot(root,List.of(closed),List.of(new CrossAggregateLifecycle.Related(ended,new RelationshipLifecycleIntegration.Parties(pc,root,Optional.of(closed)))));
+        var cleared=snapshot(root,List.of(closed),List.of(new CrossAggregateLifecycle.Related(ended,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(root),Optional.of(closed)))));
         var clearedEvidence=CrossAggregateLifecycle.archiveEvidence(root,cleared,request,DAY,Instant.EPOCH,external);
         expect(ArchiveDependencyAssessment.assess(company,request,catalog,clearedEvidence).outcome()==ArchiveDependencyAssessment.Outcome.ALL_CLEARED_CANDIDATE);
         var context=new CustomerLifecycleIntegration.Context(TENANT,CustomerLifecycleIntegration.Authority.TRANSITION,CustomerLifecycle.Transition.ARCHIVE,true,"CUSTOMER_REQUEST",null,new LifecycleHistory.Context("h","actor",Instant.EPOCH,"request"),"event");

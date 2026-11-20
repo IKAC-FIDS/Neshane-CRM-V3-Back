@@ -12,7 +12,7 @@ import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
 
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 
-import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot;
 
 import ir.neshane.customer.domain.customer.history.LifecycleHistory;
 
@@ -47,12 +47,12 @@ public final class BranchLifecycleIntegration {
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private BranchLifecycleIntegration() {}
-    public static Assessment assess(BranchUpdatePolicy.Current current,BranchRecordVersion expected,CustomerUpdatePolicy.Current parent,
+    public static Assessment assess(BranchUpdatePolicy.Current current,BranchRecordVersion expected,CustomerLifecycleSnapshot parent,
             CompanyBranches collection,BranchRegistration.Coverage coverage,Context context,LifecycleReasonCatalog reasons,BranchHistory history) {
         Objects.requireNonNull(current); Objects.requireNonNull(context);
         var owner=current.version().owner(); var branch=current.branch();
-        if (parent==null || parent.identity().owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
-        if (!owner.tenantId().equals(context.tenant()) || !owner.tenantId().equals(parent.identity().owner().tenantId()) || !owner.companyId().equals(parent.identity().owner().customerId()))
+        if (parent==null || parent.owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
+        if (!owner.tenantId().equals(context.tenant()) || !owner.tenantId().equals(parent.owner().tenantId()) || !owner.companyId().equals(parent.owner().customerId()))
             return blocked("BRANCH_RECORD_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.TRANSITION) return blocked("BRANCH_LIFECYCLE_AUTHORITY_REQUIRED",true);
         var version=current.version().assessNext(expected,branch);

@@ -6,7 +6,7 @@ import ir.neshane.customer.domain.branch.model.Branch;
 import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
 import ir.neshane.customer.domain.branch.model.BranchStatus;
 
-import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot;
 
 import ir.neshane.customer.domain.identity.IdentityOwner;
 import ir.neshane.customer.domain.customer.model.CustomerStatus;
@@ -51,12 +51,12 @@ public final class BranchRegistration {
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private BranchRegistration() {}
 
-    public static Assessment assess(Branch branch,CustomerUpdatePolicy.Current parent,CompanyBranches existing,
+    public static Assessment assess(Branch branch,CustomerLifecycleSnapshot parent,CompanyBranches existing,
             Coverage coverage,Context context,BranchTypeCatalog types,ContactTypeCatalog contacts,Map<String,ValidationProfile> profiles) {
         Objects.requireNonNull(branch);
         Objects.requireNonNull(context);
-        if (parent == null || parent.identity().owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
-        if (!context.tenant().equals(branch.tenantId()) || !parent.identity().owner().tenantId().equals(branch.tenantId()) || !parent.identity().owner().customerId().equals(branch.companyId()))
+        if (parent == null || parent.owner().kind()!=IdentityOwner.Kind.COMPANY) return blocked("BRANCH_PARENT_REQUIRED",false);
+        if (!context.tenant().equals(branch.tenantId()) || !parent.owner().tenantId().equals(branch.tenantId()) || !parent.owner().customerId().equals(branch.companyId()))
             return blocked("BRANCH_PARENT_SCOPE_MISMATCH",false);
         if (context.authority()!=Authority.REGISTER) return blocked("BRANCH_REGISTRATION_AUTHORITY_REQUIRED",true);
         if (parent.status()!=CustomerStatus.ACTIVE) return blocked("BRANCH_PARENT_NOT_ACTIVE",false);

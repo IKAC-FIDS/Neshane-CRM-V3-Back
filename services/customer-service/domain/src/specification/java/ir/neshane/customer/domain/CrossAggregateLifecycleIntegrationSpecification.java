@@ -74,7 +74,7 @@ final class CrossAggregateLifecycleIntegrationSpecification {
         var person=Person.createCandidate(new CustomerId("person"),TENANT,"A","B",null);
         var parent=current(company); var pc=current(person);
         var branch=Branch.createCandidate(new BranchId("branch"),TENANT,company,"code","Branch",null,null);
-        var registration=BranchRegistration.assess(branch,parent,CompanyBranches.empty(company),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        var registration=BranchRegistration.assess(branch, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),CompanyBranches.empty(company),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchRegistration.Context(TENANT,BranchRegistration.Authority.REGISTER),BranchTypeCatalog.initial(),ContactTypeCatalog.empty(),Map.of()).proposed().orElseThrow();
         var facts=BranchChangeHistory.start(registration,meta(1)); var bc=facts.current(); var collection=registration.branches();
         var roleDef=new BusinessRoleDefinition("role",Optional.of(TENANT),"CUSTOM",new LocalizedText(Map.of("en","Role")),new LocalizedText(Map.of()),BusinessRoleDefinition.Scope.BOTH,BusinessRoleDefinition.Status.ACTIVE);
@@ -132,11 +132,11 @@ final class CrossAggregateLifecycleIntegrationSpecification {
     private static CustomerUpdatePolicy.Current current(Customer c) { return new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(c,"r1",VerificationStatus.VERIFIED),CustomerStatus.ACTIVE,CustomerRecordVersion.initial(c)); }
     private static LifecycleHistory.Context meta(int i) { return new LifecycleHistory.Context("h"+i,"actor",Instant.ofEpochSecond(i),"request"+i); }
     private static CustomerLifecycleIntegration.Context customerContext(CustomerLifecycle.Transition op,int i) { return new CustomerLifecycleIntegration.Context(TENANT,CustomerLifecycleIntegration.Authority.TRANSITION,op,true,"CUSTOMER_REQUEST",null,meta(i),"event"+i); }
-    private static RelationshipLifecycleIntegration.Parties parties(CustomerUpdatePolicy.Current p,CustomerUpdatePolicy.Current c,BranchUpdatePolicy.Current b) { return new RelationshipLifecycleIntegration.Parties(p,c,Optional.of(b)); }
+    private static RelationshipLifecycleIntegration.Parties parties(CustomerUpdatePolicy.Current p,CustomerUpdatePolicy.Current c,BranchUpdatePolicy.Current b) { return new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(c),Optional.of(b)); }
     private static RelationshipLifecycle.EffectiveStatus status(RelationshipAssignment.Fact f,RelationshipLifecycleIntegration.Parties p) { return RelationshipLifecycleIntegration.effectiveStatus(f,DAY,p); }
     private static CrossAggregateLifecycle.Snapshot snapshot(CustomerUpdatePolicy.Current c,BranchUpdatePolicy.Current b,RelationshipAssignment.Fact f,CustomerUpdatePolicy.Current p) { return new CrossAggregateLifecycle.Snapshot(c,CrossAggregateLifecycle.Coverage.COMPLETE_CANDIDATE,List.of(b),List.of(new CrossAggregateLifecycle.Related(f,parties(p,c,b)))); }
     private static BranchLifecycleIntegration.Assessment branchTransition(BranchUpdatePolicy.Current c,BranchRecordVersion v,CustomerUpdatePolicy.Current p,CompanyBranches branches,BranchHistory h,BranchLifecycle.Transition op,String reason,int i) {
-        return BranchLifecycleIntegration.assess(c,v,p,branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,new BranchLifecycleIntegration.Context(TENANT,BranchLifecycleIntegration.Authority.TRANSITION,op,true,reason,null,meta(i),"event"+i),REASONS,h);
+        return BranchLifecycleIntegration.assess(c,v, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p),branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,new BranchLifecycleIntegration.Context(TENANT,BranchLifecycleIntegration.Authority.TRANSITION,op,true,reason,null,meta(i),"event"+i),REASONS,h);
     }
     private static void expect(boolean v) { if (!v) throw new AssertionError("Integrated lifecycle assertion "+(checks+1)); checks++; }
 }

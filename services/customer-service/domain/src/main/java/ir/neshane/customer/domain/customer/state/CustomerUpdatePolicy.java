@@ -33,6 +33,9 @@ public final class CustomerUpdatePolicy {
             if (!identity.owner().equals(version.owner())) throw new IllegalArgumentException("CUSTOMER_RECORD_SCOPE_MISMATCH");
         }
         @Override public String toString() { return "CustomerUpdatePolicy.Current[redacted]"; }
+        public ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot lifecycleSnapshot() {
+            return new ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot(identity.candidate(),identity.value(),identity.verificationStatus(),status,version);
+        }
     }
     public record Context(TenantId tenant,String requestId,Authority authority,CustomerStatus requestedStatus,
                           VerificationStatus requestedVerification) {
@@ -51,6 +54,9 @@ public final class CustomerUpdatePolicy {
     }
     public record Assessment(Outcome outcome,String code,Optional<Candidate> proposed,boolean auditRequired) {}
     private CustomerUpdatePolicy() {}
+    public static ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSnapshot lifecycleSnapshot(Current current) {
+        return current==null?null:current.lifecycleSnapshot();
+    }
 
     public static Assessment assess(Current current,CustomerRecordVersion expected,Customer proposed,Context context,
             ContactTypeCatalog contacts,IdentifierTypeCatalog identifiers,Map<String,ValidationProfile> contactProfiles,
