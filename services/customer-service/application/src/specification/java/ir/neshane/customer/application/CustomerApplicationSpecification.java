@@ -18,6 +18,12 @@ public final class CustomerApplicationSpecification {
     private CustomerApplicationSpecification() {}
 
     public static void main(String[] args) {
+        ir.neshane.customer.application.document.DocumentIntegratedApplicationSpecification.run();
+        ir.neshane.customer.application.document.DocumentVerificationImpactApplicationSpecification.run();
+        ir.neshane.customer.application.document.DocumentCompletenessApplicationSpecification.run();
+        ir.neshane.customer.application.document.DocumentValidityApplicationSpecification.run();
+        ir.neshane.customer.application.document.DocumentVersioningApplicationSpecification.run();
+        ir.neshane.customer.application.document.DocumentCatalogApplicationSpecification.run();
         ir.neshane.customer.application.verification.VerificationApplicationSpecification.run();
         ir.neshane.customer.application.duplicate.DuplicateApplicationSpecification.run();
         ir.neshane.customer.application.relationship.RelationshipApplicationSpecification.run();
