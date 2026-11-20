@@ -74,3 +74,35 @@ No durable customer registration, real IAM, persistence,
 external validation or audit execution is implemented.
 
 Registration inputs and test scenarios are synthetic.
+
+## AP-04 - Customer Update Candidate
+
+Components:
+
+- UpdateCustomerCandidateCommand
+- UpdateCustomerCandidateUseCase
+- UpdateCustomerCandidate
+- UpdateCustomerCandidateResult
+
+The application coordinates existing CustomerUpdateVerification
+domain rules without modifying domain behavior.
+
+Supported outcomes:
+
+- ELIGIBLE_CANDIDATE
+- UNCHANGED
+- BLOCKED
+
+Supported assessment:
+
+- Record version and identity revision checks.
+- Critical field change assessment.
+- Duplicate conflict assessment.
+- Reverification requirements.
+- Different verifier requirements.
+- Audit requirement propagation.
+- Safe result code mapping.
+
+No durable customer update, trusted runtime authorization,
+database transaction, audit execution or external event
+publication is implemented.
