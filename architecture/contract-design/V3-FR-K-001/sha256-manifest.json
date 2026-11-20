@@ -1,0 +1,70 @@
+{
+  "algorithm": "SHA-256",
+  "excludes": "sha256-manifest.json",
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "17d9231a2a1cf6cfbd7fb3d9d1c6e9c23cc87f4383323b672442a743a20d44b7"
+    },
+    {
+      "path": "acceptance-criteria.md",
+      "sha256": "7a4bf5fe406eaa2cc62d68ae486385749fbf8a4338ff8bf804b295b3a70dfb8a"
+    },
+    {
+      "path": "api-architecture-conventions.md",
+      "sha256": "8aafe6aa8185549fd01bf0ace77345a34208e312252f2ee2e8e7e4fcf631e62e"
+    },
+    {
+      "path": "concurrency-idempotency.md",
+      "sha256": "f9d76f2e2ba67eb7da5cb475baf1e4d384f5576188487885799118a7890d683b"
+    },
+    {
+      "path": "contract-design-decision-record.md",
+      "sha256": "541e043b1bac65da73e9a4affa8d2fde41b76b7f941eda608ab39b8c0461afe9"
+    },
+    {
+      "path": "contract-versioning-testing.md",
+      "sha256": "ac19d9be22da9b775d9da447af293317ce9d55d9b7c2b398422d6efbcf5fb3b6"
+    },
+    {
+      "path": "customer-operation-contracts.md",
+      "sha256": "21590807eb5ca0de4741989c417cba9933261093d8aac1623c06c3fab078eb1b"
+    },
+    {
+      "path": "customer-reference-contracts.md",
+      "sha256": "85360ca1f4da5ec263c37b1a3808a6e1e882304cf65a79fcd82b0c7be89383c0"
+    },
+    {
+      "path": "dto-request-response-design.md",
+      "sha256": "9af8701b1421a97fd0a39886b6ad61f96453fc0f7559af43cfebd8a261f67648"
+    },
+    {
+      "path": "field-disclosure-masking.md",
+      "sha256": "edbb17a5bc2ef896bb6bc3476bf287f9b201fade75d873d4e2ca3fbc678f6926"
+    },
+    {
+      "path": "open-decisions-and-blockers.md",
+      "sha256": "0122f5449df1ee5539d5a5e15d4ceadb3b8a5d96e0264d9c739dd248b1afe2c0"
+    },
+    {
+      "path": "provider-consumer-risk-matrix.md",
+      "sha256": "d19e396b69178107bc48846f47d81e7a19ea9d49fb27e098826c4081789604ed"
+    },
+    {
+      "path": "requirements-traceability-matrix.md",
+      "sha256": "e178cb51ba95b5cfd7d92ab4a772159c9be75b69cb4f66b96137b25834ce613b"
+    },
+    {
+      "path": "search-filtering-pagination.md",
+      "sha256": "54bedf0604143df904dd632fd14382e8cd3cebc70750eb763a39a55a829c7673"
+    },
+    {
+      "path": "validation-error-contracts.md",
+      "sha256": "8efa6bf8d566ca81855f750071e4715b5fd48e199aae1696b0e8bad0eb95f870"
+    },
+    {
+      "path": "validation-report.md",
+      "sha256": "40edea736d7beeeff3c7f8473ace1221b476c875a079372584cbcaf9f986b8bd"
+    }
+  ]
+}
