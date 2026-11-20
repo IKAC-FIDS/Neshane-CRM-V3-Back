@@ -1,6 +1,80 @@
-description = 'Customer Service outbound persistence adapter foundation IP-01.'
+description = 'Customer Service outbound persistence adapter foundation.'
+
+configurations {
+    migrationRuntime {
+        canBeConsumed = false
+        canBeResolved = true
+    }
+}
 
 dependencies {
     implementation project(':services:customer-service:application')
     implementation project(':services:customer-service:domain')
+
+    implementation enforcedPlatform(libs.spring.boot.dependencies)
+    implementation 'org.springframework:spring-jdbc'
+    implementation 'com.zaxxer:HikariCP'
+
+    runtimeOnly 'org.postgresql:postgresql'
+
+    migrationRuntime enforcedPlatform(libs.spring.boot.dependencies)
+    migrationRuntime 'org.flywaydb:flyway-core'
+    migrationRuntime 'org.flywaydb:flyway-database-postgresql'
+    migrationRuntime 'org.postgresql:postgresql'
+}
+
+def migrationCompile = tasks.register(
+    'compileCustomerMigration', JavaCompile
+) {
+    source fileTree('src/migration/java') {
+        include '**/*.java'
+    }
+
+    classpath = configurations.migrationRuntime
+
+    destinationDirectory.set(
+        layout.buildDirectory.dir('classes/customerMigration')
+    )
+
+    javaCompiler.set(
+        javaToolchains.compilerFor(java.toolchain)
+    )
+}
+
+def migrationClasspath = files(
+    migrationCompile.flatMap { it.destinationDirectory }
+) + files('src/migration/resources') + configurations.migrationRuntime
+
+tasks.register('migrateCustomerTestDatabase', JavaExec) {
+    group = 'database migration'
+    description = 'Explicitly migrates the disposable IP-02 database.'
+
+    dependsOn migrationCompile
+
+    classpath = migrationClasspath
+
+    mainClass = 'ir.neshane.customer.persistence.migration.CustomerMigrationRunner'
+
+    javaLauncher.set(
+        javaToolchains.launcherFor(java.toolchain)
+    )
+
+    args 'migrate'
+}
+
+tasks.register('validateCustomerTestDatabase', JavaExec) {
+    group = 'database migration'
+    description = 'Validates the disposable IP-02 migration history.'
+
+    dependsOn migrationCompile
+
+    classpath = migrationClasspath
+
+    mainClass = 'ir.neshane.customer.persistence.migration.CustomerMigrationRunner'
+
+    javaLauncher.set(
+        javaToolchains.launcherFor(java.toolchain)
+    )
+
+    args 'validate'
 }
