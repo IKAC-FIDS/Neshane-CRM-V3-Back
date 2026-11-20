@@ -1,0 +1,6 @@
+description = 'Customer Service outbound persistence adapter foundation IP-01.'
+
+dependencies {
+    implementation project(':services:customer-service:application')
+    implementation project(':services:customer-service:domain')
+}

@@ -12,6 +12,7 @@ def allowedProjectDependencies = [
     ':services:customer-service'        : [] as Set,
     ':services:customer-service:domain' : [] as Set,
     ':services:customer-service:application': [':services:customer-service:domain'] as Set,
+    ':services:customer-service:persistence': [':services:customer-service:application', ':services:customer-service:domain'] as Set,
     ':platform-libraries'               : [] as Set,
     ':platform-libraries:observability' : [] as Set,
     ':contract-tests'                   : [] as Set,
