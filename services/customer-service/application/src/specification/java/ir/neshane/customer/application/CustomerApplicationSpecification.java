@@ -18,6 +18,8 @@ public final class CustomerApplicationSpecification {
     private CustomerApplicationSpecification() {}
 
     public static void main(String[] args) {
+        ir.neshane.customer.application.integration.IntegratedCustomerApplicationSpecification.run();
+        ir.neshane.customer.application.integration.IntegratedLifecycleApplicationSpecification.run();
         ir.neshane.customer.application.access.ReadDisclosureApplicationSpecification.run();
         ir.neshane.customer.application.audit.AuditApplicationSpecification.run();
         ir.neshane.customer.application.access.IntegratedAccessAuditApplicationSpecification.run();
