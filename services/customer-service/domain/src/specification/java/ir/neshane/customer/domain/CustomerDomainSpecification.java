@@ -1,5 +1,95 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencySpecification;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonSpecification;
+
+import ir.neshane.customer.domain.access.AccessAuditIntegrationSpecification;
+import ir.neshane.customer.domain.access.AuditRequirementsPolicySpecification;
+import ir.neshane.customer.domain.access.CustomerBranchAccessPolicySpecification;
+import ir.neshane.customer.domain.access.LogicalAccessPolicySpecification;
+import ir.neshane.customer.domain.access.SensitiveAccessPolicySpecification;
+
+import ir.neshane.customer.domain.document.CustomerDocumentSpecification;
+import ir.neshane.customer.domain.document.DocumentCompletenessSpecification;
+import ir.neshane.customer.domain.document.DocumentHistorySpecification;
+import ir.neshane.customer.domain.document.DocumentIntegrationSpecification;
+import ir.neshane.customer.domain.document.DocumentRequirementPolicySpecification;
+import ir.neshane.customer.domain.document.DocumentTypeCatalogSpecification;
+import ir.neshane.customer.domain.document.DocumentValiditySpecification;
+import ir.neshane.customer.domain.document.DocumentVerificationSpecification;
+import ir.neshane.customer.domain.document.DocumentVerificationTemporalSpecification;
+import ir.neshane.customer.domain.document.DocumentVersionHistorySpecification;
+
+import ir.neshane.customer.domain.verification.IdentityRevisionSpecification;
+import ir.neshane.customer.domain.verification.ManualVerificationSpecification;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSpecification;
+import ir.neshane.customer.domain.verification.VerificationHistorySpecification;
+import ir.neshane.customer.domain.verification.VerificationIntegrationSpecification;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycleSpecification;
+import ir.neshane.customer.domain.verification.VerificationRevocationSpecification;
+
+import ir.neshane.customer.domain.duplicate.BasicSimilaritySpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateDecisionHistorySpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateDetectionSpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionSpecification;
+import ir.neshane.customer.domain.duplicate.DuplicateIntegrationSpecification;
+import ir.neshane.customer.domain.duplicate.IdentityConflictSpecification;
+
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalogSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipAssignmentSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipHistorySpecification;
+import ir.neshane.customer.domain.relationship.RelationshipIntegrationSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegrationSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipSpecification;
+import ir.neshane.customer.domain.relationship.RelationshipTemporalPolicySpecification;
+import ir.neshane.customer.domain.relationship.RoleGovernanceSpecification;
+
+import ir.neshane.customer.domain.branch.event.change.BranchChangeEventDraftSpecification;
+
+import ir.neshane.customer.domain.branch.lifecycle.BranchChangeHistorySpecification;
+import ir.neshane.customer.domain.branch.state.BranchRegistrationSpecification;
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicySpecification;
+
+import ir.neshane.customer.domain.branch.lifecycle.BranchHistorySpecification;
+import ir.neshane.customer.domain.branch.lifecycle.BranchIntegrationSpecification;
+import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycleIntegrationSpecification;
+import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycleSpecification;
+
+import ir.neshane.customer.domain.branch.type.BranchTypeSpecification;
+
+import ir.neshane.customer.domain.branch.model.BranchContactSpecification;
+import ir.neshane.customer.domain.branch.model.BranchRecordVersionSpecification;
+import ir.neshane.customer.domain.branch.model.BranchSpecification;
+
+import ir.neshane.customer.domain.customer.state.BranchRecordIntegrationSpecification;
+import ir.neshane.customer.domain.customer.state.CriticalFieldChangeSpecification;
+import ir.neshane.customer.domain.customer.state.FinalDomainIntegrationSpecification;
+
+import ir.neshane.customer.domain.customer.history.LifecycleHistorySpecification;
+
+import ir.neshane.customer.domain.coordination.registration.CustomerRegistrationSpecification;
+
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycleSpecification;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersionSpecification;
+
+import ir.neshane.customer.domain.contact.BranchTypeContactUpdateSpecification;
+import ir.neshane.customer.domain.contact.ContactValidationSpecification;
+import ir.neshane.customer.domain.contact.ContactTypeCatalogSpecification;
+import ir.neshane.customer.domain.contact.ContactInfoSpecification;
+import ir.neshane.customer.domain.identity.IdentityInfoSpecification;
+
+import ir.neshane.customer.domain.shared.localization.LocalizationSpecification;
+import ir.neshane.customer.domain.shared.temporal.TemporalPolicySpecification;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 /** Executable unit specification with synthetic data only; no external dependencies. */
 public final class CustomerDomainSpecification {
     private static final CustomerId ID = new CustomerId("synthetic-customer");

@@ -1,12 +1,42 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.CustomerUpdateVerification;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+
+import ir.neshane.customer.domain.customer.history.LifecycleHistory;
+
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentifierTypeDefinition;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentityInfo;
+import ir.neshane.customer.domain.identity.SystemIdentifierVocabulary;
+
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.Impact.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.IdentifierCorrection.NO_VERIFIED_IDENTIFIER_CORRECTION;
-import static ir.neshane.customer.domain.CustomerUpdateVerification.Outcome.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Impact.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.IdentifierCorrection.NO_VERIFIED_IDENTIFIER_CORRECTION;
+import static ir.neshane.customer.domain.customer.state.CustomerUpdateVerification.Outcome.*;
 
 final class CustomerUpdateVerificationSpecification {
     private static int checks;

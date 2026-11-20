@@ -1,5 +1,38 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.document.DocumentCompleteness;
+import ir.neshane.customer.domain.document.DocumentRequirementPolicy;
+import ir.neshane.customer.domain.document.DocumentTypeCatalog;
+import ir.neshane.customer.domain.document.DocumentValidity;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
+
+import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.CustomerUpdateVerification;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+
+import ir.neshane.customer.domain.customer.history.LifecycleHistory;
+
+import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
+
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+
+import ir.neshane.customer.domain.identity.IdentityOwner;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;

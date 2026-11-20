@@ -15,6 +15,16 @@ tasks.register('verifyCustomerDomainRules', JavaExec) {
     mainClass = 'ir.neshane.customer.domain.CustomerDomainSpecification'
 }
 
+tasks.register('verifyCustomerDomainArchitecture', JavaExec) {
+    group = 'verification'
+    description = 'Rejects production domain package cycles and external dependencies.'
+    dependsOn tasks.named('specificationClasses')
+    classpath = sourceSets.specification.runtimeClasspath
+    mainClass = 'ir.neshane.customer.domain.architecture.DomainArchitectureSpecification'
+    args sourceSets.main.output.classesDirs.files.collect { it.absolutePath }
+}
+
 tasks.named('check') {
     dependsOn tasks.named('verifyCustomerDomainRules')
+    dependsOn tasks.named('verifyCustomerDomainArchitecture')
 }

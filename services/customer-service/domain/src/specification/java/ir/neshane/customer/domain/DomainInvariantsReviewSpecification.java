@@ -1,11 +1,42 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.access.AuditRequirementsPolicy;
+import ir.neshane.customer.domain.access.LogicalAccessPolicy;
+import ir.neshane.customer.domain.access.ReadDisclosurePolicy;
+
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
+import ir.neshane.customer.domain.relationship.Relationship;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
+import ir.neshane.customer.domain.relationship.RelationshipTarget;
+
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
+
+import ir.neshane.customer.domain.branch.model.Branch;
+import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
+import ir.neshane.customer.domain.branch.model.BranchStatus;
+
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+import ir.neshane.customer.domain.shared.identifier.BranchId;
+import ir.neshane.customer.domain.shared.identifier.RelationshipId;
+
 import java.time.LocalDate;
 import java.util.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Operation.*;
-import static ir.neshane.customer.domain.LogicalAccessPolicy.Outcome.*;
-import static ir.neshane.customer.domain.ReadDisclosurePolicy.IdentityFields.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Operation.*;
+import static ir.neshane.customer.domain.access.LogicalAccessPolicy.Outcome.*;
+import static ir.neshane.customer.domain.access.ReadDisclosurePolicy.IdentityFields.*;
 
 final class DomainInvariantsReviewSpecification {
     private static int checks;
@@ -43,14 +74,14 @@ final class DomainInvariantsReviewSpecification {
         var pc=current(person,CustomerStatus.INACTIVE);
         var cc=current(company,CustomerStatus.ARCHIVED);
         var bc=new BranchUpdatePolicy.Current(branch,BranchStatus.INACTIVE,BranchRecordVersion.initial(branch));
-        var parties=new RelationshipLifecycleIntegration.Parties(pc,cc,Optional.of(bc));
+        var parties=new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(cc),Optional.of(bc));
         var relationshipReader=actor(tenant,RELATIONSHIP_READ);
         expect(eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,parties)));
         expect(!eligible(ReadDisclosurePolicy.relationship(reader,fact,parties)));
         expect(!eligible(ReadDisclosurePolicy.relationship(actor(foreign,RELATIONSHIP_READ),fact,parties)));
-        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties(pc,cc,Optional.empty()))));
+        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(cc),Optional.empty()))));
         var wrong=current(Company.createCandidate(new CustomerId("other"),tenant,"Other",null),CustomerStatus.ACTIVE);
-        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties(pc,wrong,Optional.of(bc)))));
+        expect(!eligible(ReadDisclosurePolicy.relationship(relationshipReader,fact,new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(pc), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(wrong),Optional.of(bc)))));
         var ended=new RelationshipAssignment.Fact(fact.id(),fact.tenant(),fact.person(),fact.target(),fact.roleCode(),day,Optional.empty(),Relationship.Status.ENDED,2);
         expect(eligible(ReadDisclosurePolicy.relationship(relationshipReader,ended,parties)));
         expect(fact.status()==Relationship.Status.ACTIVE && fact.version()==1 && bc.status()==BranchStatus.INACTIVE && cc.status()==CustomerStatus.ARCHIVED);

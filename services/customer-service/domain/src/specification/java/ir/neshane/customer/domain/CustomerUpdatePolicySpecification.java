@@ -1,11 +1,40 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.contact.ContactOwner;
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactTypeDefinition;
+import ir.neshane.customer.domain.contact.ContactPoint;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+import ir.neshane.customer.domain.contact.SystemContactVocabulary;
+
+import ir.neshane.customer.domain.contact.ContactValue;
+import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+
+import ir.neshane.customer.domain.shared.localization.LocalizedText;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerUpdatePolicy.Outcome.*;
-import static ir.neshane.customer.domain.CustomerUpdatePolicy.Authority.*;
+import static ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.Outcome.*;
+import static ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.Authority.*;
 
 final class CustomerUpdatePolicySpecification {
     private static int checks;

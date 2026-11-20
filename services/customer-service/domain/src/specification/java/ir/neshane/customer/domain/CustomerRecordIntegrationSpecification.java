@@ -1,14 +1,72 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.document.CustomerDocument;
+import ir.neshane.customer.domain.document.DocumentCompleteness;
+import ir.neshane.customer.domain.document.DocumentFileReference;
+import ir.neshane.customer.domain.document.DocumentRequirementPolicy;
+import ir.neshane.customer.domain.document.DocumentTypeCatalog;
+import ir.neshane.customer.domain.document.DocumentTypeDefinition;
+import ir.neshane.customer.domain.document.DocumentValidity;
+import ir.neshane.customer.domain.document.DocumentVersionHistory;
+
+import ir.neshane.customer.domain.verification.ManualVerification;
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+import ir.neshane.customer.domain.duplicate.DuplicateExceptionPolicy;
+
+import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.CustomerUpdateVerification;
+import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+
+import ir.neshane.customer.domain.customer.history.LifecycleHistory;
+
+import ir.neshane.customer.domain.coordination.registration.CustomerRegistration;
+import ir.neshane.customer.domain.customer.event.change.CustomerChangeEventDraft;
+
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.contact.ContactOwner;
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.contact.ContactTypeDefinition;
+import ir.neshane.customer.domain.contact.ContactInfo;
+import ir.neshane.customer.domain.contact.ContactPoint;
+import ir.neshane.customer.domain.identity.IdentifierTypeDefinition;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentityInfo;
+import ir.neshane.customer.domain.contact.SystemContactVocabulary;
+import ir.neshane.customer.domain.identity.SystemIdentifierVocabulary;
+
+import ir.neshane.customer.domain.contact.ContactValue;
+import ir.neshane.customer.domain.contact.ContactTypeRef;
+import ir.neshane.customer.domain.identity.IdentityOwner;
+import ir.neshane.customer.domain.identity.IdentityIdentifier;
+import ir.neshane.customer.domain.shared.validation.ValidationProfile;
+
+import ir.neshane.customer.domain.shared.localization.LocalizedText;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerChangeEventDraft.Type.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.Impact.*;
-import static ir.neshane.customer.domain.IdentityRevisionAssessment.IdentifierCorrection.*;
+import static ir.neshane.customer.domain.customer.event.change.CustomerChangeEventDraft.Type.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.Impact.*;
+import static ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment.IdentifierCorrection.*;
 
 /** Registration through independent reverification, using real domain assessments throughout. */
 final class CustomerRecordIntegrationSpecification {

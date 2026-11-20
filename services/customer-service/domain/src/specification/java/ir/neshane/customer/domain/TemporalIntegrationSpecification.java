@@ -1,13 +1,59 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.customer.state.DocumentVerificationImpact;
+
+import ir.neshane.customer.domain.document.CustomerDocument;
+import ir.neshane.customer.domain.document.DocumentEventDraft;
+import ir.neshane.customer.domain.document.DocumentFileReference;
+import ir.neshane.customer.domain.document.DocumentHistory;
+import ir.neshane.customer.domain.document.DocumentTypeCatalog;
+import ir.neshane.customer.domain.document.DocumentTypeDefinition;
+import ir.neshane.customer.domain.document.DocumentValidity;
+import ir.neshane.customer.domain.verification.DocumentVerification;
+import ir.neshane.customer.domain.document.DocumentVersionHistory;
+
+import ir.neshane.customer.domain.verification.ManualVerification;
+import ir.neshane.customer.domain.verification.event.VerificationEventDraft;
+import ir.neshane.customer.domain.verification.VerificationEvidence;
+import ir.neshane.customer.domain.verification.VerificationEvidenceSet;
+import ir.neshane.customer.domain.verification.model.VerificationLifecycle;
+
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
+import ir.neshane.customer.domain.relationship.BusinessRoleDefinition;
+import ir.neshane.customer.domain.relationship.Relationship;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipEventDraft;
+import ir.neshane.customer.domain.relationship.RelationshipHistory;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycle;
+
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+import ir.neshane.customer.domain.customer.state.VerificationRevocation;
+
+import ir.neshane.customer.domain.customer.history.LifecycleHistory;
+
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.shared.localization.LocalizedText;
+import ir.neshane.customer.domain.shared.temporal.TemporalPolicy;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+import ir.neshane.customer.domain.shared.identifier.RelationshipId;
+import ir.neshane.customer.domain.shared.identifier.CustomerDocumentId;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import static ir.neshane.customer.domain.DocumentValidity.ExpiryBoundary.*;
-import static ir.neshane.customer.domain.VerificationStatus.*;
+import static ir.neshane.customer.domain.document.DocumentValidity.ExpiryBoundary.*;
+import static ir.neshane.customer.domain.verification.model.VerificationStatus.*;
 
 /** Synthetic joint temporal scenario; no application transaction or scheduler. */
 final class TemporalIntegrationSpecification {
@@ -52,9 +98,9 @@ final class TemporalIntegrationSpecification {
         }
         expect(DocumentValidity.assess(doc,endDay,LAST_VALID_DAY).state().orElseThrow()==CustomerDocument.State.PROVIDED);
         expect(DocumentValidity.assess(doc,endDay,FIRST_INVALID_DAY).state().orElseThrow()==CustomerDocument.State.EXPIRED);
-        expect(DocumentVerification.assessImpact(verification,"rev",documents.versions(),endDay,end,UNRESOLVED,VerificationRevocation.Authority.REVOKE_MANUAL).outcome()==DocumentVerification.Outcome.REVIEW_REQUIRED);
-        expect(DocumentVerification.assessImpact(verification,"rev",documents.versions(),endDay,end,LAST_VALID_DAY,VerificationRevocation.Authority.REVOKE_MANUAL).outcome()==DocumentVerification.Outcome.UNCHANGED);
-        expect(DocumentVerification.assessImpact(verification,"rev",documents.versions(),endDay,end,FIRST_INVALID_DAY,VerificationRevocation.Authority.REVOKE_MANUAL).outcome()==DocumentVerification.Outcome.REVERIFICATION_REQUIRED_CANDIDATE);
+        expect(DocumentVerificationImpact.assessImpact(verification,"rev",documents.versions(),endDay,end,UNRESOLVED,VerificationRevocation.Authority.REVOKE_MANUAL).outcome()==DocumentVerification.Outcome.REVIEW_REQUIRED);
+        expect(DocumentVerificationImpact.assessImpact(verification,"rev",documents.versions(),endDay,end,LAST_VALID_DAY,VerificationRevocation.Authority.REVOKE_MANUAL).outcome()==DocumentVerification.Outcome.UNCHANGED);
+        expect(DocumentVerificationImpact.assessImpact(verification,"rev",documents.versions(),endDay,end,FIRST_INVALID_DAY,VerificationRevocation.Authority.REVOKE_MANUAL).outcome()==DocumentVerification.Outcome.REVERIFICATION_REQUIRED_CANDIDATE);
         var ended=relationships.appendEndCandidate(fact,roles,tenant,1,RelationshipLifecycle.Authority.END_RELATIONSHIP,"reason",ctx("r2",end));
         var last=ended.entries().getLast();
         expect(last.proposedStatus()==Relationship.Status.ENDED);

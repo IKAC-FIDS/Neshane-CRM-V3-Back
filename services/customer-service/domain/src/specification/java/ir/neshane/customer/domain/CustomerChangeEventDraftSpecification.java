@@ -1,10 +1,33 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.duplicate.DuplicateDetection;
+
+import ir.neshane.customer.domain.customer.state.CustomerChangeHistory;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.CustomerUpdateVerification;
+import ir.neshane.customer.domain.customer.state.IdentityRevisionAssessment;
+import ir.neshane.customer.domain.customer.state.VerificationHistory;
+
+import ir.neshane.customer.domain.customer.event.change.CustomerChangeEventDraft;
+
+import ir.neshane.customer.domain.customer.update.CriticalFieldChangeAssessment;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+import ir.neshane.customer.domain.identity.IdentifierTypeCatalog;
+
+import ir.neshane.customer.domain.identity.IdentityOwner;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import static ir.neshane.customer.domain.CustomerChangeEventDraft.Type.*;
+import static ir.neshane.customer.domain.customer.event.change.CustomerChangeEventDraft.Type.*;
 import static ir.neshane.customer.domain.CustomerChangeHistorySpecification.*;
 
 final class CustomerChangeEventDraftSpecification {

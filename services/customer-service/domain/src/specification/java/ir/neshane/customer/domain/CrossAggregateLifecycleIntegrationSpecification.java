@@ -1,5 +1,61 @@
 package ir.neshane.customer.domain;
 
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyAssessment;
+import ir.neshane.customer.domain.lifecycle.ArchiveDependencyCatalog;
+import ir.neshane.customer.domain.lifecycle.LifecycleReasonCatalog;
+
+import ir.neshane.customer.domain.relationship.BusinessRoleCatalog;
+import ir.neshane.customer.domain.relationship.BusinessRoleDefinition;
+import ir.neshane.customer.domain.relationship.Relationship;
+import ir.neshane.customer.domain.relationship.RelationshipAssignment;
+import ir.neshane.customer.domain.relationship.RelationshipEventDraft;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycle;
+import ir.neshane.customer.domain.relationship.RelationshipLifecycleIntegration;
+
+import ir.neshane.customer.domain.branch.event.change.BranchChangeEventDraft;
+import ir.neshane.customer.domain.branch.lifecycle.BranchEventDraft;
+
+import ir.neshane.customer.domain.branch.lifecycle.BranchChangeHistory;
+import ir.neshane.customer.domain.branch.state.BranchRegistration;
+import ir.neshane.customer.domain.branch.state.BranchUpdatePolicy;
+import ir.neshane.customer.domain.branch.state.CompanyBranches;
+
+import ir.neshane.customer.domain.branch.lifecycle.BranchHistory;
+import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycle;
+import ir.neshane.customer.domain.branch.lifecycle.BranchLifecycleIntegration;
+
+import ir.neshane.customer.domain.branch.type.BranchTypeCatalog;
+
+import ir.neshane.customer.domain.branch.model.Branch;
+import ir.neshane.customer.domain.branch.model.BranchRecordVersion;
+import ir.neshane.customer.domain.branch.model.BranchStatus;
+
+import ir.neshane.customer.domain.customer.state.CrossAggregateLifecycle;
+import ir.neshane.customer.domain.customer.state.CustomerLifecycleIntegration;
+import ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy;
+import ir.neshane.customer.domain.customer.state.IdentityRevision;
+
+import ir.neshane.customer.domain.customer.history.LifecycleHistory;
+
+import ir.neshane.customer.domain.customer.event.CustomerEventDraft;
+
+import ir.neshane.customer.domain.customer.model.Company;
+import ir.neshane.customer.domain.customer.model.CustomerRecordVersion;
+import ir.neshane.customer.domain.customer.lifecycle.CustomerLifecycle;
+import ir.neshane.customer.domain.customer.model.CustomerStatus;
+import ir.neshane.customer.domain.customer.model.Customer;
+import ir.neshane.customer.domain.customer.model.Person;
+import ir.neshane.customer.domain.verification.model.VerificationStatus;
+
+import ir.neshane.customer.domain.contact.ContactTypeCatalog;
+
+import ir.neshane.customer.domain.shared.localization.LocalizedText;
+
+import ir.neshane.customer.domain.shared.identifier.TenantId;
+import ir.neshane.customer.domain.shared.identifier.CustomerId;
+import ir.neshane.customer.domain.shared.identifier.BranchId;
+import ir.neshane.customer.domain.shared.identifier.RelationshipId;
+
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
@@ -18,7 +74,7 @@ final class CrossAggregateLifecycleIntegrationSpecification {
         var person=Person.createCandidate(new CustomerId("person"),TENANT,"A","B",null);
         var parent=current(company); var pc=current(person);
         var branch=Branch.createCandidate(new BranchId("branch"),TENANT,company,"code","Branch",null,null);
-        var registration=BranchRegistration.assess(branch,parent,CompanyBranches.empty(company),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
+        var registration=BranchRegistration.assess(branch, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(parent),CompanyBranches.empty(company),BranchRegistration.Coverage.COMPLETE_CANDIDATE,
             new BranchRegistration.Context(TENANT,BranchRegistration.Authority.REGISTER),BranchTypeCatalog.initial(),ContactTypeCatalog.empty(),Map.of()).proposed().orElseThrow();
         var facts=BranchChangeHistory.start(registration,meta(1)); var bc=facts.current(); var collection=registration.branches();
         var roleDef=new BusinessRoleDefinition("role",Optional.of(TENANT),"CUSTOM",new LocalizedText(Map.of("en","Role")),new LocalizedText(Map.of()),BusinessRoleDefinition.Scope.BOTH,BusinessRoleDefinition.Status.ACTIVE);
@@ -76,11 +132,11 @@ final class CrossAggregateLifecycleIntegrationSpecification {
     private static CustomerUpdatePolicy.Current current(Customer c) { return new CustomerUpdatePolicy.Current(IdentityRevision.snapshot(c,"r1",VerificationStatus.VERIFIED),CustomerStatus.ACTIVE,CustomerRecordVersion.initial(c)); }
     private static LifecycleHistory.Context meta(int i) { return new LifecycleHistory.Context("h"+i,"actor",Instant.ofEpochSecond(i),"request"+i); }
     private static CustomerLifecycleIntegration.Context customerContext(CustomerLifecycle.Transition op,int i) { return new CustomerLifecycleIntegration.Context(TENANT,CustomerLifecycleIntegration.Authority.TRANSITION,op,true,"CUSTOMER_REQUEST",null,meta(i),"event"+i); }
-    private static RelationshipLifecycleIntegration.Parties parties(CustomerUpdatePolicy.Current p,CustomerUpdatePolicy.Current c,BranchUpdatePolicy.Current b) { return new RelationshipLifecycleIntegration.Parties(p,c,Optional.of(b)); }
+    private static RelationshipLifecycleIntegration.Parties parties(CustomerUpdatePolicy.Current p,CustomerUpdatePolicy.Current c,BranchUpdatePolicy.Current b) { return new RelationshipLifecycleIntegration.Parties( ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p), ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(c),Optional.of(b)); }
     private static RelationshipLifecycle.EffectiveStatus status(RelationshipAssignment.Fact f,RelationshipLifecycleIntegration.Parties p) { return RelationshipLifecycleIntegration.effectiveStatus(f,DAY,p); }
     private static CrossAggregateLifecycle.Snapshot snapshot(CustomerUpdatePolicy.Current c,BranchUpdatePolicy.Current b,RelationshipAssignment.Fact f,CustomerUpdatePolicy.Current p) { return new CrossAggregateLifecycle.Snapshot(c,CrossAggregateLifecycle.Coverage.COMPLETE_CANDIDATE,List.of(b),List.of(new CrossAggregateLifecycle.Related(f,parties(p,c,b)))); }
     private static BranchLifecycleIntegration.Assessment branchTransition(BranchUpdatePolicy.Current c,BranchRecordVersion v,CustomerUpdatePolicy.Current p,CompanyBranches branches,BranchHistory h,BranchLifecycle.Transition op,String reason,int i) {
-        return BranchLifecycleIntegration.assess(c,v,p,branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,new BranchLifecycleIntegration.Context(TENANT,BranchLifecycleIntegration.Authority.TRANSITION,op,true,reason,null,meta(i),"event"+i),REASONS,h);
+        return BranchLifecycleIntegration.assess(c,v, ir.neshane.customer.domain.customer.state.CustomerUpdatePolicy.lifecycleSnapshot(p),branches,BranchRegistration.Coverage.COMPLETE_CANDIDATE,new BranchLifecycleIntegration.Context(TENANT,BranchLifecycleIntegration.Authority.TRANSITION,op,true,reason,null,meta(i),"event"+i),REASONS,h);
     }
     private static void expect(boolean v) { if (!v) throw new AssertionError("Integrated lifecycle assertion "+(checks+1)); checks++; }
 }
